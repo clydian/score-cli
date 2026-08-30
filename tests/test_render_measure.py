@@ -30,7 +30,7 @@ def test_renders_a_non_numeric_printed_measure_from_the_full_score_layout(
     png = output_path.read_bytes()
     width, height = _png_dimensions(png)
     assert png.startswith(PNG_SIGNATURE)
-    assert (width, height) == (320, 568)
+    assert (width, height) == (344, 640)
     assert result.printed_measure == "X1"
     assert result.scope == "measure"
     assert result.rendered_measures_on_source_page == ("1", "X1", "3")

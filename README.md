@@ -4,7 +4,8 @@ Render one printed MusicXML measure as one PNG for visual comparison with the so
 
 The full score is laid out first. `score-cli` then locates the requested measure in that
 rendered layout and crops its graphical bounds, so spacing and staff positions remain the
-same as they were in the surrounding system.
+same as they were in the surrounding system. Printed measure numbers are included in both
+measure and system crops.
 
 ## Requirements
 

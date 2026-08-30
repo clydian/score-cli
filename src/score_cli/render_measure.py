@@ -91,7 +91,7 @@ def render_printed_measure(
             "svgAdditionalAttribute": ["measure@n"],
             "svgBoundingBoxes": True,
             "svgContentBoundingBoxes": True,
-            "mnumInterval": 1 if scope == "system" else 0,
+            "mnumInterval": 1,
         }
     )
 
