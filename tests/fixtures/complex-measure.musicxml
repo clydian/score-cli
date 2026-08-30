@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <work><work-title>Complex inspection fixture</work-title></work>
+  <identification><creator type="composer">Example Composer</creator></identification>
+  <part-list>
+    <score-part id="P1">
+      <part-name>Choir</part-name>
+      <part-abbreviation>Ch.</part-abbreviation>
+      <score-instrument id="P1-I1"><instrument-name>Voice</instrument-name></score-instrument>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>2</divisions>
+        <key><fifths>-1</fifths><mode>major</mode></key>
+        <time><beats>3</beats><beat-type>4</beat-type></time>
+        <staves>2</staves>
+        <clef number="1"><sign>G</sign><line>2</line></clef>
+        <clef number="2"><sign>F</sign><line>4</line></clef>
+      </attributes>
+      <note>
+        <pitch><step>C</step><octave>4</octave></pitch>
+        <duration>6</duration><voice>1</voice><type>half</type><dot/><staff>1</staff>
+      </note>
+    </measure>
+    <measure number="X1" implicit="no" width="240">
+      <print new-system="yes"/>
+      <direction placement="above">
+        <direction-type><words font-style="italic">dolce</words></direction-type>
+        <direction-type><dynamics><p/></dynamics></direction-type>
+        <staff>1</staff>
+        <sound tempo="120"/>
+      </direction>
+      <harmony placement="above">
+        <root><root-step>C</root-step></root><kind>major</kind><staff>1</staff>
+      </harmony>
+      <note default-x="10">
+        <pitch><step>F</step><alter>1</alter><octave>4</octave></pitch>
+        <duration>1</duration><tie type="start"/><voice>1</voice><type>eighth</type>
+        <accidental>sharp</accidental><stem>up</stem><staff>1</staff><beam number="1">begin</beam>
+        <notations>
+          <tied type="start"/><slur type="start" number="1"/>
+          <articulations><accent/></articulations><technical><fingering>2</fingering></technical>
+        </notations>
+        <lyric number="1"><syllabic>single</syllabic><text>你</text></lyric>
+      </note>
+      <note>
+        <chord/><pitch><step>A</step><octave>4</octave></pitch>
+        <duration>1</duration><voice>1</voice><type>eighth</type><staff>1</staff>
+      </note>
+      <note>
+        <rest/><duration>1</duration><voice>1</voice><type>eighth</type><staff>1</staff>
+      </note>
+      <backup><duration>2</duration></backup>
+      <note>
+        <pitch><step>G</step><octave>3</octave></pitch>
+        <duration>6</duration><voice>2</voice><type>half</type><dot/><staff>2</staff>
+      </note>
+      <grouping type="start" number="1"><feature type="analysis">phrase</feature></grouping>
+      <bookmark id="inspection-bookmark" name="target"/>
+      <barline location="right"><bar-style>light-heavy</bar-style><repeat direction="backward"/></barline>
+    </measure>
+  </part>
+</score-partwise>

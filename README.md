@@ -44,10 +44,65 @@ staff in the target measure's rendered system.
 string selector, so printed numbers such as `0` and `X1` are supported. Inputs may be
 uncompressed `.musicxml` / `.xml` files or compressed `.mxl` files.
 
+## Outlining a score
+
+List the score's parts and ordered printed measure numbers before selecting a measure:
+
+```bash
+uv run score-cli outline score.mxl
+```
+
+The JSON contains only `schemaVersion`, `parts`, `measureNumbers`, and sequence
+diagnostics. It does not include file metadata or musical events.
+
+## Inspecting a measure
+
+Return normalized JSON information for one printed measure:
+
+```bash
+uv run score-cli inspect score.mxl --measure 41
+```
+
+JSON is written to stdout, so it can be redirected or piped to another tool:
+
+```bash
+uv run score-cli inspect score.mxl --measure 41 > measure-41.json
+```
+
+The result contains only the selected logical measure. It aggregates that measure
+across every part, resolves effective attributes such as divisions, key, time, and
+clef, and normalizes notes, rests, voices, staves, offsets, durations, lyrics,
+directions, harmony, notation, and barlines. Input-file metadata, score headers, and
+neighboring measures are deliberately omitted. See
+[the inspect JSON contract](docs/inspect-json.md).
+
+To inspect one exact MusicXML part ID:
+
+```bash
+uv run score-cli inspect score.mxl --measure 41 --part P3
+```
+
+For a loss-preserving ordered representation of every MusicXML element inside the
+target measure, opt in explicitly:
+
+```bash
+uv run score-cli inspect score.mxl --measure 41 --include-elements
+```
+
+For a concise human-readable view:
+
+```bash
+uv run score-cli inspect score.mxl --measure 41 --format text
+```
+
+The same printed number appearing once in each part is one logical measure and is
+aggregated normally. Repeating the same printed number within a single part or
+timewise measure sequence is ambiguous and returns an error.
+
 ## V1 scope
 
 - Input: one MusicXML or compressed MusicXML file.
 - Selector: the measure's printed number.
-- Output: one measure or complete staff-system PNG cropped from the fully rendered score.
+- Output: a score outline, one measure's JSON/text information, or one measure/system PNG.
 
 Editing, event export, comparison manifests, and multi-measure context are outside the V1 scope.
