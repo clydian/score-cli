@@ -114,5 +114,9 @@ from source PDF review and remaining limitations.
 - Output: a score outline, one measure's JSON/text information, or one measure/system PNG.
 
 The original outline/inspect/single-measure render contracts remain unchanged.
-Structure editing, automatic PDF correctness judgments, playback, GUI, complex lyric
+Automatic PDF correctness judgments, playback, GUI, complex lyric
 rewrites, and MXL repackaging remain outside the current scope.
+
+### 结构修复
+
+changeset v2 支持事件、小节和 part 的结构编辑，显式 Audiveris 碎片合并，以及 compare/校准清单的结构映射。所有删除逐项声明，失败不发布部分文件。参见 [结构编辑契约与示例](docs/structural-editing.md) 和 [真实碎片合并验收](docs/issue-2-acceptance.md)。

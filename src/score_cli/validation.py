@@ -39,6 +39,7 @@ TYPE_QUARTERS = {
 COVERAGE = dict(
     checked=[
         "part-and-measure-structure",
+        "part-order-groups-and-instrument-references",
         "snapshot-locations",
         "cursor-and-divisions",
         "duration-notation",
@@ -128,6 +129,7 @@ def validate_document(document: ScoreDocument) -> dict:
             coverage=COVERAGE,
             diagnostics=diagnostics,
         )
+    _structure_references(document, add)
     measures = document.measures()
     sequences: dict[str, list[str]] = defaultdict(list)
     for part, printed, ordinal, _, _ in measures:
@@ -553,3 +555,86 @@ def _pair(kind, key, location, at, end, pairs, add):
             f"Unsupported endpoint type {kind}.",
             "inconclusive",
         )
+
+
+def _structure_references(document, add):
+    """Check native part order, part groups and instrument ID/IDREF ownership."""
+    part_list = child(document.root, "part-list")
+    if part_list is None:
+        return
+    definitions = children(part_list, "score-part")
+    ids = [p.get("id", "") for p in definitions]
+    groups = {}
+    seen_parts = 0
+    for element in part_list:
+        if name(element) == "score-part":
+            seen_parts += 1
+        elif name(element) == "part-group":
+            number = element.get("number", "1")
+            kind = element.get("type")
+            if kind == "start" and number not in groups:
+                groups[number] = seen_parts
+            elif kind == "stop" and number in groups:
+                if groups.pop(number) == seen_parts:
+                    add(
+                        "empty-part-group",
+                        {},
+                        "Part group must contain at least one part.",
+                    )
+            else:
+                add(
+                    "invalid-part-group",
+                    {},
+                    "Part group start/stop numbers must pair uniquely.",
+                )
+    if groups:
+        add("unclosed-part-group", {}, "Part group start has no stop.")
+    owners = {}
+    for definition in definitions:
+        pid = definition.get("id", "")
+        for instrument in children(definition, "score-instrument"):
+            identity = instrument.get("id")
+            if not identity or identity in owners or identity in ids:
+                add(
+                    "duplicate-instrument-id",
+                    dict(partId=pid),
+                    "Instrument IDs must be present and globally unique.",
+                )
+            owners[identity] = pid
+    for definition in definitions:
+        pid = definition.get("id", "")
+        for e in definition.iter():
+            if name(e) in {"midi-instrument", "midi-device", "instrument"}:
+                if name(e) == "midi-device" and e.get("id") is None:
+                    continue
+                if owners.get(e.get("id")) != pid:
+                    add(
+                        "invalid-instrument-reference",
+                        dict(partId=pid),
+                        "Instrument reference must resolve within its part.",
+                    )
+    parents = (
+        [document.root]
+        if name(document.root) == "score-partwise"
+        else children(document.root, "measure")
+    )
+    for parent in parents:
+        if [p.get("id", "") for p in children(parent, "part")] != ids:
+            add(
+                "part-order",
+                {},
+                "Native part order must match part-list in every measure.",
+            )
+    for pid, printed, ordinal, measure, _ in document.measures():
+        for e in measure.iter():
+            if name(e) in {"instrument", "midi-instrument", "midi-device"}:
+                if name(e) == "midi-device" and e.get("id") is None:
+                    continue
+                if owners.get(e.get("id")) != pid:
+                    add(
+                        "invalid-instrument-reference",
+                        dict(
+                            partId=pid, printedMeasure=printed, measureOrdinal=ordinal
+                        ),
+                        "Instrument reference must resolve within its part.",
+                    )

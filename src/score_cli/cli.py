@@ -62,6 +62,7 @@ def build_parser() -> argparse.ArgumentParser:
     )
     compare.add_argument("before")
     compare.add_argument("after")
+    compare.add_argument("--mapping", help="JSON explicit parts/measures mapping")
     calibration = commands.add_parser(
         "calibration", help="manage version-bound review evidence"
     )
@@ -69,6 +70,9 @@ def build_parser() -> argparse.ArgumentParser:
     calibration.add_argument("input")
     calibration.add_argument("--source-pdf", required=True)
     calibration.add_argument("--record")
+    calibration.add_argument(
+        "--edit-report", help="Hash-bound structure edit report for target migration"
+    )
     calibration.add_argument(
         "--targets", help="JSON array of id/partId/printedMeasure/checks"
     )
@@ -132,7 +136,11 @@ def main(argv: Sequence[str] | None = None) -> int:
             return 1 if report["status"] == "invalid" else 0
         elif arguments.command == "compare":
             report = compare_scores(
-                before_path=arguments.before, after_path=arguments.after
+                before_path=arguments.before,
+                after_path=arguments.after,
+                mapping=json.loads(Path(arguments.mapping).read_text())
+                if arguments.mapping
+                else None,
             )
             print(json_bytes(report).decode(), end="")
         elif arguments.command == "calibration":
@@ -253,6 +261,8 @@ def _calibration_command(arguments):
         if not arguments.record:
             raise ScoreError("missing-record", "Status/update requires --record.")
         record = json.loads(Path(arguments.record).read_text())
+        if arguments.edit_report:
+            common["edit_report"] = json.loads(Path(arguments.edit_report).read_text())
         if arguments.action == "status":
             report = calibration_status(record, **common)
         else:

@@ -7,6 +7,7 @@ from pathlib import Path
 
 from .score_document import (
     ScoreDocument,
+    ScoreError,
     child,
     children,
     content,
@@ -16,6 +17,7 @@ from .score_document import (
     tree_data,
 )
 from .validation import validate_document
+from .structure_mapping import mapping_rows, location_key
 
 
 def event_value(event) -> dict:
@@ -91,7 +93,9 @@ def sounding_pitch(event) -> dict:
     return dict(status="determinate", value=str(value))
 
 
-def compare_scores(*, before_path: str | Path, after_path: str | Path) -> dict:
+def compare_scores(
+    *, before_path: str | Path, after_path: str | Path, mapping: dict | None = None
+) -> dict:
     before_data, after_data = (
         Path(before_path).read_bytes(),
         Path(after_path).read_bytes(),
@@ -100,17 +104,21 @@ def compare_scores(*, before_path: str | Path, after_path: str | Path) -> dict:
         compare_documents(
             ScoreDocument.read(before_path, data=before_data),
             ScoreDocument.read(after_path, data=after_data),
+            mapping=mapping,
         ),
         beforeSha256=sha256(before_data),
         afterSha256=sha256(after_data),
     )
 
 
-def compare_documents(before: ScoreDocument, after: ScoreDocument) -> dict:
+def compare_documents(
+    before: ScoreDocument, after: ScoreDocument, mapping: dict | None = None
+) -> dict:
     report: dict = dict(
         schemaVersion="1",
         status="equal-within-coverage",
         alignment="exact part / printed measure / all-note ordinal; voice identity must agree",
+        structureDifferences=[],
         notationDifferences=[],
         soundingDifferences=[],
         unaligned=[],
@@ -138,23 +146,70 @@ def compare_documents(before: ScoreDocument, after: ScoreDocument) -> dict:
     right_measures = after.measures()
     left_structure = [(p, m, o) for p, m, o, _, _ in left_measures]
     right_structure = [(p, m, o) for p, m, o, _, _ in right_measures]
-    if left_structure != right_structure or len(
-        {(p, m) for p, m, _ in left_structure}
-    ) != len(left_structure):
-        report["unaligned"].append(
-            dict(
-                reason="Different or ambiguous part/measure structure.",
-                before=left_structure,
-                after=right_structure,
-            )
+    try:
+        rows = mapping_rows(
+            [(p, m) for p, m, *_ in left_measures],
+            [(p, m) for p, m, *_ in right_measures],
+            mapping,
         )
+    except ScoreError as exc:
+        if mapping is not None:
+            raise
+        report["unaligned"].append(dict(reason=str(exc)))
         report["status"] = "inconclusive"
         return report
+    report["mapping"] = dict(measures=rows)
+    left_lookup = {(p, m): row for row in left_measures for p, m in [row[:2]]}
+    right_lookup = {(p, m): row for row in right_measures for p, m in [row[:2]]}
+    pairs = []
+    for row in rows:
+        if row["before"] is None or row["after"] is None:
+            side = "after" if row["before"] is None else "before"
+            field = "added" if side == "after" else "removed"
+            report[field].append(dict(kind="part-measure", location=row[side]))
+            continue
+        a, b = location_key(row["before"]), location_key(row["after"])
+        if sum(r["after"] == row["after"] for r in rows) > 1:
+            report["unaligned"].append(
+                dict(
+                    before=row["before"],
+                    after=row["after"],
+                    reason="Explicit many-to-one merge; note alignment requires source event provenance.",
+                )
+            )
+            continue
+        pairs.append((left_lookup[a], right_lookup[b]))
+    if left_structure != right_structure or any(
+        r.get("relation") == "merged" for r in rows
+    ):
+        report["structureDifferences"].append(
+            dict(before=left_structure, after=right_structure, mapping=rows)
+        )
+    left_part_list, right_part_list = (
+        child(before.root, "part-list"),
+        child(after.root, "part-list"),
+    )
+    if (
+        left_part_list is not None
+        and right_part_list is not None
+        and tree_data(left_part_list) != tree_data(right_part_list)
+    ):
+        report["structureDifferences"].append(
+            dict(
+                kind="part-list",
+                before=tree_data(left_part_list),
+                after=tree_data(right_part_list),
+            )
+        )
     left_events, right_events = before.events(), after.events()
     uncertain = False
-    for (part, printed, ordinal, left, _), (_, _, _, right, _) in zip(
-        left_measures, right_measures
-    ):
+    for (part, printed, ordinal, left, _), (
+        right_part,
+        right_printed,
+        right_ordinal,
+        right,
+        _,
+    ) in pairs:
         location = dict(partId=part, printedMeasure=printed)
         a = [
             e
@@ -164,7 +219,7 @@ def compare_documents(before: ScoreDocument, after: ScoreDocument) -> dict:
         b = [
             e
             for e in right_events
-            if e.location["partId"] == part and e.measure_ordinal == ordinal
+            if e.location["partId"] == right_part and e.measure_ordinal == right_ordinal
         ]
         if len(a) != len(b):
             report["unaligned"].append(
@@ -251,6 +306,15 @@ def compare_documents(before: ScoreDocument, after: ScoreDocument) -> dict:
         )
     ):
         report["status"] = "inconclusive"
-    elif report["notationDifferences"] or report["soundingDifferences"]:
+    elif any(
+        report[field]
+        for field in (
+            "notationDifferences",
+            "soundingDifferences",
+            "structureDifferences",
+            "added",
+            "removed",
+        )
+    ):
         report["status"] = "different"
     return report

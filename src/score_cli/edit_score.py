@@ -26,6 +26,7 @@ from .score_document import (
 
 from .validation import validate_document, notation_duration
 from .compare import compare_documents
+from .structure_edits import StructureTransaction, OPERATIONS
 from .symbol_edits import edit_note_pair
 from .direction_edits import resolve_direction, edit_dynamics, edit_wedge
 
@@ -93,8 +94,10 @@ def edit_score(
             "invalid-changeset",
             "Expected schemaVersion, inputSha256 and operations only.",
         )
-    if changeset.get("schemaVersion") != "1":
-        raise EditError("unsupported-contract", "Expected changeset schemaVersion 1.")
+    if changeset.get("schemaVersion") not in {"1", "2"}:
+        raise EditError(
+            "unsupported-contract", "Expected changeset schemaVersion 1 or 2."
+        )
     if changeset.get("inputSha256") != input_hash:
         raise EditError(
             "stale-input", "Changeset SHA-256 does not match the input snapshot."
@@ -105,6 +108,7 @@ def edit_score(
             "invalid-changeset", "Expected a nonempty ordered operations array."
         )
     document = ScoreDocument.read(source, data=input_data)
+    structure = StructureTransaction(document)
     placement_before = placed_offsets(document)
     before = ScoreDocument(document.serialize())
     diagnostics_before = validate_document(before)["diagnostics"]
@@ -125,6 +129,14 @@ def edit_score(
                 raise EditError(
                     "invalid-operation", "Explicit expected and value are required."
                 )
+            if operation.get("type") in OPERATIONS:
+                if changeset["schemaVersion"] != "2":
+                    raise EditError(
+                        "unsupported-contract",
+                        "Structural editing requires schemaVersion 2.",
+                    )
+                resolved.append((operation, structure.resolve(operation)))
+                continue
             if operation.get("type") not in {
                 "pitch",
                 "lyric",
@@ -166,13 +178,13 @@ def edit_score(
                     (
                         operation,
                         (
-                            document.locate(operation["start"]),
-                            document.locate(operation["end"]),
+                            structure.note(operation["start"]),
+                            structure.note(operation["end"]),
                         ),
                     )
                 )
             else:
-                resolved.append((operation, document.locate(operation["target"])))
+                resolved.append((operation, structure.note(operation["target"])))
         except ScoreError as exc:
             exc.diagnostic["operationId"] = op_id
             raise
@@ -180,6 +192,9 @@ def edit_score(
             raise EditError("invalid-operation", str(exc), operation_id=op_id) from exc
     for operation, event in resolved:
         try:
+            if operation["type"] in OPERATIONS:
+                structure.apply(operation, event)
+                continue
             if operation["type"] == "dynamics":
                 edit_dynamics(event, operation)
                 continue
@@ -187,8 +202,13 @@ def edit_score(
                 edit_wedge(event[0], event[1], operation)
                 continue
             if operation["type"] in {"tie", "slur"}:
-                edit_note_pair(event[0], event[1], operation)
+                edit_note_pair(
+                    structure.live_note(event[0]),
+                    structure.live_note(event[1]),
+                    operation,
+                )
                 continue
+            event = structure.live_note(event)
             note = event.element
             if operation["type"] in {"voice", "staff", "kind"}:
                 _edit_note_identity(event, operation)
@@ -285,7 +305,9 @@ def edit_score(
     signature = lambda d: json.dumps(
         {k: d[k] for k in ("code", "severity", "location", "reason")}, sort_keys=True
     )
-    remaining = Counter(signature(d) for d in diagnostics_before)
+    remaining = Counter(
+        signature(d) for d in structure.diagnostic_baseline(diagnostics_before)
+    )
     for diagnostic in diagnostics_after:
         key = signature(diagnostic)
         diagnostic["origin"] = "existing" if remaining[key] else "new-or-unmatched"
@@ -321,8 +343,18 @@ def edit_score(
         diagnosticsBefore=diagnostics_before,
         diagnosticsAfter=diagnostics_after,
         diagnosticMatching="exact-code-severity-location-reason-multiset",
-        comparison=compare_documents(before, document),
+        comparison=compare_documents(
+            before,
+            document,
+            mapping=structure.report()["mapping"] if structure.ledger else None,
+        ),
     )
+    if structure.ledger:
+        report["schemaVersion"] = "2"
+        report["structure"] = structure.report()
+        report["diagnosticMatching"] = (
+            "snapshot-object-mapping-then-exact-code-severity-location-reason-multiset"
+        )
     if not dry_run:
         publish_files({report_path: json_bytes(report), destination: data})
     return report

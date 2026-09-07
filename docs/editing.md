@@ -98,3 +98,6 @@ Targets 是 `[{"id":"P1-m2-lyrics","partId":"P1","printedMeasure":"2","checks":[
 状态流：unreviewed→needs-fix→needs-review→verified；无问题可 unreviewed→verified；发现问题或版本变化时回到 needs-review/needs-fix。verified 必须有实际存在的证据、源 PDF 位置、具名复核者、结论、检查范围、当前 XML/PDF 哈希和时间。工具只记录复核声明与文件证据，不自动认定图中内容正确。
 
 查询状态时总是核对当前文件：乐谱或 PDF 任意字节变化保守使全部旧结论失效；证据丢失/变化也失效。更新一个记录前先使其他旧版本记录失效，再重绑定容器版本。JSON 静态文件的旧 state 不是当前状态，消费方必须调用 status。输出 counts 和 missingEvidence；局部 verified 不等于整小节或整谱认证。记录保留状态历史、证据文件哈希、修改报告引用。输出文件始终新建。
+
+
+结构操作请参见 [changeset v2 结构编辑契约](structural-editing.md)；本文的 v1 字段编辑契约继续支持。

@@ -8,6 +8,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from .score_document import ScoreDocument, ScoreError, sha256
+from .structure_mapping import mapping_rows, location_key
 
 STATES = ("unreviewed", "needs-fix", "needs-review", "verified")
 
@@ -70,7 +71,7 @@ def create_calibration(*, input_path, source_pdf, targets):
     )
 
 
-def calibration_status(record, *, input_path, source_pdf):
+def calibration_status(record, *, input_path, source_pdf, edit_report=None):
     if record.get("schemaVersion") != "1":
         raise ScoreError(
             "unsupported-contract", "Expected calibration schemaVersion 1."
@@ -78,11 +79,63 @@ def calibration_status(record, *, input_path, source_pdf):
     result = deepcopy(record)
     current_score = _file(input_path)
     current_pdf = _file(source_pdf)
+    rows = None
+    if edit_report is not None:
+        if (
+            edit_report.get("inputSha256") != record["targetMusicXml"]["sha256"]
+            or edit_report.get("outputSha256") != current_score["sha256"]
+            or edit_report.get("schemaVersion") != "2"
+        ):
+            raise ScoreError(
+                "stale-structure-report",
+                "Structure report must bind the recorded input and current output SHA-256.",
+            )
+        mapping = edit_report.get("structure", {}).get("mapping")
+        if not isinstance(mapping, dict) or not isinstance(
+            mapping.get("measures"), list
+        ):
+            raise ScoreError(
+                "invalid-mapping",
+                "Structure report must provide complete measure mapping.",
+            )
+        before_keys = [
+            location_key(row["before"])
+            for row in mapping["measures"]
+            if row.get("before") is not None
+        ]
+        current = ScoreDocument.read(input_path)
+        rows = mapping_rows(
+            before_keys, [(p, m) for p, m, *_ in current.measures()], mapping
+        )
     missing = []
     for item in result["records"]:
         if item.get("state") not in STATES:
             raise ScoreError("invalid-review-state", "Unknown review state.")
         reasons = []
+        if rows is not None:
+            original_location = {k: item[k] for k in ("partId", "printedMeasure")}
+            matches = [r for r in rows if r["before"] == original_location]
+            if len(matches) != 1:
+                raise ScoreError(
+                    "incomplete-mapping",
+                    "Recorded location must have exactly one mapping row.",
+                )
+            destination = matches[0]["after"]
+            reasons.append(
+                "structure-mapped" if destination is not None else "target-removed"
+            )
+            item.setdefault("history", []).append(
+                dict(
+                    structureMapping=matches[0],
+                    inputSha256=edit_report["inputSha256"],
+                    outputSha256=edit_report["outputSha256"],
+                )
+            )
+            if destination is None:
+                item["targetRemoved"] = True
+            else:
+                item.update(destination)
+
         if current_score["sha256"] != record["targetMusicXml"]["sha256"]:
             reasons.append("target-score-changed")
         if current_pdf["sha256"] != record["sourcePdf"]["sha256"]:
@@ -115,6 +168,8 @@ def calibration_status(record, *, input_path, source_pdf):
         if reasons and item["state"] != "unreviewed":
             item["state"] = "needs-review"
         item["invalidationReasons"] = sorted(set(reasons))
+    if rows is not None:
+        result["targetMusicXml"] = current_score
     counts = Counter(item["state"] for item in result["records"])
     result["counts"] = {s: counts[s] for s in STATES}
     result["missingEvidence"] = missing
@@ -135,10 +190,13 @@ def update_record(
     source_location=None,
     evidence=(),
     edit_reports=(),
+    edit_report=None,
 ):
     if state not in STATES:
         raise ScoreError("invalid-review-state", "Unknown review state.")
-    result = calibration_status(record, input_path=input_path, source_pdf=source_pdf)
+    result = calibration_status(
+        record, input_path=input_path, source_pdf=source_pdf, edit_report=edit_report
+    )
     matches = [r for r in result["records"] if r["id"] == record_id]
     if len(matches) != 1:
         raise ScoreError("record-missing", "Expected one review record ID.")
@@ -152,6 +210,11 @@ def update_record(
     if state not in allowed[item["state"]]:
         raise ScoreError(
             "invalid-review-transition", f"Cannot move {item['state']} to {state}."
+        )
+    if item.get("targetRemoved"):
+        raise ScoreError(
+            "removed-review-target",
+            "Deleted objects cannot inherit a review by reusing their printed number; create a new record.",
         )
     _target(ScoreDocument.read(input_path), item)
     files = [_file(path) for path in evidence]

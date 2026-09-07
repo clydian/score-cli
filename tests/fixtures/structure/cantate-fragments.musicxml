@@ -1,0 +1,1035 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0.3 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0.3">
+  <identification>
+    <creator type="composer">Claudio Monteverdi</creator>
+    <creator type="composer">(1567 - 1643)</creator>
+    <creator type="lyricist">Psalms 96 &amp; 98</creator>
+    <encoding>
+      <software>Audiveris 5.11.0</software>
+      <supports type="yes" element="print" attribute="new-system" value="yes"/>
+      <supports type="yes" element="print" attribute="new-page" value="yes"/>
+      <supports type="yes" element="accidental"/>
+      <supports type="yes" element="beam"/>
+      <supports type="yes" element="stem"/>
+      <software>ProxyMusic 4.0.3</software>
+      <encoding-date>2026-09-04</encoding-date>
+    </encoding>
+    <source>/Users/siahuat0727/Library/Mobile Documents/com~apple~CloudDocs/Downloads/Cantate Domino - Monteverdi.pdf</source>
+    <miscellaneous>
+      <miscellaneous-field name="source-file">/Users/siahuat0727/Library/Mobile Documents/com~apple~CloudDocs/Downloads/Cantate Domino - Monteverdi.pdf</miscellaneous-field>
+      <miscellaneous-field name="source-sheet-1">1 2</miscellaneous-field>
+      <miscellaneous-field name="source-sheet-2">1 2</miscellaneous-field>
+      <miscellaneous-field name="source-sheet-3">1 2</miscellaneous-field>
+      <miscellaneous-field name="source-sheet-4">1 2</miscellaneous-field>
+      <miscellaneous-field name="source-sheet-5">1 2</miscellaneous-field>
+      <miscellaneous-field name="source-sheet-6">1 2</miscellaneous-field>
+    </miscellaneous>
+  </identification>
+  <defaults>
+    <scaling>
+      <millimeters>6.7733</millimeters>
+      <tenths>40</tenths>
+    </scaling>
+    <page-layout>
+      <page-height>2352</page-height>
+      <page-width>1709</page-width>
+      <page-margins type="both">
+        <left-margin>80</left-margin>
+        <right-margin>80</right-margin>
+        <top-margin>80</top-margin>
+        <bottom-margin>80</bottom-margin>
+      </page-margins>
+    </page-layout>
+    <lyric-font font-family="Sans Serif" font-size="10"/>
+  </defaults>
+  <credit page="1">
+    <credit-type>composer</credit-type>
+    <credit-words default-x="1340" default-y="2154" font-family="serif" font-size="11">Claudio Monteverdi</credit-words>
+  </credit>
+  <credit page="1">
+    <credit-type>composer</credit-type>
+    <credit-words default-x="1396" default-y="2128" font-family="serif" font-size="11">(1567 - 1643)</credit-words>
+  </credit>
+  <credit page="1">
+    <credit-type>lyricist</credit-type>
+    <credit-words default-x="190" default-y="2127" font-family="serif" font-size="11">Psalms 96 &amp; 98</credit-words>
+  </credit>
+  <credit page="1">
+    <credit-words default-x="620" default-y="186" font-family="serif" font-size="8">Edtion may be freely distributed, duplicated, performed or recorded.</credit-words>
+  </credit>
+  <credit page="2">
+    <credit-words default-x="288" default-y="2114" font-family="serif" font-style="italic" font-size="11">7</credit-words>
+  </credit>
+  <credit page="4">
+    <credit-words default-x="1325" default-y="352" font-family="serif" font-size="23">/</credit-words>
+  </credit>
+  <credit page="6">
+    <credit-words default-x="274" default-y="2114" font-family="serif" font-size="11">67</credit-words>
+  </credit>
+  <credit page="6">
+    <credit-words default-x="276" default-y="1092" font-family="serif" font-size="10">73</credit-words>
+  </credit>
+  <part-list>
+    <score-part id="P1">
+      <part-name>S.</part-name>
+      <part-abbreviation>S.</part-abbreviation>
+      <score-instrument id="P1-I1">
+        <instrument-name>Voice Oohs</instrument-name>
+      </score-instrument>
+      <midi-instrument id="P1-I1">
+        <midi-channel>1</midi-channel>
+        <midi-program>54</midi-program>
+        <volume>78</volume>
+      </midi-instrument>
+    </score-part>
+    <score-part id="P6">
+      <part-name>S.</part-name>
+      <part-abbreviation>S.</part-abbreviation>
+      <score-instrument id="P6-I1">
+        <instrument-name>Voice Oohs</instrument-name>
+      </score-instrument>
+      <midi-instrument id="P6-I1">
+        <midi-channel>6</midi-channel>
+        <midi-program>54</midi-program>
+        <volume>78</volume>
+      </midi-instrument>
+    </score-part>
+    </part-list>
+  <!--= = = = = = = = = = = = = = = = = = = = = = = = = = = = =-->
+  <part id="P1">
+    <!--=======================================================-->
+    <measure number="1">
+      <print>
+        <measure-numbering>system</measure-numbering>
+      </print>
+      <attributes>
+        <divisions>4</divisions>
+        <time>
+          <beats>3</beats>
+          <beat-type>4</beat-type>
+        </time>
+        <clef>
+          <sign>G</sign>
+          <line>2</line>
+        </clef>
+        <staff-details print-object="no"/>
+      </attributes>
+      <note>
+        <rest measure="yes"/>
+        <duration>20</duration>
+        <voice>1</voice>
+      </note>
+    </measure>
+    <!--=======================================================-->
+    <measure number="2">
+      <note>
+        <rest measure="yes"/>
+        <duration>12</duration>
+        <voice>1</voice>
+      </note>
+    </measure>
+    <!--=======================================================-->
+    <measure number="3">
+      <note>
+        <rest measure="yes"/>
+        <duration>12</duration>
+        <voice>1</voice>
+      </note>
+    </measure>
+    <!--=======================================================-->
+    <measure number="4">
+      <note>
+        <rest measure="yes"/>
+        <duration>12</duration>
+        <voice>1</voice>
+      </note>
+    </measure>
+    <!--=======================================================-->
+    <measure number="5">
+      <note>
+        <rest measure="yes"/>
+        <duration>12</duration>
+        <voice>1</voice>
+      </note>
+    </measure>
+    <!--=======================================================-->
+    <measure number="6">
+      <note>
+        <rest measure="yes"/>
+        <duration>12</duration>
+        <voice>1</voice>
+      </note>
+    </measure>
+    <!--=======================================================-->
+    <measure number="7">
+      <note>
+        <rest measure="yes"/>
+        <duration>12</duration>
+        <voice>1</voice>
+      </note>
+    </measure>
+    <!--=======================================================-->
+    <measure number="8">
+      <note>
+        <rest measure="yes"/>
+        <duration>12</duration>
+        <voice>1</voice>
+      </note>
+    </measure>
+    <!--=======================================================-->
+    <measure number="9" width="182">
+      <print new-system="yes">
+        <system-layout>
+          <system-margins>
+            <left-margin>194</left-margin>
+            <right-margin>110</right-margin>
+          </system-margins>
+          <system-distance>209</system-distance>
+        </system-layout>
+      </print>
+      <attributes>
+        <staff-details print-object="yes"/>
+      </attributes>
+      <note default-x="136">
+        <pitch>
+          <step>E</step>
+          <octave>5</octave>
+        </pitch>
+        <duration>4</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <stem default-y="-40">down</stem>
+        <lyric number="1" placement="below" default-y="-81">
+          <syllabic>middle</syllabic>
+          <text>ne</text>
+        </lyric>
+      </note>
+    </measure>
+    <!--=======================================================-->
+    <measure number="10" width="162">
+      <note default-x="20">
+        <pitch>
+          <step>D</step>
+          <octave>5</octave>
+        </pitch>
+        <duration>6</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <dot/>
+        <stem default-y="-45">down</stem>
+        <lyric number="1" placement="below" default-y="-81">
+          <syllabic>middle</syllabic>
+          <text>di</text>
+        </lyric>
+      </note>
+      <note default-x="82">
+        <pitch>
+          <step>D</step>
+          <octave>5</octave>
+        </pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>eighth</type>
+        <stem default-y="-45">down</stem>
+        <lyric number="1" placement="below" default-y="-81">
+          <syllabic>middle</syllabic>
+          <text>ci</text>
+        </lyric>
+      </note>
+      <note default-x="116">
+        <pitch>
+          <step>D</step>
+          <octave>5</octave>
+        </pitch>
+        <duration>4</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <stem default-y="-45">down</stem>
+        <lyric number="1" placement="below" default-y="-81">
+          <syllabic>end</syllabic>
+          <text>te</text>
+        </lyric>
+      </note>
+    </measure>
+    <!--=======================================================-->
+    <measure number="11" width="140">
+      <note default-x="16">
+        <pitch>
+          <step>C</step>
+          <octave>5</octave>
+        </pitch>
+        <duration>8</duration>
+        <voice>1</voice>
+        <type>half</type>
+        <stem default-y="-50">down</stem>
+        <lyric number="1" placement="below" default-y="-81">
+          <syllabic>begin</syllabic>
+          <text>no</text>
+        </lyric>
+      </note>
+      <note default-x="94">
+        <pitch>
+          <step>C</step>
+          <octave>5</octave>
+        </pitch>
+        <duration>4</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <stem default-y="-50">down</stem>
+        <lyric number="1" placement="below" default-y="-81">
+          <syllabic>middle</syllabic>
+          <text>mi</text>
+        </lyric>
+      </note>
+    </measure>
+    <!--=======================================================-->
+    <measure number="12" width="144">
+      <note default-x="21">
+        <pitch>
+          <step>D</step>
+          <octave>5</octave>
+        </pitch>
+        <duration>4</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <stem default-y="-45">down</stem>
+        <lyric number="1" placement="below" default-y="-81">
+          <syllabic>end</syllabic>
+          <text>ni</text>
+        </lyric>
+      </note>
+      <note default-x="67">
+        <pitch>
+          <step>C</step>
+          <alter>1</alter>
+          <octave>5</octave>
+        </pitch>
+        <duration>8</duration>
+        <voice>1</voice>
+        <type>half</type>
+        <accidental>sharp</accidental>
+        <stem default-y="-50">down</stem>
+        <lyric number="1" placement="below" default-y="-81">
+          <syllabic>begin</syllabic>
+          <text>e</text>
+        </lyric>
+      </note>
+    </measure>
+    <!--=======================================================-->
+    <measure number="13" width="110">
+      <note default-x="20">
+        <pitch>
+          <step>D</step>
+          <octave>5</octave>
+        </pitch>
+        <duration>12</duration>
+        <voice>1</voice>
+        <type>half</type>
+        <dot/>
+        <stem default-y="-45">down</stem>
+        <lyric number="1" placement="below" default-y="-81">
+          <syllabic>end</syllabic>
+          <text>ius.</text>
+        </lyric>
+      </note>
+    </measure>
+    <!--=======================================================-->
+    <measure number="14" width="160">
+      <note default-x="21">
+        <pitch>
+          <step>A</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>4</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <stem default-y="10">up</stem>
+        <lyric number="1" placement="below" default-y="-81">
+          <syllabic>begin</syllabic>
+          <text>Ca</text>
+        </lyric>
+      </note>
+      <note default-x="68">
+        <pitch>
+          <step>A</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>4</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <stem default-y="10">up</stem>
+        <lyric number="1" placement="below" default-y="-81">
+          <syllabic>middle</syllabic>
+          <text>nta</text>
+        </lyric>
+      </note>
+      <note default-x="116">
+        <pitch>
+          <step>B</step>
+          <alter>-1</alter>
+          <octave>4</octave>
+        </pitch>
+        <duration>4</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <accidental>flat</accidental>
+        <stem default-y="16">up</stem>
+        <lyric number="1" placement="below" default-y="-81">
+          <syllabic>end</syllabic>
+          <text>te</text>
+        </lyric>
+      </note>
+    </measure>
+    <!--=======================================================-->
+    <measure number="15" width="167">
+      <note default-x="18">
+        <pitch>
+          <step>A</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>6</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <dot/>
+        <stem default-y="10">up</stem>
+        <lyric number="1" placement="below" default-y="-81">
+          <syllabic>begin</syllabic>
+          <text>Do</text>
+        </lyric>
+      </note>
+      <note default-x="81">
+        <pitch>
+          <step>A</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>eighth</type>
+        <stem default-y="10">up</stem>
+        <lyric number="1" placement="below" default-y="-81">
+          <syllabic>middle</syllabic>
+          <text>mi</text>
+        </lyric>
+      </note>
+      <note default-x="122">
+        <pitch>
+          <step>A</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>4</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <stem default-y="10">up</stem>
+        <lyric number="1" placement="below" default-y="-81">
+          <syllabic>end</syllabic>
+          <text>no</text>
+        </lyric>
+      </note>
+    </measure>
+    <!--=======================================================-->
+    <measure number="16" width="180">
+      <note default-x="22">
+        <pitch>
+          <step>B</step>
+          <alter>-1</alter>
+          <octave>4</octave>
+        </pitch>
+        <duration>6</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <dot/>
+        <accidental>flat</accidental>
+        <stem default-y="16">up</stem>
+        <lyric number="1" placement="below" default-y="-81">
+          <syllabic>begin</syllabic>
+          <text>ca</text>
+        </lyric>
+      </note>
+      <note default-x="85">
+        <pitch>
+          <step>B</step>
+          <alter>-1</alter>
+          <octave>4</octave>
+        </pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>eighth</type>
+        <stem default-y="16">up</stem>
+        <lyric number="1" placement="below" default-y="-81">
+          <syllabic>middle</syllabic>
+          <text>nti</text>
+        </lyric>
+      </note>
+      <note default-x="136">
+        <pitch>
+          <step>B</step>
+          <alter>-1</alter>
+          <octave>4</octave>
+        </pitch>
+        <duration>4</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <stem default-y="16">up</stem>
+        <lyric number="1" placement="below" default-y="-81">
+          <syllabic>end</syllabic>
+          <text>cum</text>
+        </lyric>
+      </note>
+    </measure>
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    </part>
+  <!--= = = = = = = = = = = = = = = = = = = = = = = = = = = = =-->
+  <!--= = = = = = = = = = = = = = = = = = = = = = = = = = = = =-->
+  <!--= = = = = = = = = = = = = = = = = = = = = = = = = = = = =-->
+  <!--= = = = = = = = = = = = = = = = = = = = = = = = = = = = =-->
+  <!--= = = = = = = = = = = = = = = = = = = = = = = = = = = = =-->
+  <part id="P6">
+    <!--=======================================================-->
+    <measure number="1" width="217">
+      <print>
+        <system-layout>
+          <system-margins>
+            <left-margin>194</left-margin>
+            <right-margin>110</right-margin>
+          </system-margins>
+          <top-system-distance>184</top-system-distance>
+        </system-layout>
+        <measure-numbering>none</measure-numbering>
+      </print>
+      <attributes>
+        <divisions>4</divisions>
+        <time>
+          <beats>3</beats>
+          <beat-type>4</beat-type>
+        </time>
+        <clef>
+          <sign>G</sign>
+          <line>2</line>
+        </clef>
+        <staff-details print-object="yes"/>
+      </attributes>
+      <note default-x="88">
+        <pitch>
+          <step>A</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>4</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <stem default-y="10">up</stem>
+        <lyric number="1" placement="below" default-y="-81">
+          <syllabic>begin</syllabic>
+          <text>Ca</text>
+        </lyric>
+      </note>
+      <note default-x="132">
+        <pitch>
+          <step>A</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>4</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <stem default-y="10">up</stem>
+        <lyric number="1" placement="below" default-y="-81">
+          <syllabic>middle</syllabic>
+          <text>nta</text>
+        </lyric>
+      </note>
+      <note default-x="176">
+        <pitch>
+          <step>A</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>4</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <stem default-y="10">up</stem>
+        <lyric number="1" placement="below" default-y="-81">
+          <syllabic>end</syllabic>
+          <text>te</text>
+        </lyric>
+      </note>
+    </measure>
+    <!--=======================================================-->
+    <measure number="2" width="163">
+      <note default-x="24">
+        <pitch>
+          <step>A</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>6</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <dot/>
+        <stem default-y="10">up</stem>
+        <lyric number="1" placement="below" default-y="-81">
+          <syllabic>begin</syllabic>
+          <text>Do</text>
+        </lyric>
+      </note>
+      <note default-x="82">
+        <pitch>
+          <step>A</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>eighth</type>
+        <stem default-y="10">up</stem>
+        <lyric number="1" placement="below" default-y="-81">
+          <syllabic>middle</syllabic>
+          <text>mi</text>
+        </lyric>
+      </note>
+      <note default-x="122">
+        <pitch>
+          <step>B</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>4</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <stem default-y="16">up</stem>
+        <lyric number="1" placement="below" default-y="-81">
+          <syllabic>end</syllabic>
+          <text>no</text>
+        </lyric>
+      </note>
+    </measure>
+    <!--=======================================================-->
+    <measure number="3" width="165">
+      <note default-x="16">
+        <pitch>
+          <step>C</step>
+          <octave>5</octave>
+        </pitch>
+        <duration>6</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <dot/>
+        <stem default-y="-50">down</stem>
+        <lyric number="1" placement="below" default-y="-81">
+          <syllabic>begin</syllabic>
+          <text>ca</text>
+        </lyric>
+      </note>
+      <direction placement="above">
+        <direction-type>
+          <words default-y="52" relative-x="-4" font-family="serif" font-size="20">cantate Domino</words>
+        </direction-type>
+      </direction>
+      <note default-x="75">
+        <pitch>
+          <step>C</step>
+          <octave>5</octave>
+        </pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>eighth</type>
+        <stem default-y="-50">down</stem>
+        <lyric number="1" placement="below" default-y="-81">
+          <syllabic>middle</syllabic>
+          <text>nti</text>
+        </lyric>
+      </note>
+      <note default-x="122">
+        <pitch>
+          <step>D</step>
+          <octave>5</octave>
+        </pitch>
+        <duration>4</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <stem default-y="-45">down</stem>
+        <lyric number="1" placement="below" default-y="-81">
+          <syllabic>end</syllabic>
+          <text>cum</text>
+        </lyric>
+      </note>
+    </measure>
+    <!--=======================================================-->
+    <measure number="4" width="104">
+      <note default-x="22">
+        <pitch>
+          <step>B</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>12</duration>
+        <voice>1</voice>
+        <type>half</type>
+        <dot/>
+        <stem default-y="16">up</stem>
+        <lyric number="1" placement="below" default-y="-81">
+          <syllabic>begin</syllabic>
+          <text>no</text>
+        </lyric>
+      </note>
+    </measure>
+    <!--=======================================================-->
+    <measure number="5" width="136">
+      <note default-x="22">
+        <pitch>
+          <step>B</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>8</duration>
+        <voice>1</voice>
+        <type>half</type>
+        <stem default-y="16">up</stem>
+        <lyric number="1" placement="below" default-y="-81">
+          <syllabic>end</syllabic>
+          <text>vum:</text>
+        </lyric>
+      </note>
+      <note default-x="92">
+        <pitch>
+          <step>C</step>
+          <octave>5</octave>
+        </pitch>
+        <duration>4</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <stem default-y="-50">down</stem>
+        <lyric number="1" placement="below" default-y="-81">
+          <syllabic>begin</syllabic>
+          <text>ca</text>
+        </lyric>
+      </note>
+    </measure>
+    <!--=======================================================-->
+    <measure number="6" width="147">
+      <note default-x="16">
+        <pitch>
+          <step>C</step>
+          <octave>5</octave>
+        </pitch>
+        <duration>4</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <stem default-y="-50">down</stem>
+        <lyric number="1" placement="below" default-y="-81">
+          <syllabic>middle</syllabic>
+          <text>nta</text>
+        </lyric>
+      </note>
+      <note default-x="60">
+        <pitch>
+          <step>D</step>
+          <octave>5</octave>
+        </pitch>
+        <duration>4</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <stem default-y="-45">down</stem>
+        <lyric number="1" placement="below" default-y="-81">
+          <syllabic>end</syllabic>
+          <text>te.</text>
+        </lyric>
+      </note>
+      <note default-x="105">
+        <pitch>
+          <step>E</step>
+          <octave>5</octave>
+        </pitch>
+        <duration>4</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <stem default-y="-40">down</stem>
+        <lyric number="1" placement="below" default-y="-81">
+          <syllabic>begin</syllabic>
+          <text>ca</text>
+        </lyric>
+      </note>
+    </measure>
+    <!--=======================================================-->
+    <measure number="7" width="147">
+      <note default-x="18">
+        <pitch>
+          <step>E</step>
+          <octave>5</octave>
+        </pitch>
+        <duration>4</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <stem default-y="-40">down</stem>
+        <lyric number="1" placement="below" default-y="-81">
+          <syllabic>middle</syllabic>
+          <text>nta</text>
+        </lyric>
+      </note>
+      <note default-x="61">
+        <pitch>
+          <step>F</step>
+          <octave>5</octave>
+        </pitch>
+        <duration>4</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <stem default-y="-35">down</stem>
+        <lyric number="1" placement="below" default-y="-81">
+          <syllabic>end</syllabic>
+          <text>te,</text>
+        </lyric>
+      </note>
+      <note default-x="106">
+        <pitch>
+          <step>F</step>
+          <octave>5</octave>
+        </pitch>
+        <duration>4</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <stem default-y="-35">down</stem>
+        <lyric number="1" placement="below" default-y="-81">
+          <syllabic>begin</syllabic>
+          <text>ca</text>
+        </lyric>
+      </note>
+    </measure>
+    <!--=======================================================-->
+    <measure number="8" width="166">
+      <note default-x="18">
+        <pitch>
+          <step>F</step>
+          <octave>5</octave>
+        </pitch>
+        <duration>6</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <dot/>
+        <stem default-y="-35">down</stem>
+        <lyric number="1" placement="below" default-y="-81">
+          <syllabic>middle</syllabic>
+          <text>nta</text>
+        </lyric>
+      </note>
+      <note default-x="93">
+        <pitch>
+          <step>E</step>
+          <octave>5</octave>
+        </pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>eighth</type>
+        <stem default-y="-40">down</stem>
+        <lyric number="1" placement="below" default-y="-81">
+          <syllabic>end</syllabic>
+          <text>te</text>
+        </lyric>
+      </note>
+      <note default-x="122">
+        <pitch>
+          <step>D</step>
+          <octave>5</octave>
+        </pitch>
+        <duration>4</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <stem default-y="-45">down</stem>
+        <lyric number="1" placement="below" default-y="-81">
+          <syllabic>single</syllabic>
+          <text>et</text>
+        </lyric>
+      </note>
+    </measure>
+    <!--=======================================================-->
+    <measure number="9">
+      <print new-system="yes"/>
+      <attributes>
+        <staff-details print-object="no"/>
+      </attributes>
+      <note>
+        <rest measure="yes"/>
+        <duration>12</duration>
+        <voice>1</voice>
+      </note>
+    </measure>
+    <!--=======================================================-->
+    <measure number="10">
+      <note>
+        <rest measure="yes"/>
+        <duration>12</duration>
+        <voice>1</voice>
+      </note>
+    </measure>
+    <!--=======================================================-->
+    <measure number="11">
+      <note>
+        <rest measure="yes"/>
+        <duration>12</duration>
+        <voice>1</voice>
+      </note>
+    </measure>
+    <!--=======================================================-->
+    <measure number="12">
+      <note>
+        <rest measure="yes"/>
+        <duration>12</duration>
+        <voice>1</voice>
+      </note>
+    </measure>
+    <!--=======================================================-->
+    <measure number="13">
+      <note>
+        <rest measure="yes"/>
+        <duration>12</duration>
+        <voice>1</voice>
+      </note>
+    </measure>
+    <!--=======================================================-->
+    <measure number="14">
+      <note>
+        <rest measure="yes"/>
+        <duration>12</duration>
+        <voice>1</voice>
+      </note>
+    </measure>
+    <!--=======================================================-->
+    <measure number="15">
+      <note>
+        <rest measure="yes"/>
+        <duration>12</duration>
+        <voice>1</voice>
+      </note>
+    </measure>
+    <!--=======================================================-->
+    <measure number="16">
+      <note>
+        <rest measure="yes"/>
+        <duration>12</duration>
+        <voice>1</voice>
+      </note>
+    </measure>
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    <!--=======================================================-->
+    </part>
+  <!--= = = = = = = = = = = = = = = = = = = = = = = = = = = = =-->
+  <!--= = = = = = = = = = = = = = = = = = = = = = = = = = = = =-->
+  <!--= = = = = = = = = = = = = = = = = = = = = = = = = = = = =-->
+  <!--= = = = = = = = = = = = = = = = = = = = = = = = = = = = =-->
+  <!--= = = = = = = = = = = = = = = = = = = = = = = = = = = = =-->
+  <!--= = = = = = = = = = = = = = = = = = = = = = = = = = = = =-->
+  </score-partwise>
