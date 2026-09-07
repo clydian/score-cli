@@ -1,0 +1,636 @@
+{
+  "schemaVersion": "1",
+  "targetMusicXml": {
+    "path": "/Users/siahuat0727/Documents/score-cli/docs/evidence/issue-2/after.musicxml",
+    "sha256": "a931f136a28a237aa1a87280b2934bf6fffd4beafd8c88abcc60cc7a165541c0"
+  },
+  "sourcePdf": {
+    "path": "/Users/siahuat0727/Library/Mobile Documents/com~apple~CloudDocs/Downloads/Cantate Domino - Monteverdi.pdf",
+    "sha256": "859abc75c5f45e22ec60b3548de320bb641300390c5d67a3bb9a2334e6891a30"
+  },
+  "records": [
+    {
+      "id": "soprano-1",
+      "partId": "P1",
+      "printedMeasure": "1",
+      "checks": [
+        "written-pitch",
+        "onset-and-duration",
+        "lyrics-text-and-allocation"
+      ],
+      "state": "needs-review",
+      "evidence": [
+        {
+          "path": "/Users/siahuat0727/Documents/score-cli/docs/evidence/issue-2/source-page-1.png",
+          "sha256": "38b76b39541b7752c0a458313ca78544e79daf257c7107c81939d3b76fec4f36"
+        },
+        {
+          "path": "/Users/siahuat0727/Documents/score-cli/docs/evidence/issue-2/before-render/001-page-1.png",
+          "sha256": "6deaf48cd8df35c23f285a1b4f8261d46797dfe5da572258762a65a55d83d788"
+        }
+      ],
+      "history": [
+        {
+          "fromState": "unreviewed",
+          "toState": "verified",
+          "at": "2026-09-07T13:46:05.330536+00:00",
+          "reviewer": "Codex visual source-score review (not a human signature)",
+          "conclusion": "P6 Soprano I m1-8 compared with source page 1 system 1; scoped pitch, timing and lyrics match. No assertion about other parts, directions, layout, or m9-16.",
+          "musicXmlSha256": "6922dcb63fd8c7685c931d6a4094725cbebbea50b0e6363c33ad90056c15c00d",
+          "sourcePdfSha256": "859abc75c5f45e22ec60b3548de320bb641300390c5d67a3bb9a2334e6891a30",
+          "evidence": [
+            {
+              "path": "/Users/siahuat0727/Documents/score-cli/docs/evidence/issue-2/source-page-1.png",
+              "sha256": "38b76b39541b7752c0a458313ca78544e79daf257c7107c81939d3b76fec4f36"
+            },
+            {
+              "path": "/Users/siahuat0727/Documents/score-cli/docs/evidence/issue-2/before-render/001-page-1.png",
+              "sha256": "6deaf48cd8df35c23f285a1b4f8261d46797dfe5da572258762a65a55d83d788"
+            }
+          ],
+          "editReports": []
+        },
+        {
+          "structureMapping": {
+            "before": {
+              "partId": "P6",
+              "printedMeasure": "1"
+            },
+            "after": {
+              "partId": "P1",
+              "printedMeasure": "1"
+            },
+            "relation": "merged"
+          },
+          "inputSha256": "6922dcb63fd8c7685c931d6a4094725cbebbea50b0e6363c33ad90056c15c00d",
+          "outputSha256": "a931f136a28a237aa1a87280b2934bf6fffd4beafd8c88abcc60cc7a165541c0"
+        }
+      ],
+      "invalidationReasons": [
+        "structure-mapped",
+        "target-score-changed",
+        "verified-version-stale"
+      ],
+      "reviewer": "Codex visual source-score review (not a human signature)",
+      "conclusion": "P6 Soprano I m1-8 compared with source page 1 system 1; scoped pitch, timing and lyrics match. No assertion about other parts, directions, layout, or m9-16.",
+      "reviewedAt": "2026-09-07T13:46:05.330536+00:00",
+      "sourceLocation": {
+        "page": 1,
+        "system": 1,
+        "measures": [
+          "1"
+        ]
+      },
+      "editReports": [],
+      "verifiedMusicXmlSha256": "6922dcb63fd8c7685c931d6a4094725cbebbea50b0e6363c33ad90056c15c00d",
+      "verifiedSourcePdfSha256": "859abc75c5f45e22ec60b3548de320bb641300390c5d67a3bb9a2334e6891a30"
+    },
+    {
+      "id": "soprano-2",
+      "partId": "P1",
+      "printedMeasure": "2",
+      "checks": [
+        "written-pitch",
+        "onset-and-duration",
+        "lyrics-text-and-allocation"
+      ],
+      "state": "needs-review",
+      "evidence": [
+        {
+          "path": "/Users/siahuat0727/Documents/score-cli/docs/evidence/issue-2/source-page-1.png",
+          "sha256": "38b76b39541b7752c0a458313ca78544e79daf257c7107c81939d3b76fec4f36"
+        },
+        {
+          "path": "/Users/siahuat0727/Documents/score-cli/docs/evidence/issue-2/before-render/001-page-1.png",
+          "sha256": "6deaf48cd8df35c23f285a1b4f8261d46797dfe5da572258762a65a55d83d788"
+        }
+      ],
+      "history": [
+        {
+          "fromState": "unreviewed",
+          "toState": "verified",
+          "at": "2026-09-07T13:46:05.332240+00:00",
+          "reviewer": "Codex visual source-score review (not a human signature)",
+          "conclusion": "P6 Soprano I m1-8 compared with source page 1 system 1; scoped pitch, timing and lyrics match. No assertion about other parts, directions, layout, or m9-16.",
+          "musicXmlSha256": "6922dcb63fd8c7685c931d6a4094725cbebbea50b0e6363c33ad90056c15c00d",
+          "sourcePdfSha256": "859abc75c5f45e22ec60b3548de320bb641300390c5d67a3bb9a2334e6891a30",
+          "evidence": [
+            {
+              "path": "/Users/siahuat0727/Documents/score-cli/docs/evidence/issue-2/source-page-1.png",
+              "sha256": "38b76b39541b7752c0a458313ca78544e79daf257c7107c81939d3b76fec4f36"
+            },
+            {
+              "path": "/Users/siahuat0727/Documents/score-cli/docs/evidence/issue-2/before-render/001-page-1.png",
+              "sha256": "6deaf48cd8df35c23f285a1b4f8261d46797dfe5da572258762a65a55d83d788"
+            }
+          ],
+          "editReports": []
+        },
+        {
+          "structureMapping": {
+            "before": {
+              "partId": "P6",
+              "printedMeasure": "2"
+            },
+            "after": {
+              "partId": "P1",
+              "printedMeasure": "2"
+            },
+            "relation": "merged"
+          },
+          "inputSha256": "6922dcb63fd8c7685c931d6a4094725cbebbea50b0e6363c33ad90056c15c00d",
+          "outputSha256": "a931f136a28a237aa1a87280b2934bf6fffd4beafd8c88abcc60cc7a165541c0"
+        }
+      ],
+      "invalidationReasons": [
+        "structure-mapped",
+        "target-score-changed",
+        "verified-version-stale"
+      ],
+      "reviewer": "Codex visual source-score review (not a human signature)",
+      "conclusion": "P6 Soprano I m1-8 compared with source page 1 system 1; scoped pitch, timing and lyrics match. No assertion about other parts, directions, layout, or m9-16.",
+      "reviewedAt": "2026-09-07T13:46:05.332240+00:00",
+      "sourceLocation": {
+        "page": 1,
+        "system": 1,
+        "measures": [
+          "2"
+        ]
+      },
+      "editReports": [],
+      "verifiedMusicXmlSha256": "6922dcb63fd8c7685c931d6a4094725cbebbea50b0e6363c33ad90056c15c00d",
+      "verifiedSourcePdfSha256": "859abc75c5f45e22ec60b3548de320bb641300390c5d67a3bb9a2334e6891a30"
+    },
+    {
+      "id": "soprano-3",
+      "partId": "P1",
+      "printedMeasure": "3",
+      "checks": [
+        "written-pitch",
+        "onset-and-duration",
+        "lyrics-text-and-allocation"
+      ],
+      "state": "needs-review",
+      "evidence": [
+        {
+          "path": "/Users/siahuat0727/Documents/score-cli/docs/evidence/issue-2/source-page-1.png",
+          "sha256": "38b76b39541b7752c0a458313ca78544e79daf257c7107c81939d3b76fec4f36"
+        },
+        {
+          "path": "/Users/siahuat0727/Documents/score-cli/docs/evidence/issue-2/before-render/001-page-1.png",
+          "sha256": "6deaf48cd8df35c23f285a1b4f8261d46797dfe5da572258762a65a55d83d788"
+        }
+      ],
+      "history": [
+        {
+          "fromState": "unreviewed",
+          "toState": "verified",
+          "at": "2026-09-07T13:46:05.334076+00:00",
+          "reviewer": "Codex visual source-score review (not a human signature)",
+          "conclusion": "P6 Soprano I m1-8 compared with source page 1 system 1; scoped pitch, timing and lyrics match. No assertion about other parts, directions, layout, or m9-16.",
+          "musicXmlSha256": "6922dcb63fd8c7685c931d6a4094725cbebbea50b0e6363c33ad90056c15c00d",
+          "sourcePdfSha256": "859abc75c5f45e22ec60b3548de320bb641300390c5d67a3bb9a2334e6891a30",
+          "evidence": [
+            {
+              "path": "/Users/siahuat0727/Documents/score-cli/docs/evidence/issue-2/source-page-1.png",
+              "sha256": "38b76b39541b7752c0a458313ca78544e79daf257c7107c81939d3b76fec4f36"
+            },
+            {
+              "path": "/Users/siahuat0727/Documents/score-cli/docs/evidence/issue-2/before-render/001-page-1.png",
+              "sha256": "6deaf48cd8df35c23f285a1b4f8261d46797dfe5da572258762a65a55d83d788"
+            }
+          ],
+          "editReports": []
+        },
+        {
+          "structureMapping": {
+            "before": {
+              "partId": "P6",
+              "printedMeasure": "3"
+            },
+            "after": {
+              "partId": "P1",
+              "printedMeasure": "3"
+            },
+            "relation": "merged"
+          },
+          "inputSha256": "6922dcb63fd8c7685c931d6a4094725cbebbea50b0e6363c33ad90056c15c00d",
+          "outputSha256": "a931f136a28a237aa1a87280b2934bf6fffd4beafd8c88abcc60cc7a165541c0"
+        }
+      ],
+      "invalidationReasons": [
+        "structure-mapped",
+        "target-score-changed",
+        "verified-version-stale"
+      ],
+      "reviewer": "Codex visual source-score review (not a human signature)",
+      "conclusion": "P6 Soprano I m1-8 compared with source page 1 system 1; scoped pitch, timing and lyrics match. No assertion about other parts, directions, layout, or m9-16.",
+      "reviewedAt": "2026-09-07T13:46:05.334076+00:00",
+      "sourceLocation": {
+        "page": 1,
+        "system": 1,
+        "measures": [
+          "3"
+        ]
+      },
+      "editReports": [],
+      "verifiedMusicXmlSha256": "6922dcb63fd8c7685c931d6a4094725cbebbea50b0e6363c33ad90056c15c00d",
+      "verifiedSourcePdfSha256": "859abc75c5f45e22ec60b3548de320bb641300390c5d67a3bb9a2334e6891a30"
+    },
+    {
+      "id": "soprano-4",
+      "partId": "P1",
+      "printedMeasure": "4",
+      "checks": [
+        "written-pitch",
+        "onset-and-duration",
+        "lyrics-text-and-allocation"
+      ],
+      "state": "needs-review",
+      "evidence": [
+        {
+          "path": "/Users/siahuat0727/Documents/score-cli/docs/evidence/issue-2/source-page-1.png",
+          "sha256": "38b76b39541b7752c0a458313ca78544e79daf257c7107c81939d3b76fec4f36"
+        },
+        {
+          "path": "/Users/siahuat0727/Documents/score-cli/docs/evidence/issue-2/before-render/001-page-1.png",
+          "sha256": "6deaf48cd8df35c23f285a1b4f8261d46797dfe5da572258762a65a55d83d788"
+        }
+      ],
+      "history": [
+        {
+          "fromState": "unreviewed",
+          "toState": "verified",
+          "at": "2026-09-07T13:46:05.336298+00:00",
+          "reviewer": "Codex visual source-score review (not a human signature)",
+          "conclusion": "P6 Soprano I m1-8 compared with source page 1 system 1; scoped pitch, timing and lyrics match. No assertion about other parts, directions, layout, or m9-16.",
+          "musicXmlSha256": "6922dcb63fd8c7685c931d6a4094725cbebbea50b0e6363c33ad90056c15c00d",
+          "sourcePdfSha256": "859abc75c5f45e22ec60b3548de320bb641300390c5d67a3bb9a2334e6891a30",
+          "evidence": [
+            {
+              "path": "/Users/siahuat0727/Documents/score-cli/docs/evidence/issue-2/source-page-1.png",
+              "sha256": "38b76b39541b7752c0a458313ca78544e79daf257c7107c81939d3b76fec4f36"
+            },
+            {
+              "path": "/Users/siahuat0727/Documents/score-cli/docs/evidence/issue-2/before-render/001-page-1.png",
+              "sha256": "6deaf48cd8df35c23f285a1b4f8261d46797dfe5da572258762a65a55d83d788"
+            }
+          ],
+          "editReports": []
+        },
+        {
+          "structureMapping": {
+            "before": {
+              "partId": "P6",
+              "printedMeasure": "4"
+            },
+            "after": {
+              "partId": "P1",
+              "printedMeasure": "4"
+            },
+            "relation": "merged"
+          },
+          "inputSha256": "6922dcb63fd8c7685c931d6a4094725cbebbea50b0e6363c33ad90056c15c00d",
+          "outputSha256": "a931f136a28a237aa1a87280b2934bf6fffd4beafd8c88abcc60cc7a165541c0"
+        }
+      ],
+      "invalidationReasons": [
+        "structure-mapped",
+        "target-score-changed",
+        "verified-version-stale"
+      ],
+      "reviewer": "Codex visual source-score review (not a human signature)",
+      "conclusion": "P6 Soprano I m1-8 compared with source page 1 system 1; scoped pitch, timing and lyrics match. No assertion about other parts, directions, layout, or m9-16.",
+      "reviewedAt": "2026-09-07T13:46:05.336298+00:00",
+      "sourceLocation": {
+        "page": 1,
+        "system": 1,
+        "measures": [
+          "4"
+        ]
+      },
+      "editReports": [],
+      "verifiedMusicXmlSha256": "6922dcb63fd8c7685c931d6a4094725cbebbea50b0e6363c33ad90056c15c00d",
+      "verifiedSourcePdfSha256": "859abc75c5f45e22ec60b3548de320bb641300390c5d67a3bb9a2334e6891a30"
+    },
+    {
+      "id": "soprano-5",
+      "partId": "P1",
+      "printedMeasure": "5",
+      "checks": [
+        "written-pitch",
+        "onset-and-duration",
+        "lyrics-text-and-allocation"
+      ],
+      "state": "needs-review",
+      "evidence": [
+        {
+          "path": "/Users/siahuat0727/Documents/score-cli/docs/evidence/issue-2/source-page-1.png",
+          "sha256": "38b76b39541b7752c0a458313ca78544e79daf257c7107c81939d3b76fec4f36"
+        },
+        {
+          "path": "/Users/siahuat0727/Documents/score-cli/docs/evidence/issue-2/before-render/001-page-1.png",
+          "sha256": "6deaf48cd8df35c23f285a1b4f8261d46797dfe5da572258762a65a55d83d788"
+        }
+      ],
+      "history": [
+        {
+          "fromState": "unreviewed",
+          "toState": "verified",
+          "at": "2026-09-07T13:46:05.338595+00:00",
+          "reviewer": "Codex visual source-score review (not a human signature)",
+          "conclusion": "P6 Soprano I m1-8 compared with source page 1 system 1; scoped pitch, timing and lyrics match. No assertion about other parts, directions, layout, or m9-16.",
+          "musicXmlSha256": "6922dcb63fd8c7685c931d6a4094725cbebbea50b0e6363c33ad90056c15c00d",
+          "sourcePdfSha256": "859abc75c5f45e22ec60b3548de320bb641300390c5d67a3bb9a2334e6891a30",
+          "evidence": [
+            {
+              "path": "/Users/siahuat0727/Documents/score-cli/docs/evidence/issue-2/source-page-1.png",
+              "sha256": "38b76b39541b7752c0a458313ca78544e79daf257c7107c81939d3b76fec4f36"
+            },
+            {
+              "path": "/Users/siahuat0727/Documents/score-cli/docs/evidence/issue-2/before-render/001-page-1.png",
+              "sha256": "6deaf48cd8df35c23f285a1b4f8261d46797dfe5da572258762a65a55d83d788"
+            }
+          ],
+          "editReports": []
+        },
+        {
+          "structureMapping": {
+            "before": {
+              "partId": "P6",
+              "printedMeasure": "5"
+            },
+            "after": {
+              "partId": "P1",
+              "printedMeasure": "5"
+            },
+            "relation": "merged"
+          },
+          "inputSha256": "6922dcb63fd8c7685c931d6a4094725cbebbea50b0e6363c33ad90056c15c00d",
+          "outputSha256": "a931f136a28a237aa1a87280b2934bf6fffd4beafd8c88abcc60cc7a165541c0"
+        }
+      ],
+      "invalidationReasons": [
+        "structure-mapped",
+        "target-score-changed",
+        "verified-version-stale"
+      ],
+      "reviewer": "Codex visual source-score review (not a human signature)",
+      "conclusion": "P6 Soprano I m1-8 compared with source page 1 system 1; scoped pitch, timing and lyrics match. No assertion about other parts, directions, layout, or m9-16.",
+      "reviewedAt": "2026-09-07T13:46:05.338595+00:00",
+      "sourceLocation": {
+        "page": 1,
+        "system": 1,
+        "measures": [
+          "5"
+        ]
+      },
+      "editReports": [],
+      "verifiedMusicXmlSha256": "6922dcb63fd8c7685c931d6a4094725cbebbea50b0e6363c33ad90056c15c00d",
+      "verifiedSourcePdfSha256": "859abc75c5f45e22ec60b3548de320bb641300390c5d67a3bb9a2334e6891a30"
+    },
+    {
+      "id": "soprano-6",
+      "partId": "P1",
+      "printedMeasure": "6",
+      "checks": [
+        "written-pitch",
+        "onset-and-duration",
+        "lyrics-text-and-allocation"
+      ],
+      "state": "needs-review",
+      "evidence": [
+        {
+          "path": "/Users/siahuat0727/Documents/score-cli/docs/evidence/issue-2/source-page-1.png",
+          "sha256": "38b76b39541b7752c0a458313ca78544e79daf257c7107c81939d3b76fec4f36"
+        },
+        {
+          "path": "/Users/siahuat0727/Documents/score-cli/docs/evidence/issue-2/before-render/001-page-1.png",
+          "sha256": "6deaf48cd8df35c23f285a1b4f8261d46797dfe5da572258762a65a55d83d788"
+        }
+      ],
+      "history": [
+        {
+          "fromState": "unreviewed",
+          "toState": "verified",
+          "at": "2026-09-07T13:46:05.341206+00:00",
+          "reviewer": "Codex visual source-score review (not a human signature)",
+          "conclusion": "P6 Soprano I m1-8 compared with source page 1 system 1; scoped pitch, timing and lyrics match. No assertion about other parts, directions, layout, or m9-16.",
+          "musicXmlSha256": "6922dcb63fd8c7685c931d6a4094725cbebbea50b0e6363c33ad90056c15c00d",
+          "sourcePdfSha256": "859abc75c5f45e22ec60b3548de320bb641300390c5d67a3bb9a2334e6891a30",
+          "evidence": [
+            {
+              "path": "/Users/siahuat0727/Documents/score-cli/docs/evidence/issue-2/source-page-1.png",
+              "sha256": "38b76b39541b7752c0a458313ca78544e79daf257c7107c81939d3b76fec4f36"
+            },
+            {
+              "path": "/Users/siahuat0727/Documents/score-cli/docs/evidence/issue-2/before-render/001-page-1.png",
+              "sha256": "6deaf48cd8df35c23f285a1b4f8261d46797dfe5da572258762a65a55d83d788"
+            }
+          ],
+          "editReports": []
+        },
+        {
+          "structureMapping": {
+            "before": {
+              "partId": "P6",
+              "printedMeasure": "6"
+            },
+            "after": {
+              "partId": "P1",
+              "printedMeasure": "6"
+            },
+            "relation": "merged"
+          },
+          "inputSha256": "6922dcb63fd8c7685c931d6a4094725cbebbea50b0e6363c33ad90056c15c00d",
+          "outputSha256": "a931f136a28a237aa1a87280b2934bf6fffd4beafd8c88abcc60cc7a165541c0"
+        }
+      ],
+      "invalidationReasons": [
+        "structure-mapped",
+        "target-score-changed",
+        "verified-version-stale"
+      ],
+      "reviewer": "Codex visual source-score review (not a human signature)",
+      "conclusion": "P6 Soprano I m1-8 compared with source page 1 system 1; scoped pitch, timing and lyrics match. No assertion about other parts, directions, layout, or m9-16.",
+      "reviewedAt": "2026-09-07T13:46:05.341206+00:00",
+      "sourceLocation": {
+        "page": 1,
+        "system": 1,
+        "measures": [
+          "6"
+        ]
+      },
+      "editReports": [],
+      "verifiedMusicXmlSha256": "6922dcb63fd8c7685c931d6a4094725cbebbea50b0e6363c33ad90056c15c00d",
+      "verifiedSourcePdfSha256": "859abc75c5f45e22ec60b3548de320bb641300390c5d67a3bb9a2334e6891a30"
+    },
+    {
+      "id": "soprano-7",
+      "partId": "P1",
+      "printedMeasure": "7",
+      "checks": [
+        "written-pitch",
+        "onset-and-duration",
+        "lyrics-text-and-allocation"
+      ],
+      "state": "needs-review",
+      "evidence": [
+        {
+          "path": "/Users/siahuat0727/Documents/score-cli/docs/evidence/issue-2/source-page-1.png",
+          "sha256": "38b76b39541b7752c0a458313ca78544e79daf257c7107c81939d3b76fec4f36"
+        },
+        {
+          "path": "/Users/siahuat0727/Documents/score-cli/docs/evidence/issue-2/before-render/001-page-1.png",
+          "sha256": "6deaf48cd8df35c23f285a1b4f8261d46797dfe5da572258762a65a55d83d788"
+        }
+      ],
+      "history": [
+        {
+          "fromState": "unreviewed",
+          "toState": "verified",
+          "at": "2026-09-07T13:46:05.343891+00:00",
+          "reviewer": "Codex visual source-score review (not a human signature)",
+          "conclusion": "P6 Soprano I m1-8 compared with source page 1 system 1; scoped pitch, timing and lyrics match. No assertion about other parts, directions, layout, or m9-16.",
+          "musicXmlSha256": "6922dcb63fd8c7685c931d6a4094725cbebbea50b0e6363c33ad90056c15c00d",
+          "sourcePdfSha256": "859abc75c5f45e22ec60b3548de320bb641300390c5d67a3bb9a2334e6891a30",
+          "evidence": [
+            {
+              "path": "/Users/siahuat0727/Documents/score-cli/docs/evidence/issue-2/source-page-1.png",
+              "sha256": "38b76b39541b7752c0a458313ca78544e79daf257c7107c81939d3b76fec4f36"
+            },
+            {
+              "path": "/Users/siahuat0727/Documents/score-cli/docs/evidence/issue-2/before-render/001-page-1.png",
+              "sha256": "6deaf48cd8df35c23f285a1b4f8261d46797dfe5da572258762a65a55d83d788"
+            }
+          ],
+          "editReports": []
+        },
+        {
+          "structureMapping": {
+            "before": {
+              "partId": "P6",
+              "printedMeasure": "7"
+            },
+            "after": {
+              "partId": "P1",
+              "printedMeasure": "7"
+            },
+            "relation": "merged"
+          },
+          "inputSha256": "6922dcb63fd8c7685c931d6a4094725cbebbea50b0e6363c33ad90056c15c00d",
+          "outputSha256": "a931f136a28a237aa1a87280b2934bf6fffd4beafd8c88abcc60cc7a165541c0"
+        }
+      ],
+      "invalidationReasons": [
+        "structure-mapped",
+        "target-score-changed",
+        "verified-version-stale"
+      ],
+      "reviewer": "Codex visual source-score review (not a human signature)",
+      "conclusion": "P6 Soprano I m1-8 compared with source page 1 system 1; scoped pitch, timing and lyrics match. No assertion about other parts, directions, layout, or m9-16.",
+      "reviewedAt": "2026-09-07T13:46:05.343891+00:00",
+      "sourceLocation": {
+        "page": 1,
+        "system": 1,
+        "measures": [
+          "7"
+        ]
+      },
+      "editReports": [],
+      "verifiedMusicXmlSha256": "6922dcb63fd8c7685c931d6a4094725cbebbea50b0e6363c33ad90056c15c00d",
+      "verifiedSourcePdfSha256": "859abc75c5f45e22ec60b3548de320bb641300390c5d67a3bb9a2334e6891a30"
+    },
+    {
+      "id": "soprano-8",
+      "partId": "P1",
+      "printedMeasure": "8",
+      "checks": [
+        "written-pitch",
+        "onset-and-duration",
+        "lyrics-text-and-allocation"
+      ],
+      "state": "needs-review",
+      "evidence": [
+        {
+          "path": "/Users/siahuat0727/Documents/score-cli/docs/evidence/issue-2/source-page-1.png",
+          "sha256": "38b76b39541b7752c0a458313ca78544e79daf257c7107c81939d3b76fec4f36"
+        },
+        {
+          "path": "/Users/siahuat0727/Documents/score-cli/docs/evidence/issue-2/before-render/001-page-1.png",
+          "sha256": "6deaf48cd8df35c23f285a1b4f8261d46797dfe5da572258762a65a55d83d788"
+        }
+      ],
+      "history": [
+        {
+          "fromState": "unreviewed",
+          "toState": "verified",
+          "at": "2026-09-07T13:46:05.346589+00:00",
+          "reviewer": "Codex visual source-score review (not a human signature)",
+          "conclusion": "P6 Soprano I m1-8 compared with source page 1 system 1; scoped pitch, timing and lyrics match. No assertion about other parts, directions, layout, or m9-16.",
+          "musicXmlSha256": "6922dcb63fd8c7685c931d6a4094725cbebbea50b0e6363c33ad90056c15c00d",
+          "sourcePdfSha256": "859abc75c5f45e22ec60b3548de320bb641300390c5d67a3bb9a2334e6891a30",
+          "evidence": [
+            {
+              "path": "/Users/siahuat0727/Documents/score-cli/docs/evidence/issue-2/source-page-1.png",
+              "sha256": "38b76b39541b7752c0a458313ca78544e79daf257c7107c81939d3b76fec4f36"
+            },
+            {
+              "path": "/Users/siahuat0727/Documents/score-cli/docs/evidence/issue-2/before-render/001-page-1.png",
+              "sha256": "6deaf48cd8df35c23f285a1b4f8261d46797dfe5da572258762a65a55d83d788"
+            }
+          ],
+          "editReports": []
+        },
+        {
+          "structureMapping": {
+            "before": {
+              "partId": "P6",
+              "printedMeasure": "8"
+            },
+            "after": {
+              "partId": "P1",
+              "printedMeasure": "8"
+            },
+            "relation": "merged"
+          },
+          "inputSha256": "6922dcb63fd8c7685c931d6a4094725cbebbea50b0e6363c33ad90056c15c00d",
+          "outputSha256": "a931f136a28a237aa1a87280b2934bf6fffd4beafd8c88abcc60cc7a165541c0"
+        }
+      ],
+      "invalidationReasons": [
+        "structure-mapped",
+        "target-score-changed",
+        "verified-version-stale"
+      ],
+      "reviewer": "Codex visual source-score review (not a human signature)",
+      "conclusion": "P6 Soprano I m1-8 compared with source page 1 system 1; scoped pitch, timing and lyrics match. No assertion about other parts, directions, layout, or m9-16.",
+      "reviewedAt": "2026-09-07T13:46:05.346589+00:00",
+      "sourceLocation": {
+        "page": 1,
+        "system": 1,
+        "measures": [
+          "8"
+        ]
+      },
+      "editReports": [],
+      "verifiedMusicXmlSha256": "6922dcb63fd8c7685c931d6a4094725cbebbea50b0e6363c33ad90056c15c00d",
+      "verifiedSourcePdfSha256": "859abc75c5f45e22ec60b3548de320bb641300390c5d67a3bb9a2334e6891a30"
+    }
+  ],
+  "counts": {
+    "unreviewed": 0,
+    "needs-fix": 0,
+    "needs-review": 8,
+    "verified": 0
+  },
+  "missingEvidence": [],
+  "currentMusicXml": {
+    "path": "/Users/siahuat0727/Documents/score-cli/docs/evidence/issue-2/after.musicxml",
+    "sha256": "a931f136a28a237aa1a87280b2934bf6fffd4beafd8c88abcc60cc7a165541c0"
+  },
+  "currentSourcePdf": {
+    "path": "/Users/siahuat0727/Library/Mobile Documents/com~apple~CloudDocs/Downloads/Cantate Domino - Monteverdi.pdf",
+    "sha256": "859abc75c5f45e22ec60b3548de320bb641300390c5d67a3bb9a2334e6891a30"
+  }
+}

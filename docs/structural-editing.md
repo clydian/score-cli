@@ -63,7 +63,7 @@ Issue #2。继续使用 `edit_score` / `score-cli edit` 的读取、快照定位
 }
 ```
 
-将指定来源 part-measure 的全部子元素迁移到目标 part-measure，保留目标 wrapper 属性。来源 part 消耗并删除，来源定义、未映射小节的所有子元素、目标被替换的所有子元素必须分别列入 discard。没有按名称猜声部，没有丢弃未映射内容的默认规则。
+将指定来源 part-measure 的全部子元素迁移到目标 part-measure，保留目标 wrapper 属性。来源 part 消耗并删除，来源定义、来源 part 小节外的注释/PI/扩展、未映射小节的所有子元素、目标被替换的所有子元素必须分别列入 discard。显著 wrapper text/tail 拒绝。没有按名称猜声部，没有丢弃未映射内容的默认规则。
 
 voice/staff 必须覆盖所有移动音符的有效值；方向等非 note 对象的显式 voice/staff 也必须覆盖。乐器目标必须在目标 part 声明。多对一的小节、voice/staff 或乐器映射会拒绝。迁移后逐音核对时间偏移、时值、继承上下文，必须与来源一致；不同 divisions/谱号/移调等需先用显式内容操作准备兼容上下文。当前合并是**整个 part-measure 替换**，不提供猜测性的重叠声部叠加；重叠冲突以明确 discard 或拒绝处理。
 

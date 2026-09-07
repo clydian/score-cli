@@ -1,0 +1,60 @@
+{
+  "files": [
+    {
+      "path": "docs/evidence/issue-2/after-render/001-page-1.png",
+      "sha256": "6da90af698a89940138d3221bcddce611b34de4f4d754c3dcd5c0c3067075aa8"
+    },
+    {
+      "path": "docs/evidence/issue-2/after-render/manifest.json",
+      "sha256": "c7c900966b8c9fccf432a89c4b108ed6196e52a4ade88cec2978505282bd4634"
+    },
+    {
+      "path": "docs/evidence/issue-2/after.musicxml",
+      "sha256": "a931f136a28a237aa1a87280b2934bf6fffd4beafd8c88abcc60cc7a165541c0"
+    },
+    {
+      "path": "docs/evidence/issue-2/after.musicxml.edit.json",
+      "sha256": "e1a550bc71638320359579d163348de05d0f1bae72d78a75fc03663099a3dfb4"
+    },
+    {
+      "path": "docs/evidence/issue-2/before-render/001-page-1.png",
+      "sha256": "6deaf48cd8df35c23f285a1b4f8261d46797dfe5da572258762a65a55d83d788"
+    },
+    {
+      "path": "docs/evidence/issue-2/before-render/manifest.json",
+      "sha256": "f761fb198f88042eb0037a9c374274d720ebf8d57dde084c15ebef4b5e76e97f"
+    },
+    {
+      "path": "docs/evidence/issue-2/calibration-after.json",
+      "sha256": "c6a9cdd00ffa00ba779e2f5109f1aeadb19604264d1083d6595fb8b9b09c2b6d"
+    },
+    {
+      "path": "docs/evidence/issue-2/calibration-before.json",
+      "sha256": "05497b569e0103265912cabf0f62d6ce62c07f047d77f358e37eea3c383feb6c"
+    },
+    {
+      "path": "docs/evidence/issue-2/calibration-mapped.json",
+      "sha256": "68707dc1ea2fc30c93b558f9cf4b248ff446b3c0539c518e637ef31ca50f2cb5"
+    },
+    {
+      "path": "docs/evidence/issue-2/calibration-status.json",
+      "sha256": "301298e1d3bd5f7c6c7990788d9eecfc87d18eebf67c15259edd17776271dbc1"
+    },
+    {
+      "path": "docs/evidence/issue-2/compare.json",
+      "sha256": "eac7fab15c5bf5ddf320cf73dfbcdce9b06a18837d367c3b2d1ef58074771eb2"
+    },
+    {
+      "path": "docs/evidence/issue-2/mapping.json",
+      "sha256": "854354524b8504923687cd7e0c4ff4c798e70c1580b2067a809792db13fc91db"
+    },
+    {
+      "path": "docs/evidence/issue-2/source-page-1.png",
+      "sha256": "38b76b39541b7752c0a458313ca78544e79daf257c7107c81939d3b76fec4f36"
+    },
+    {
+      "path": "docs/evidence/issue-2/source.json",
+      "sha256": "581efcdc4db83d1ea231446f460c213f3e3c54b025bb371b2a0bff34f4b44868"
+    }
+  ]
+}

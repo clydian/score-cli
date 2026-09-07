@@ -1,6 +1,6 @@
 # MusicXML 校准契约 v1
 
-本文件定义 `edit` / `validate` / `compare` / 范围 `render` / `calibration` 的独立 JSON 契约。所有根对象 `schemaVersion` 为字符串 `"1"`。现有 outline / inspect / 单小节 render 的默认输出保持不变。
+本文件定义 `edit` / `validate` / `compare` / 范围 `render` / `calibration` 的独立 JSON 契约。本文描述的 v1 根对象 `schemaVersion` 为字符串 `"1"`；结构 changeset/edit report 的 v2 见 [结构编辑契约](structural-editing.md)。现有 outline / inspect / 单小节 render 的默认输出保持不变。
 
 ## 快速闭环
 
@@ -28,7 +28,7 @@ note target 精确包含：
 
 字符串必须精确匹配；offset 是以四分音符为单位的约分有理数字符串（例如 `"3/2"`）；默认 voice/staff 为 `"1"`。eventIndex 从 1 开始，按该 part/小节中**全部直接 note 元素**的文档顺序计数，包含休止、和弦音、倚音，不是声部内编号。与 inspect 的 `order` 一致。重复 printed number 拒绝，不能猜 occurrence。
 
-事务先在原始快照解析全部目标并保存 XML 节点引用，然后逐个应用。后续操作 expected 对照执行前的当前状态；不能根据修改后的 offset/voice/index 重新寻找目标。结构插入/删除、part/小节变更均不支持。
+事务先在原始快照解析全部目标并保存 XML 节点引用，然后逐个应用。后续操作 expected 对照执行前的当前状态；不能根据修改后的 offset/voice/index 重新寻找目标。v1 不接受结构操作；这些操作由 v2 契约支持。
 
 只写新 `.xml` / `.musicxml`，拒绝与输入同路径或已有输出/报告。默认报告位置为 `<output>.edit.json`。内存中修改并完成全谱校验后，先在同文件系统写临时文件、fsync，再用不覆盖已有文件的 hard link 发布报告，最后发布乐谱。捕获到失败时撤销本次已发布链接；输入始终不写。进程被强杀/掉电不能保证两个路径同时可见：报告先发布，乐谱最后发布，是完成标记；读者必须同时验证报告与乐谱 SHA-256。不把孤立报告视为成功。重试使用新路径或人工核实后清理孤立报告。范围渲染的完成标记则是最后发布的 manifest。
 
@@ -61,7 +61,7 @@ Diagnostic 字段：`code`（稳定 kebab-case）、`severity`（error/warning/i
 
 edit report 包含工具版本、inputSha256/outputSha256、完整有序 changeset、diagnosticsBefore/After、comparison、diagnosticMatching。诊断匹配使用 code+severity+完整 location+reason 的多重集合精确匹配，新增项标记 new-or-unmatched。新错误/警告均阻止发布；无法匹配不是“已证明新增”，会保守阻止。既有问题允许定点修复。此策略可能拒绝本来安全但使旧诊断位置变化的编辑，应缩小事务或先修复已有问题。
 
-compare 仅在相同 part/小节结构下按全部 note ordinal 对齐；voice ID 改变或 note 数量变化不猜映射，报告 unaligned 与 added/removed **候选**。无唯一身份时不能把候选当成已证明新增/删除。报告 notationDifferences（字段、前后值）、soundingDifferences、两侧 validation、覆盖范围与两个输入哈希。相同数量下 ordinal 是显式比较策略，不是跨编辑稳定身份的承诺。
+compare 在已对齐的 part/小节内部按全部 note ordinal 对齐；显式结构映射、新增/删除见 v2 文档。voice ID 改变或 note 数量变化不猜映射，报告 unaligned 与 added/removed **候选**。无唯一身份时不能把候选当成已证明新增/删除。报告 notationDifferences（字段、前后值）、soundingDifferences、两侧 validation、覆盖范围与两个输入哈希。相同数量下 ordinal 是显式比较策略，不是跨编辑稳定身份的承诺。
 
 发声音高是以 C4=60 为基准的半音数：pitch + transpose.chromatic + 12×transpose.octave-change。clef-octave-change 和 octave-shift 不再重复加八度。unpitched、instrument/play、transpose.double 等无法确定的表示返回 inconclusive。不是完整演奏引擎，repeat、sound 跳转、微分音调律等不推断。
 
@@ -77,7 +77,7 @@ compare 仅在相同 part/小节结构下按全部 note ordinal 对齐；voice I
 | pickup / incomplete / cross-staff voice | Fraction 游标、按 voice 区间，不简单逐 note 求和 |
 | transpose / octave clef / octave-shift | 来自规范的固定预期值测试，区分显示与发声 |
 | 未知扩展 | 完整保留，语义含义未解释；不能宣称已校验其音乐正确性 |
-| 结构重排、任意新方向时间、复杂歌词、MXL 再打包 | unsupported，后续扩展 |
+| 任意新方向时间、复杂歌词、MXL 再打包 | unsupported，后续扩展 |
 
 规范依据：[transpose](https://www.w3.org/2021/06/musicxml40/musicxml-reference/elements/transpose/)、[octave-change](https://www.w3.org/2021/06/musicxml40/musicxml-reference/elements/octave-change/)、[octave-shift](https://www.w3.org/2021/06/musicxml40/musicxml-reference/elements/octave-shift/)、[clef-octave-change](https://www.w3.org/2021/06/musicxml40/musicxml-reference/elements/clef-octave-change/)、[chord](https://www.w3.org/2021/06/musicxml40/musicxml-reference/elements/chord/)、[lxml parsing](https://lxml.de/parsing.html)。
 

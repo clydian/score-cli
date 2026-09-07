@@ -1,0 +1,19 @@
+{
+  "originalPath": "/Users/siahuat0727/Documents/optical-music-recognition/output/conversions/2026-09-04-local-audiveris/cantate-domino/Cantate Domino - Monteverdi.musicxml",
+  "originalSha256": "08c6f00ab9013cbefae0cd1d8008a5933b1ff751caea16d15a550284cf0da8c6",
+  "samplePath": "tests/fixtures/structure/cantate-fragments.musicxml",
+  "sampleSha256": "6922dcb63fd8c7685c931d6a4094725cbebbea50b0e6363c33ad90056c15c00d",
+  "extraction": "P1 and P6, document-order measures 1-16. Other part definitions/bodies and grouping removed for excerpt only; notes unchanged. Original headers and edition attribution retained.",
+  "selection": "Explicit source P6 -> P1, measures 1-8, identity voice/staff 1. P6 measures 9-16 are original hidden placeholders, individually discarded.",
+  "rights": "Existing user-provided CPDL edition permits distribution and duplication; source PDF attribution retained.",
+  "sourcePdfPath": "/Users/siahuat0727/Library/Mobile Documents/com~apple~CloudDocs/Downloads/Cantate Domino - Monteverdi.pdf",
+  "sourcePdfSha256": "859abc75c5f45e22ec60b3548de320bb641300390c5d67a3bb9a2334e6891a30",
+  "sourcePage": 1,
+  "sourceSystem": 1,
+  "reviewedNotes": 21,
+  "reviewScope": [
+    "written-pitch",
+    "onset-and-duration",
+    "lyrics-text-and-allocation"
+  ]
+}

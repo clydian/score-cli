@@ -1,0 +1,2084 @@
+{
+  "schemaVersion": "2",
+  "toolVersion": "0.2.0",
+  "inputPath": "/Users/siahuat0727/Documents/score-cli/tests/fixtures/structure/cantate-fragments.musicxml",
+  "outputPath": "/Users/siahuat0727/Documents/score-cli/docs/evidence/issue-2/after.musicxml",
+  "reportPath": "/Users/siahuat0727/Documents/score-cli/docs/evidence/issue-2/after.musicxml.edit.json",
+  "status": "applied",
+  "inputSha256": "6922dcb63fd8c7685c931d6a4094725cbebbea50b0e6363c33ad90056c15c00d",
+  "outputSha256": "a931f136a28a237aa1a87280b2934bf6fffd4beafd8c88abcc60cc7a165541c0",
+  "changeset": {
+    "schemaVersion": "2",
+    "inputSha256": "6922dcb63fd8c7685c931d6a4094725cbebbea50b0e6363c33ad90056c15c00d",
+    "operations": [
+      {
+        "id": "merge-soprano-fragment",
+        "type": "merge-part",
+        "target": {
+          "sourcePartId": "P6",
+          "targetPartId": "P1"
+        },
+        "expected": [
+          "<score-part id=\"P6\">\n      <part-name>S.</part-name>\n      <part-abbreviation>S.</part-abbreviation>\n      <score-instrument id=\"P6-I1\">\n        <instrument-name>Voice Oohs</instrument-name>\n      </score-instrument>\n      <midi-instrument id=\"P6-I1\">\n        <midi-channel>6</midi-channel>\n        <midi-program>54</midi-program>\n        <volume>78</volume>\n      </midi-instrument>\n    </score-part>",
+          "<part id=\"P6\">\n    <!--=======================================================-->\n    <measure number=\"1\" width=\"217\">\n      <print>\n        <system-layout>\n          <system-margins>\n            <left-margin>194</left-margin>\n            <right-margin>110</right-margin>\n          </system-margins>\n          <top-system-distance>184</top-system-distance>\n        </system-layout>\n        <measure-numbering>none</measure-numbering>\n      </print>\n      <attributes>\n        <divisions>4</divisions>\n        <time>\n          <beats>3</beats>\n          <beat-type>4</beat-type>\n        </time>\n        <clef>\n          <sign>G</sign>\n          <line>2</line>\n        </clef>\n        <staff-details print-object=\"yes\"/>\n      </attributes>\n      <note default-x=\"88\">\n        <pitch>\n          <step>A</step>\n          <octave>4</octave>\n        </pitch>\n        <duration>4</duration>\n        <voice>1</voice>\n        <type>quarter</type>\n        <stem default-y=\"10\">up</stem>\n        <lyric number=\"1\" placement=\"below\" default-y=\"-81\">\n          <syllabic>begin</syllabic>\n          <text>Ca</text>\n        </lyric>\n      </note>\n      <note default-x=\"132\">\n        <pitch>\n          <step>A</step>\n          <octave>4</octave>\n        </pitch>\n        <duration>4</duration>\n        <voice>1</voice>\n        <type>quarter</type>\n        <stem default-y=\"10\">up</stem>\n        <lyric number=\"1\" placement=\"below\" default-y=\"-81\">\n          <syllabic>middle</syllabic>\n          <text>nta</text>\n        </lyric>\n      </note>\n      <note default-x=\"176\">\n        <pitch>\n          <step>A</step>\n          <octave>4</octave>\n        </pitch>\n        <duration>4</duration>\n        <voice>1</voice>\n        <type>quarter</type>\n        <stem default-y=\"10\">up</stem>\n        <lyric number=\"1\" placement=\"below\" default-y=\"-81\">\n          <syllabic>end</syllabic>\n          <text>te</text>\n        </lyric>\n      </note>\n    </measure>\n    <!--=======================================================-->\n    <measure number=\"2\" width=\"163\">\n      <note default-x=\"24\">\n        <pitch>\n          <step>A</step>\n          <octave>4</octave>\n        </pitch>\n        <duration>6</duration>\n        <voice>1</voice>\n        <type>quarter</type>\n        <dot/>\n        <stem default-y=\"10\">up</stem>\n        <lyric number=\"1\" placement=\"below\" default-y=\"-81\">\n          <syllabic>begin</syllabic>\n          <text>Do</text>\n        </lyric>\n      </note>\n      <note default-x=\"82\">\n        <pitch>\n          <step>A</step>\n          <octave>4</octave>\n        </pitch>\n        <duration>2</duration>\n        <voice>1</voice>\n        <type>eighth</type>\n        <stem default-y=\"10\">up</stem>\n        <lyric number=\"1\" placement=\"below\" default-y=\"-81\">\n          <syllabic>middle</syllabic>\n          <text>mi</text>\n        </lyric>\n      </note>\n      <note default-x=\"122\">\n        <pitch>\n          <step>B</step>\n          <octave>4</octave>\n        </pitch>\n        <duration>4</duration>\n        <voice>1</voice>\n        <type>quarter</type>\n        <stem default-y=\"16\">up</stem>\n        <lyric number=\"1\" placement=\"below\" default-y=\"-81\">\n          <syllabic>end</syllabic>\n          <text>no</text>\n        </lyric>\n      </note>\n    </measure>\n    <!--=======================================================-->\n    <measure number=\"3\" width=\"165\">\n      <note default-x=\"16\">\n        <pitch>\n          <step>C</step>\n          <octave>5</octave>\n        </pitch>\n        <duration>6</duration>\n        <voice>1</voice>\n        <type>quarter</type>\n        <dot/>\n        <stem default-y=\"-50\">down</stem>\n        <lyric number=\"1\" placement=\"below\" default-y=\"-81\">\n          <syllabic>begin</syllabic>\n          <text>ca</text>\n        </lyric>\n      </note>\n      <direction placement=\"above\">\n        <direction-type>\n          <words default-y=\"52\" relative-x=\"-4\" font-family=\"serif\" font-size=\"20\">cantate Domino</words>\n        </direction-type>\n      </direction>\n      <note default-x=\"75\">\n        <pitch>\n          <step>C</step>\n          <octave>5</octave>\n        </pitch>\n        <duration>2</duration>\n        <voice>1</voice>\n        <type>eighth</type>\n        <stem default-y=\"-50\">down</stem>\n        <lyric number=\"1\" placement=\"below\" default-y=\"-81\">\n          <syllabic>middle</syllabic>\n          <text>nti</text>\n        </lyric>\n      </note>\n      <note default-x=\"122\">\n        <pitch>\n          <step>D</step>\n          <octave>5</octave>\n        </pitch>\n        <duration>4</duration>\n        <voice>1</voice>\n        <type>quarter</type>\n        <stem default-y=\"-45\">down</stem>\n        <lyric number=\"1\" placement=\"below\" default-y=\"-81\">\n          <syllabic>end</syllabic>\n          <text>cum</text>\n        </lyric>\n      </note>\n    </measure>\n    <!--=======================================================-->\n    <measure number=\"4\" width=\"104\">\n      <note default-x=\"22\">\n        <pitch>\n          <step>B</step>\n          <octave>4</octave>\n        </pitch>\n        <duration>12</duration>\n        <voice>1</voice>\n        <type>half</type>\n        <dot/>\n        <stem default-y=\"16\">up</stem>\n        <lyric number=\"1\" placement=\"below\" default-y=\"-81\">\n          <syllabic>begin</syllabic>\n          <text>no</text>\n        </lyric>\n      </note>\n    </measure>\n    <!--=======================================================-->\n    <measure number=\"5\" width=\"136\">\n      <note default-x=\"22\">\n        <pitch>\n          <step>B</step>\n          <octave>4</octave>\n        </pitch>\n        <duration>8</duration>\n        <voice>1</voice>\n        <type>half</type>\n        <stem default-y=\"16\">up</stem>\n        <lyric number=\"1\" placement=\"below\" default-y=\"-81\">\n          <syllabic>end</syllabic>\n          <text>vum:</text>\n        </lyric>\n      </note>\n      <note default-x=\"92\">\n        <pitch>\n          <step>C</step>\n          <octave>5</octave>\n        </pitch>\n        <duration>4</duration>\n        <voice>1</voice>\n        <type>quarter</type>\n        <stem default-y=\"-50\">down</stem>\n        <lyric number=\"1\" placement=\"below\" default-y=\"-81\">\n          <syllabic>begin</syllabic>\n          <text>ca</text>\n        </lyric>\n      </note>\n    </measure>\n    <!--=======================================================-->\n    <measure number=\"6\" width=\"147\">\n      <note default-x=\"16\">\n        <pitch>\n          <step>C</step>\n          <octave>5</octave>\n        </pitch>\n        <duration>4</duration>\n        <voice>1</voice>\n        <type>quarter</type>\n        <stem default-y=\"-50\">down</stem>\n        <lyric number=\"1\" placement=\"below\" default-y=\"-81\">\n          <syllabic>middle</syllabic>\n          <text>nta</text>\n        </lyric>\n      </note>\n      <note default-x=\"60\">\n        <pitch>\n          <step>D</step>\n          <octave>5</octave>\n        </pitch>\n        <duration>4</duration>\n        <voice>1</voice>\n        <type>quarter</type>\n        <stem default-y=\"-45\">down</stem>\n        <lyric number=\"1\" placement=\"below\" default-y=\"-81\">\n          <syllabic>end</syllabic>\n          <text>te.</text>\n        </lyric>\n      </note>\n      <note default-x=\"105\">\n        <pitch>\n          <step>E</step>\n          <octave>5</octave>\n        </pitch>\n        <duration>4</duration>\n        <voice>1</voice>\n        <type>quarter</type>\n        <stem default-y=\"-40\">down</stem>\n        <lyric number=\"1\" placement=\"below\" default-y=\"-81\">\n          <syllabic>begin</syllabic>\n          <text>ca</text>\n        </lyric>\n      </note>\n    </measure>\n    <!--=======================================================-->\n    <measure number=\"7\" width=\"147\">\n      <note default-x=\"18\">\n        <pitch>\n          <step>E</step>\n          <octave>5</octave>\n        </pitch>\n        <duration>4</duration>\n        <voice>1</voice>\n        <type>quarter</type>\n        <stem default-y=\"-40\">down</stem>\n        <lyric number=\"1\" placement=\"below\" default-y=\"-81\">\n          <syllabic>middle</syllabic>\n          <text>nta</text>\n        </lyric>\n      </note>\n      <note default-x=\"61\">\n        <pitch>\n          <step>F</step>\n          <octave>5</octave>\n        </pitch>\n        <duration>4</duration>\n        <voice>1</voice>\n        <type>quarter</type>\n        <stem default-y=\"-35\">down</stem>\n        <lyric number=\"1\" placement=\"below\" default-y=\"-81\">\n          <syllabic>end</syllabic>\n          <text>te,</text>\n        </lyric>\n      </note>\n      <note default-x=\"106\">\n        <pitch>\n          <step>F</step>\n          <octave>5</octave>\n        </pitch>\n        <duration>4</duration>\n        <voice>1</voice>\n        <type>quarter</type>\n        <stem default-y=\"-35\">down</stem>\n        <lyric number=\"1\" placement=\"below\" default-y=\"-81\">\n          <syllabic>begin</syllabic>\n          <text>ca</text>\n        </lyric>\n      </note>\n    </measure>\n    <!--=======================================================-->\n    <measure number=\"8\" width=\"166\">\n      <note default-x=\"18\">\n        <pitch>\n          <step>F</step>\n          <octave>5</octave>\n        </pitch>\n        <duration>6</duration>\n        <voice>1</voice>\n        <type>quarter</type>\n        <dot/>\n        <stem default-y=\"-35\">down</stem>\n        <lyric number=\"1\" placement=\"below\" default-y=\"-81\">\n          <syllabic>middle</syllabic>\n          <text>nta</text>\n        </lyric>\n      </note>\n      <note default-x=\"93\">\n        <pitch>\n          <step>E</step>\n          <octave>5</octave>\n        </pitch>\n        <duration>2</duration>\n        <voice>1</voice>\n        <type>eighth</type>\n        <stem default-y=\"-40\">down</stem>\n        <lyric number=\"1\" placement=\"below\" default-y=\"-81\">\n          <syllabic>end</syllabic>\n          <text>te</text>\n        </lyric>\n      </note>\n      <note default-x=\"122\">\n        <pitch>\n          <step>D</step>\n          <octave>5</octave>\n        </pitch>\n        <duration>4</duration>\n        <voice>1</voice>\n        <type>quarter</type>\n        <stem default-y=\"-45\">down</stem>\n        <lyric number=\"1\" placement=\"below\" default-y=\"-81\">\n          <syllabic>single</syllabic>\n          <text>et</text>\n        </lyric>\n      </note>\n    </measure>\n    <!--=======================================================-->\n    <measure number=\"9\">\n      <print new-system=\"yes\"/>\n      <attributes>\n        <staff-details print-object=\"no\"/>\n      </attributes>\n      <note>\n        <rest measure=\"yes\"/>\n        <duration>12</duration>\n        <voice>1</voice>\n      </note>\n    </measure>\n    <!--=======================================================-->\n    <measure number=\"10\">\n      <note>\n        <rest measure=\"yes\"/>\n        <duration>12</duration>\n        <voice>1</voice>\n      </note>\n    </measure>\n    <!--=======================================================-->\n    <measure number=\"11\">\n      <note>\n        <rest measure=\"yes\"/>\n        <duration>12</duration>\n        <voice>1</voice>\n      </note>\n    </measure>\n    <!--=======================================================-->\n    <measure number=\"12\">\n      <note>\n        <rest measure=\"yes\"/>\n        <duration>12</duration>\n        <voice>1</voice>\n      </note>\n    </measure>\n    <!--=======================================================-->\n    <measure number=\"13\">\n      <note>\n        <rest measure=\"yes\"/>\n        <duration>12</duration>\n        <voice>1</voice>\n      </note>\n    </measure>\n    <!--=======================================================-->\n    <measure number=\"14\">\n      <note>\n        <rest measure=\"yes\"/>\n        <duration>12</duration>\n        <voice>1</voice>\n      </note>\n    </measure>\n    <!--=======================================================-->\n    <measure number=\"15\">\n      <note>\n        <rest measure=\"yes\"/>\n        <duration>12</duration>\n        <voice>1</voice>\n      </note>\n    </measure>\n    <!--=======================================================-->\n    <measure number=\"16\">\n      <note>\n        <rest measure=\"yes\"/>\n        <duration>12</duration>\n        <voice>1</voice>\n      </note>\n    </measure>\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    </part>",
+          "<score-part id=\"P1\">\n      <part-name>S.</part-name>\n      <part-abbreviation>S.</part-abbreviation>\n      <score-instrument id=\"P1-I1\">\n        <instrument-name>Voice Oohs</instrument-name>\n      </score-instrument>\n      <midi-instrument id=\"P1-I1\">\n        <midi-channel>1</midi-channel>\n        <midi-program>54</midi-program>\n        <volume>78</volume>\n      </midi-instrument>\n    </score-part>",
+          "<part id=\"P1\">\n    <!--=======================================================-->\n    <measure number=\"1\">\n      <print>\n        <measure-numbering>system</measure-numbering>\n      </print>\n      <attributes>\n        <divisions>4</divisions>\n        <time>\n          <beats>3</beats>\n          <beat-type>4</beat-type>\n        </time>\n        <clef>\n          <sign>G</sign>\n          <line>2</line>\n        </clef>\n        <staff-details print-object=\"no\"/>\n      </attributes>\n      <note>\n        <rest measure=\"yes\"/>\n        <duration>20</duration>\n        <voice>1</voice>\n      </note>\n    </measure>\n    <!--=======================================================-->\n    <measure number=\"2\">\n      <note>\n        <rest measure=\"yes\"/>\n        <duration>12</duration>\n        <voice>1</voice>\n      </note>\n    </measure>\n    <!--=======================================================-->\n    <measure number=\"3\">\n      <note>\n        <rest measure=\"yes\"/>\n        <duration>12</duration>\n        <voice>1</voice>\n      </note>\n    </measure>\n    <!--=======================================================-->\n    <measure number=\"4\">\n      <note>\n        <rest measure=\"yes\"/>\n        <duration>12</duration>\n        <voice>1</voice>\n      </note>\n    </measure>\n    <!--=======================================================-->\n    <measure number=\"5\">\n      <note>\n        <rest measure=\"yes\"/>\n        <duration>12</duration>\n        <voice>1</voice>\n      </note>\n    </measure>\n    <!--=======================================================-->\n    <measure number=\"6\">\n      <note>\n        <rest measure=\"yes\"/>\n        <duration>12</duration>\n        <voice>1</voice>\n      </note>\n    </measure>\n    <!--=======================================================-->\n    <measure number=\"7\">\n      <note>\n        <rest measure=\"yes\"/>\n        <duration>12</duration>\n        <voice>1</voice>\n      </note>\n    </measure>\n    <!--=======================================================-->\n    <measure number=\"8\">\n      <note>\n        <rest measure=\"yes\"/>\n        <duration>12</duration>\n        <voice>1</voice>\n      </note>\n    </measure>\n    <!--=======================================================-->\n    <measure number=\"9\" width=\"182\">\n      <print new-system=\"yes\">\n        <system-layout>\n          <system-margins>\n            <left-margin>194</left-margin>\n            <right-margin>110</right-margin>\n          </system-margins>\n          <system-distance>209</system-distance>\n        </system-layout>\n      </print>\n      <attributes>\n        <staff-details print-object=\"yes\"/>\n      </attributes>\n      <note default-x=\"136\">\n        <pitch>\n          <step>E</step>\n          <octave>5</octave>\n        </pitch>\n        <duration>4</duration>\n        <voice>1</voice>\n        <type>quarter</type>\n        <stem default-y=\"-40\">down</stem>\n        <lyric number=\"1\" placement=\"below\" default-y=\"-81\">\n          <syllabic>middle</syllabic>\n          <text>ne</text>\n        </lyric>\n      </note>\n    </measure>\n    <!--=======================================================-->\n    <measure number=\"10\" width=\"162\">\n      <note default-x=\"20\">\n        <pitch>\n          <step>D</step>\n          <octave>5</octave>\n        </pitch>\n        <duration>6</duration>\n        <voice>1</voice>\n        <type>quarter</type>\n        <dot/>\n        <stem default-y=\"-45\">down</stem>\n        <lyric number=\"1\" placement=\"below\" default-y=\"-81\">\n          <syllabic>middle</syllabic>\n          <text>di</text>\n        </lyric>\n      </note>\n      <note default-x=\"82\">\n        <pitch>\n          <step>D</step>\n          <octave>5</octave>\n        </pitch>\n        <duration>2</duration>\n        <voice>1</voice>\n        <type>eighth</type>\n        <stem default-y=\"-45\">down</stem>\n        <lyric number=\"1\" placement=\"below\" default-y=\"-81\">\n          <syllabic>middle</syllabic>\n          <text>ci</text>\n        </lyric>\n      </note>\n      <note default-x=\"116\">\n        <pitch>\n          <step>D</step>\n          <octave>5</octave>\n        </pitch>\n        <duration>4</duration>\n        <voice>1</voice>\n        <type>quarter</type>\n        <stem default-y=\"-45\">down</stem>\n        <lyric number=\"1\" placement=\"below\" default-y=\"-81\">\n          <syllabic>end</syllabic>\n          <text>te</text>\n        </lyric>\n      </note>\n    </measure>\n    <!--=======================================================-->\n    <measure number=\"11\" width=\"140\">\n      <note default-x=\"16\">\n        <pitch>\n          <step>C</step>\n          <octave>5</octave>\n        </pitch>\n        <duration>8</duration>\n        <voice>1</voice>\n        <type>half</type>\n        <stem default-y=\"-50\">down</stem>\n        <lyric number=\"1\" placement=\"below\" default-y=\"-81\">\n          <syllabic>begin</syllabic>\n          <text>no</text>\n        </lyric>\n      </note>\n      <note default-x=\"94\">\n        <pitch>\n          <step>C</step>\n          <octave>5</octave>\n        </pitch>\n        <duration>4</duration>\n        <voice>1</voice>\n        <type>quarter</type>\n        <stem default-y=\"-50\">down</stem>\n        <lyric number=\"1\" placement=\"below\" default-y=\"-81\">\n          <syllabic>middle</syllabic>\n          <text>mi</text>\n        </lyric>\n      </note>\n    </measure>\n    <!--=======================================================-->\n    <measure number=\"12\" width=\"144\">\n      <note default-x=\"21\">\n        <pitch>\n          <step>D</step>\n          <octave>5</octave>\n        </pitch>\n        <duration>4</duration>\n        <voice>1</voice>\n        <type>quarter</type>\n        <stem default-y=\"-45\">down</stem>\n        <lyric number=\"1\" placement=\"below\" default-y=\"-81\">\n          <syllabic>end</syllabic>\n          <text>ni</text>\n        </lyric>\n      </note>\n      <note default-x=\"67\">\n        <pitch>\n          <step>C</step>\n          <alter>1</alter>\n          <octave>5</octave>\n        </pitch>\n        <duration>8</duration>\n        <voice>1</voice>\n        <type>half</type>\n        <accidental>sharp</accidental>\n        <stem default-y=\"-50\">down</stem>\n        <lyric number=\"1\" placement=\"below\" default-y=\"-81\">\n          <syllabic>begin</syllabic>\n          <text>e</text>\n        </lyric>\n      </note>\n    </measure>\n    <!--=======================================================-->\n    <measure number=\"13\" width=\"110\">\n      <note default-x=\"20\">\n        <pitch>\n          <step>D</step>\n          <octave>5</octave>\n        </pitch>\n        <duration>12</duration>\n        <voice>1</voice>\n        <type>half</type>\n        <dot/>\n        <stem default-y=\"-45\">down</stem>\n        <lyric number=\"1\" placement=\"below\" default-y=\"-81\">\n          <syllabic>end</syllabic>\n          <text>ius.</text>\n        </lyric>\n      </note>\n    </measure>\n    <!--=======================================================-->\n    <measure number=\"14\" width=\"160\">\n      <note default-x=\"21\">\n        <pitch>\n          <step>A</step>\n          <octave>4</octave>\n        </pitch>\n        <duration>4</duration>\n        <voice>1</voice>\n        <type>quarter</type>\n        <stem default-y=\"10\">up</stem>\n        <lyric number=\"1\" placement=\"below\" default-y=\"-81\">\n          <syllabic>begin</syllabic>\n          <text>Ca</text>\n        </lyric>\n      </note>\n      <note default-x=\"68\">\n        <pitch>\n          <step>A</step>\n          <octave>4</octave>\n        </pitch>\n        <duration>4</duration>\n        <voice>1</voice>\n        <type>quarter</type>\n        <stem default-y=\"10\">up</stem>\n        <lyric number=\"1\" placement=\"below\" default-y=\"-81\">\n          <syllabic>middle</syllabic>\n          <text>nta</text>\n        </lyric>\n      </note>\n      <note default-x=\"116\">\n        <pitch>\n          <step>B</step>\n          <alter>-1</alter>\n          <octave>4</octave>\n        </pitch>\n        <duration>4</duration>\n        <voice>1</voice>\n        <type>quarter</type>\n        <accidental>flat</accidental>\n        <stem default-y=\"16\">up</stem>\n        <lyric number=\"1\" placement=\"below\" default-y=\"-81\">\n          <syllabic>end</syllabic>\n          <text>te</text>\n        </lyric>\n      </note>\n    </measure>\n    <!--=======================================================-->\n    <measure number=\"15\" width=\"167\">\n      <note default-x=\"18\">\n        <pitch>\n          <step>A</step>\n          <octave>4</octave>\n        </pitch>\n        <duration>6</duration>\n        <voice>1</voice>\n        <type>quarter</type>\n        <dot/>\n        <stem default-y=\"10\">up</stem>\n        <lyric number=\"1\" placement=\"below\" default-y=\"-81\">\n          <syllabic>begin</syllabic>\n          <text>Do</text>\n        </lyric>\n      </note>\n      <note default-x=\"81\">\n        <pitch>\n          <step>A</step>\n          <octave>4</octave>\n        </pitch>\n        <duration>2</duration>\n        <voice>1</voice>\n        <type>eighth</type>\n        <stem default-y=\"10\">up</stem>\n        <lyric number=\"1\" placement=\"below\" default-y=\"-81\">\n          <syllabic>middle</syllabic>\n          <text>mi</text>\n        </lyric>\n      </note>\n      <note default-x=\"122\">\n        <pitch>\n          <step>A</step>\n          <octave>4</octave>\n        </pitch>\n        <duration>4</duration>\n        <voice>1</voice>\n        <type>quarter</type>\n        <stem default-y=\"10\">up</stem>\n        <lyric number=\"1\" placement=\"below\" default-y=\"-81\">\n          <syllabic>end</syllabic>\n          <text>no</text>\n        </lyric>\n      </note>\n    </measure>\n    <!--=======================================================-->\n    <measure number=\"16\" width=\"180\">\n      <note default-x=\"22\">\n        <pitch>\n          <step>B</step>\n          <alter>-1</alter>\n          <octave>4</octave>\n        </pitch>\n        <duration>6</duration>\n        <voice>1</voice>\n        <type>quarter</type>\n        <dot/>\n        <accidental>flat</accidental>\n        <stem default-y=\"16\">up</stem>\n        <lyric number=\"1\" placement=\"below\" default-y=\"-81\">\n          <syllabic>begin</syllabic>\n          <text>ca</text>\n        </lyric>\n      </note>\n      <note default-x=\"85\">\n        <pitch>\n          <step>B</step>\n          <alter>-1</alter>\n          <octave>4</octave>\n        </pitch>\n        <duration>2</duration>\n        <voice>1</voice>\n        <type>eighth</type>\n        <stem default-y=\"16\">up</stem>\n        <lyric number=\"1\" placement=\"below\" default-y=\"-81\">\n          <syllabic>middle</syllabic>\n          <text>nti</text>\n        </lyric>\n      </note>\n      <note default-x=\"136\">\n        <pitch>\n          <step>B</step>\n          <alter>-1</alter>\n          <octave>4</octave>\n        </pitch>\n        <duration>4</duration>\n        <voice>1</voice>\n        <type>quarter</type>\n        <stem default-y=\"16\">up</stem>\n        <lyric number=\"1\" placement=\"below\" default-y=\"-81\">\n          <syllabic>end</syllabic>\n          <text>cum</text>\n        </lyric>\n      </note>\n    </measure>\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    </part>"
+        ],
+        "value": {
+          "measures": {
+            "1": "1",
+            "2": "2",
+            "3": "3",
+            "4": "4",
+            "5": "5",
+            "6": "6",
+            "7": "7",
+            "8": "8"
+          },
+          "voices": {
+            "1": "1"
+          },
+          "staves": {
+            "1": "1"
+          },
+          "instruments": {},
+          "destination": "replace",
+          "sourceDisposition": "delete-part",
+          "wrapperPolicy": "keep-target",
+          "contextPolicy": "require-equal"
+        },
+        "discard": [
+          "<score-part id=\"P6\">\n      <part-name>S.</part-name>\n      <part-abbreviation>S.</part-abbreviation>\n      <score-instrument id=\"P6-I1\">\n        <instrument-name>Voice Oohs</instrument-name>\n      </score-instrument>\n      <midi-instrument id=\"P6-I1\">\n        <midi-channel>6</midi-channel>\n        <midi-program>54</midi-program>\n        <volume>78</volume>\n      </midi-instrument>\n    </score-part>",
+          "<print new-system=\"yes\"/>",
+          "<attributes>\n        <staff-details print-object=\"no\"/>\n      </attributes>",
+          "<note>\n        <rest measure=\"yes\"/>\n        <duration>12</duration>\n        <voice>1</voice>\n      </note>",
+          "<note>\n        <rest measure=\"yes\"/>\n        <duration>12</duration>\n        <voice>1</voice>\n      </note>",
+          "<note>\n        <rest measure=\"yes\"/>\n        <duration>12</duration>\n        <voice>1</voice>\n      </note>",
+          "<note>\n        <rest measure=\"yes\"/>\n        <duration>12</duration>\n        <voice>1</voice>\n      </note>",
+          "<note>\n        <rest measure=\"yes\"/>\n        <duration>12</duration>\n        <voice>1</voice>\n      </note>",
+          "<note>\n        <rest measure=\"yes\"/>\n        <duration>12</duration>\n        <voice>1</voice>\n      </note>",
+          "<note>\n        <rest measure=\"yes\"/>\n        <duration>12</duration>\n        <voice>1</voice>\n      </note>",
+          "<note>\n        <rest measure=\"yes\"/>\n        <duration>12</duration>\n        <voice>1</voice>\n      </note>",
+          "<print>\n        <measure-numbering>system</measure-numbering>\n      </print>",
+          "<attributes>\n        <divisions>4</divisions>\n        <time>\n          <beats>3</beats>\n          <beat-type>4</beat-type>\n        </time>\n        <clef>\n          <sign>G</sign>\n          <line>2</line>\n        </clef>\n        <staff-details print-object=\"no\"/>\n      </attributes>",
+          "<note>\n        <rest measure=\"yes\"/>\n        <duration>20</duration>\n        <voice>1</voice>\n      </note>",
+          "<note>\n        <rest measure=\"yes\"/>\n        <duration>12</duration>\n        <voice>1</voice>\n      </note>",
+          "<note>\n        <rest measure=\"yes\"/>\n        <duration>12</duration>\n        <voice>1</voice>\n      </note>",
+          "<note>\n        <rest measure=\"yes\"/>\n        <duration>12</duration>\n        <voice>1</voice>\n      </note>",
+          "<note>\n        <rest measure=\"yes\"/>\n        <duration>12</duration>\n        <voice>1</voice>\n      </note>",
+          "<note>\n        <rest measure=\"yes\"/>\n        <duration>12</duration>\n        <voice>1</voice>\n      </note>",
+          "<note>\n        <rest measure=\"yes\"/>\n        <duration>12</duration>\n        <voice>1</voice>\n      </note>",
+          "<note>\n        <rest measure=\"yes\"/>\n        <duration>12</duration>\n        <voice>1</voice>\n      </note>",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->"
+        ]
+      }
+    ]
+  },
+  "diagnosticsBefore": [
+    {
+      "code": "measure-overflow",
+      "severity": "error",
+      "location": {
+        "partId": "P1",
+        "printedMeasure": "1",
+        "measureOrdinal": 1
+      },
+      "reason": "Extent 5 exceeds meter 3.",
+      "operationId": null
+    },
+    {
+      "code": "incomplete-voice",
+      "severity": "warning",
+      "location": {
+        "partId": "P1",
+        "printedMeasure": "9",
+        "measureOrdinal": 9,
+        "voice": "1"
+      },
+      "reason": "Voice ends at 1, before meter 3; may be intentional incomplete notation.",
+      "operationId": null
+    }
+  ],
+  "diagnosticsAfter": [
+    {
+      "code": "incomplete-voice",
+      "severity": "warning",
+      "location": {
+        "partId": "P1",
+        "printedMeasure": "9",
+        "measureOrdinal": 9,
+        "voice": "1"
+      },
+      "reason": "Voice ends at 1, before meter 3; may be intentional incomplete notation.",
+      "operationId": null,
+      "origin": "existing"
+    }
+  ],
+  "diagnosticMatching": "snapshot-object-mapping-then-exact-code-severity-location-reason-multiset",
+  "comparison": {
+    "schemaVersion": "1",
+    "status": "inconclusive",
+    "alignment": "exact part / printed measure / all-note ordinal; voice identity must agree",
+    "structureDifferences": [
+      {
+        "before": [
+          [
+            "P1",
+            "1",
+            1
+          ],
+          [
+            "P1",
+            "2",
+            2
+          ],
+          [
+            "P1",
+            "3",
+            3
+          ],
+          [
+            "P1",
+            "4",
+            4
+          ],
+          [
+            "P1",
+            "5",
+            5
+          ],
+          [
+            "P1",
+            "6",
+            6
+          ],
+          [
+            "P1",
+            "7",
+            7
+          ],
+          [
+            "P1",
+            "8",
+            8
+          ],
+          [
+            "P1",
+            "9",
+            9
+          ],
+          [
+            "P1",
+            "10",
+            10
+          ],
+          [
+            "P1",
+            "11",
+            11
+          ],
+          [
+            "P1",
+            "12",
+            12
+          ],
+          [
+            "P1",
+            "13",
+            13
+          ],
+          [
+            "P1",
+            "14",
+            14
+          ],
+          [
+            "P1",
+            "15",
+            15
+          ],
+          [
+            "P1",
+            "16",
+            16
+          ],
+          [
+            "P6",
+            "1",
+            1
+          ],
+          [
+            "P6",
+            "2",
+            2
+          ],
+          [
+            "P6",
+            "3",
+            3
+          ],
+          [
+            "P6",
+            "4",
+            4
+          ],
+          [
+            "P6",
+            "5",
+            5
+          ],
+          [
+            "P6",
+            "6",
+            6
+          ],
+          [
+            "P6",
+            "7",
+            7
+          ],
+          [
+            "P6",
+            "8",
+            8
+          ],
+          [
+            "P6",
+            "9",
+            9
+          ],
+          [
+            "P6",
+            "10",
+            10
+          ],
+          [
+            "P6",
+            "11",
+            11
+          ],
+          [
+            "P6",
+            "12",
+            12
+          ],
+          [
+            "P6",
+            "13",
+            13
+          ],
+          [
+            "P6",
+            "14",
+            14
+          ],
+          [
+            "P6",
+            "15",
+            15
+          ],
+          [
+            "P6",
+            "16",
+            16
+          ]
+        ],
+        "after": [
+          [
+            "P1",
+            "1",
+            1
+          ],
+          [
+            "P1",
+            "2",
+            2
+          ],
+          [
+            "P1",
+            "3",
+            3
+          ],
+          [
+            "P1",
+            "4",
+            4
+          ],
+          [
+            "P1",
+            "5",
+            5
+          ],
+          [
+            "P1",
+            "6",
+            6
+          ],
+          [
+            "P1",
+            "7",
+            7
+          ],
+          [
+            "P1",
+            "8",
+            8
+          ],
+          [
+            "P1",
+            "9",
+            9
+          ],
+          [
+            "P1",
+            "10",
+            10
+          ],
+          [
+            "P1",
+            "11",
+            11
+          ],
+          [
+            "P1",
+            "12",
+            12
+          ],
+          [
+            "P1",
+            "13",
+            13
+          ],
+          [
+            "P1",
+            "14",
+            14
+          ],
+          [
+            "P1",
+            "15",
+            15
+          ],
+          [
+            "P1",
+            "16",
+            16
+          ]
+        ],
+        "mapping": [
+          {
+            "before": {
+              "partId": "P1",
+              "printedMeasure": "1"
+            },
+            "after": {
+              "partId": "P1",
+              "printedMeasure": "1"
+            }
+          },
+          {
+            "before": {
+              "partId": "P1",
+              "printedMeasure": "2"
+            },
+            "after": {
+              "partId": "P1",
+              "printedMeasure": "2"
+            }
+          },
+          {
+            "before": {
+              "partId": "P1",
+              "printedMeasure": "3"
+            },
+            "after": {
+              "partId": "P1",
+              "printedMeasure": "3"
+            }
+          },
+          {
+            "before": {
+              "partId": "P1",
+              "printedMeasure": "4"
+            },
+            "after": {
+              "partId": "P1",
+              "printedMeasure": "4"
+            }
+          },
+          {
+            "before": {
+              "partId": "P1",
+              "printedMeasure": "5"
+            },
+            "after": {
+              "partId": "P1",
+              "printedMeasure": "5"
+            }
+          },
+          {
+            "before": {
+              "partId": "P1",
+              "printedMeasure": "6"
+            },
+            "after": {
+              "partId": "P1",
+              "printedMeasure": "6"
+            }
+          },
+          {
+            "before": {
+              "partId": "P1",
+              "printedMeasure": "7"
+            },
+            "after": {
+              "partId": "P1",
+              "printedMeasure": "7"
+            }
+          },
+          {
+            "before": {
+              "partId": "P1",
+              "printedMeasure": "8"
+            },
+            "after": {
+              "partId": "P1",
+              "printedMeasure": "8"
+            }
+          },
+          {
+            "before": {
+              "partId": "P1",
+              "printedMeasure": "9"
+            },
+            "after": {
+              "partId": "P1",
+              "printedMeasure": "9"
+            }
+          },
+          {
+            "before": {
+              "partId": "P1",
+              "printedMeasure": "10"
+            },
+            "after": {
+              "partId": "P1",
+              "printedMeasure": "10"
+            }
+          },
+          {
+            "before": {
+              "partId": "P1",
+              "printedMeasure": "11"
+            },
+            "after": {
+              "partId": "P1",
+              "printedMeasure": "11"
+            }
+          },
+          {
+            "before": {
+              "partId": "P1",
+              "printedMeasure": "12"
+            },
+            "after": {
+              "partId": "P1",
+              "printedMeasure": "12"
+            }
+          },
+          {
+            "before": {
+              "partId": "P1",
+              "printedMeasure": "13"
+            },
+            "after": {
+              "partId": "P1",
+              "printedMeasure": "13"
+            }
+          },
+          {
+            "before": {
+              "partId": "P1",
+              "printedMeasure": "14"
+            },
+            "after": {
+              "partId": "P1",
+              "printedMeasure": "14"
+            }
+          },
+          {
+            "before": {
+              "partId": "P1",
+              "printedMeasure": "15"
+            },
+            "after": {
+              "partId": "P1",
+              "printedMeasure": "15"
+            }
+          },
+          {
+            "before": {
+              "partId": "P1",
+              "printedMeasure": "16"
+            },
+            "after": {
+              "partId": "P1",
+              "printedMeasure": "16"
+            }
+          },
+          {
+            "before": {
+              "partId": "P6",
+              "printedMeasure": "1"
+            },
+            "after": {
+              "partId": "P1",
+              "printedMeasure": "1"
+            },
+            "relation": "merged"
+          },
+          {
+            "before": {
+              "partId": "P6",
+              "printedMeasure": "2"
+            },
+            "after": {
+              "partId": "P1",
+              "printedMeasure": "2"
+            },
+            "relation": "merged"
+          },
+          {
+            "before": {
+              "partId": "P6",
+              "printedMeasure": "3"
+            },
+            "after": {
+              "partId": "P1",
+              "printedMeasure": "3"
+            },
+            "relation": "merged"
+          },
+          {
+            "before": {
+              "partId": "P6",
+              "printedMeasure": "4"
+            },
+            "after": {
+              "partId": "P1",
+              "printedMeasure": "4"
+            },
+            "relation": "merged"
+          },
+          {
+            "before": {
+              "partId": "P6",
+              "printedMeasure": "5"
+            },
+            "after": {
+              "partId": "P1",
+              "printedMeasure": "5"
+            },
+            "relation": "merged"
+          },
+          {
+            "before": {
+              "partId": "P6",
+              "printedMeasure": "6"
+            },
+            "after": {
+              "partId": "P1",
+              "printedMeasure": "6"
+            },
+            "relation": "merged"
+          },
+          {
+            "before": {
+              "partId": "P6",
+              "printedMeasure": "7"
+            },
+            "after": {
+              "partId": "P1",
+              "printedMeasure": "7"
+            },
+            "relation": "merged"
+          },
+          {
+            "before": {
+              "partId": "P6",
+              "printedMeasure": "8"
+            },
+            "after": {
+              "partId": "P1",
+              "printedMeasure": "8"
+            },
+            "relation": "merged"
+          },
+          {
+            "before": {
+              "partId": "P6",
+              "printedMeasure": "9"
+            },
+            "after": null
+          },
+          {
+            "before": {
+              "partId": "P6",
+              "printedMeasure": "10"
+            },
+            "after": null
+          },
+          {
+            "before": {
+              "partId": "P6",
+              "printedMeasure": "11"
+            },
+            "after": null
+          },
+          {
+            "before": {
+              "partId": "P6",
+              "printedMeasure": "12"
+            },
+            "after": null
+          },
+          {
+            "before": {
+              "partId": "P6",
+              "printedMeasure": "13"
+            },
+            "after": null
+          },
+          {
+            "before": {
+              "partId": "P6",
+              "printedMeasure": "14"
+            },
+            "after": null
+          },
+          {
+            "before": {
+              "partId": "P6",
+              "printedMeasure": "15"
+            },
+            "after": null
+          },
+          {
+            "before": {
+              "partId": "P6",
+              "printedMeasure": "16"
+            },
+            "after": null
+          }
+        ]
+      },
+      {
+        "kind": "part-list",
+        "before": {
+          "tag": "part-list",
+          "attributes": {},
+          "text": "",
+          "children": [
+            {
+              "tag": "score-part",
+              "attributes": {
+                "id": "P1"
+              },
+              "text": "",
+              "children": [
+                {
+                  "tag": "part-name",
+                  "attributes": {},
+                  "text": "S.",
+                  "children": []
+                },
+                {
+                  "tag": "part-abbreviation",
+                  "attributes": {},
+                  "text": "S.",
+                  "children": []
+                },
+                {
+                  "tag": "score-instrument",
+                  "attributes": {
+                    "id": "P1-I1"
+                  },
+                  "text": "",
+                  "children": [
+                    {
+                      "tag": "instrument-name",
+                      "attributes": {},
+                      "text": "Voice Oohs",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "tag": "midi-instrument",
+                  "attributes": {
+                    "id": "P1-I1"
+                  },
+                  "text": "",
+                  "children": [
+                    {
+                      "tag": "midi-channel",
+                      "attributes": {},
+                      "text": "1",
+                      "children": []
+                    },
+                    {
+                      "tag": "midi-program",
+                      "attributes": {},
+                      "text": "54",
+                      "children": []
+                    },
+                    {
+                      "tag": "volume",
+                      "attributes": {},
+                      "text": "78",
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "tag": "score-part",
+              "attributes": {
+                "id": "P6"
+              },
+              "text": "",
+              "children": [
+                {
+                  "tag": "part-name",
+                  "attributes": {},
+                  "text": "S.",
+                  "children": []
+                },
+                {
+                  "tag": "part-abbreviation",
+                  "attributes": {},
+                  "text": "S.",
+                  "children": []
+                },
+                {
+                  "tag": "score-instrument",
+                  "attributes": {
+                    "id": "P6-I1"
+                  },
+                  "text": "",
+                  "children": [
+                    {
+                      "tag": "instrument-name",
+                      "attributes": {},
+                      "text": "Voice Oohs",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "tag": "midi-instrument",
+                  "attributes": {
+                    "id": "P6-I1"
+                  },
+                  "text": "",
+                  "children": [
+                    {
+                      "tag": "midi-channel",
+                      "attributes": {},
+                      "text": "6",
+                      "children": []
+                    },
+                    {
+                      "tag": "midi-program",
+                      "attributes": {},
+                      "text": "54",
+                      "children": []
+                    },
+                    {
+                      "tag": "volume",
+                      "attributes": {},
+                      "text": "78",
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "after": {
+          "tag": "part-list",
+          "attributes": {},
+          "text": "",
+          "children": [
+            {
+              "tag": "score-part",
+              "attributes": {
+                "id": "P1"
+              },
+              "text": "",
+              "children": [
+                {
+                  "tag": "part-name",
+                  "attributes": {},
+                  "text": "S.",
+                  "children": []
+                },
+                {
+                  "tag": "part-abbreviation",
+                  "attributes": {},
+                  "text": "S.",
+                  "children": []
+                },
+                {
+                  "tag": "score-instrument",
+                  "attributes": {
+                    "id": "P1-I1"
+                  },
+                  "text": "",
+                  "children": [
+                    {
+                      "tag": "instrument-name",
+                      "attributes": {},
+                      "text": "Voice Oohs",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "tag": "midi-instrument",
+                  "attributes": {
+                    "id": "P1-I1"
+                  },
+                  "text": "",
+                  "children": [
+                    {
+                      "tag": "midi-channel",
+                      "attributes": {},
+                      "text": "1",
+                      "children": []
+                    },
+                    {
+                      "tag": "midi-program",
+                      "attributes": {},
+                      "text": "54",
+                      "children": []
+                    },
+                    {
+                      "tag": "volume",
+                      "attributes": {},
+                      "text": "78",
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "notationDifferences": [],
+    "soundingDifferences": [],
+    "unaligned": [
+      {
+        "before": {
+          "partId": "P1",
+          "printedMeasure": "1"
+        },
+        "after": {
+          "partId": "P1",
+          "printedMeasure": "1"
+        },
+        "reason": "Explicit many-to-one merge; note alignment requires source event provenance."
+      },
+      {
+        "before": {
+          "partId": "P1",
+          "printedMeasure": "2"
+        },
+        "after": {
+          "partId": "P1",
+          "printedMeasure": "2"
+        },
+        "reason": "Explicit many-to-one merge; note alignment requires source event provenance."
+      },
+      {
+        "before": {
+          "partId": "P1",
+          "printedMeasure": "3"
+        },
+        "after": {
+          "partId": "P1",
+          "printedMeasure": "3"
+        },
+        "reason": "Explicit many-to-one merge; note alignment requires source event provenance."
+      },
+      {
+        "before": {
+          "partId": "P1",
+          "printedMeasure": "4"
+        },
+        "after": {
+          "partId": "P1",
+          "printedMeasure": "4"
+        },
+        "reason": "Explicit many-to-one merge; note alignment requires source event provenance."
+      },
+      {
+        "before": {
+          "partId": "P1",
+          "printedMeasure": "5"
+        },
+        "after": {
+          "partId": "P1",
+          "printedMeasure": "5"
+        },
+        "reason": "Explicit many-to-one merge; note alignment requires source event provenance."
+      },
+      {
+        "before": {
+          "partId": "P1",
+          "printedMeasure": "6"
+        },
+        "after": {
+          "partId": "P1",
+          "printedMeasure": "6"
+        },
+        "reason": "Explicit many-to-one merge; note alignment requires source event provenance."
+      },
+      {
+        "before": {
+          "partId": "P1",
+          "printedMeasure": "7"
+        },
+        "after": {
+          "partId": "P1",
+          "printedMeasure": "7"
+        },
+        "reason": "Explicit many-to-one merge; note alignment requires source event provenance."
+      },
+      {
+        "before": {
+          "partId": "P1",
+          "printedMeasure": "8"
+        },
+        "after": {
+          "partId": "P1",
+          "printedMeasure": "8"
+        },
+        "reason": "Explicit many-to-one merge; note alignment requires source event provenance."
+      },
+      {
+        "before": {
+          "partId": "P6",
+          "printedMeasure": "1"
+        },
+        "after": {
+          "partId": "P1",
+          "printedMeasure": "1"
+        },
+        "reason": "Explicit many-to-one merge; note alignment requires source event provenance."
+      },
+      {
+        "before": {
+          "partId": "P6",
+          "printedMeasure": "2"
+        },
+        "after": {
+          "partId": "P1",
+          "printedMeasure": "2"
+        },
+        "reason": "Explicit many-to-one merge; note alignment requires source event provenance."
+      },
+      {
+        "before": {
+          "partId": "P6",
+          "printedMeasure": "3"
+        },
+        "after": {
+          "partId": "P1",
+          "printedMeasure": "3"
+        },
+        "reason": "Explicit many-to-one merge; note alignment requires source event provenance."
+      },
+      {
+        "before": {
+          "partId": "P6",
+          "printedMeasure": "4"
+        },
+        "after": {
+          "partId": "P1",
+          "printedMeasure": "4"
+        },
+        "reason": "Explicit many-to-one merge; note alignment requires source event provenance."
+      },
+      {
+        "before": {
+          "partId": "P6",
+          "printedMeasure": "5"
+        },
+        "after": {
+          "partId": "P1",
+          "printedMeasure": "5"
+        },
+        "reason": "Explicit many-to-one merge; note alignment requires source event provenance."
+      },
+      {
+        "before": {
+          "partId": "P6",
+          "printedMeasure": "6"
+        },
+        "after": {
+          "partId": "P1",
+          "printedMeasure": "6"
+        },
+        "reason": "Explicit many-to-one merge; note alignment requires source event provenance."
+      },
+      {
+        "before": {
+          "partId": "P6",
+          "printedMeasure": "7"
+        },
+        "after": {
+          "partId": "P1",
+          "printedMeasure": "7"
+        },
+        "reason": "Explicit many-to-one merge; note alignment requires source event provenance."
+      },
+      {
+        "before": {
+          "partId": "P6",
+          "printedMeasure": "8"
+        },
+        "after": {
+          "partId": "P1",
+          "printedMeasure": "8"
+        },
+        "reason": "Explicit many-to-one merge; note alignment requires source event provenance."
+      }
+    ],
+    "added": [],
+    "removed": [
+      {
+        "kind": "part-measure",
+        "location": {
+          "partId": "P6",
+          "printedMeasure": "9"
+        }
+      },
+      {
+        "kind": "part-measure",
+        "location": {
+          "partId": "P6",
+          "printedMeasure": "10"
+        }
+      },
+      {
+        "kind": "part-measure",
+        "location": {
+          "partId": "P6",
+          "printedMeasure": "11"
+        }
+      },
+      {
+        "kind": "part-measure",
+        "location": {
+          "partId": "P6",
+          "printedMeasure": "12"
+        }
+      },
+      {
+        "kind": "part-measure",
+        "location": {
+          "partId": "P6",
+          "printedMeasure": "13"
+        }
+      },
+      {
+        "kind": "part-measure",
+        "location": {
+          "partId": "P6",
+          "printedMeasure": "14"
+        }
+      },
+      {
+        "kind": "part-measure",
+        "location": {
+          "partId": "P6",
+          "printedMeasure": "15"
+        }
+      },
+      {
+        "kind": "part-measure",
+        "location": {
+          "partId": "P6",
+          "printedMeasure": "16"
+        }
+      }
+    ],
+    "coverage": {
+      "checked": [
+        "written-pitch",
+        "offset",
+        "duration",
+        "rest",
+        "lyrics",
+        "notations",
+        "directions",
+        "context"
+      ],
+      "unchecked": [
+        "source-pdf-correctness",
+        "performance",
+        "unknown-extension-meaning"
+      ]
+    },
+    "mapping": {
+      "measures": [
+        {
+          "before": {
+            "partId": "P1",
+            "printedMeasure": "1"
+          },
+          "after": {
+            "partId": "P1",
+            "printedMeasure": "1"
+          }
+        },
+        {
+          "before": {
+            "partId": "P1",
+            "printedMeasure": "2"
+          },
+          "after": {
+            "partId": "P1",
+            "printedMeasure": "2"
+          }
+        },
+        {
+          "before": {
+            "partId": "P1",
+            "printedMeasure": "3"
+          },
+          "after": {
+            "partId": "P1",
+            "printedMeasure": "3"
+          }
+        },
+        {
+          "before": {
+            "partId": "P1",
+            "printedMeasure": "4"
+          },
+          "after": {
+            "partId": "P1",
+            "printedMeasure": "4"
+          }
+        },
+        {
+          "before": {
+            "partId": "P1",
+            "printedMeasure": "5"
+          },
+          "after": {
+            "partId": "P1",
+            "printedMeasure": "5"
+          }
+        },
+        {
+          "before": {
+            "partId": "P1",
+            "printedMeasure": "6"
+          },
+          "after": {
+            "partId": "P1",
+            "printedMeasure": "6"
+          }
+        },
+        {
+          "before": {
+            "partId": "P1",
+            "printedMeasure": "7"
+          },
+          "after": {
+            "partId": "P1",
+            "printedMeasure": "7"
+          }
+        },
+        {
+          "before": {
+            "partId": "P1",
+            "printedMeasure": "8"
+          },
+          "after": {
+            "partId": "P1",
+            "printedMeasure": "8"
+          }
+        },
+        {
+          "before": {
+            "partId": "P1",
+            "printedMeasure": "9"
+          },
+          "after": {
+            "partId": "P1",
+            "printedMeasure": "9"
+          }
+        },
+        {
+          "before": {
+            "partId": "P1",
+            "printedMeasure": "10"
+          },
+          "after": {
+            "partId": "P1",
+            "printedMeasure": "10"
+          }
+        },
+        {
+          "before": {
+            "partId": "P1",
+            "printedMeasure": "11"
+          },
+          "after": {
+            "partId": "P1",
+            "printedMeasure": "11"
+          }
+        },
+        {
+          "before": {
+            "partId": "P1",
+            "printedMeasure": "12"
+          },
+          "after": {
+            "partId": "P1",
+            "printedMeasure": "12"
+          }
+        },
+        {
+          "before": {
+            "partId": "P1",
+            "printedMeasure": "13"
+          },
+          "after": {
+            "partId": "P1",
+            "printedMeasure": "13"
+          }
+        },
+        {
+          "before": {
+            "partId": "P1",
+            "printedMeasure": "14"
+          },
+          "after": {
+            "partId": "P1",
+            "printedMeasure": "14"
+          }
+        },
+        {
+          "before": {
+            "partId": "P1",
+            "printedMeasure": "15"
+          },
+          "after": {
+            "partId": "P1",
+            "printedMeasure": "15"
+          }
+        },
+        {
+          "before": {
+            "partId": "P1",
+            "printedMeasure": "16"
+          },
+          "after": {
+            "partId": "P1",
+            "printedMeasure": "16"
+          }
+        },
+        {
+          "before": {
+            "partId": "P6",
+            "printedMeasure": "1"
+          },
+          "after": {
+            "partId": "P1",
+            "printedMeasure": "1"
+          },
+          "relation": "merged"
+        },
+        {
+          "before": {
+            "partId": "P6",
+            "printedMeasure": "2"
+          },
+          "after": {
+            "partId": "P1",
+            "printedMeasure": "2"
+          },
+          "relation": "merged"
+        },
+        {
+          "before": {
+            "partId": "P6",
+            "printedMeasure": "3"
+          },
+          "after": {
+            "partId": "P1",
+            "printedMeasure": "3"
+          },
+          "relation": "merged"
+        },
+        {
+          "before": {
+            "partId": "P6",
+            "printedMeasure": "4"
+          },
+          "after": {
+            "partId": "P1",
+            "printedMeasure": "4"
+          },
+          "relation": "merged"
+        },
+        {
+          "before": {
+            "partId": "P6",
+            "printedMeasure": "5"
+          },
+          "after": {
+            "partId": "P1",
+            "printedMeasure": "5"
+          },
+          "relation": "merged"
+        },
+        {
+          "before": {
+            "partId": "P6",
+            "printedMeasure": "6"
+          },
+          "after": {
+            "partId": "P1",
+            "printedMeasure": "6"
+          },
+          "relation": "merged"
+        },
+        {
+          "before": {
+            "partId": "P6",
+            "printedMeasure": "7"
+          },
+          "after": {
+            "partId": "P1",
+            "printedMeasure": "7"
+          },
+          "relation": "merged"
+        },
+        {
+          "before": {
+            "partId": "P6",
+            "printedMeasure": "8"
+          },
+          "after": {
+            "partId": "P1",
+            "printedMeasure": "8"
+          },
+          "relation": "merged"
+        },
+        {
+          "before": {
+            "partId": "P6",
+            "printedMeasure": "9"
+          },
+          "after": null
+        },
+        {
+          "before": {
+            "partId": "P6",
+            "printedMeasure": "10"
+          },
+          "after": null
+        },
+        {
+          "before": {
+            "partId": "P6",
+            "printedMeasure": "11"
+          },
+          "after": null
+        },
+        {
+          "before": {
+            "partId": "P6",
+            "printedMeasure": "12"
+          },
+          "after": null
+        },
+        {
+          "before": {
+            "partId": "P6",
+            "printedMeasure": "13"
+          },
+          "after": null
+        },
+        {
+          "before": {
+            "partId": "P6",
+            "printedMeasure": "14"
+          },
+          "after": null
+        },
+        {
+          "before": {
+            "partId": "P6",
+            "printedMeasure": "15"
+          },
+          "after": null
+        },
+        {
+          "before": {
+            "partId": "P6",
+            "printedMeasure": "16"
+          },
+          "after": null
+        }
+      ]
+    },
+    "validationBefore": {
+      "schemaVersion": "1",
+      "status": "invalid",
+      "coverage": {
+        "checked": [
+          "part-and-measure-structure",
+          "part-order-groups-and-instrument-references",
+          "snapshot-locations",
+          "cursor-and-divisions",
+          "duration-notation",
+          "voice-coverage",
+          "pitch-rest-invariants",
+          "tie-tied-slur-wedge-pairs"
+        ],
+        "unchecked": [
+          "source-pdf-correctness",
+          "full-musicxml-schema",
+          "instrument-playback",
+          "microtonal-tuning",
+          "repeat-playback",
+          "engraving-correctness",
+          "unknown-extension-semantics"
+        ]
+      },
+      "diagnostics": [
+        {
+          "code": "measure-overflow",
+          "severity": "error",
+          "location": {
+            "partId": "P1",
+            "printedMeasure": "1",
+            "measureOrdinal": 1
+          },
+          "reason": "Extent 5 exceeds meter 3.",
+          "operationId": null
+        },
+        {
+          "code": "incomplete-voice",
+          "severity": "warning",
+          "location": {
+            "partId": "P1",
+            "printedMeasure": "9",
+            "measureOrdinal": 9,
+            "voice": "1"
+          },
+          "reason": "Voice ends at 1, before meter 3; may be intentional incomplete notation.",
+          "operationId": null
+        }
+      ]
+    },
+    "validationAfter": {
+      "schemaVersion": "1",
+      "status": "valid-within-coverage",
+      "coverage": {
+        "checked": [
+          "part-and-measure-structure",
+          "part-order-groups-and-instrument-references",
+          "snapshot-locations",
+          "cursor-and-divisions",
+          "duration-notation",
+          "voice-coverage",
+          "pitch-rest-invariants",
+          "tie-tied-slur-wedge-pairs"
+        ],
+        "unchecked": [
+          "source-pdf-correctness",
+          "full-musicxml-schema",
+          "instrument-playback",
+          "microtonal-tuning",
+          "repeat-playback",
+          "engraving-correctness",
+          "unknown-extension-semantics"
+        ]
+      },
+      "diagnostics": [
+        {
+          "code": "incomplete-voice",
+          "severity": "warning",
+          "location": {
+            "partId": "P1",
+            "printedMeasure": "9",
+            "measureOrdinal": 9,
+            "voice": "1"
+          },
+          "reason": "Voice ends at 1, before meter 3; may be intentional incomplete notation.",
+          "operationId": null
+        }
+      ]
+    }
+  },
+  "structure": {
+    "operations": [
+      {
+        "operationId": "merge-soprano-fragment",
+        "added": [],
+        "preserved": [],
+        "moved": [
+          "<print>\n        <system-layout>\n          <system-margins>\n            <left-margin>194</left-margin>\n            <right-margin>110</right-margin>\n          </system-margins>\n          <top-system-distance>184</top-system-distance>\n        </system-layout>\n        <measure-numbering>none</measure-numbering>\n      </print>",
+          "<attributes>\n        <divisions>4</divisions>\n        <time>\n          <beats>3</beats>\n          <beat-type>4</beat-type>\n        </time>\n        <clef>\n          <sign>G</sign>\n          <line>2</line>\n        </clef>\n        <staff-details print-object=\"yes\"/>\n      </attributes>",
+          "<note default-x=\"88\">\n        <pitch>\n          <step>A</step>\n          <octave>4</octave>\n        </pitch>\n        <duration>4</duration>\n        <voice>1</voice>\n        <type>quarter</type>\n        <stem default-y=\"10\">up</stem>\n        <lyric number=\"1\" placement=\"below\" default-y=\"-81\">\n          <syllabic>begin</syllabic>\n          <text>Ca</text>\n        </lyric>\n      </note>",
+          "<note default-x=\"132\">\n        <pitch>\n          <step>A</step>\n          <octave>4</octave>\n        </pitch>\n        <duration>4</duration>\n        <voice>1</voice>\n        <type>quarter</type>\n        <stem default-y=\"10\">up</stem>\n        <lyric number=\"1\" placement=\"below\" default-y=\"-81\">\n          <syllabic>middle</syllabic>\n          <text>nta</text>\n        </lyric>\n      </note>",
+          "<note default-x=\"176\">\n        <pitch>\n          <step>A</step>\n          <octave>4</octave>\n        </pitch>\n        <duration>4</duration>\n        <voice>1</voice>\n        <type>quarter</type>\n        <stem default-y=\"10\">up</stem>\n        <lyric number=\"1\" placement=\"below\" default-y=\"-81\">\n          <syllabic>end</syllabic>\n          <text>te</text>\n        </lyric>\n      </note>",
+          "<note default-x=\"24\">\n        <pitch>\n          <step>A</step>\n          <octave>4</octave>\n        </pitch>\n        <duration>6</duration>\n        <voice>1</voice>\n        <type>quarter</type>\n        <dot/>\n        <stem default-y=\"10\">up</stem>\n        <lyric number=\"1\" placement=\"below\" default-y=\"-81\">\n          <syllabic>begin</syllabic>\n          <text>Do</text>\n        </lyric>\n      </note>",
+          "<note default-x=\"82\">\n        <pitch>\n          <step>A</step>\n          <octave>4</octave>\n        </pitch>\n        <duration>2</duration>\n        <voice>1</voice>\n        <type>eighth</type>\n        <stem default-y=\"10\">up</stem>\n        <lyric number=\"1\" placement=\"below\" default-y=\"-81\">\n          <syllabic>middle</syllabic>\n          <text>mi</text>\n        </lyric>\n      </note>",
+          "<note default-x=\"122\">\n        <pitch>\n          <step>B</step>\n          <octave>4</octave>\n        </pitch>\n        <duration>4</duration>\n        <voice>1</voice>\n        <type>quarter</type>\n        <stem default-y=\"16\">up</stem>\n        <lyric number=\"1\" placement=\"below\" default-y=\"-81\">\n          <syllabic>end</syllabic>\n          <text>no</text>\n        </lyric>\n      </note>",
+          "<note default-x=\"16\">\n        <pitch>\n          <step>C</step>\n          <octave>5</octave>\n        </pitch>\n        <duration>6</duration>\n        <voice>1</voice>\n        <type>quarter</type>\n        <dot/>\n        <stem default-y=\"-50\">down</stem>\n        <lyric number=\"1\" placement=\"below\" default-y=\"-81\">\n          <syllabic>begin</syllabic>\n          <text>ca</text>\n        </lyric>\n      </note>",
+          "<direction placement=\"above\">\n        <direction-type>\n          <words default-y=\"52\" relative-x=\"-4\" font-family=\"serif\" font-size=\"20\">cantate Domino</words>\n        </direction-type>\n      </direction>",
+          "<note default-x=\"75\">\n        <pitch>\n          <step>C</step>\n          <octave>5</octave>\n        </pitch>\n        <duration>2</duration>\n        <voice>1</voice>\n        <type>eighth</type>\n        <stem default-y=\"-50\">down</stem>\n        <lyric number=\"1\" placement=\"below\" default-y=\"-81\">\n          <syllabic>middle</syllabic>\n          <text>nti</text>\n        </lyric>\n      </note>",
+          "<note default-x=\"122\">\n        <pitch>\n          <step>D</step>\n          <octave>5</octave>\n        </pitch>\n        <duration>4</duration>\n        <voice>1</voice>\n        <type>quarter</type>\n        <stem default-y=\"-45\">down</stem>\n        <lyric number=\"1\" placement=\"below\" default-y=\"-81\">\n          <syllabic>end</syllabic>\n          <text>cum</text>\n        </lyric>\n      </note>",
+          "<note default-x=\"22\">\n        <pitch>\n          <step>B</step>\n          <octave>4</octave>\n        </pitch>\n        <duration>12</duration>\n        <voice>1</voice>\n        <type>half</type>\n        <dot/>\n        <stem default-y=\"16\">up</stem>\n        <lyric number=\"1\" placement=\"below\" default-y=\"-81\">\n          <syllabic>begin</syllabic>\n          <text>no</text>\n        </lyric>\n      </note>",
+          "<note default-x=\"22\">\n        <pitch>\n          <step>B</step>\n          <octave>4</octave>\n        </pitch>\n        <duration>8</duration>\n        <voice>1</voice>\n        <type>half</type>\n        <stem default-y=\"16\">up</stem>\n        <lyric number=\"1\" placement=\"below\" default-y=\"-81\">\n          <syllabic>end</syllabic>\n          <text>vum:</text>\n        </lyric>\n      </note>",
+          "<note default-x=\"92\">\n        <pitch>\n          <step>C</step>\n          <octave>5</octave>\n        </pitch>\n        <duration>4</duration>\n        <voice>1</voice>\n        <type>quarter</type>\n        <stem default-y=\"-50\">down</stem>\n        <lyric number=\"1\" placement=\"below\" default-y=\"-81\">\n          <syllabic>begin</syllabic>\n          <text>ca</text>\n        </lyric>\n      </note>",
+          "<note default-x=\"16\">\n        <pitch>\n          <step>C</step>\n          <octave>5</octave>\n        </pitch>\n        <duration>4</duration>\n        <voice>1</voice>\n        <type>quarter</type>\n        <stem default-y=\"-50\">down</stem>\n        <lyric number=\"1\" placement=\"below\" default-y=\"-81\">\n          <syllabic>middle</syllabic>\n          <text>nta</text>\n        </lyric>\n      </note>",
+          "<note default-x=\"60\">\n        <pitch>\n          <step>D</step>\n          <octave>5</octave>\n        </pitch>\n        <duration>4</duration>\n        <voice>1</voice>\n        <type>quarter</type>\n        <stem default-y=\"-45\">down</stem>\n        <lyric number=\"1\" placement=\"below\" default-y=\"-81\">\n          <syllabic>end</syllabic>\n          <text>te.</text>\n        </lyric>\n      </note>",
+          "<note default-x=\"105\">\n        <pitch>\n          <step>E</step>\n          <octave>5</octave>\n        </pitch>\n        <duration>4</duration>\n        <voice>1</voice>\n        <type>quarter</type>\n        <stem default-y=\"-40\">down</stem>\n        <lyric number=\"1\" placement=\"below\" default-y=\"-81\">\n          <syllabic>begin</syllabic>\n          <text>ca</text>\n        </lyric>\n      </note>",
+          "<note default-x=\"18\">\n        <pitch>\n          <step>E</step>\n          <octave>5</octave>\n        </pitch>\n        <duration>4</duration>\n        <voice>1</voice>\n        <type>quarter</type>\n        <stem default-y=\"-40\">down</stem>\n        <lyric number=\"1\" placement=\"below\" default-y=\"-81\">\n          <syllabic>middle</syllabic>\n          <text>nta</text>\n        </lyric>\n      </note>",
+          "<note default-x=\"61\">\n        <pitch>\n          <step>F</step>\n          <octave>5</octave>\n        </pitch>\n        <duration>4</duration>\n        <voice>1</voice>\n        <type>quarter</type>\n        <stem default-y=\"-35\">down</stem>\n        <lyric number=\"1\" placement=\"below\" default-y=\"-81\">\n          <syllabic>end</syllabic>\n          <text>te,</text>\n        </lyric>\n      </note>",
+          "<note default-x=\"106\">\n        <pitch>\n          <step>F</step>\n          <octave>5</octave>\n        </pitch>\n        <duration>4</duration>\n        <voice>1</voice>\n        <type>quarter</type>\n        <stem default-y=\"-35\">down</stem>\n        <lyric number=\"1\" placement=\"below\" default-y=\"-81\">\n          <syllabic>begin</syllabic>\n          <text>ca</text>\n        </lyric>\n      </note>",
+          "<note default-x=\"18\">\n        <pitch>\n          <step>F</step>\n          <octave>5</octave>\n        </pitch>\n        <duration>6</duration>\n        <voice>1</voice>\n        <type>quarter</type>\n        <dot/>\n        <stem default-y=\"-35\">down</stem>\n        <lyric number=\"1\" placement=\"below\" default-y=\"-81\">\n          <syllabic>middle</syllabic>\n          <text>nta</text>\n        </lyric>\n      </note>",
+          "<note default-x=\"93\">\n        <pitch>\n          <step>E</step>\n          <octave>5</octave>\n        </pitch>\n        <duration>2</duration>\n        <voice>1</voice>\n        <type>eighth</type>\n        <stem default-y=\"-40\">down</stem>\n        <lyric number=\"1\" placement=\"below\" default-y=\"-81\">\n          <syllabic>end</syllabic>\n          <text>te</text>\n        </lyric>\n      </note>",
+          "<note default-x=\"122\">\n        <pitch>\n          <step>D</step>\n          <octave>5</octave>\n        </pitch>\n        <duration>4</duration>\n        <voice>1</voice>\n        <type>quarter</type>\n        <stem default-y=\"-45\">down</stem>\n        <lyric number=\"1\" placement=\"below\" default-y=\"-81\">\n          <syllabic>single</syllabic>\n          <text>et</text>\n        </lyric>\n      </note>"
+        ],
+        "deleted": [
+          "<score-part id=\"P6\">\n      <part-name>S.</part-name>\n      <part-abbreviation>S.</part-abbreviation>\n      <score-instrument id=\"P6-I1\">\n        <instrument-name>Voice Oohs</instrument-name>\n      </score-instrument>\n      <midi-instrument id=\"P6-I1\">\n        <midi-channel>6</midi-channel>\n        <midi-program>54</midi-program>\n        <volume>78</volume>\n      </midi-instrument>\n    </score-part>",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<!--=======================================================-->",
+          "<print new-system=\"yes\"/>",
+          "<attributes>\n        <staff-details print-object=\"no\"/>\n      </attributes>",
+          "<note>\n        <rest measure=\"yes\"/>\n        <duration>12</duration>\n        <voice>1</voice>\n      </note>",
+          "<note>\n        <rest measure=\"yes\"/>\n        <duration>12</duration>\n        <voice>1</voice>\n      </note>",
+          "<note>\n        <rest measure=\"yes\"/>\n        <duration>12</duration>\n        <voice>1</voice>\n      </note>",
+          "<note>\n        <rest measure=\"yes\"/>\n        <duration>12</duration>\n        <voice>1</voice>\n      </note>",
+          "<note>\n        <rest measure=\"yes\"/>\n        <duration>12</duration>\n        <voice>1</voice>\n      </note>",
+          "<note>\n        <rest measure=\"yes\"/>\n        <duration>12</duration>\n        <voice>1</voice>\n      </note>",
+          "<note>\n        <rest measure=\"yes\"/>\n        <duration>12</duration>\n        <voice>1</voice>\n      </note>",
+          "<note>\n        <rest measure=\"yes\"/>\n        <duration>12</duration>\n        <voice>1</voice>\n      </note>",
+          "<print>\n        <measure-numbering>system</measure-numbering>\n      </print>",
+          "<attributes>\n        <divisions>4</divisions>\n        <time>\n          <beats>3</beats>\n          <beat-type>4</beat-type>\n        </time>\n        <clef>\n          <sign>G</sign>\n          <line>2</line>\n        </clef>\n        <staff-details print-object=\"no\"/>\n      </attributes>",
+          "<note>\n        <rest measure=\"yes\"/>\n        <duration>20</duration>\n        <voice>1</voice>\n      </note>",
+          "<note>\n        <rest measure=\"yes\"/>\n        <duration>12</duration>\n        <voice>1</voice>\n      </note>",
+          "<note>\n        <rest measure=\"yes\"/>\n        <duration>12</duration>\n        <voice>1</voice>\n      </note>",
+          "<note>\n        <rest measure=\"yes\"/>\n        <duration>12</duration>\n        <voice>1</voice>\n      </note>",
+          "<note>\n        <rest measure=\"yes\"/>\n        <duration>12</duration>\n        <voice>1</voice>\n      </note>",
+          "<note>\n        <rest measure=\"yes\"/>\n        <duration>12</duration>\n        <voice>1</voice>\n      </note>",
+          "<note>\n        <rest measure=\"yes\"/>\n        <duration>12</duration>\n        <voice>1</voice>\n      </note>",
+          "<note>\n        <rest measure=\"yes\"/>\n        <duration>12</duration>\n        <voice>1</voice>\n      </note>"
+        ],
+        "consumedWrappers": [
+          "<score-part id=\"P6\">\n      <part-name>S.</part-name>\n      <part-abbreviation>S.</part-abbreviation>\n      <score-instrument id=\"P6-I1\">\n        <instrument-name>Voice Oohs</instrument-name>\n      </score-instrument>\n      <midi-instrument id=\"P6-I1\">\n        <midi-channel>6</midi-channel>\n        <midi-program>54</midi-program>\n        <volume>78</volume>\n      </midi-instrument>\n    </score-part>",
+          "<part id=\"P6\">\n    <!--=======================================================-->\n    <measure number=\"1\" width=\"217\">\n      </measure>\n    <!--=======================================================-->\n    <measure number=\"2\" width=\"163\">\n      </measure>\n    <!--=======================================================-->\n    <measure number=\"3\" width=\"165\">\n      </measure>\n    <!--=======================================================-->\n    <measure number=\"4\" width=\"104\">\n      </measure>\n    <!--=======================================================-->\n    <measure number=\"5\" width=\"136\">\n      </measure>\n    <!--=======================================================-->\n    <measure number=\"6\" width=\"147\">\n      </measure>\n    <!--=======================================================-->\n    <measure number=\"7\" width=\"147\">\n      </measure>\n    <!--=======================================================-->\n    <measure number=\"8\" width=\"166\">\n      </measure>\n    <!--=======================================================-->\n    <measure number=\"9\">\n      <print new-system=\"yes\"/>\n      <attributes>\n        <staff-details print-object=\"no\"/>\n      </attributes>\n      <note>\n        <rest measure=\"yes\"/>\n        <duration>12</duration>\n        <voice>1</voice>\n      </note>\n    </measure>\n    <!--=======================================================-->\n    <measure number=\"10\">\n      <note>\n        <rest measure=\"yes\"/>\n        <duration>12</duration>\n        <voice>1</voice>\n      </note>\n    </measure>\n    <!--=======================================================-->\n    <measure number=\"11\">\n      <note>\n        <rest measure=\"yes\"/>\n        <duration>12</duration>\n        <voice>1</voice>\n      </note>\n    </measure>\n    <!--=======================================================-->\n    <measure number=\"12\">\n      <note>\n        <rest measure=\"yes\"/>\n        <duration>12</duration>\n        <voice>1</voice>\n      </note>\n    </measure>\n    <!--=======================================================-->\n    <measure number=\"13\">\n      <note>\n        <rest measure=\"yes\"/>\n        <duration>12</duration>\n        <voice>1</voice>\n      </note>\n    </measure>\n    <!--=======================================================-->\n    <measure number=\"14\">\n      <note>\n        <rest measure=\"yes\"/>\n        <duration>12</duration>\n        <voice>1</voice>\n      </note>\n    </measure>\n    <!--=======================================================-->\n    <measure number=\"15\">\n      <note>\n        <rest measure=\"yes\"/>\n        <duration>12</duration>\n        <voice>1</voice>\n      </note>\n    </measure>\n    <!--=======================================================-->\n    <measure number=\"16\">\n      <note>\n        <rest measure=\"yes\"/>\n        <duration>12</duration>\n        <voice>1</voice>\n      </note>\n    </measure>\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    <!--=======================================================-->\n    </part>"
+        ],
+        "rules": {
+          "measures": {
+            "1": "1",
+            "2": "2",
+            "3": "3",
+            "4": "4",
+            "5": "5",
+            "6": "6",
+            "7": "7",
+            "8": "8"
+          },
+          "voices": {
+            "1": "1"
+          },
+          "staves": {
+            "1": "1"
+          },
+          "instruments": {},
+          "destination": "replace",
+          "sourceDisposition": "delete-part",
+          "wrapperPolicy": "keep-target",
+          "contextPolicy": "require-equal"
+        }
+      }
+    ],
+    "mapping": {
+      "measures": [
+        {
+          "before": {
+            "partId": "P1",
+            "printedMeasure": "1"
+          },
+          "after": {
+            "partId": "P1",
+            "printedMeasure": "1"
+          }
+        },
+        {
+          "before": {
+            "partId": "P1",
+            "printedMeasure": "2"
+          },
+          "after": {
+            "partId": "P1",
+            "printedMeasure": "2"
+          }
+        },
+        {
+          "before": {
+            "partId": "P1",
+            "printedMeasure": "3"
+          },
+          "after": {
+            "partId": "P1",
+            "printedMeasure": "3"
+          }
+        },
+        {
+          "before": {
+            "partId": "P1",
+            "printedMeasure": "4"
+          },
+          "after": {
+            "partId": "P1",
+            "printedMeasure": "4"
+          }
+        },
+        {
+          "before": {
+            "partId": "P1",
+            "printedMeasure": "5"
+          },
+          "after": {
+            "partId": "P1",
+            "printedMeasure": "5"
+          }
+        },
+        {
+          "before": {
+            "partId": "P1",
+            "printedMeasure": "6"
+          },
+          "after": {
+            "partId": "P1",
+            "printedMeasure": "6"
+          }
+        },
+        {
+          "before": {
+            "partId": "P1",
+            "printedMeasure": "7"
+          },
+          "after": {
+            "partId": "P1",
+            "printedMeasure": "7"
+          }
+        },
+        {
+          "before": {
+            "partId": "P1",
+            "printedMeasure": "8"
+          },
+          "after": {
+            "partId": "P1",
+            "printedMeasure": "8"
+          }
+        },
+        {
+          "before": {
+            "partId": "P1",
+            "printedMeasure": "9"
+          },
+          "after": {
+            "partId": "P1",
+            "printedMeasure": "9"
+          }
+        },
+        {
+          "before": {
+            "partId": "P1",
+            "printedMeasure": "10"
+          },
+          "after": {
+            "partId": "P1",
+            "printedMeasure": "10"
+          }
+        },
+        {
+          "before": {
+            "partId": "P1",
+            "printedMeasure": "11"
+          },
+          "after": {
+            "partId": "P1",
+            "printedMeasure": "11"
+          }
+        },
+        {
+          "before": {
+            "partId": "P1",
+            "printedMeasure": "12"
+          },
+          "after": {
+            "partId": "P1",
+            "printedMeasure": "12"
+          }
+        },
+        {
+          "before": {
+            "partId": "P1",
+            "printedMeasure": "13"
+          },
+          "after": {
+            "partId": "P1",
+            "printedMeasure": "13"
+          }
+        },
+        {
+          "before": {
+            "partId": "P1",
+            "printedMeasure": "14"
+          },
+          "after": {
+            "partId": "P1",
+            "printedMeasure": "14"
+          }
+        },
+        {
+          "before": {
+            "partId": "P1",
+            "printedMeasure": "15"
+          },
+          "after": {
+            "partId": "P1",
+            "printedMeasure": "15"
+          }
+        },
+        {
+          "before": {
+            "partId": "P1",
+            "printedMeasure": "16"
+          },
+          "after": {
+            "partId": "P1",
+            "printedMeasure": "16"
+          }
+        },
+        {
+          "before": {
+            "partId": "P6",
+            "printedMeasure": "1"
+          },
+          "after": {
+            "partId": "P1",
+            "printedMeasure": "1"
+          },
+          "relation": "merged"
+        },
+        {
+          "before": {
+            "partId": "P6",
+            "printedMeasure": "2"
+          },
+          "after": {
+            "partId": "P1",
+            "printedMeasure": "2"
+          },
+          "relation": "merged"
+        },
+        {
+          "before": {
+            "partId": "P6",
+            "printedMeasure": "3"
+          },
+          "after": {
+            "partId": "P1",
+            "printedMeasure": "3"
+          },
+          "relation": "merged"
+        },
+        {
+          "before": {
+            "partId": "P6",
+            "printedMeasure": "4"
+          },
+          "after": {
+            "partId": "P1",
+            "printedMeasure": "4"
+          },
+          "relation": "merged"
+        },
+        {
+          "before": {
+            "partId": "P6",
+            "printedMeasure": "5"
+          },
+          "after": {
+            "partId": "P1",
+            "printedMeasure": "5"
+          },
+          "relation": "merged"
+        },
+        {
+          "before": {
+            "partId": "P6",
+            "printedMeasure": "6"
+          },
+          "after": {
+            "partId": "P1",
+            "printedMeasure": "6"
+          },
+          "relation": "merged"
+        },
+        {
+          "before": {
+            "partId": "P6",
+            "printedMeasure": "7"
+          },
+          "after": {
+            "partId": "P1",
+            "printedMeasure": "7"
+          },
+          "relation": "merged"
+        },
+        {
+          "before": {
+            "partId": "P6",
+            "printedMeasure": "8"
+          },
+          "after": {
+            "partId": "P1",
+            "printedMeasure": "8"
+          },
+          "relation": "merged"
+        },
+        {
+          "before": {
+            "partId": "P6",
+            "printedMeasure": "9"
+          },
+          "after": null
+        },
+        {
+          "before": {
+            "partId": "P6",
+            "printedMeasure": "10"
+          },
+          "after": null
+        },
+        {
+          "before": {
+            "partId": "P6",
+            "printedMeasure": "11"
+          },
+          "after": null
+        },
+        {
+          "before": {
+            "partId": "P6",
+            "printedMeasure": "12"
+          },
+          "after": null
+        },
+        {
+          "before": {
+            "partId": "P6",
+            "printedMeasure": "13"
+          },
+          "after": null
+        },
+        {
+          "before": {
+            "partId": "P6",
+            "printedMeasure": "14"
+          },
+          "after": null
+        },
+        {
+          "before": {
+            "partId": "P6",
+            "printedMeasure": "15"
+          },
+          "after": null
+        },
+        {
+          "before": {
+            "partId": "P6",
+            "printedMeasure": "16"
+          },
+          "after": null
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "schemaVersion": "1",
+  "inputSha256": "a931f136a28a237aa1a87280b2934bf6fffd4beafd8c88abcc60cc7a165541c0",
+  "toolVersion": "0.2.0",
+  "rendererVersion": "6.3.0-425dd7b",
+  "renderParameters": {
+    "inputFrom": "xml",
+    "breaks": "encoded",
+    "pageWidth": 2100,
+    "pageHeight": 2970,
+    "scale": 40,
+    "svgViewBox": true,
+    "svgAdditionalAttribute": [
+      "measure@n"
+    ],
+    "svgBoundingBoxes": true,
+    "svgContentBoundingBoxes": true,
+    "mnumInterval": 1
+  },
+  "requested": {
+    "start": "1",
+    "end": "8",
+    "context": 0
+  },
+  "selectedMeasures": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8"
+  ],
+  "contextClipped": {
+    "before": false,
+    "after": false
+  },
+  "renderedScorePageCount": 1,
+  "images": [
+    {
+      "path": "001-page-1.png",
+      "sha256": "6da90af698a89940138d3221bcddce611b34de4f4d754c3dcd5c0c3067075aa8",
+      "measures": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8"
+      ],
+      "renderedScorePage": 1,
+      "sourcePdfPage": null,
+      "crop": {
+        "x": 1081.0,
+        "y": 1645.0,
+        "width": 19528.0,
+        "height": 2655.0
+      },
+      "coordinateUnit": "verovio-definition-units",
+      "definitionToSvgScale": {
+        "x": 0.04,
+        "y": 0.04
+      },
+      "rasterZoom": 4.0
+    }
+  ]
+}

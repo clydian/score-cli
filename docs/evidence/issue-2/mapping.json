@@ -1,0 +1,308 @@
+{
+  "measures": [
+    {
+      "before": {
+        "partId": "P1",
+        "printedMeasure": "1"
+      },
+      "after": {
+        "partId": "P1",
+        "printedMeasure": "1"
+      }
+    },
+    {
+      "before": {
+        "partId": "P1",
+        "printedMeasure": "2"
+      },
+      "after": {
+        "partId": "P1",
+        "printedMeasure": "2"
+      }
+    },
+    {
+      "before": {
+        "partId": "P1",
+        "printedMeasure": "3"
+      },
+      "after": {
+        "partId": "P1",
+        "printedMeasure": "3"
+      }
+    },
+    {
+      "before": {
+        "partId": "P1",
+        "printedMeasure": "4"
+      },
+      "after": {
+        "partId": "P1",
+        "printedMeasure": "4"
+      }
+    },
+    {
+      "before": {
+        "partId": "P1",
+        "printedMeasure": "5"
+      },
+      "after": {
+        "partId": "P1",
+        "printedMeasure": "5"
+      }
+    },
+    {
+      "before": {
+        "partId": "P1",
+        "printedMeasure": "6"
+      },
+      "after": {
+        "partId": "P1",
+        "printedMeasure": "6"
+      }
+    },
+    {
+      "before": {
+        "partId": "P1",
+        "printedMeasure": "7"
+      },
+      "after": {
+        "partId": "P1",
+        "printedMeasure": "7"
+      }
+    },
+    {
+      "before": {
+        "partId": "P1",
+        "printedMeasure": "8"
+      },
+      "after": {
+        "partId": "P1",
+        "printedMeasure": "8"
+      }
+    },
+    {
+      "before": {
+        "partId": "P1",
+        "printedMeasure": "9"
+      },
+      "after": {
+        "partId": "P1",
+        "printedMeasure": "9"
+      }
+    },
+    {
+      "before": {
+        "partId": "P1",
+        "printedMeasure": "10"
+      },
+      "after": {
+        "partId": "P1",
+        "printedMeasure": "10"
+      }
+    },
+    {
+      "before": {
+        "partId": "P1",
+        "printedMeasure": "11"
+      },
+      "after": {
+        "partId": "P1",
+        "printedMeasure": "11"
+      }
+    },
+    {
+      "before": {
+        "partId": "P1",
+        "printedMeasure": "12"
+      },
+      "after": {
+        "partId": "P1",
+        "printedMeasure": "12"
+      }
+    },
+    {
+      "before": {
+        "partId": "P1",
+        "printedMeasure": "13"
+      },
+      "after": {
+        "partId": "P1",
+        "printedMeasure": "13"
+      }
+    },
+    {
+      "before": {
+        "partId": "P1",
+        "printedMeasure": "14"
+      },
+      "after": {
+        "partId": "P1",
+        "printedMeasure": "14"
+      }
+    },
+    {
+      "before": {
+        "partId": "P1",
+        "printedMeasure": "15"
+      },
+      "after": {
+        "partId": "P1",
+        "printedMeasure": "15"
+      }
+    },
+    {
+      "before": {
+        "partId": "P1",
+        "printedMeasure": "16"
+      },
+      "after": {
+        "partId": "P1",
+        "printedMeasure": "16"
+      }
+    },
+    {
+      "before": {
+        "partId": "P6",
+        "printedMeasure": "1"
+      },
+      "after": {
+        "partId": "P1",
+        "printedMeasure": "1"
+      },
+      "relation": "merged"
+    },
+    {
+      "before": {
+        "partId": "P6",
+        "printedMeasure": "2"
+      },
+      "after": {
+        "partId": "P1",
+        "printedMeasure": "2"
+      },
+      "relation": "merged"
+    },
+    {
+      "before": {
+        "partId": "P6",
+        "printedMeasure": "3"
+      },
+      "after": {
+        "partId": "P1",
+        "printedMeasure": "3"
+      },
+      "relation": "merged"
+    },
+    {
+      "before": {
+        "partId": "P6",
+        "printedMeasure": "4"
+      },
+      "after": {
+        "partId": "P1",
+        "printedMeasure": "4"
+      },
+      "relation": "merged"
+    },
+    {
+      "before": {
+        "partId": "P6",
+        "printedMeasure": "5"
+      },
+      "after": {
+        "partId": "P1",
+        "printedMeasure": "5"
+      },
+      "relation": "merged"
+    },
+    {
+      "before": {
+        "partId": "P6",
+        "printedMeasure": "6"
+      },
+      "after": {
+        "partId": "P1",
+        "printedMeasure": "6"
+      },
+      "relation": "merged"
+    },
+    {
+      "before": {
+        "partId": "P6",
+        "printedMeasure": "7"
+      },
+      "after": {
+        "partId": "P1",
+        "printedMeasure": "7"
+      },
+      "relation": "merged"
+    },
+    {
+      "before": {
+        "partId": "P6",
+        "printedMeasure": "8"
+      },
+      "after": {
+        "partId": "P1",
+        "printedMeasure": "8"
+      },
+      "relation": "merged"
+    },
+    {
+      "before": {
+        "partId": "P6",
+        "printedMeasure": "9"
+      },
+      "after": null
+    },
+    {
+      "before": {
+        "partId": "P6",
+        "printedMeasure": "10"
+      },
+      "after": null
+    },
+    {
+      "before": {
+        "partId": "P6",
+        "printedMeasure": "11"
+      },
+      "after": null
+    },
+    {
+      "before": {
+        "partId": "P6",
+        "printedMeasure": "12"
+      },
+      "after": null
+    },
+    {
+      "before": {
+        "partId": "P6",
+        "printedMeasure": "13"
+      },
+      "after": null
+    },
+    {
+      "before": {
+        "partId": "P6",
+        "printedMeasure": "14"
+      },
+      "after": null
+    },
+    {
+      "before": {
+        "partId": "P6",
+        "printedMeasure": "15"
+      },
+      "after": null
+    },
+    {
+      "before": {
+        "partId": "P6",
+        "printedMeasure": "16"
+      },
+      "after": null
+    }
+  ]
+}

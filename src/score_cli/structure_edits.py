@@ -124,6 +124,29 @@ class StructureTransaction:
             return Reference(target["ref"])
         return self.document.locate(target)
 
+    def live_direction(self, target):
+        if any(e is target.element for e in self.document.root.iter()):
+            return target
+        if target.insertion_index is None:
+            raise ScoreError(
+                "detached-target", "Direction was removed earlier in this transaction."
+            )
+        self.live(target.measure)
+        if target.element.getparent() is not None:
+            raise ScoreError(
+                "detached-target",
+                "Direction was removed with its containing structure.",
+            )
+        # Virtual directions are anchored at musical offset zero, never a drifting child index.
+        index = 0
+        for i, element in enumerate(target.measure):
+            if name(element) in {"note", "backup", "forward"}:
+                break
+            if name(element) == "attributes":
+                index = i + 1
+        target.insertion_index = index
+        return target
+
     def live_note(self, target):
         element = (
             self.bindings[target.name]
@@ -259,11 +282,38 @@ class StructureTransaction:
                 )
             self.bindings[reference] = matches[0]
 
-    def selection(self, target):
+    def selection(self, target, kind):
         values = self.bindings[target.name] if isinstance(target, Reference) else target
         if not isinstance(values, list):
             raise ScoreError("reference-kind", "Expected a collection reference.")
-        return [self.live(e) for e in values]
+        elements = [self.live(e) for e in values]
+        if not elements:
+            raise ScoreError("reference-kind", "Empty structural collection.")
+        if kind == "part":
+            if (
+                name(elements[0]) != "score-part"
+                or self.part({"partId": elements[0].get("id")}) != elements
+            ):
+                raise ScoreError(
+                    "reference-kind",
+                    "Expected one part definition and all of its native bodies.",
+                )
+        elif kind == "logical":
+            if (
+                any(name(e) != "measure" for e in elements)
+                or len({e.get("number") for e in elements}) != 1
+                or self.logical(elements[0].get("number")) != elements
+            ):
+                raise ScoreError(
+                    "reference-kind",
+                    "Expected exactly one logical measure across all current parts.",
+                )
+        elif kind == "part-list" and (
+            len(elements) != 1
+            or elements[0] is not child(self.document.root, "part-list")
+        ):
+            raise ScoreError("reference-kind", "Expected the current part-list.")
+        return elements
 
     def merge(self, operation, target):
         source = [self.live(e) for e in target[0]]
@@ -316,8 +366,25 @@ class StructureTransaction:
         source_measures = [
             e for p, _, _, e, _ in self.document.measures() if p == source_id
         ]
+        outer_content = []
+        if name(self.document.root) == "score-partwise":
+            outer_content = [
+                e
+                for body in source[1:]
+                for e in body
+                if e not in children(body, "measure")
+            ]
+        if any(
+            (e.text or "").strip() or (e.tail or "").strip()
+            for e in source[1:] + source_measures
+        ):
+            raise ScoreError(
+                "unsupported-mixed-content",
+                "Source wrappers contain significant text; preserve the enclosing structure explicitly.",
+            )
         removed = (
             [source[0]]
+            + outer_content
             + [e for m in source_measures if m not in selected for e in m]
             + [e for _, m in pairs for e in m]
         )
@@ -437,7 +504,9 @@ class StructureTransaction:
         return definitions + content_parts
 
     def part_edit(self, operation, target):
-        elements = self.selection(target)
+        elements = self.selection(
+            target, "part-list" if operation["type"] == "reorder-parts" else "part"
+        )
         self.check(operation, elements)
         kind = operation["type"]
         value = operation["value"]
@@ -631,7 +700,7 @@ class StructureTransaction:
     def logical_edit(self, operation, target):
         kind = operation["type"]
         if kind == "renumber-measures":
-            elements = [self.live(e) for group in target for e in group]
+            elements = [e for group in target for e in self.selection(group, "logical")]
             self.check(operation, elements)
             mapping = operation["value"]
             labels = [group[0].get("number") for group in target]
@@ -670,7 +739,7 @@ class StructureTransaction:
                 )
             )
             return
-        elements = self.selection(target)
+        elements = self.selection(target, "logical")
         self.check(operation, elements)
         if kind == "delete-measure":
             if operation["value"] is not None:
@@ -853,6 +922,10 @@ class StructureTransaction:
             return
         if operation["type"] == "replace-measure":
             element = self.live(target)
+            if not any(e is element for _, _, _, e, _ in self.document.measures()):
+                raise ScoreError(
+                    "reference-kind", "Replacement target must be a part-measure."
+                )
             self.check(operation, [element])
             self.replacement(operation, element, fragment(operation["value"]))
             return

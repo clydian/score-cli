@@ -617,3 +617,146 @@ def test_namespaced_add_part_and_comment_deletion_are_lossless(tmp_path):
     )
     assert len(ET.parse(str(tmp_path / "out.xml")).findall("m:part", ns)) == 2
     assert (tmp_path / "out.xml").read_text().count("<!--retain-->") == 4
+
+
+def test_real_audiveris_fragment_replays_and_matches_source_checked_melody(tmp_path):
+    import json
+
+    fixture = Path(__file__).parent / "fixtures/structure/cantate-fragments.musicxml"
+    changes = json.loads(fixture.with_name("cantate-merge.changes.json").read_text())
+    output = tmp_path / "merged.musicxml"
+    report = edit_score(input_path=fixture, changeset=changes, output_path=output)
+    tree = ET.parse(str(output))
+    assert tree.xpath("/score-partwise/part/@id") == ["P1"]
+    # Independently transcribed from source PDF page 1, system 1, Soprano I.
+    expected = [
+        [("A", "4", "4"), ("A", "4", "4"), ("A", "4", "4")],
+        [("A", "4", "6"), ("A", "4", "2"), ("B", "4", "4")],
+        [("C", "5", "6"), ("C", "5", "2"), ("D", "5", "4")],
+        [("B", "4", "12")],
+        [("B", "4", "8"), ("C", "5", "4")],
+        [("C", "5", "4"), ("D", "5", "4"), ("E", "5", "4")],
+        [("E", "5", "4"), ("F", "5", "4"), ("F", "5", "4")],
+        [("F", "5", "6"), ("E", "5", "2"), ("D", "5", "4")],
+    ]
+    actual = [
+        [
+            (
+                n.findtext("pitch/step"),
+                n.findtext("pitch/octave"),
+                n.findtext("duration"),
+            )
+            for n in m.findall("note")
+        ]
+        for m in tree.findall("part/measure")[:8]
+    ]
+    assert actual == expected
+    assert not [d for d in report["diagnosticsAfter"] if d["origin"] != "existing"]
+    assert [d["code"] for d in report["diagnosticsAfter"]] == ["incomplete-voice"]
+    proof = Path(__file__).parents[1] / "docs/evidence/issue-2/after.musicxml"
+    assert report["outputSha256"] == hashlib.sha256(proof.read_bytes()).hexdigest()
+
+
+def test_deleted_measure_direction_cannot_be_edited_later(tmp_path):
+    path = source(tmp_path)
+    direction = "<direction><direction-type><dynamics><p/></dynamics></direction-type></direction>"
+    path.write_text(
+        path.read_text()
+        .replace(ATTR, ATTR + direction)
+        .replace(
+            '<measure number="X1" implicit="yes">',
+            '<measure number="X1" implicit="yes">' + ATTR,
+        )
+    )
+    old = ET.tostring(ET.parse(str(path)).find("part/measure"), encoding="unicode")
+    delete = dict(
+        id="remove",
+        type="delete-measure",
+        target={"printedMeasure": "0"},
+        expected=[old],
+        value=None,
+        discard=[old],
+    )
+    dynamics = dict(
+        id="dynamics",
+        type="dynamics",
+        target=dict(
+            partId="P1",
+            printedMeasure="0",
+            staff="1",
+            voice="",
+            offset="0",
+            directionIndex=1,
+        ),
+        expected="p",
+        value="f",
+    )
+    with pytest.raises(EditError) as error:
+        run(path, [delete, dynamics])
+    assert error.value.diagnostic["code"] == "detached-target"
+    assert error.value.diagnostic["operationId"] == "dynamics"
+    assert not (tmp_path / "out.xml").exists()
+
+
+def test_merge_cannot_silently_drop_source_part_level_content(tmp_path):
+    import json
+
+    fixture = Path(__file__).parent / "fixtures/structure/cantate-fragments.musicxml"
+    path = tmp_path / "source.musicxml"
+    path.write_text(
+        fixture.read_text().replace(
+            '<part id="P6">',
+            '<part id="P6"><!--source-proof--><?proof retain?><extension origin="audiveris"/>',
+        )
+    )
+    operation = json.loads(fixture.with_name("cantate-merge.changes.json").read_text())[
+        "operations"
+    ][0]
+    operation["expected"][1] = ET.tostring(
+        ET.parse(str(path)).find('part[@id="P6"]'), encoding="unicode", with_tail=False
+    )
+    with pytest.raises(EditError) as error:
+        run(path, [operation])
+    assert error.value.diagnostic["code"] == "undeclared-semantic-deletion"
+    assert not (tmp_path / "out.xml").exists()
+    operation["discard"] += [
+        "<!--source-proof-->",
+        "<?proof retain?>",
+        '<extension origin="audiveris"/>',
+    ]
+    report = run(path, [operation])
+    assert "<!--source-proof-->" in report["structure"]["operations"][0]["deleted"]
+
+
+def test_new_reference_kinds_cannot_cross_part_and_measure_operations(tmp_path):
+    path = source(tmp_path)
+    definition = ET.tostring(
+        ET.parse(str(path)).find("part-list/score-part"), encoding="unicode"
+    )
+    body = ET.tostring(ET.parse(str(path)).find("part"), encoding="unicode")
+    new_definition, new_body = definition.replace("P1", "P2"), body.replace("P1", "P2")
+    add = dict(
+        id="add",
+        type="add-part",
+        target={"partId": "P1"},
+        expected=[definition, body],
+        value={"definition": new_definition, "content": [new_body]},
+        position="after",
+        bind="new-part",
+    )
+    wrong = dict(
+        id="wrong",
+        type="delete-measure",
+        target={"ref": "new-part"},
+        expected=[new_definition, new_body],
+        value=None,
+        discard=[new_definition, new_body],
+    )
+    with pytest.raises(EditError) as error:
+        run(path, [add, wrong])
+    assert error.value.diagnostic["code"] == "reference-kind"
+    assert not (tmp_path / "out.xml").exists()
+    report = run(path, [add, dict(wrong, type="delete-part")])
+    assert ET.parse(str(tmp_path / "out.xml")).xpath("/score-partwise/part/@id") == [
+        "P1"
+    ]

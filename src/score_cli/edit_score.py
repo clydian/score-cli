@@ -196,10 +196,14 @@ def edit_score(
                 structure.apply(operation, event)
                 continue
             if operation["type"] == "dynamics":
-                edit_dynamics(event, operation)
+                edit_dynamics(structure.live_direction(event), operation)
                 continue
             if operation["type"] == "wedge":
-                edit_wedge(event[0], event[1], operation)
+                edit_wedge(
+                    structure.live_direction(event[0]),
+                    structure.live_direction(event[1]),
+                    operation,
+                )
                 continue
             if operation["type"] in {"tie", "slur"}:
                 edit_note_pair(
