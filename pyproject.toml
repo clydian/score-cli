@@ -5,6 +5,7 @@ description = "Render one printed MusicXML measure from the fully laid-out score
 readme = "README.md"
 requires-python = ">=3.14,<3.15"
 dependencies = [
+    "lxml>=6.0,<7",
     "resvg-py==0.5.0",
     "verovio==6.3.0",
 ]
@@ -18,9 +19,16 @@ build-backend = "hatchling.build"
 
 [dependency-groups]
 dev = [
+    "lxml-stubs>=0.5",
+    "mypy>=1.19",
+    "pillow>=12,<13",
     "pytest>=9.0.2",
 ]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 pythonpath = ["src"]
+
+[tool.mypy]
+ignore_missing_imports = true
+check_untyped_defs = true

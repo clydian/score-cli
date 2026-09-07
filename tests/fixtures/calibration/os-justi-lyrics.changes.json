@@ -1,0 +1,190 @@
+{
+  "schemaVersion": "1",
+  "inputSha256": "c83ec13bb07e35714c91dd3650ee193ac75175b1dd9fdf4db778d1401ea7a49d",
+  "operations": [
+    {
+      "id": "lyric-1",
+      "type": "lyric",
+      "target": {
+        "partId": "P1",
+        "printedMeasure": "2",
+        "staff": "1",
+        "voice": "1",
+        "offset": "0",
+        "eventIndex": 1
+      },
+      "selector": {
+        "number": "1"
+      },
+      "expected": {
+        "text": "jus",
+        "syllabic": "begin"
+      },
+      "value": {
+        "text": "ju",
+        "syllabic": "begin"
+      }
+    },
+    {
+      "id": "lyric-2",
+      "type": "lyric",
+      "target": {
+        "partId": "P1",
+        "printedMeasure": "2",
+        "staff": "1",
+        "voice": "1",
+        "offset": "2",
+        "eventIndex": 2
+      },
+      "selector": {
+        "number": "1"
+      },
+      "expected": {
+        "text": "ti",
+        "syllabic": "end"
+      },
+      "value": {
+        "text": "sti",
+        "syllabic": "end"
+      }
+    },
+    {
+      "id": "lyric-3",
+      "type": "lyric",
+      "target": {
+        "partId": "P2",
+        "printedMeasure": "2",
+        "staff": "1",
+        "voice": "1",
+        "offset": "0",
+        "eventIndex": 1
+      },
+      "selector": {
+        "number": "1"
+      },
+      "expected": {
+        "text": "jus",
+        "syllabic": "begin"
+      },
+      "value": {
+        "text": "ju",
+        "syllabic": "begin"
+      }
+    },
+    {
+      "id": "lyric-4",
+      "type": "lyric",
+      "target": {
+        "partId": "P2",
+        "printedMeasure": "2",
+        "staff": "1",
+        "voice": "1",
+        "offset": "2",
+        "eventIndex": 2
+      },
+      "selector": {
+        "number": "1"
+      },
+      "expected": {
+        "text": "ti",
+        "syllabic": "end"
+      },
+      "value": {
+        "text": "sti",
+        "syllabic": "end"
+      }
+    },
+    {
+      "id": "lyric-5",
+      "type": "lyric",
+      "target": {
+        "partId": "P3",
+        "printedMeasure": "2",
+        "staff": "1",
+        "voice": "1",
+        "offset": "0",
+        "eventIndex": 1
+      },
+      "selector": {
+        "number": "1"
+      },
+      "expected": {
+        "text": "jus",
+        "syllabic": "begin"
+      },
+      "value": {
+        "text": "ju",
+        "syllabic": "begin"
+      }
+    },
+    {
+      "id": "lyric-6",
+      "type": "lyric",
+      "target": {
+        "partId": "P3",
+        "printedMeasure": "2",
+        "staff": "1",
+        "voice": "1",
+        "offset": "2",
+        "eventIndex": 2
+      },
+      "selector": {
+        "number": "1"
+      },
+      "expected": {
+        "text": "ti",
+        "syllabic": "end"
+      },
+      "value": {
+        "text": "sti",
+        "syllabic": "end"
+      }
+    },
+    {
+      "id": "lyric-7",
+      "type": "lyric",
+      "target": {
+        "partId": "P4",
+        "printedMeasure": "2",
+        "staff": "1",
+        "voice": "1",
+        "offset": "0",
+        "eventIndex": 1
+      },
+      "selector": {
+        "number": "1"
+      },
+      "expected": {
+        "text": "jus",
+        "syllabic": "begin"
+      },
+      "value": {
+        "text": "ju",
+        "syllabic": "begin"
+      }
+    },
+    {
+      "id": "lyric-8",
+      "type": "lyric",
+      "target": {
+        "partId": "P4",
+        "printedMeasure": "2",
+        "staff": "1",
+        "voice": "1",
+        "offset": "2",
+        "eventIndex": 2
+      },
+      "selector": {
+        "number": "1"
+      },
+      "expected": {
+        "text": "ti",
+        "syllabic": "end"
+      },
+      "value": {
+        "text": "sti",
+        "syllabic": "end"
+      }
+    }
+  ]
+}

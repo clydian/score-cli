@@ -1,0 +1,438 @@
+{
+  "schemaVersion": "1",
+  "inputSha256": "58a510ac94f17f98756172791c7dc9a4117113b2d264b8b57320c8bd0e0bfebe",
+  "operations": [
+    {
+      "id": "tenor-1",
+      "type": "pitch",
+      "target": {
+        "partId": "P3",
+        "printedMeasure": "1",
+        "staff": "1",
+        "voice": "1",
+        "offset": "2",
+        "eventIndex": 2
+      },
+      "expected": {
+        "step": "C",
+        "alter": "0",
+        "octave": 5,
+        "accidental": null
+      },
+      "value": {
+        "step": "C",
+        "alter": "0",
+        "octave": 4,
+        "accidental": null
+      }
+    },
+    {
+      "id": "tenor-2",
+      "type": "pitch",
+      "target": {
+        "partId": "P3",
+        "printedMeasure": "2",
+        "staff": "1",
+        "voice": "1",
+        "offset": "0",
+        "eventIndex": 1
+      },
+      "expected": {
+        "step": "C",
+        "alter": "0",
+        "octave": 5,
+        "accidental": null
+      },
+      "value": {
+        "step": "C",
+        "alter": "0",
+        "octave": 4,
+        "accidental": null
+      }
+    },
+    {
+      "id": "tenor-3",
+      "type": "pitch",
+      "target": {
+        "partId": "P3",
+        "printedMeasure": "2",
+        "staff": "1",
+        "voice": "1",
+        "offset": "2",
+        "eventIndex": 2
+      },
+      "expected": {
+        "step": "C",
+        "alter": "0",
+        "octave": 5,
+        "accidental": null
+      },
+      "value": {
+        "step": "C",
+        "alter": "0",
+        "octave": 4,
+        "accidental": null
+      }
+    },
+    {
+      "id": "tenor-4",
+      "type": "pitch",
+      "target": {
+        "partId": "P3",
+        "printedMeasure": "3",
+        "staff": "1",
+        "voice": "1",
+        "offset": "2",
+        "eventIndex": 2
+      },
+      "expected": {
+        "step": "C",
+        "alter": "0",
+        "octave": 5,
+        "accidental": null
+      },
+      "value": {
+        "step": "C",
+        "alter": "0",
+        "octave": 4,
+        "accidental": null
+      }
+    },
+    {
+      "id": "tenor-5",
+      "type": "pitch",
+      "target": {
+        "partId": "P3",
+        "printedMeasure": "3",
+        "staff": "1",
+        "voice": "1",
+        "offset": "3",
+        "eventIndex": 3
+      },
+      "expected": {
+        "step": "C",
+        "alter": "0",
+        "octave": 5,
+        "accidental": null
+      },
+      "value": {
+        "step": "C",
+        "alter": "0",
+        "octave": 4,
+        "accidental": null
+      }
+    },
+    {
+      "id": "tenor-6",
+      "type": "pitch",
+      "target": {
+        "partId": "P3",
+        "printedMeasure": "4",
+        "staff": "1",
+        "voice": "1",
+        "offset": "0",
+        "eventIndex": 1
+      },
+      "expected": {
+        "step": "F",
+        "alter": "0",
+        "octave": 5,
+        "accidental": null
+      },
+      "value": {
+        "step": "F",
+        "alter": "0",
+        "octave": 4,
+        "accidental": null
+      }
+    },
+    {
+      "id": "tenor-7",
+      "type": "pitch",
+      "target": {
+        "partId": "P3",
+        "printedMeasure": "4",
+        "staff": "1",
+        "voice": "1",
+        "offset": "3/2",
+        "eventIndex": 2
+      },
+      "expected": {
+        "step": "F",
+        "alter": "0",
+        "octave": 5,
+        "accidental": null
+      },
+      "value": {
+        "step": "F",
+        "alter": "0",
+        "octave": 4,
+        "accidental": null
+      }
+    },
+    {
+      "id": "tenor-8",
+      "type": "pitch",
+      "target": {
+        "partId": "P3",
+        "printedMeasure": "4",
+        "staff": "1",
+        "voice": "1",
+        "offset": "2",
+        "eventIndex": 3
+      },
+      "expected": {
+        "step": "F",
+        "alter": "0",
+        "octave": 5,
+        "accidental": null
+      },
+      "value": {
+        "step": "F",
+        "alter": "0",
+        "octave": 4,
+        "accidental": null
+      }
+    },
+    {
+      "id": "tenor-9",
+      "type": "pitch",
+      "target": {
+        "partId": "P3",
+        "printedMeasure": "5",
+        "staff": "1",
+        "voice": "1",
+        "offset": "0",
+        "eventIndex": 1
+      },
+      "expected": {
+        "step": "D",
+        "alter": "0",
+        "octave": 5,
+        "accidental": null
+      },
+      "value": {
+        "step": "D",
+        "alter": "0",
+        "octave": 4,
+        "accidental": null
+      }
+    },
+    {
+      "id": "tenor-10",
+      "type": "pitch",
+      "target": {
+        "partId": "P3",
+        "printedMeasure": "5",
+        "staff": "1",
+        "voice": "1",
+        "offset": "2",
+        "eventIndex": 2
+      },
+      "expected": {
+        "step": "C",
+        "alter": "0",
+        "octave": 5,
+        "accidental": null
+      },
+      "value": {
+        "step": "C",
+        "alter": "0",
+        "octave": 4,
+        "accidental": null
+      }
+    },
+    {
+      "id": "tenor-11",
+      "type": "pitch",
+      "target": {
+        "partId": "P3",
+        "printedMeasure": "5",
+        "staff": "1",
+        "voice": "1",
+        "offset": "3",
+        "eventIndex": 3
+      },
+      "expected": {
+        "step": "C",
+        "alter": "0",
+        "octave": 5,
+        "accidental": null
+      },
+      "value": {
+        "step": "C",
+        "alter": "0",
+        "octave": 4,
+        "accidental": null
+      }
+    },
+    {
+      "id": "tenor-12",
+      "type": "pitch",
+      "target": {
+        "partId": "P3",
+        "printedMeasure": "6",
+        "staff": "1",
+        "voice": "1",
+        "offset": "0",
+        "eventIndex": 1
+      },
+      "expected": {
+        "step": "B",
+        "alter": "0",
+        "octave": 4,
+        "accidental": null
+      },
+      "value": {
+        "step": "B",
+        "alter": "0",
+        "octave": 3,
+        "accidental": null
+      }
+    },
+    {
+      "id": "tenor-13",
+      "type": "pitch",
+      "target": {
+        "partId": "P3",
+        "printedMeasure": "6",
+        "staff": "1",
+        "voice": "1",
+        "offset": "3/2",
+        "eventIndex": 2
+      },
+      "expected": {
+        "step": "A",
+        "alter": "0",
+        "octave": 4,
+        "accidental": null
+      },
+      "value": {
+        "step": "A",
+        "alter": "0",
+        "octave": 3,
+        "accidental": null
+      }
+    },
+    {
+      "id": "tenor-14",
+      "type": "pitch",
+      "target": {
+        "partId": "P3",
+        "printedMeasure": "6",
+        "staff": "1",
+        "voice": "1",
+        "offset": "2",
+        "eventIndex": 3
+      },
+      "expected": {
+        "step": "G",
+        "alter": "0",
+        "octave": 4,
+        "accidental": null
+      },
+      "value": {
+        "step": "G",
+        "alter": "0",
+        "octave": 3,
+        "accidental": null
+      }
+    },
+    {
+      "id": "tenor-15",
+      "type": "pitch",
+      "target": {
+        "partId": "P3",
+        "printedMeasure": "6",
+        "staff": "1",
+        "voice": "1",
+        "offset": "3",
+        "eventIndex": 4
+      },
+      "expected": {
+        "step": "G",
+        "alter": "0",
+        "octave": 4,
+        "accidental": null
+      },
+      "value": {
+        "step": "G",
+        "alter": "0",
+        "octave": 3,
+        "accidental": null
+      }
+    },
+    {
+      "id": "tenor-16",
+      "type": "pitch",
+      "target": {
+        "partId": "P3",
+        "printedMeasure": "7",
+        "staff": "1",
+        "voice": "1",
+        "offset": "0",
+        "eventIndex": 1
+      },
+      "expected": {
+        "step": "A",
+        "alter": "0",
+        "octave": 4,
+        "accidental": null
+      },
+      "value": {
+        "step": "A",
+        "alter": "0",
+        "octave": 3,
+        "accidental": null
+      }
+    },
+    {
+      "id": "tenor-17",
+      "type": "pitch",
+      "target": {
+        "partId": "P3",
+        "printedMeasure": "7",
+        "staff": "1",
+        "voice": "1",
+        "offset": "2",
+        "eventIndex": 2
+      },
+      "expected": {
+        "step": "C",
+        "alter": "0",
+        "octave": 5,
+        "accidental": null
+      },
+      "value": {
+        "step": "C",
+        "alter": "0",
+        "octave": 4,
+        "accidental": null
+      }
+    },
+    {
+      "id": "tenor-18",
+      "type": "pitch",
+      "target": {
+        "partId": "P3",
+        "printedMeasure": "7",
+        "staff": "1",
+        "voice": "2",
+        "offset": "2",
+        "eventIndex": 3
+      },
+      "expected": {
+        "step": "A",
+        "alter": "0",
+        "octave": 4,
+        "accidental": null
+      },
+      "value": {
+        "step": "A",
+        "alter": "0",
+        "octave": 3,
+        "accidental": null
+      }
+    }
+  ]
+}

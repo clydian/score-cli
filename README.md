@@ -1,6 +1,6 @@
 # score-cli
 
-Render one printed MusicXML measure as one PNG for visual comparison with the source score.
+Inspect, safely edit, compare, and render MusicXML for source-score calibration.
 
 The full score is laid out first. `score-cli` then locates the requested measure in that
 rendered layout and crops its graphical bounds, so spacing and staff positions remain the
@@ -99,10 +99,20 @@ The same printed number appearing once in each part is one logical measure and i
 aggregated normally. Repeating the same printed number within a single part or
 timewise measure sequence is ambiguous and returns an error.
 
-## V1 scope
+## Calibration workflow (contract v1)
+
+See [editing and evidence contracts](docs/editing.md) for `edit --dry-run`,
+`validate`, `compare`, range rendering, and version-bound calibration records.
+Real excerpt inputs and replayable changesets are in `tests/fixtures/calibration/`;
+[acceptance evidence](docs/issue-1-acceptance.md) distinguishes automated checks
+from source PDF review and remaining limitations.
+
+## Original command compatibility
 
 - Input: one MusicXML or compressed MusicXML file.
 - Selector: the measure's printed number.
 - Output: a score outline, one measure's JSON/text information, or one measure/system PNG.
 
-Editing, event export, comparison manifests, and multi-measure context are outside the V1 scope.
+The original outline/inspect/single-measure render contracts remain unchanged.
+Structure editing, automatic PDF correctness judgments, playback, GUI, complex lyric
+rewrites, and MXL repackaging remain outside the current scope.

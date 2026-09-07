@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "1",
+  "files": [
+    {
+      "path": "after.png",
+      "sha256": "04cab8c5709686a07ac12bbf3c98d21964125b987310bed090229fa856a4c1ad"
+    },
+    {
+      "path": "before.png",
+      "sha256": "53f13d628696ba2a0705f0c1f85e9a0284691e99046ede06d27a8ce2267dc10c"
+    },
+    {
+      "path": "calibration.json",
+      "sha256": "055664f2c0b1540f1e313969163584c61bfdfecf4fe1d41cfaf5d206f8d8badf"
+    },
+    {
+      "path": "edit-report.json",
+      "sha256": "ac708fa99fc6ac4305de9a2f3584fc54338bf4185715e289fa28f2c02d9a59f7"
+    },
+    {
+      "path": "render-manifest.json",
+      "sha256": "e1b7b53736818b8992af759afea6e8bd3750ee42b5d0d1574b62a5a2000caabb"
+    },
+    {
+      "path": "source-page-1.png",
+      "sha256": "d6845a4929cac72d1a5370d507bc2fd6267e40bfaf5b153d6a04e419e162ca91"
+    },
+    {
+      "path": "status.json",
+      "sha256": "335353e3b4c14bcd9fe67750c4a53274e0414c1af7c196f06c60b23ffbc5b338"
+    }
+  ]
+}

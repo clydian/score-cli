@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "1",
+  "samples": [
+    {
+      "sample": "os-justi-omr.musicxml",
+      "sha256": "58a510ac94f17f98756172791c7dc9a4117113b2d264b8b57320c8bd0e0bfebe",
+      "originalPath": "/Users/siahuat0727/Documents/optical-music-recognition/output/conversions/2026-09-04-local-audiveris/os-justi/Os Justi - Bruckner.musicxml",
+      "originalSha256": "07dd7697f6da8e296d10ffb1e38b32505603f36e3eae281a77bf211681bb0a3f",
+      "measures": [
+        "1",
+        "7"
+      ],
+      "extraction": "Preserving XML tree; remove only measures after first system. Headers and all parts retained. Excerpt boundaries can leave existing open symbols.",
+      "sourcePdf": "Os Justi - Bruckner.pdf",
+      "sourcePdfPage": 1,
+      "sourcePdfSystem": 1,
+      "rights": "CPDL edition footer explicitly permits distribution and duplication. Original edition attribution retained."
+    },
+    {
+      "sample": "os-justi-lyrics.musicxml",
+      "sha256": "c83ec13bb07e35714c91dd3650ee193ac75175b1dd9fdf4db778d1401ea7a49d",
+      "originalPath": "/Users/siahuat0727/Documents/optical-music-recognition/output/calibrated/2026-09-05/Os Justi - Bruckner.calibrated.musicxml",
+      "originalSha256": "c0453fb99b0501dd8c09db809c7f08505003269a9e2a4319bfb76f7a2900cad1",
+      "measures": [
+        "1",
+        "7"
+      ],
+      "extraction": "Preserving XML tree; remove only measures after first system. Headers and all parts retained. Excerpt boundaries can leave existing open symbols.",
+      "sourcePdf": "Os Justi - Bruckner.pdf",
+      "sourcePdfPage": 1,
+      "sourcePdfSystem": 1,
+      "rights": "CPDL edition footer explicitly permits distribution and duplication. Original edition attribution retained."
+    },
+    {
+      "sample": "cantate-domino.musicxml",
+      "sha256": "abfe0e605b51ea09d980969f4344b9b2e4598223704adf7a974f02e505bec85d",
+      "originalPath": "/Users/siahuat0727/Documents/optical-music-recognition/output/calibrated/2026-09-05/Cantate Domino - Monteverdi.calibrated-voices.musicxml",
+      "originalSha256": "9b5e543f44c0a4159ee9c944c3459a590825401e00481b62a5a520244f4b4f69",
+      "measures": [
+        "1",
+        "8"
+      ],
+      "extraction": "Preserving XML tree; remove only measures after first system. Headers and all parts retained. Excerpt boundaries can leave existing open symbols.",
+      "sourcePdf": "Cantate Domino - Monteverdi.pdf",
+      "sourcePdfPage": 1,
+      "sourcePdfSystem": 1,
+      "rights": "CPDL edition footer explicitly permits distribution and duplication. Original edition attribution retained."
+    }
+  ]
+}

@@ -116,7 +116,9 @@ def render_printed_measure(
             f'Printed measure "{printed_measure}" was not found in the rendered score.'
         )
     if len(matches) > 1:
-        pages = ", ".join(str(page) for page in dict.fromkeys(page for page, _ in matches))
+        pages = ", ".join(
+            str(page) for page in dict.fromkeys(page for page, _ in matches)
+        )
         raise RenderMeasureError(
             f'Printed measure "{printed_measure}" is ambiguous in the rendered score '
             f"(pages {pages})."
@@ -201,7 +203,7 @@ def _find_content_box(owner: ElementTree.Element, role: str) -> _Box | None:
                 width=float(rectangle.attrib["width"]),
                 height=float(rectangle.attrib["height"]),
             )
-        except (KeyError, ValueError):
+        except KeyError, ValueError:
             return None
     return None
 
@@ -224,7 +226,9 @@ def _crop_rendered_page(
         None,
     )
     if inner is None:
-        raise RenderMeasureError("Rendered SVG is missing its Verovio definition-scale viewBox.")
+        raise RenderMeasureError(
+            "Rendered SVG is missing its Verovio definition-scale viewBox."
+        )
     inner_view_box = _parse_view_box(inner.get("viewBox"))
 
     page_margin = next(
@@ -247,7 +251,10 @@ def _crop_rendered_page(
         height=box.height + padding_y * 2,
     )
 
-    root.set("viewBox", f"0 0 {_number(crop.width * scale_x)} {_number(crop.height * scale_y)}")
+    root.set(
+        "viewBox",
+        f"0 0 {_number(crop.width * scale_x)} {_number(crop.height * scale_y)}",
+    )
     inner.set(
         "viewBox",
         " ".join(_number(value) for value in (crop.x, crop.y, crop.width, crop.height)),
@@ -298,3 +305,145 @@ def _write_atomically(output_path: Path, data: bytes) -> None:
     finally:
         if temporary_path is not None:
             temporary_path.unlink(missing_ok=True)
+
+
+def render_range(
+    *,
+    input_path: str | Path,
+    start: str,
+    end: str | None = None,
+    context: int = 0,
+    output_directory: str | Path,
+) -> dict:
+    """Crop consecutive selected measures per system; manifest is the commit marker."""
+    from dataclasses import asdict
+    from importlib.metadata import version
+    from .inspect_measure import outline_score
+    from .edit_score import publish_files, json_bytes
+    from .score_document import sha256
+
+    if type(context) is not int or context < 0:
+        raise RenderMeasureError("Context must be a nonnegative integer.")
+    source = Path(input_path)
+    directory = Path(output_directory)
+    if directory.exists():
+        raise RenderMeasureError("Range output directory must be new.")
+    outline = outline_score(input_path=source).as_dict()
+    if outline["diagnostics"]:
+        raise RenderMeasureError(
+            "Range rendering needs an unambiguous, consistent measure sequence."
+        )
+    sequence = outline["measureNumbers"]
+    end = start if end is None else end
+    if (
+        not isinstance(start, str)
+        or not isinstance(end, str)
+        or start not in sequence
+        or end not in sequence
+    ):
+        raise RenderMeasureError(
+            "Range endpoints must be exact printed measure strings in the score."
+        )
+    first, last = sequence.index(start), sequence.index(end)
+    if first > last:
+        raise RenderMeasureError("Range endpoints are reversed in document order.")
+    selected = sequence[
+        max(0, first - context) : min(len(sequence), last + context + 1)
+    ]
+    xml = read_musicxml(source)
+    verovio.enableLog(verovio.LOG_OFF)
+    toolkit = verovio.toolkit()
+    options = dict(
+        inputFrom="xml",
+        breaks="encoded",
+        pageWidth=2100,
+        pageHeight=2970,
+        scale=40,
+        svgViewBox=True,
+        svgAdditionalAttribute=["measure@n"],
+        svgBoundingBoxes=True,
+        svgContentBoundingBoxes=True,
+        mnumInterval=1,
+    )
+    toolkit.setOptions(options)
+    if not toolkit.loadData(xml):
+        raise RenderMeasureError("Verovio could not load the score.")
+    matches: dict[str, list] = {m: [] for m in selected}
+    for page in range(1, toolkit.getPageCount() + 1):
+        for candidate in _find_rendered_measures(toolkit.renderToSVG(page)):
+            if candidate.label in matches:
+                matches[candidate.label].append((page, candidate))
+    if any(len(found) != 1 for found in matches.values()):
+        raise RenderMeasureError(
+            "Each selected measure must occur exactly once in the rendered score."
+        )
+    groups: dict[tuple, list] = {}
+    for measure in selected:
+        page, candidate = matches[measure][0]
+        b = candidate.system_box
+        key = (page, b.x, b.y, b.width, b.height)
+        groups.setdefault(key, []).append(candidate)
+    toolkit.setOptions({"svgBoundingBoxes": False, "svgContentBoundingBoxes": False})
+    images = []
+    files = {}
+    for index, (key, candidates) in enumerate(groups.items(), 1):
+        page = key[0]
+        left = min(c.measure_box.x for c in candidates)
+        top = min(c.measure_box.y for c in candidates)
+        right = max(c.measure_box.x + c.measure_box.width for c in candidates)
+        bottom = max(c.measure_box.y + c.measure_box.height for c in candidates)
+        box = _Box(left, top, right - left, bottom - top)
+        clean = toolkit.renderToSVG(page)
+        cropped = _crop_rendered_page(clean, box)
+        root = ElementTree.fromstring(cropped)
+        inner = next(
+            e
+            for e in root.iter(f"{{{SVG_NAMESPACE}}}svg")
+            if "definition-scale" in e.get("class", "").split()
+        )
+        crop = _parse_view_box(inner.get("viewBox"))
+        outer = _parse_view_box(root.get("viewBox"))
+        png = bytes(
+            resvg_py.svg_to_bytes(
+                svg_string=cropped.decode(), background="#ffffff", zoom=OUTPUT_SCALE
+            )
+        )
+        filename = f"{index:03d}-page-{page}.png"
+        files[directory / filename] = png
+        images.append(
+            dict(
+                path=filename,
+                sha256=sha256(png),
+                measures=[c.label for c in candidates],
+                renderedScorePage=page,
+                sourcePdfPage=None,
+                crop=asdict(crop),
+                coordinateUnit="verovio-definition-units",
+                definitionToSvgScale=dict(
+                    x=outer.width / crop.width, y=outer.height / crop.height
+                ),
+                rasterZoom=OUTPUT_SCALE,
+            )
+        )
+    manifest = dict(
+        schemaVersion="1",
+        inputSha256=sha256(source.read_bytes()),
+        toolVersion=version("score-cli"),
+        rendererVersion=toolkit.getVersion(),
+        renderParameters=options,
+        requested=dict(start=start, end=end, context=context),
+        selectedMeasures=selected,
+        contextClipped=dict(
+            before=first - context < 0, after=last + context >= len(sequence)
+        ),
+        renderedScorePageCount=toolkit.getPageCount(),
+        images=images,
+    )
+    files[directory / "manifest.json"] = json_bytes(manifest)
+    directory.mkdir(parents=True, exist_ok=False)
+    try:
+        publish_files(files)
+    except BaseException:
+        directory.rmdir()
+        raise
+    return manifest

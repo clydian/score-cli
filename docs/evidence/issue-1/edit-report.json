@@ -1,0 +1,2332 @@
+{
+  "schemaVersion": "1",
+  "toolVersion": "0.1.0",
+  "status": "applied",
+  "inputSha256": "c0453fb99b0501dd8c09db809c7f08505003269a9e2a4319bfb76f7a2900cad1",
+  "outputSha256": "d989cd4153ff8b272d079a992520a300c013b4370c767c3ee1f01e77c300d1b9",
+  "changeset": {
+    "schemaVersion": "1",
+    "inputSha256": "c0453fb99b0501dd8c09db809c7f08505003269a9e2a4319bfb76f7a2900cad1",
+    "operations": [
+      {
+        "id": "lyric-1",
+        "type": "lyric",
+        "target": {
+          "partId": "P1",
+          "printedMeasure": "2",
+          "staff": "1",
+          "voice": "1",
+          "offset": "0",
+          "eventIndex": 1
+        },
+        "selector": {
+          "number": "1"
+        },
+        "expected": {
+          "text": "jus",
+          "syllabic": "begin"
+        },
+        "value": {
+          "text": "ju",
+          "syllabic": "begin"
+        }
+      },
+      {
+        "id": "lyric-2",
+        "type": "lyric",
+        "target": {
+          "partId": "P1",
+          "printedMeasure": "2",
+          "staff": "1",
+          "voice": "1",
+          "offset": "2",
+          "eventIndex": 2
+        },
+        "selector": {
+          "number": "1"
+        },
+        "expected": {
+          "text": "ti",
+          "syllabic": "end"
+        },
+        "value": {
+          "text": "sti",
+          "syllabic": "end"
+        }
+      },
+      {
+        "id": "lyric-3",
+        "type": "lyric",
+        "target": {
+          "partId": "P2",
+          "printedMeasure": "2",
+          "staff": "1",
+          "voice": "1",
+          "offset": "0",
+          "eventIndex": 1
+        },
+        "selector": {
+          "number": "1"
+        },
+        "expected": {
+          "text": "jus",
+          "syllabic": "begin"
+        },
+        "value": {
+          "text": "ju",
+          "syllabic": "begin"
+        }
+      },
+      {
+        "id": "lyric-4",
+        "type": "lyric",
+        "target": {
+          "partId": "P2",
+          "printedMeasure": "2",
+          "staff": "1",
+          "voice": "1",
+          "offset": "2",
+          "eventIndex": 2
+        },
+        "selector": {
+          "number": "1"
+        },
+        "expected": {
+          "text": "ti",
+          "syllabic": "end"
+        },
+        "value": {
+          "text": "sti",
+          "syllabic": "end"
+        }
+      },
+      {
+        "id": "lyric-5",
+        "type": "lyric",
+        "target": {
+          "partId": "P3",
+          "printedMeasure": "2",
+          "staff": "1",
+          "voice": "1",
+          "offset": "0",
+          "eventIndex": 1
+        },
+        "selector": {
+          "number": "1"
+        },
+        "expected": {
+          "text": "jus",
+          "syllabic": "begin"
+        },
+        "value": {
+          "text": "ju",
+          "syllabic": "begin"
+        }
+      },
+      {
+        "id": "lyric-6",
+        "type": "lyric",
+        "target": {
+          "partId": "P3",
+          "printedMeasure": "2",
+          "staff": "1",
+          "voice": "1",
+          "offset": "2",
+          "eventIndex": 2
+        },
+        "selector": {
+          "number": "1"
+        },
+        "expected": {
+          "text": "ti",
+          "syllabic": "end"
+        },
+        "value": {
+          "text": "sti",
+          "syllabic": "end"
+        }
+      },
+      {
+        "id": "lyric-7",
+        "type": "lyric",
+        "target": {
+          "partId": "P4",
+          "printedMeasure": "2",
+          "staff": "1",
+          "voice": "1",
+          "offset": "0",
+          "eventIndex": 1
+        },
+        "selector": {
+          "number": "1"
+        },
+        "expected": {
+          "text": "jus",
+          "syllabic": "begin"
+        },
+        "value": {
+          "text": "ju",
+          "syllabic": "begin"
+        }
+      },
+      {
+        "id": "lyric-8",
+        "type": "lyric",
+        "target": {
+          "partId": "P4",
+          "printedMeasure": "2",
+          "staff": "1",
+          "voice": "1",
+          "offset": "2",
+          "eventIndex": 2
+        },
+        "selector": {
+          "number": "1"
+        },
+        "expected": {
+          "text": "ti",
+          "syllabic": "end"
+        },
+        "value": {
+          "text": "sti",
+          "syllabic": "end"
+        }
+      }
+    ]
+  },
+  "diagnosticsBefore": [
+    {
+      "code": "voice-gap",
+      "severity": "warning",
+      "location": {
+        "partId": "P1",
+        "printedMeasure": "10",
+        "staff": "1",
+        "voice": "2",
+        "offset": "2",
+        "eventIndex": 4,
+        "measureOrdinal": 10
+      },
+      "reason": "Uncovered voice interval 0..2.",
+      "operationId": null
+    },
+    {
+      "code": "orphan-slur",
+      "severity": "error",
+      "location": {
+        "partId": "P1",
+        "printedMeasure": "12",
+        "staff": "1",
+        "voice": "1",
+        "offset": "0",
+        "eventIndex": 1,
+        "measureOrdinal": 12
+      },
+      "reason": "slur stop/continue has no matching start.",
+      "operationId": null
+    },
+    {
+      "code": "voice-gap",
+      "severity": "warning",
+      "location": {
+        "partId": "P1",
+        "printedMeasure": "50",
+        "staff": "1",
+        "voice": "2",
+        "offset": "2",
+        "eventIndex": 3,
+        "measureOrdinal": 50
+      },
+      "reason": "Uncovered voice interval 0..2.",
+      "operationId": null
+    },
+    {
+      "code": "voice-gap",
+      "severity": "warning",
+      "location": {
+        "partId": "P1",
+        "printedMeasure": "52",
+        "staff": "1",
+        "voice": "2",
+        "offset": "2",
+        "eventIndex": 3,
+        "measureOrdinal": 52
+      },
+      "reason": "Uncovered voice interval 0..2.",
+      "operationId": null
+    },
+    {
+      "code": "duplicate-slur-start",
+      "severity": "error",
+      "location": {
+        "partId": "P1",
+        "printedMeasure": "53",
+        "staff": "1",
+        "voice": "2",
+        "offset": "0",
+        "eventIndex": 3,
+        "measureOrdinal": 53
+      },
+      "reason": "slur number is already open.",
+      "operationId": null
+    },
+    {
+      "code": "orphan-slur",
+      "severity": "error",
+      "location": {
+        "partId": "P1",
+        "printedMeasure": "54",
+        "staff": "1",
+        "voice": "1",
+        "offset": "2",
+        "eventIndex": 2,
+        "measureOrdinal": 54
+      },
+      "reason": "slur stop/continue has no matching start.",
+      "operationId": null
+    },
+    {
+      "code": "voice-gap",
+      "severity": "warning",
+      "location": {
+        "partId": "P2",
+        "printedMeasure": "10",
+        "staff": "1",
+        "voice": "2",
+        "offset": "2",
+        "eventIndex": 4,
+        "measureOrdinal": 10
+      },
+      "reason": "Uncovered voice interval 0..2.",
+      "operationId": null
+    },
+    {
+      "code": "voice-gap",
+      "severity": "warning",
+      "location": {
+        "partId": "P2",
+        "printedMeasure": "52",
+        "staff": "1",
+        "voice": "2",
+        "offset": "2",
+        "eventIndex": 3,
+        "measureOrdinal": 52
+      },
+      "reason": "Uncovered voice interval 0..2.",
+      "operationId": null
+    },
+    {
+      "code": "orphan-slur",
+      "severity": "error",
+      "location": {
+        "partId": "P2",
+        "printedMeasure": "54",
+        "staff": "1",
+        "voice": "1",
+        "offset": "2",
+        "eventIndex": 2,
+        "measureOrdinal": 54
+      },
+      "reason": "slur stop/continue has no matching start.",
+      "operationId": null
+    },
+    {
+      "code": "incomplete-voice",
+      "severity": "warning",
+      "location": {
+        "partId": "P2",
+        "printedMeasure": "55",
+        "measureOrdinal": 55,
+        "voice": "2"
+      },
+      "reason": "Voice ends at 2, before meter 4; may be intentional incomplete notation.",
+      "operationId": null
+    },
+    {
+      "code": "voice-gap",
+      "severity": "warning",
+      "location": {
+        "partId": "P2",
+        "printedMeasure": "56",
+        "staff": "1",
+        "voice": "2",
+        "offset": "3",
+        "eventIndex": 6,
+        "measureOrdinal": 56
+      },
+      "reason": "Uncovered voice interval 2..3.",
+      "operationId": null
+    },
+    {
+      "code": "voice-gap",
+      "severity": "warning",
+      "location": {
+        "partId": "P3",
+        "printedMeasure": "7",
+        "staff": "1",
+        "voice": "2",
+        "offset": "2",
+        "eventIndex": 3,
+        "measureOrdinal": 7
+      },
+      "reason": "Uncovered voice interval 0..2.",
+      "operationId": null
+    },
+    {
+      "code": "voice-gap",
+      "severity": "warning",
+      "location": {
+        "partId": "P3",
+        "printedMeasure": "9",
+        "staff": "1",
+        "voice": "2",
+        "offset": "2",
+        "eventIndex": 4,
+        "measureOrdinal": 9
+      },
+      "reason": "Uncovered voice interval 0..2.",
+      "operationId": null
+    },
+    {
+      "code": "incomplete-voice",
+      "severity": "warning",
+      "location": {
+        "partId": "P3",
+        "printedMeasure": "13",
+        "measureOrdinal": 13,
+        "voice": "2"
+      },
+      "reason": "Voice ends at 1, before meter 4; may be intentional incomplete notation.",
+      "operationId": null
+    },
+    {
+      "code": "orphan-slur",
+      "severity": "error",
+      "location": {
+        "partId": "P3",
+        "printedMeasure": "14",
+        "staff": "1",
+        "voice": "1",
+        "offset": "1",
+        "eventIndex": 2,
+        "measureOrdinal": 14
+      },
+      "reason": "slur stop/continue has no matching start.",
+      "operationId": null
+    },
+    {
+      "code": "voice-gap",
+      "severity": "warning",
+      "location": {
+        "partId": "P3",
+        "printedMeasure": "49",
+        "staff": "1",
+        "voice": "2",
+        "offset": "2",
+        "eventIndex": 3,
+        "measureOrdinal": 49
+      },
+      "reason": "Uncovered voice interval 0..2.",
+      "operationId": null
+    },
+    {
+      "code": "voice-gap",
+      "severity": "warning",
+      "location": {
+        "partId": "P3",
+        "printedMeasure": "65",
+        "staff": "1",
+        "voice": "2",
+        "offset": "1",
+        "eventIndex": 5,
+        "measureOrdinal": 65
+      },
+      "reason": "Uncovered voice interval 0..1.",
+      "operationId": null
+    },
+    {
+      "code": "incomplete-voice",
+      "severity": "warning",
+      "location": {
+        "partId": "P3",
+        "printedMeasure": "69",
+        "measureOrdinal": 69,
+        "voice": "2"
+      },
+      "reason": "Voice ends at 2, before meter 4; may be intentional incomplete notation.",
+      "operationId": null
+    },
+    {
+      "code": "voice-gap",
+      "severity": "warning",
+      "location": {
+        "partId": "P4",
+        "printedMeasure": "9",
+        "staff": "1",
+        "voice": "2",
+        "offset": "2",
+        "eventIndex": 4,
+        "measureOrdinal": 9
+      },
+      "reason": "Uncovered voice interval 0..2.",
+      "operationId": null
+    },
+    {
+      "code": "incomplete-voice",
+      "severity": "warning",
+      "location": {
+        "partId": "P4",
+        "printedMeasure": "57",
+        "measureOrdinal": 57,
+        "voice": "2"
+      },
+      "reason": "Voice ends at 2, before meter 4; may be intentional incomplete notation.",
+      "operationId": null
+    },
+    {
+      "code": "incomplete-voice",
+      "severity": "warning",
+      "location": {
+        "partId": "P4",
+        "printedMeasure": "69",
+        "measureOrdinal": 69,
+        "voice": "2"
+      },
+      "reason": "Voice ends at 2, before meter 4; may be intentional incomplete notation.",
+      "operationId": null
+    },
+    {
+      "code": "unclosed-slur",
+      "severity": "error",
+      "location": {
+        "partId": "P1",
+        "printedMeasure": "53",
+        "staff": "1",
+        "voice": "2",
+        "offset": "0",
+        "eventIndex": 3,
+        "measureOrdinal": 53
+      },
+      "reason": "slur start has no matching stop.",
+      "operationId": null
+    },
+    {
+      "code": "unclosed-slur",
+      "severity": "error",
+      "location": {
+        "partId": "P2",
+        "printedMeasure": "53",
+        "staff": "1",
+        "voice": "2",
+        "offset": "0",
+        "eventIndex": 3,
+        "measureOrdinal": 53
+      },
+      "reason": "slur start has no matching stop.",
+      "operationId": null
+    },
+    {
+      "code": "unclosed-slur",
+      "severity": "error",
+      "location": {
+        "partId": "P3",
+        "printedMeasure": "11",
+        "staff": "1",
+        "voice": "2",
+        "offset": "0",
+        "eventIndex": 4,
+        "measureOrdinal": 11
+      },
+      "reason": "slur start has no matching stop.",
+      "operationId": null
+    }
+  ],
+  "diagnosticsAfter": [
+    {
+      "code": "voice-gap",
+      "severity": "warning",
+      "location": {
+        "partId": "P1",
+        "printedMeasure": "10",
+        "staff": "1",
+        "voice": "2",
+        "offset": "2",
+        "eventIndex": 4,
+        "measureOrdinal": 10
+      },
+      "reason": "Uncovered voice interval 0..2.",
+      "operationId": null,
+      "origin": "existing"
+    },
+    {
+      "code": "orphan-slur",
+      "severity": "error",
+      "location": {
+        "partId": "P1",
+        "printedMeasure": "12",
+        "staff": "1",
+        "voice": "1",
+        "offset": "0",
+        "eventIndex": 1,
+        "measureOrdinal": 12
+      },
+      "reason": "slur stop/continue has no matching start.",
+      "operationId": null,
+      "origin": "existing"
+    },
+    {
+      "code": "voice-gap",
+      "severity": "warning",
+      "location": {
+        "partId": "P1",
+        "printedMeasure": "50",
+        "staff": "1",
+        "voice": "2",
+        "offset": "2",
+        "eventIndex": 3,
+        "measureOrdinal": 50
+      },
+      "reason": "Uncovered voice interval 0..2.",
+      "operationId": null,
+      "origin": "existing"
+    },
+    {
+      "code": "voice-gap",
+      "severity": "warning",
+      "location": {
+        "partId": "P1",
+        "printedMeasure": "52",
+        "staff": "1",
+        "voice": "2",
+        "offset": "2",
+        "eventIndex": 3,
+        "measureOrdinal": 52
+      },
+      "reason": "Uncovered voice interval 0..2.",
+      "operationId": null,
+      "origin": "existing"
+    },
+    {
+      "code": "duplicate-slur-start",
+      "severity": "error",
+      "location": {
+        "partId": "P1",
+        "printedMeasure": "53",
+        "staff": "1",
+        "voice": "2",
+        "offset": "0",
+        "eventIndex": 3,
+        "measureOrdinal": 53
+      },
+      "reason": "slur number is already open.",
+      "operationId": null,
+      "origin": "existing"
+    },
+    {
+      "code": "orphan-slur",
+      "severity": "error",
+      "location": {
+        "partId": "P1",
+        "printedMeasure": "54",
+        "staff": "1",
+        "voice": "1",
+        "offset": "2",
+        "eventIndex": 2,
+        "measureOrdinal": 54
+      },
+      "reason": "slur stop/continue has no matching start.",
+      "operationId": null,
+      "origin": "existing"
+    },
+    {
+      "code": "voice-gap",
+      "severity": "warning",
+      "location": {
+        "partId": "P2",
+        "printedMeasure": "10",
+        "staff": "1",
+        "voice": "2",
+        "offset": "2",
+        "eventIndex": 4,
+        "measureOrdinal": 10
+      },
+      "reason": "Uncovered voice interval 0..2.",
+      "operationId": null,
+      "origin": "existing"
+    },
+    {
+      "code": "voice-gap",
+      "severity": "warning",
+      "location": {
+        "partId": "P2",
+        "printedMeasure": "52",
+        "staff": "1",
+        "voice": "2",
+        "offset": "2",
+        "eventIndex": 3,
+        "measureOrdinal": 52
+      },
+      "reason": "Uncovered voice interval 0..2.",
+      "operationId": null,
+      "origin": "existing"
+    },
+    {
+      "code": "orphan-slur",
+      "severity": "error",
+      "location": {
+        "partId": "P2",
+        "printedMeasure": "54",
+        "staff": "1",
+        "voice": "1",
+        "offset": "2",
+        "eventIndex": 2,
+        "measureOrdinal": 54
+      },
+      "reason": "slur stop/continue has no matching start.",
+      "operationId": null,
+      "origin": "existing"
+    },
+    {
+      "code": "incomplete-voice",
+      "severity": "warning",
+      "location": {
+        "partId": "P2",
+        "printedMeasure": "55",
+        "measureOrdinal": 55,
+        "voice": "2"
+      },
+      "reason": "Voice ends at 2, before meter 4; may be intentional incomplete notation.",
+      "operationId": null,
+      "origin": "existing"
+    },
+    {
+      "code": "voice-gap",
+      "severity": "warning",
+      "location": {
+        "partId": "P2",
+        "printedMeasure": "56",
+        "staff": "1",
+        "voice": "2",
+        "offset": "3",
+        "eventIndex": 6,
+        "measureOrdinal": 56
+      },
+      "reason": "Uncovered voice interval 2..3.",
+      "operationId": null,
+      "origin": "existing"
+    },
+    {
+      "code": "voice-gap",
+      "severity": "warning",
+      "location": {
+        "partId": "P3",
+        "printedMeasure": "7",
+        "staff": "1",
+        "voice": "2",
+        "offset": "2",
+        "eventIndex": 3,
+        "measureOrdinal": 7
+      },
+      "reason": "Uncovered voice interval 0..2.",
+      "operationId": null,
+      "origin": "existing"
+    },
+    {
+      "code": "voice-gap",
+      "severity": "warning",
+      "location": {
+        "partId": "P3",
+        "printedMeasure": "9",
+        "staff": "1",
+        "voice": "2",
+        "offset": "2",
+        "eventIndex": 4,
+        "measureOrdinal": 9
+      },
+      "reason": "Uncovered voice interval 0..2.",
+      "operationId": null,
+      "origin": "existing"
+    },
+    {
+      "code": "incomplete-voice",
+      "severity": "warning",
+      "location": {
+        "partId": "P3",
+        "printedMeasure": "13",
+        "measureOrdinal": 13,
+        "voice": "2"
+      },
+      "reason": "Voice ends at 1, before meter 4; may be intentional incomplete notation.",
+      "operationId": null,
+      "origin": "existing"
+    },
+    {
+      "code": "orphan-slur",
+      "severity": "error",
+      "location": {
+        "partId": "P3",
+        "printedMeasure": "14",
+        "staff": "1",
+        "voice": "1",
+        "offset": "1",
+        "eventIndex": 2,
+        "measureOrdinal": 14
+      },
+      "reason": "slur stop/continue has no matching start.",
+      "operationId": null,
+      "origin": "existing"
+    },
+    {
+      "code": "voice-gap",
+      "severity": "warning",
+      "location": {
+        "partId": "P3",
+        "printedMeasure": "49",
+        "staff": "1",
+        "voice": "2",
+        "offset": "2",
+        "eventIndex": 3,
+        "measureOrdinal": 49
+      },
+      "reason": "Uncovered voice interval 0..2.",
+      "operationId": null,
+      "origin": "existing"
+    },
+    {
+      "code": "voice-gap",
+      "severity": "warning",
+      "location": {
+        "partId": "P3",
+        "printedMeasure": "65",
+        "staff": "1",
+        "voice": "2",
+        "offset": "1",
+        "eventIndex": 5,
+        "measureOrdinal": 65
+      },
+      "reason": "Uncovered voice interval 0..1.",
+      "operationId": null,
+      "origin": "existing"
+    },
+    {
+      "code": "incomplete-voice",
+      "severity": "warning",
+      "location": {
+        "partId": "P3",
+        "printedMeasure": "69",
+        "measureOrdinal": 69,
+        "voice": "2"
+      },
+      "reason": "Voice ends at 2, before meter 4; may be intentional incomplete notation.",
+      "operationId": null,
+      "origin": "existing"
+    },
+    {
+      "code": "voice-gap",
+      "severity": "warning",
+      "location": {
+        "partId": "P4",
+        "printedMeasure": "9",
+        "staff": "1",
+        "voice": "2",
+        "offset": "2",
+        "eventIndex": 4,
+        "measureOrdinal": 9
+      },
+      "reason": "Uncovered voice interval 0..2.",
+      "operationId": null,
+      "origin": "existing"
+    },
+    {
+      "code": "incomplete-voice",
+      "severity": "warning",
+      "location": {
+        "partId": "P4",
+        "printedMeasure": "57",
+        "measureOrdinal": 57,
+        "voice": "2"
+      },
+      "reason": "Voice ends at 2, before meter 4; may be intentional incomplete notation.",
+      "operationId": null,
+      "origin": "existing"
+    },
+    {
+      "code": "incomplete-voice",
+      "severity": "warning",
+      "location": {
+        "partId": "P4",
+        "printedMeasure": "69",
+        "measureOrdinal": 69,
+        "voice": "2"
+      },
+      "reason": "Voice ends at 2, before meter 4; may be intentional incomplete notation.",
+      "operationId": null,
+      "origin": "existing"
+    },
+    {
+      "code": "unclosed-slur",
+      "severity": "error",
+      "location": {
+        "partId": "P1",
+        "printedMeasure": "53",
+        "staff": "1",
+        "voice": "2",
+        "offset": "0",
+        "eventIndex": 3,
+        "measureOrdinal": 53
+      },
+      "reason": "slur start has no matching stop.",
+      "operationId": null,
+      "origin": "existing"
+    },
+    {
+      "code": "unclosed-slur",
+      "severity": "error",
+      "location": {
+        "partId": "P2",
+        "printedMeasure": "53",
+        "staff": "1",
+        "voice": "2",
+        "offset": "0",
+        "eventIndex": 3,
+        "measureOrdinal": 53
+      },
+      "reason": "slur start has no matching stop.",
+      "operationId": null,
+      "origin": "existing"
+    },
+    {
+      "code": "unclosed-slur",
+      "severity": "error",
+      "location": {
+        "partId": "P3",
+        "printedMeasure": "11",
+        "staff": "1",
+        "voice": "2",
+        "offset": "0",
+        "eventIndex": 4,
+        "measureOrdinal": 11
+      },
+      "reason": "slur start has no matching stop.",
+      "operationId": null,
+      "origin": "existing"
+    }
+  ],
+  "diagnosticMatching": "exact-code-severity-location-reason-multiset",
+  "comparison": {
+    "schemaVersion": "1",
+    "status": "inconclusive",
+    "alignment": "exact part / printed measure / all-note ordinal; voice identity must agree",
+    "notationDifferences": [
+      {
+        "location": {
+          "partId": "P1",
+          "printedMeasure": "2",
+          "staff": "1",
+          "voice": "1",
+          "offset": "0",
+          "eventIndex": 1
+        },
+        "fields": [
+          "notation"
+        ],
+        "before": {
+          "notation": [
+            {
+              "tag": "type",
+              "attributes": {},
+              "text": "half",
+              "children": []
+            },
+            {
+              "tag": "lyric",
+              "attributes": {
+                "number": "1",
+                "default-x": "6.22",
+                "default-y": "-52.23",
+                "relative-y": "-30.00"
+              },
+              "text": "",
+              "children": [
+                {
+                  "tag": "syllabic",
+                  "attributes": {},
+                  "text": "begin",
+                  "children": []
+                },
+                {
+                  "tag": "text",
+                  "attributes": {},
+                  "text": "jus",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        "after": {
+          "notation": [
+            {
+              "tag": "type",
+              "attributes": {},
+              "text": "half",
+              "children": []
+            },
+            {
+              "tag": "lyric",
+              "attributes": {
+                "number": "1",
+                "default-x": "6.22",
+                "default-y": "-52.23",
+                "relative-y": "-30.00"
+              },
+              "text": "",
+              "children": [
+                {
+                  "tag": "syllabic",
+                  "attributes": {},
+                  "text": "begin",
+                  "children": []
+                },
+                {
+                  "tag": "text",
+                  "attributes": {},
+                  "text": "ju",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "location": {
+          "partId": "P1",
+          "printedMeasure": "2",
+          "staff": "1",
+          "voice": "1",
+          "offset": "2",
+          "eventIndex": 2
+        },
+        "fields": [
+          "notation"
+        ],
+        "before": {
+          "notation": [
+            {
+              "tag": "type",
+              "attributes": {},
+              "text": "half",
+              "children": []
+            },
+            {
+              "tag": "lyric",
+              "attributes": {
+                "number": "1",
+                "default-x": "6.22",
+                "default-y": "-52.23",
+                "relative-y": "-30.00"
+              },
+              "text": "",
+              "children": [
+                {
+                  "tag": "syllabic",
+                  "attributes": {},
+                  "text": "end",
+                  "children": []
+                },
+                {
+                  "tag": "text",
+                  "attributes": {},
+                  "text": "ti",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        "after": {
+          "notation": [
+            {
+              "tag": "type",
+              "attributes": {},
+              "text": "half",
+              "children": []
+            },
+            {
+              "tag": "lyric",
+              "attributes": {
+                "number": "1",
+                "default-x": "6.22",
+                "default-y": "-52.23",
+                "relative-y": "-30.00"
+              },
+              "text": "",
+              "children": [
+                {
+                  "tag": "syllabic",
+                  "attributes": {},
+                  "text": "end",
+                  "children": []
+                },
+                {
+                  "tag": "text",
+                  "attributes": {},
+                  "text": "sti",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "location": {
+          "partId": "P2",
+          "printedMeasure": "2",
+          "staff": "1",
+          "voice": "1",
+          "offset": "0",
+          "eventIndex": 1
+        },
+        "fields": [
+          "notation"
+        ],
+        "before": {
+          "notation": [
+            {
+              "tag": "type",
+              "attributes": {},
+              "text": "half",
+              "children": []
+            },
+            {
+              "tag": "lyric",
+              "attributes": {
+                "number": "1",
+                "default-x": "6.22",
+                "default-y": "-56.43",
+                "relative-y": "-30.00"
+              },
+              "text": "",
+              "children": [
+                {
+                  "tag": "syllabic",
+                  "attributes": {},
+                  "text": "begin",
+                  "children": []
+                },
+                {
+                  "tag": "text",
+                  "attributes": {},
+                  "text": "jus",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        "after": {
+          "notation": [
+            {
+              "tag": "type",
+              "attributes": {},
+              "text": "half",
+              "children": []
+            },
+            {
+              "tag": "lyric",
+              "attributes": {
+                "number": "1",
+                "default-x": "6.22",
+                "default-y": "-56.43",
+                "relative-y": "-30.00"
+              },
+              "text": "",
+              "children": [
+                {
+                  "tag": "syllabic",
+                  "attributes": {},
+                  "text": "begin",
+                  "children": []
+                },
+                {
+                  "tag": "text",
+                  "attributes": {},
+                  "text": "ju",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "location": {
+          "partId": "P2",
+          "printedMeasure": "2",
+          "staff": "1",
+          "voice": "1",
+          "offset": "2",
+          "eventIndex": 2
+        },
+        "fields": [
+          "notation"
+        ],
+        "before": {
+          "notation": [
+            {
+              "tag": "type",
+              "attributes": {},
+              "text": "half",
+              "children": []
+            },
+            {
+              "tag": "lyric",
+              "attributes": {
+                "number": "1",
+                "default-x": "6.22",
+                "default-y": "-56.43",
+                "relative-y": "-30.00"
+              },
+              "text": "",
+              "children": [
+                {
+                  "tag": "syllabic",
+                  "attributes": {},
+                  "text": "end",
+                  "children": []
+                },
+                {
+                  "tag": "text",
+                  "attributes": {},
+                  "text": "ti",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        "after": {
+          "notation": [
+            {
+              "tag": "type",
+              "attributes": {},
+              "text": "half",
+              "children": []
+            },
+            {
+              "tag": "lyric",
+              "attributes": {
+                "number": "1",
+                "default-x": "6.22",
+                "default-y": "-56.43",
+                "relative-y": "-30.00"
+              },
+              "text": "",
+              "children": [
+                {
+                  "tag": "syllabic",
+                  "attributes": {},
+                  "text": "end",
+                  "children": []
+                },
+                {
+                  "tag": "text",
+                  "attributes": {},
+                  "text": "sti",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "location": {
+          "partId": "P3",
+          "printedMeasure": "2",
+          "staff": "1",
+          "voice": "1",
+          "offset": "0",
+          "eventIndex": 1
+        },
+        "fields": [
+          "notation"
+        ],
+        "before": {
+          "notation": [
+            {
+              "tag": "type",
+              "attributes": {},
+              "text": "half",
+              "children": []
+            },
+            {
+              "tag": "lyric",
+              "attributes": {
+                "number": "1",
+                "default-x": "6.94",
+                "default-y": "-52.68",
+                "relative-y": "-30.00"
+              },
+              "text": "",
+              "children": [
+                {
+                  "tag": "syllabic",
+                  "attributes": {},
+                  "text": "begin",
+                  "children": []
+                },
+                {
+                  "tag": "text",
+                  "attributes": {},
+                  "text": "jus",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        "after": {
+          "notation": [
+            {
+              "tag": "type",
+              "attributes": {},
+              "text": "half",
+              "children": []
+            },
+            {
+              "tag": "lyric",
+              "attributes": {
+                "number": "1",
+                "default-x": "6.94",
+                "default-y": "-52.68",
+                "relative-y": "-30.00"
+              },
+              "text": "",
+              "children": [
+                {
+                  "tag": "syllabic",
+                  "attributes": {},
+                  "text": "begin",
+                  "children": []
+                },
+                {
+                  "tag": "text",
+                  "attributes": {},
+                  "text": "ju",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "location": {
+          "partId": "P3",
+          "printedMeasure": "2",
+          "staff": "1",
+          "voice": "1",
+          "offset": "2",
+          "eventIndex": 2
+        },
+        "fields": [
+          "notation"
+        ],
+        "before": {
+          "notation": [
+            {
+              "tag": "type",
+              "attributes": {},
+              "text": "half",
+              "children": []
+            },
+            {
+              "tag": "lyric",
+              "attributes": {
+                "number": "1",
+                "default-x": "6.94",
+                "default-y": "-52.68",
+                "relative-y": "-30.00"
+              },
+              "text": "",
+              "children": [
+                {
+                  "tag": "syllabic",
+                  "attributes": {},
+                  "text": "end",
+                  "children": []
+                },
+                {
+                  "tag": "text",
+                  "attributes": {},
+                  "text": "ti",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        "after": {
+          "notation": [
+            {
+              "tag": "type",
+              "attributes": {},
+              "text": "half",
+              "children": []
+            },
+            {
+              "tag": "lyric",
+              "attributes": {
+                "number": "1",
+                "default-x": "6.94",
+                "default-y": "-52.68",
+                "relative-y": "-30.00"
+              },
+              "text": "",
+              "children": [
+                {
+                  "tag": "syllabic",
+                  "attributes": {},
+                  "text": "end",
+                  "children": []
+                },
+                {
+                  "tag": "text",
+                  "attributes": {},
+                  "text": "sti",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "location": {
+          "partId": "P4",
+          "printedMeasure": "2",
+          "staff": "1",
+          "voice": "1",
+          "offset": "0",
+          "eventIndex": 1
+        },
+        "fields": [
+          "notation"
+        ],
+        "before": {
+          "notation": [
+            {
+              "tag": "type",
+              "attributes": {},
+              "text": "half",
+              "children": []
+            },
+            {
+              "tag": "lyric",
+              "attributes": {
+                "number": "1",
+                "default-x": "6.94",
+                "default-y": "-57.68",
+                "relative-y": "-30.00"
+              },
+              "text": "",
+              "children": [
+                {
+                  "tag": "syllabic",
+                  "attributes": {},
+                  "text": "begin",
+                  "children": []
+                },
+                {
+                  "tag": "text",
+                  "attributes": {},
+                  "text": "jus",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        "after": {
+          "notation": [
+            {
+              "tag": "type",
+              "attributes": {},
+              "text": "half",
+              "children": []
+            },
+            {
+              "tag": "lyric",
+              "attributes": {
+                "number": "1",
+                "default-x": "6.94",
+                "default-y": "-57.68",
+                "relative-y": "-30.00"
+              },
+              "text": "",
+              "children": [
+                {
+                  "tag": "syllabic",
+                  "attributes": {},
+                  "text": "begin",
+                  "children": []
+                },
+                {
+                  "tag": "text",
+                  "attributes": {},
+                  "text": "ju",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "location": {
+          "partId": "P4",
+          "printedMeasure": "2",
+          "staff": "1",
+          "voice": "1",
+          "offset": "2",
+          "eventIndex": 2
+        },
+        "fields": [
+          "notation"
+        ],
+        "before": {
+          "notation": [
+            {
+              "tag": "type",
+              "attributes": {},
+              "text": "half",
+              "children": []
+            },
+            {
+              "tag": "lyric",
+              "attributes": {
+                "number": "1",
+                "default-x": "6.94",
+                "default-y": "-57.68",
+                "relative-y": "-30.00"
+              },
+              "text": "",
+              "children": [
+                {
+                  "tag": "syllabic",
+                  "attributes": {},
+                  "text": "end",
+                  "children": []
+                },
+                {
+                  "tag": "text",
+                  "attributes": {},
+                  "text": "ti",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        "after": {
+          "notation": [
+            {
+              "tag": "type",
+              "attributes": {},
+              "text": "half",
+              "children": []
+            },
+            {
+              "tag": "lyric",
+              "attributes": {
+                "number": "1",
+                "default-x": "6.94",
+                "default-y": "-57.68",
+                "relative-y": "-30.00"
+              },
+              "text": "",
+              "children": [
+                {
+                  "tag": "syllabic",
+                  "attributes": {},
+                  "text": "end",
+                  "children": []
+                },
+                {
+                  "tag": "text",
+                  "attributes": {},
+                  "text": "sti",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "soundingDifferences": [],
+    "unaligned": [],
+    "added": [],
+    "removed": [],
+    "coverage": {
+      "checked": [
+        "written-pitch",
+        "offset",
+        "duration",
+        "rest",
+        "lyrics",
+        "notations",
+        "directions",
+        "context"
+      ],
+      "unchecked": [
+        "source-pdf-correctness",
+        "performance",
+        "unknown-extension-meaning"
+      ]
+    },
+    "validationBefore": {
+      "schemaVersion": "1",
+      "status": "invalid",
+      "coverage": {
+        "checked": [
+          "part-and-measure-structure",
+          "snapshot-locations",
+          "cursor-and-divisions",
+          "duration-notation",
+          "voice-coverage",
+          "pitch-rest-invariants",
+          "tie-tied-slur-wedge-pairs"
+        ],
+        "unchecked": [
+          "source-pdf-correctness",
+          "full-musicxml-schema",
+          "instrument-playback",
+          "microtonal-tuning",
+          "repeat-playback",
+          "engraving-correctness"
+        ]
+      },
+      "diagnostics": [
+        {
+          "code": "voice-gap",
+          "severity": "warning",
+          "location": {
+            "partId": "P1",
+            "printedMeasure": "10",
+            "staff": "1",
+            "voice": "2",
+            "offset": "2",
+            "eventIndex": 4,
+            "measureOrdinal": 10
+          },
+          "reason": "Uncovered voice interval 0..2.",
+          "operationId": null
+        },
+        {
+          "code": "orphan-slur",
+          "severity": "error",
+          "location": {
+            "partId": "P1",
+            "printedMeasure": "12",
+            "staff": "1",
+            "voice": "1",
+            "offset": "0",
+            "eventIndex": 1,
+            "measureOrdinal": 12
+          },
+          "reason": "slur stop/continue has no matching start.",
+          "operationId": null
+        },
+        {
+          "code": "voice-gap",
+          "severity": "warning",
+          "location": {
+            "partId": "P1",
+            "printedMeasure": "50",
+            "staff": "1",
+            "voice": "2",
+            "offset": "2",
+            "eventIndex": 3,
+            "measureOrdinal": 50
+          },
+          "reason": "Uncovered voice interval 0..2.",
+          "operationId": null
+        },
+        {
+          "code": "voice-gap",
+          "severity": "warning",
+          "location": {
+            "partId": "P1",
+            "printedMeasure": "52",
+            "staff": "1",
+            "voice": "2",
+            "offset": "2",
+            "eventIndex": 3,
+            "measureOrdinal": 52
+          },
+          "reason": "Uncovered voice interval 0..2.",
+          "operationId": null
+        },
+        {
+          "code": "duplicate-slur-start",
+          "severity": "error",
+          "location": {
+            "partId": "P1",
+            "printedMeasure": "53",
+            "staff": "1",
+            "voice": "2",
+            "offset": "0",
+            "eventIndex": 3,
+            "measureOrdinal": 53
+          },
+          "reason": "slur number is already open.",
+          "operationId": null
+        },
+        {
+          "code": "orphan-slur",
+          "severity": "error",
+          "location": {
+            "partId": "P1",
+            "printedMeasure": "54",
+            "staff": "1",
+            "voice": "1",
+            "offset": "2",
+            "eventIndex": 2,
+            "measureOrdinal": 54
+          },
+          "reason": "slur stop/continue has no matching start.",
+          "operationId": null
+        },
+        {
+          "code": "voice-gap",
+          "severity": "warning",
+          "location": {
+            "partId": "P2",
+            "printedMeasure": "10",
+            "staff": "1",
+            "voice": "2",
+            "offset": "2",
+            "eventIndex": 4,
+            "measureOrdinal": 10
+          },
+          "reason": "Uncovered voice interval 0..2.",
+          "operationId": null
+        },
+        {
+          "code": "voice-gap",
+          "severity": "warning",
+          "location": {
+            "partId": "P2",
+            "printedMeasure": "52",
+            "staff": "1",
+            "voice": "2",
+            "offset": "2",
+            "eventIndex": 3,
+            "measureOrdinal": 52
+          },
+          "reason": "Uncovered voice interval 0..2.",
+          "operationId": null
+        },
+        {
+          "code": "orphan-slur",
+          "severity": "error",
+          "location": {
+            "partId": "P2",
+            "printedMeasure": "54",
+            "staff": "1",
+            "voice": "1",
+            "offset": "2",
+            "eventIndex": 2,
+            "measureOrdinal": 54
+          },
+          "reason": "slur stop/continue has no matching start.",
+          "operationId": null
+        },
+        {
+          "code": "incomplete-voice",
+          "severity": "warning",
+          "location": {
+            "partId": "P2",
+            "printedMeasure": "55",
+            "measureOrdinal": 55,
+            "voice": "2"
+          },
+          "reason": "Voice ends at 2, before meter 4; may be intentional incomplete notation.",
+          "operationId": null
+        },
+        {
+          "code": "voice-gap",
+          "severity": "warning",
+          "location": {
+            "partId": "P2",
+            "printedMeasure": "56",
+            "staff": "1",
+            "voice": "2",
+            "offset": "3",
+            "eventIndex": 6,
+            "measureOrdinal": 56
+          },
+          "reason": "Uncovered voice interval 2..3.",
+          "operationId": null
+        },
+        {
+          "code": "voice-gap",
+          "severity": "warning",
+          "location": {
+            "partId": "P3",
+            "printedMeasure": "7",
+            "staff": "1",
+            "voice": "2",
+            "offset": "2",
+            "eventIndex": 3,
+            "measureOrdinal": 7
+          },
+          "reason": "Uncovered voice interval 0..2.",
+          "operationId": null
+        },
+        {
+          "code": "voice-gap",
+          "severity": "warning",
+          "location": {
+            "partId": "P3",
+            "printedMeasure": "9",
+            "staff": "1",
+            "voice": "2",
+            "offset": "2",
+            "eventIndex": 4,
+            "measureOrdinal": 9
+          },
+          "reason": "Uncovered voice interval 0..2.",
+          "operationId": null
+        },
+        {
+          "code": "incomplete-voice",
+          "severity": "warning",
+          "location": {
+            "partId": "P3",
+            "printedMeasure": "13",
+            "measureOrdinal": 13,
+            "voice": "2"
+          },
+          "reason": "Voice ends at 1, before meter 4; may be intentional incomplete notation.",
+          "operationId": null
+        },
+        {
+          "code": "orphan-slur",
+          "severity": "error",
+          "location": {
+            "partId": "P3",
+            "printedMeasure": "14",
+            "staff": "1",
+            "voice": "1",
+            "offset": "1",
+            "eventIndex": 2,
+            "measureOrdinal": 14
+          },
+          "reason": "slur stop/continue has no matching start.",
+          "operationId": null
+        },
+        {
+          "code": "voice-gap",
+          "severity": "warning",
+          "location": {
+            "partId": "P3",
+            "printedMeasure": "49",
+            "staff": "1",
+            "voice": "2",
+            "offset": "2",
+            "eventIndex": 3,
+            "measureOrdinal": 49
+          },
+          "reason": "Uncovered voice interval 0..2.",
+          "operationId": null
+        },
+        {
+          "code": "voice-gap",
+          "severity": "warning",
+          "location": {
+            "partId": "P3",
+            "printedMeasure": "65",
+            "staff": "1",
+            "voice": "2",
+            "offset": "1",
+            "eventIndex": 5,
+            "measureOrdinal": 65
+          },
+          "reason": "Uncovered voice interval 0..1.",
+          "operationId": null
+        },
+        {
+          "code": "incomplete-voice",
+          "severity": "warning",
+          "location": {
+            "partId": "P3",
+            "printedMeasure": "69",
+            "measureOrdinal": 69,
+            "voice": "2"
+          },
+          "reason": "Voice ends at 2, before meter 4; may be intentional incomplete notation.",
+          "operationId": null
+        },
+        {
+          "code": "voice-gap",
+          "severity": "warning",
+          "location": {
+            "partId": "P4",
+            "printedMeasure": "9",
+            "staff": "1",
+            "voice": "2",
+            "offset": "2",
+            "eventIndex": 4,
+            "measureOrdinal": 9
+          },
+          "reason": "Uncovered voice interval 0..2.",
+          "operationId": null
+        },
+        {
+          "code": "incomplete-voice",
+          "severity": "warning",
+          "location": {
+            "partId": "P4",
+            "printedMeasure": "57",
+            "measureOrdinal": 57,
+            "voice": "2"
+          },
+          "reason": "Voice ends at 2, before meter 4; may be intentional incomplete notation.",
+          "operationId": null
+        },
+        {
+          "code": "incomplete-voice",
+          "severity": "warning",
+          "location": {
+            "partId": "P4",
+            "printedMeasure": "69",
+            "measureOrdinal": 69,
+            "voice": "2"
+          },
+          "reason": "Voice ends at 2, before meter 4; may be intentional incomplete notation.",
+          "operationId": null
+        },
+        {
+          "code": "unclosed-slur",
+          "severity": "error",
+          "location": {
+            "partId": "P1",
+            "printedMeasure": "53",
+            "staff": "1",
+            "voice": "2",
+            "offset": "0",
+            "eventIndex": 3,
+            "measureOrdinal": 53
+          },
+          "reason": "slur start has no matching stop.",
+          "operationId": null
+        },
+        {
+          "code": "unclosed-slur",
+          "severity": "error",
+          "location": {
+            "partId": "P2",
+            "printedMeasure": "53",
+            "staff": "1",
+            "voice": "2",
+            "offset": "0",
+            "eventIndex": 3,
+            "measureOrdinal": 53
+          },
+          "reason": "slur start has no matching stop.",
+          "operationId": null
+        },
+        {
+          "code": "unclosed-slur",
+          "severity": "error",
+          "location": {
+            "partId": "P3",
+            "printedMeasure": "11",
+            "staff": "1",
+            "voice": "2",
+            "offset": "0",
+            "eventIndex": 4,
+            "measureOrdinal": 11
+          },
+          "reason": "slur start has no matching stop.",
+          "operationId": null
+        }
+      ]
+    },
+    "validationAfter": {
+      "schemaVersion": "1",
+      "status": "invalid",
+      "coverage": {
+        "checked": [
+          "part-and-measure-structure",
+          "snapshot-locations",
+          "cursor-and-divisions",
+          "duration-notation",
+          "voice-coverage",
+          "pitch-rest-invariants",
+          "tie-tied-slur-wedge-pairs"
+        ],
+        "unchecked": [
+          "source-pdf-correctness",
+          "full-musicxml-schema",
+          "instrument-playback",
+          "microtonal-tuning",
+          "repeat-playback",
+          "engraving-correctness"
+        ]
+      },
+      "diagnostics": [
+        {
+          "code": "voice-gap",
+          "severity": "warning",
+          "location": {
+            "partId": "P1",
+            "printedMeasure": "10",
+            "staff": "1",
+            "voice": "2",
+            "offset": "2",
+            "eventIndex": 4,
+            "measureOrdinal": 10
+          },
+          "reason": "Uncovered voice interval 0..2.",
+          "operationId": null
+        },
+        {
+          "code": "orphan-slur",
+          "severity": "error",
+          "location": {
+            "partId": "P1",
+            "printedMeasure": "12",
+            "staff": "1",
+            "voice": "1",
+            "offset": "0",
+            "eventIndex": 1,
+            "measureOrdinal": 12
+          },
+          "reason": "slur stop/continue has no matching start.",
+          "operationId": null
+        },
+        {
+          "code": "voice-gap",
+          "severity": "warning",
+          "location": {
+            "partId": "P1",
+            "printedMeasure": "50",
+            "staff": "1",
+            "voice": "2",
+            "offset": "2",
+            "eventIndex": 3,
+            "measureOrdinal": 50
+          },
+          "reason": "Uncovered voice interval 0..2.",
+          "operationId": null
+        },
+        {
+          "code": "voice-gap",
+          "severity": "warning",
+          "location": {
+            "partId": "P1",
+            "printedMeasure": "52",
+            "staff": "1",
+            "voice": "2",
+            "offset": "2",
+            "eventIndex": 3,
+            "measureOrdinal": 52
+          },
+          "reason": "Uncovered voice interval 0..2.",
+          "operationId": null
+        },
+        {
+          "code": "duplicate-slur-start",
+          "severity": "error",
+          "location": {
+            "partId": "P1",
+            "printedMeasure": "53",
+            "staff": "1",
+            "voice": "2",
+            "offset": "0",
+            "eventIndex": 3,
+            "measureOrdinal": 53
+          },
+          "reason": "slur number is already open.",
+          "operationId": null
+        },
+        {
+          "code": "orphan-slur",
+          "severity": "error",
+          "location": {
+            "partId": "P1",
+            "printedMeasure": "54",
+            "staff": "1",
+            "voice": "1",
+            "offset": "2",
+            "eventIndex": 2,
+            "measureOrdinal": 54
+          },
+          "reason": "slur stop/continue has no matching start.",
+          "operationId": null
+        },
+        {
+          "code": "voice-gap",
+          "severity": "warning",
+          "location": {
+            "partId": "P2",
+            "printedMeasure": "10",
+            "staff": "1",
+            "voice": "2",
+            "offset": "2",
+            "eventIndex": 4,
+            "measureOrdinal": 10
+          },
+          "reason": "Uncovered voice interval 0..2.",
+          "operationId": null
+        },
+        {
+          "code": "voice-gap",
+          "severity": "warning",
+          "location": {
+            "partId": "P2",
+            "printedMeasure": "52",
+            "staff": "1",
+            "voice": "2",
+            "offset": "2",
+            "eventIndex": 3,
+            "measureOrdinal": 52
+          },
+          "reason": "Uncovered voice interval 0..2.",
+          "operationId": null
+        },
+        {
+          "code": "orphan-slur",
+          "severity": "error",
+          "location": {
+            "partId": "P2",
+            "printedMeasure": "54",
+            "staff": "1",
+            "voice": "1",
+            "offset": "2",
+            "eventIndex": 2,
+            "measureOrdinal": 54
+          },
+          "reason": "slur stop/continue has no matching start.",
+          "operationId": null
+        },
+        {
+          "code": "incomplete-voice",
+          "severity": "warning",
+          "location": {
+            "partId": "P2",
+            "printedMeasure": "55",
+            "measureOrdinal": 55,
+            "voice": "2"
+          },
+          "reason": "Voice ends at 2, before meter 4; may be intentional incomplete notation.",
+          "operationId": null
+        },
+        {
+          "code": "voice-gap",
+          "severity": "warning",
+          "location": {
+            "partId": "P2",
+            "printedMeasure": "56",
+            "staff": "1",
+            "voice": "2",
+            "offset": "3",
+            "eventIndex": 6,
+            "measureOrdinal": 56
+          },
+          "reason": "Uncovered voice interval 2..3.",
+          "operationId": null
+        },
+        {
+          "code": "voice-gap",
+          "severity": "warning",
+          "location": {
+            "partId": "P3",
+            "printedMeasure": "7",
+            "staff": "1",
+            "voice": "2",
+            "offset": "2",
+            "eventIndex": 3,
+            "measureOrdinal": 7
+          },
+          "reason": "Uncovered voice interval 0..2.",
+          "operationId": null
+        },
+        {
+          "code": "voice-gap",
+          "severity": "warning",
+          "location": {
+            "partId": "P3",
+            "printedMeasure": "9",
+            "staff": "1",
+            "voice": "2",
+            "offset": "2",
+            "eventIndex": 4,
+            "measureOrdinal": 9
+          },
+          "reason": "Uncovered voice interval 0..2.",
+          "operationId": null
+        },
+        {
+          "code": "incomplete-voice",
+          "severity": "warning",
+          "location": {
+            "partId": "P3",
+            "printedMeasure": "13",
+            "measureOrdinal": 13,
+            "voice": "2"
+          },
+          "reason": "Voice ends at 1, before meter 4; may be intentional incomplete notation.",
+          "operationId": null
+        },
+        {
+          "code": "orphan-slur",
+          "severity": "error",
+          "location": {
+            "partId": "P3",
+            "printedMeasure": "14",
+            "staff": "1",
+            "voice": "1",
+            "offset": "1",
+            "eventIndex": 2,
+            "measureOrdinal": 14
+          },
+          "reason": "slur stop/continue has no matching start.",
+          "operationId": null
+        },
+        {
+          "code": "voice-gap",
+          "severity": "warning",
+          "location": {
+            "partId": "P3",
+            "printedMeasure": "49",
+            "staff": "1",
+            "voice": "2",
+            "offset": "2",
+            "eventIndex": 3,
+            "measureOrdinal": 49
+          },
+          "reason": "Uncovered voice interval 0..2.",
+          "operationId": null
+        },
+        {
+          "code": "voice-gap",
+          "severity": "warning",
+          "location": {
+            "partId": "P3",
+            "printedMeasure": "65",
+            "staff": "1",
+            "voice": "2",
+            "offset": "1",
+            "eventIndex": 5,
+            "measureOrdinal": 65
+          },
+          "reason": "Uncovered voice interval 0..1.",
+          "operationId": null
+        },
+        {
+          "code": "incomplete-voice",
+          "severity": "warning",
+          "location": {
+            "partId": "P3",
+            "printedMeasure": "69",
+            "measureOrdinal": 69,
+            "voice": "2"
+          },
+          "reason": "Voice ends at 2, before meter 4; may be intentional incomplete notation.",
+          "operationId": null
+        },
+        {
+          "code": "voice-gap",
+          "severity": "warning",
+          "location": {
+            "partId": "P4",
+            "printedMeasure": "9",
+            "staff": "1",
+            "voice": "2",
+            "offset": "2",
+            "eventIndex": 4,
+            "measureOrdinal": 9
+          },
+          "reason": "Uncovered voice interval 0..2.",
+          "operationId": null
+        },
+        {
+          "code": "incomplete-voice",
+          "severity": "warning",
+          "location": {
+            "partId": "P4",
+            "printedMeasure": "57",
+            "measureOrdinal": 57,
+            "voice": "2"
+          },
+          "reason": "Voice ends at 2, before meter 4; may be intentional incomplete notation.",
+          "operationId": null
+        },
+        {
+          "code": "incomplete-voice",
+          "severity": "warning",
+          "location": {
+            "partId": "P4",
+            "printedMeasure": "69",
+            "measureOrdinal": 69,
+            "voice": "2"
+          },
+          "reason": "Voice ends at 2, before meter 4; may be intentional incomplete notation.",
+          "operationId": null
+        },
+        {
+          "code": "unclosed-slur",
+          "severity": "error",
+          "location": {
+            "partId": "P1",
+            "printedMeasure": "53",
+            "staff": "1",
+            "voice": "2",
+            "offset": "0",
+            "eventIndex": 3,
+            "measureOrdinal": 53
+          },
+          "reason": "slur start has no matching stop.",
+          "operationId": null
+        },
+        {
+          "code": "unclosed-slur",
+          "severity": "error",
+          "location": {
+            "partId": "P2",
+            "printedMeasure": "53",
+            "staff": "1",
+            "voice": "2",
+            "offset": "0",
+            "eventIndex": 3,
+            "measureOrdinal": 53
+          },
+          "reason": "slur start has no matching stop.",
+          "operationId": null
+        },
+        {
+          "code": "unclosed-slur",
+          "severity": "error",
+          "location": {
+            "partId": "P3",
+            "printedMeasure": "11",
+            "staff": "1",
+            "voice": "2",
+            "offset": "0",
+            "eventIndex": 4,
+            "measureOrdinal": 11
+          },
+          "reason": "slur start has no matching stop.",
+          "operationId": null
+        }
+      ]
+    }
+  }
+}
