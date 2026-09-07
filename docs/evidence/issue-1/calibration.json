@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1",
   "targetMusicXml": {
-    "path": "/Users/siahuat0727/Documents/score-cli/tmp/issue-1/full-score/os-justi-lyrics.fixed.musicxml",
+    "path": "/Users/siahuat0727/Documents/score-cli/tmp/issue-1/final-full-score/os-justi-lyrics.fixed.musicxml",
     "sha256": "d989cd4153ff8b272d079a992520a300c013b4370c767c3ee1f01e77c300d1b9"
   },
   "sourcePdf": {
@@ -33,7 +33,7 @@
         {
           "fromState": "unreviewed",
           "toState": "verified",
-          "at": "2026-09-07T12:07:07.574837+00:00",
+          "at": "2026-09-07T12:17:36.933467+00:00",
           "reviewer": "Codex visual source review (not human sign-off)",
           "conclusion": "Compared source PDF page 1 system 1 to full-score crop and explicit events. Soprano pitch/rest, onset/duration and lyric syllables agree for this measure. Dynamics, slurs, other parts and engraving excluded.",
           "musicXmlSha256": "d989cd4153ff8b272d079a992520a300c013b4370c767c3ee1f01e77c300d1b9",
@@ -51,7 +51,7 @@
           "editReports": [
             {
               "path": "/Users/siahuat0727/Documents/score-cli/docs/evidence/issue-1/edit-report.json",
-              "sha256": "ac708fa99fc6ac4305de9a2f3584fc54338bf4185715e289fa28f2c02d9a59f7"
+              "sha256": "0433fb40c50986f09ba673a8505ed0e1c3d705d86e8d3270a039434dddae1205"
             }
           ]
         }
@@ -59,7 +59,7 @@
       "invalidationReasons": [],
       "reviewer": "Codex visual source review (not human sign-off)",
       "conclusion": "Compared source PDF page 1 system 1 to full-score crop and explicit events. Soprano pitch/rest, onset/duration and lyric syllables agree for this measure. Dynamics, slurs, other parts and engraving excluded.",
-      "reviewedAt": "2026-09-07T12:07:07.574837+00:00",
+      "reviewedAt": "2026-09-07T12:17:36.933467+00:00",
       "sourceLocation": {
         "page": 1,
         "system": 1,
@@ -70,7 +70,7 @@
       "editReports": [
         {
           "path": "/Users/siahuat0727/Documents/score-cli/docs/evidence/issue-1/edit-report.json",
-          "sha256": "ac708fa99fc6ac4305de9a2f3584fc54338bf4185715e289fa28f2c02d9a59f7"
+          "sha256": "0433fb40c50986f09ba673a8505ed0e1c3d705d86e8d3270a039434dddae1205"
         }
       ],
       "verifiedMusicXmlSha256": "d989cd4153ff8b272d079a992520a300c013b4370c767c3ee1f01e77c300d1b9",
@@ -100,7 +100,7 @@
         {
           "fromState": "unreviewed",
           "toState": "verified",
-          "at": "2026-09-07T12:07:07.592054+00:00",
+          "at": "2026-09-07T12:17:36.949826+00:00",
           "reviewer": "Codex visual source review (not human sign-off)",
           "conclusion": "Compared source PDF page 1 system 1 to full-score crop and explicit events. Soprano pitch/rest, onset/duration and lyric syllables agree for this measure. Dynamics, slurs, other parts and engraving excluded.",
           "musicXmlSha256": "d989cd4153ff8b272d079a992520a300c013b4370c767c3ee1f01e77c300d1b9",
@@ -118,7 +118,7 @@
           "editReports": [
             {
               "path": "/Users/siahuat0727/Documents/score-cli/docs/evidence/issue-1/edit-report.json",
-              "sha256": "ac708fa99fc6ac4305de9a2f3584fc54338bf4185715e289fa28f2c02d9a59f7"
+              "sha256": "0433fb40c50986f09ba673a8505ed0e1c3d705d86e8d3270a039434dddae1205"
             }
           ]
         }
@@ -126,7 +126,7 @@
       "invalidationReasons": [],
       "reviewer": "Codex visual source review (not human sign-off)",
       "conclusion": "Compared source PDF page 1 system 1 to full-score crop and explicit events. Soprano pitch/rest, onset/duration and lyric syllables agree for this measure. Dynamics, slurs, other parts and engraving excluded.",
-      "reviewedAt": "2026-09-07T12:07:07.592054+00:00",
+      "reviewedAt": "2026-09-07T12:17:36.949826+00:00",
       "sourceLocation": {
         "page": 1,
         "system": 1,
@@ -137,7 +137,7 @@
       "editReports": [
         {
           "path": "/Users/siahuat0727/Documents/score-cli/docs/evidence/issue-1/edit-report.json",
-          "sha256": "ac708fa99fc6ac4305de9a2f3584fc54338bf4185715e289fa28f2c02d9a59f7"
+          "sha256": "0433fb40c50986f09ba673a8505ed0e1c3d705d86e8d3270a039434dddae1205"
         }
       ],
       "verifiedMusicXmlSha256": "d989cd4153ff8b272d079a992520a300c013b4370c767c3ee1f01e77c300d1b9",
@@ -167,7 +167,7 @@
         {
           "fromState": "unreviewed",
           "toState": "verified",
-          "at": "2026-09-07T12:07:07.608628+00:00",
+          "at": "2026-09-07T12:17:36.965692+00:00",
           "reviewer": "Codex visual source review (not human sign-off)",
           "conclusion": "Compared source PDF page 1 system 1 to full-score crop and explicit events. Soprano pitch/rest, onset/duration and lyric syllables agree for this measure. Dynamics, slurs, other parts and engraving excluded.",
           "musicXmlSha256": "d989cd4153ff8b272d079a992520a300c013b4370c767c3ee1f01e77c300d1b9",
@@ -185,7 +185,7 @@
           "editReports": [
             {
               "path": "/Users/siahuat0727/Documents/score-cli/docs/evidence/issue-1/edit-report.json",
-              "sha256": "ac708fa99fc6ac4305de9a2f3584fc54338bf4185715e289fa28f2c02d9a59f7"
+              "sha256": "0433fb40c50986f09ba673a8505ed0e1c3d705d86e8d3270a039434dddae1205"
             }
           ]
         }
@@ -193,7 +193,7 @@
       "invalidationReasons": [],
       "reviewer": "Codex visual source review (not human sign-off)",
       "conclusion": "Compared source PDF page 1 system 1 to full-score crop and explicit events. Soprano pitch/rest, onset/duration and lyric syllables agree for this measure. Dynamics, slurs, other parts and engraving excluded.",
-      "reviewedAt": "2026-09-07T12:07:07.608628+00:00",
+      "reviewedAt": "2026-09-07T12:17:36.965692+00:00",
       "sourceLocation": {
         "page": 1,
         "system": 1,
@@ -204,7 +204,7 @@
       "editReports": [
         {
           "path": "/Users/siahuat0727/Documents/score-cli/docs/evidence/issue-1/edit-report.json",
-          "sha256": "ac708fa99fc6ac4305de9a2f3584fc54338bf4185715e289fa28f2c02d9a59f7"
+          "sha256": "0433fb40c50986f09ba673a8505ed0e1c3d705d86e8d3270a039434dddae1205"
         }
       ],
       "verifiedMusicXmlSha256": "d989cd4153ff8b272d079a992520a300c013b4370c767c3ee1f01e77c300d1b9",
@@ -234,7 +234,7 @@
         {
           "fromState": "unreviewed",
           "toState": "verified",
-          "at": "2026-09-07T12:07:07.625468+00:00",
+          "at": "2026-09-07T12:17:36.981767+00:00",
           "reviewer": "Codex visual source review (not human sign-off)",
           "conclusion": "Compared source PDF page 1 system 1 to full-score crop and explicit events. Soprano pitch/rest, onset/duration and lyric syllables agree for this measure. Dynamics, slurs, other parts and engraving excluded.",
           "musicXmlSha256": "d989cd4153ff8b272d079a992520a300c013b4370c767c3ee1f01e77c300d1b9",
@@ -252,7 +252,7 @@
           "editReports": [
             {
               "path": "/Users/siahuat0727/Documents/score-cli/docs/evidence/issue-1/edit-report.json",
-              "sha256": "ac708fa99fc6ac4305de9a2f3584fc54338bf4185715e289fa28f2c02d9a59f7"
+              "sha256": "0433fb40c50986f09ba673a8505ed0e1c3d705d86e8d3270a039434dddae1205"
             }
           ]
         }
@@ -260,7 +260,7 @@
       "invalidationReasons": [],
       "reviewer": "Codex visual source review (not human sign-off)",
       "conclusion": "Compared source PDF page 1 system 1 to full-score crop and explicit events. Soprano pitch/rest, onset/duration and lyric syllables agree for this measure. Dynamics, slurs, other parts and engraving excluded.",
-      "reviewedAt": "2026-09-07T12:07:07.625468+00:00",
+      "reviewedAt": "2026-09-07T12:17:36.981767+00:00",
       "sourceLocation": {
         "page": 1,
         "system": 1,
@@ -271,7 +271,7 @@
       "editReports": [
         {
           "path": "/Users/siahuat0727/Documents/score-cli/docs/evidence/issue-1/edit-report.json",
-          "sha256": "ac708fa99fc6ac4305de9a2f3584fc54338bf4185715e289fa28f2c02d9a59f7"
+          "sha256": "0433fb40c50986f09ba673a8505ed0e1c3d705d86e8d3270a039434dddae1205"
         }
       ],
       "verifiedMusicXmlSha256": "d989cd4153ff8b272d079a992520a300c013b4370c767c3ee1f01e77c300d1b9",
@@ -301,7 +301,7 @@
         {
           "fromState": "unreviewed",
           "toState": "verified",
-          "at": "2026-09-07T12:07:07.642573+00:00",
+          "at": "2026-09-07T12:17:36.998021+00:00",
           "reviewer": "Codex visual source review (not human sign-off)",
           "conclusion": "Compared source PDF page 1 system 1 to full-score crop and explicit events. Soprano pitch/rest, onset/duration and lyric syllables agree for this measure. Dynamics, slurs, other parts and engraving excluded.",
           "musicXmlSha256": "d989cd4153ff8b272d079a992520a300c013b4370c767c3ee1f01e77c300d1b9",
@@ -319,7 +319,7 @@
           "editReports": [
             {
               "path": "/Users/siahuat0727/Documents/score-cli/docs/evidence/issue-1/edit-report.json",
-              "sha256": "ac708fa99fc6ac4305de9a2f3584fc54338bf4185715e289fa28f2c02d9a59f7"
+              "sha256": "0433fb40c50986f09ba673a8505ed0e1c3d705d86e8d3270a039434dddae1205"
             }
           ]
         }
@@ -327,7 +327,7 @@
       "invalidationReasons": [],
       "reviewer": "Codex visual source review (not human sign-off)",
       "conclusion": "Compared source PDF page 1 system 1 to full-score crop and explicit events. Soprano pitch/rest, onset/duration and lyric syllables agree for this measure. Dynamics, slurs, other parts and engraving excluded.",
-      "reviewedAt": "2026-09-07T12:07:07.642573+00:00",
+      "reviewedAt": "2026-09-07T12:17:36.998021+00:00",
       "sourceLocation": {
         "page": 1,
         "system": 1,
@@ -338,7 +338,7 @@
       "editReports": [
         {
           "path": "/Users/siahuat0727/Documents/score-cli/docs/evidence/issue-1/edit-report.json",
-          "sha256": "ac708fa99fc6ac4305de9a2f3584fc54338bf4185715e289fa28f2c02d9a59f7"
+          "sha256": "0433fb40c50986f09ba673a8505ed0e1c3d705d86e8d3270a039434dddae1205"
         }
       ],
       "verifiedMusicXmlSha256": "d989cd4153ff8b272d079a992520a300c013b4370c767c3ee1f01e77c300d1b9",
@@ -368,7 +368,7 @@
         {
           "fromState": "unreviewed",
           "toState": "verified",
-          "at": "2026-09-07T12:07:07.659621+00:00",
+          "at": "2026-09-07T12:17:37.014592+00:00",
           "reviewer": "Codex visual source review (not human sign-off)",
           "conclusion": "Compared source PDF page 1 system 1 to full-score crop and explicit events. Soprano pitch/rest, onset/duration and lyric syllables agree for this measure. Dynamics, slurs, other parts and engraving excluded.",
           "musicXmlSha256": "d989cd4153ff8b272d079a992520a300c013b4370c767c3ee1f01e77c300d1b9",
@@ -386,7 +386,7 @@
           "editReports": [
             {
               "path": "/Users/siahuat0727/Documents/score-cli/docs/evidence/issue-1/edit-report.json",
-              "sha256": "ac708fa99fc6ac4305de9a2f3584fc54338bf4185715e289fa28f2c02d9a59f7"
+              "sha256": "0433fb40c50986f09ba673a8505ed0e1c3d705d86e8d3270a039434dddae1205"
             }
           ]
         }
@@ -394,7 +394,7 @@
       "invalidationReasons": [],
       "reviewer": "Codex visual source review (not human sign-off)",
       "conclusion": "Compared source PDF page 1 system 1 to full-score crop and explicit events. Soprano pitch/rest, onset/duration and lyric syllables agree for this measure. Dynamics, slurs, other parts and engraving excluded.",
-      "reviewedAt": "2026-09-07T12:07:07.659621+00:00",
+      "reviewedAt": "2026-09-07T12:17:37.014592+00:00",
       "sourceLocation": {
         "page": 1,
         "system": 1,
@@ -405,7 +405,7 @@
       "editReports": [
         {
           "path": "/Users/siahuat0727/Documents/score-cli/docs/evidence/issue-1/edit-report.json",
-          "sha256": "ac708fa99fc6ac4305de9a2f3584fc54338bf4185715e289fa28f2c02d9a59f7"
+          "sha256": "0433fb40c50986f09ba673a8505ed0e1c3d705d86e8d3270a039434dddae1205"
         }
       ],
       "verifiedMusicXmlSha256": "d989cd4153ff8b272d079a992520a300c013b4370c767c3ee1f01e77c300d1b9",
@@ -435,7 +435,7 @@
         {
           "fromState": "unreviewed",
           "toState": "verified",
-          "at": "2026-09-07T12:07:07.677066+00:00",
+          "at": "2026-09-07T12:17:37.031242+00:00",
           "reviewer": "Codex visual source review (not human sign-off)",
           "conclusion": "Compared source PDF page 1 system 1 to full-score crop and explicit events. Soprano pitch/rest, onset/duration and lyric syllables agree for this measure. Dynamics, slurs, other parts and engraving excluded.",
           "musicXmlSha256": "d989cd4153ff8b272d079a992520a300c013b4370c767c3ee1f01e77c300d1b9",
@@ -453,7 +453,7 @@
           "editReports": [
             {
               "path": "/Users/siahuat0727/Documents/score-cli/docs/evidence/issue-1/edit-report.json",
-              "sha256": "ac708fa99fc6ac4305de9a2f3584fc54338bf4185715e289fa28f2c02d9a59f7"
+              "sha256": "0433fb40c50986f09ba673a8505ed0e1c3d705d86e8d3270a039434dddae1205"
             }
           ]
         }
@@ -461,7 +461,7 @@
       "invalidationReasons": [],
       "reviewer": "Codex visual source review (not human sign-off)",
       "conclusion": "Compared source PDF page 1 system 1 to full-score crop and explicit events. Soprano pitch/rest, onset/duration and lyric syllables agree for this measure. Dynamics, slurs, other parts and engraving excluded.",
-      "reviewedAt": "2026-09-07T12:07:07.677066+00:00",
+      "reviewedAt": "2026-09-07T12:17:37.031242+00:00",
       "sourceLocation": {
         "page": 1,
         "system": 1,
@@ -472,7 +472,7 @@
       "editReports": [
         {
           "path": "/Users/siahuat0727/Documents/score-cli/docs/evidence/issue-1/edit-report.json",
-          "sha256": "ac708fa99fc6ac4305de9a2f3584fc54338bf4185715e289fa28f2c02d9a59f7"
+          "sha256": "0433fb40c50986f09ba673a8505ed0e1c3d705d86e8d3270a039434dddae1205"
         }
       ],
       "verifiedMusicXmlSha256": "d989cd4153ff8b272d079a992520a300c013b4370c767c3ee1f01e77c300d1b9",

@@ -53,45 +53,26 @@ def resolve_direction(document, target, cache):
             "ambiguous-direction-measure", "Direction measure must be unique.", target
         )
     _, _, ordinal, measure, _ = matches[0]
-    events = [
-        e
-        for e in document.events()
-        if e.location["partId"] == target["partId"] and e.measure_ordinal == ordinal
+    positions = [
+        p
+        for p in document.timeline()
+        if p.part_id == target["partId"] and p.measure_ordinal == ordinal
     ]
-    divisions = events[0].divisions if events else Fraction(1)
-    cursor = Fraction(0)
     found = None
     index = 0
     insertion_index = 0
-    for position, element in enumerate(measure):
+    for position in positions:
+        element = position.element
         tag = name(element)
-        if tag == "attributes":
-            if child(element, "divisions") is not None:
-                divisions = Fraction(content(element, "divisions"))
-            if cursor == 0:
-                insertion_index = position + 1
-        elif (
-            tag == "note"
-            and child(element, "chord") is None
-            and child(element, "grace") is None
-        ):
-            cursor += Fraction(content(element, "duration", "0")) / divisions
-        elif tag in {"backup", "forward"}:
-            cursor += (
-                Fraction(content(element, "duration", "0"))
-                / divisions
-                * (-1 if tag == "backup" else 1)
-            )
+        if tag == "attributes" and position.cursor_before == 0:
+            insertion_index = position.element_index + 1
         elif tag == "direction":
             index += 1
             if index == target["directionIndex"]:
                 if (
                     target["staff"] != content(element, "staff", "1")
                     or target["voice"] != content(element, "voice", "")
-                    or target["offset"]
-                    != str(
-                        cursor + Fraction(content(element, "offset", "0")) / divisions
-                    )
+                    or target["offset"] != str(position.offset)
                 ):
                     raise ScoreError(
                         "target-missing",
@@ -177,11 +158,7 @@ def edit_dynamics(target, operation):
         symbol = make(target.element, "dynamics")
         symbol.append(make(symbol, value))
         _append(target, symbol)
-    if (
-        not children(target.element, "direction-type")
-        and target.element.getparent() is not None
-    ):
-        target.element.getparent().remove(target.element)
+    _cleanup_direction(target)
 
 
 def edit_wedge(start, end, operation):
@@ -241,8 +218,19 @@ def edit_wedge(start, end, operation):
                     number=number,
                 ),
             )
-        if (
-            not children(target.element, "direction-type")
-            and target.element.getparent() is not None
-        ):
-            target.element.getparent().remove(target.element)
+        _cleanup_direction(target)
+
+
+def _cleanup_direction(target):
+    if children(target.element, "direction-type") or target.element.getparent() is None:
+        return
+    if any(
+        name(e) not in {"voice", "staff", "offset"} for e in target.element
+    ) or target.element.get("id"):
+        raise ScoreError(
+            "unsupported-direction-removal",
+            "Removing the last symbol would discard unrelated direction content or an ID; retain a notation carrier before deleting it.",
+        )
+    parent = target.element.getparent()
+    assert parent is not None
+    parent.remove(target.element)

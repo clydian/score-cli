@@ -45,8 +45,8 @@ note target 精确包含：
 | duration | `{duration:"1",type:"quarter",dots:0,timeModification:null}` | 另需 `timeline:"shift-following"`。duration 用四分音符有理数；必须能在该音符有效 divisions 下表示为整数。type/dots/timeModification 同时校验并写入；比例为 `{actualNotes:3,normalNotes:2}`。非和弦、非倚音才推进游标。保留 backup/forward 的原始值；若由此造成别的 voice 空洞/重叠、方向元素移动或小节越界，拒绝。可用一个事务内的相邻时值补偿保持后续位置。倚音时值编辑拒绝；显式 normal-type/normal-dot 的连音编辑拒绝。|
 | voice / staff | 精确字符串 | 不改变音符文档次序或 duration，最终重算时间线与配对；staff 为正整数字符串。|
 | kind | `{kind:"note",pitch:{…}}` 或 `{kind:"rest",pitch:null}` | 不移动后续事件。拒绝和弦锚点/和弦音、unpitched 和 tied 音符转换。rest→note 的 pitch accidental 先设 null，可再用 pitch 操作设置。|
-| tie / slur | boolean | 另有 `start`、`end` 两个 note locator 和 `number:"1"`。两端必须按时间顺序，v1 在同 part/voice 中编辑。true 新增、false 删除，两端旧状态必须一致。tie 同时维护演奏 tie 和记谱 tied，音高相同且时间连续；slur 只维护记谱。编号 1–16，不重编号其他符号。|
-| dynamics | null 或 `"p"` 等 | target 是独立 direction locator。只编辑一个简单力度符号；保留 direction 中的 words、sound 等内容。不把记谱力度推断为播放 MIDI velocity。|
+| tie / slur | boolean | 另有 `start`、`end` 两个 note locator 和 `number:"1"`。两端必须按时间顺序，v1 在同 part/voice 中编辑。true 新增、false 删除。expected 可为共同 boolean，或 `{start:true,end:false}` 显式修复缺失端点。tie 新增时要求音高相同且时间连续；删除可用于修复错误音高的现有链。tie 同时维护演奏 tie 和记谱 tied；slur 只维护记谱。编号 1–16，不重编号其他符号。|
+| dynamics | null 或 `"p"` 等 | target 是独立 direction locator。只编辑一个简单力度符号；保留 direction 中的 words、sound 等内容。不把记谱力度推断为播放 MIDI velocity。若删除最后一个符号会连带丢失 sound/未知内容/ID，拒绝。|
 | wedge | value 为 crescendo/diminuendo/null；expected 为 boolean | 另有 start/end direction locator 与 number。跨小节支持，要求同 part/staff/voice、两端有序。只改变记谱 wedge，不添加自动播放渐变。|
 
 可人工检查并直接重放的 changeset 见 `tests/fixtures/calibration/*.changes.json`。

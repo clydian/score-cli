@@ -92,12 +92,17 @@ def sounding_pitch(event) -> dict:
 
 
 def compare_scores(*, before_path: str | Path, after_path: str | Path) -> dict:
+    before_data, after_data = (
+        Path(before_path).read_bytes(),
+        Path(after_path).read_bytes(),
+    )
     return dict(
         compare_documents(
-            ScoreDocument.read(before_path), ScoreDocument.read(after_path)
+            ScoreDocument.read(before_path, data=before_data),
+            ScoreDocument.read(after_path, data=after_data),
         ),
-        beforeSha256=sha256(Path(before_path).read_bytes()),
-        afterSha256=sha256(Path(after_path).read_bytes()),
+        beforeSha256=sha256(before_data),
+        afterSha256=sha256(after_data),
     )
 
 

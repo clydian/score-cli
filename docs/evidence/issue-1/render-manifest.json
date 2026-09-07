@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1",
   "inputSha256": "d989cd4153ff8b272d079a992520a300c013b4370c767c3ee1f01e77c300d1b9",
-  "toolVersion": "0.1.0",
+  "toolVersion": "0.2.0",
   "rendererVersion": "6.3.0-425dd7b",
   "renderParameters": {
     "inputFrom": "xml",

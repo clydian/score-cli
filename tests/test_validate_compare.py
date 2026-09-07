@@ -75,3 +75,21 @@ def test_tuplet_duration_is_rational_and_staff_reference_is_checked(tmp_path):
     codes = {d["code"] for d in report["diagnostics"]}
     assert "duration-notation-mismatch" not in codes
     assert "invalid-staff-reference" in codes
+
+
+def test_notated_tie_numbers_must_pair_independently(tmp_path):
+    path = score(
+        tmp_path,
+        """<note><pitch><step>C</step><octave>4</octave></pitch><duration>2</duration><type>quarter</type><tie type="start"/><notations><tied type="start" number="1"/></notations></note><note><pitch><step>C</step><octave>4</octave></pitch><duration>2</duration><type>quarter</type><tie type="stop"/><notations><tied type="stop" number="2"/></notations></note>""",
+    )
+    codes = {d["code"] for d in validate_score(input_path=path)["diagnostics"]}
+    assert {"unclosed-tied", "orphan-tied"} <= codes
+
+
+def test_numbered_slur_can_cross_voice_without_false_dangling_error(tmp_path):
+    path = score(
+        tmp_path,
+        """<note><pitch><step>C</step><octave>4</octave></pitch><duration>2</duration><voice>1</voice><type>quarter</type><notations><slur type="start" number="1"/></notations></note><note><pitch><step>D</step><octave>4</octave></pitch><duration>2</duration><voice>2</voice><type>quarter</type><notations><slur type="stop" number="1"/></notations></note>""",
+    )
+    diagnostics = validate_score(input_path=path)["diagnostics"]
+    assert not [d for d in diagnostics if d["code"] in {"unclosed-slur", "orphan-slur"}]

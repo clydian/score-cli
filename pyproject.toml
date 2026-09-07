@@ -1,7 +1,7 @@
 [project]
 name = "score-cli"
-version = "0.1.0"
-description = "Render one printed MusicXML measure from the fully laid-out score."
+version = "0.2.0"
+description = "Safely edit, validate, compare, and render MusicXML for source-score calibration."
 readme = "README.md"
 requires-python = ">=3.14,<3.15"
 dependencies = [

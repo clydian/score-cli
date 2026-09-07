@@ -53,6 +53,7 @@ COVERAGE = dict(
         "microtonal-tuning",
         "repeat-playback",
         "engraving-correctness",
+        "unknown-extension-semantics",
     ],
 )
 
@@ -80,7 +81,7 @@ def notation_duration(note) -> Fraction | None:
 def validate_score(*, input_path: str | Path) -> dict:
     data = Path(input_path).read_bytes()
     try:
-        document = ScoreDocument.read(input_path)
+        document = ScoreDocument.read(input_path, data=data)
         report = validate_document(document)
     except (ScoreError, ValueError, ZeroDivisionError) as exc:
         diagnostic = (
@@ -379,6 +380,10 @@ def validate_document(document: ScoreDocument) -> dict:
                                     pitch["alter"],
                                     pitch["octave"],
                                 )
+                            if family == "slur":
+                                key = (part, family, symbol.get("number", "1"))
+                            if family == "tied":
+                                key = (*key, symbol.get("number", "1"))
                             at = absolute_times[part] + event.offset
                             end = at + event.duration
                             _pair(
@@ -409,6 +414,15 @@ def validate_document(document: ScoreDocument) -> dict:
                 elif tag == "direction":
                     directions += 1
                     direction_loc = dict(loc, directionIndex=directions)
+                    staff = content(element, "staff", "1")
+                    if not staff.isdigit() or not 1 <= int(staff) <= staves.get(
+                        part, 1
+                    ):
+                        add(
+                            "invalid-staff-reference",
+                            direction_loc,
+                            "Direction staff is outside the effective staves count.",
+                        )
                     for kind in children(element, "direction-type"):
                         for symbol in kind:
                             if name(symbol) == "wedge":

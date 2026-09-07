@@ -123,6 +123,21 @@ class Event:
         return Fraction(self.location["offset"])
 
 
+@dataclass
+class TimelinePosition:
+    element: ET._Element
+    part_id: str
+    printed_measure: str
+    measure_ordinal: int
+    element_index: int
+    note_index: int
+    cursor_before: Fraction
+    offset: Fraction
+    duration: Fraction
+    divisions: Fraction
+    context: dict[str, Any]
+
+
 def pitch_value(note: ET._Element) -> dict | None:
     pitch = child(note, "pitch")
     if pitch is None:
@@ -237,16 +252,19 @@ class ScoreDocument:
                     )
         return result
 
-    def events(self) -> list[Event]:
-        events = []
+    def timeline(self) -> list[TimelinePosition]:
+        positions = []
         contexts: dict[str, dict] = {}
         for part, printed, ordinal, measure, _ in self.measures():
             context = contexts.setdefault(part, {"divisions": Fraction(1)})
             cursor = Fraction(0)
             last_offset = cursor
-            index = 0
-            for element in measure:
+            note_index = 0
+            for element_index, element in enumerate(measure):
                 tag = name(element)
+                before = cursor
+                offset = cursor
+                duration = Fraction(0)
                 if tag == "attributes":
                     if child(element, "divisions") is not None:
                         context["divisions"] = Fraction(content(element, "divisions"))
@@ -256,7 +274,14 @@ class ScoreDocument:
                                 "Divisions must be positive.",
                                 dict(partId=part, printedMeasure=printed),
                             )
-                    for key in ("transpose", "clef", "time", "key", "staff-details"):
+                    for key in (
+                        "transpose",
+                        "clef",
+                        "time",
+                        "key",
+                        "staff-details",
+                        "staves",
+                    ):
                         for item in children(element, key):
                             context[f"{key}:{item.get('number', 'all')}"] = tree_data(
                                 item
@@ -271,31 +296,54 @@ class ScoreDocument:
                     elif tag == "forward":
                         cursor += duration
                     else:
-                        index += 1
+                        note_index += 1
                         is_chord = child(element, "chord") is not None
                         if not is_chord:
                             last_offset = cursor
-                        location = dict(
-                            partId=part,
-                            printedMeasure=printed,
-                            staff=content(element, "staff", "1"),
-                            voice=content(element, "voice", "1"),
-                            offset=str(last_offset),
-                            eventIndex=index,
-                        )
-                        events.append(
-                            Event(
-                                element,
-                                location,
-                                context["divisions"],
-                                duration,
-                                ordinal,
-                                dict(context),
-                            )
-                        )
+                        offset = last_offset
                         if not is_chord and child(element, "grace") is None:
                             cursor += duration
-        return events
+                elif tag in {"direction", "harmony", "figured-bass"}:
+                    offset += (
+                        Fraction(content(element, "offset", "0")) / context["divisions"]
+                    )
+                positions.append(
+                    TimelinePosition(
+                        element,
+                        part,
+                        printed,
+                        ordinal,
+                        element_index,
+                        note_index,
+                        before,
+                        offset,
+                        duration,
+                        context["divisions"],
+                        dict(context),
+                    )
+                )
+        return positions
+
+    def events(self) -> list[Event]:
+        return [
+            Event(
+                p.element,
+                dict(
+                    partId=p.part_id,
+                    printedMeasure=p.printed_measure,
+                    staff=content(p.element, "staff", "1"),
+                    voice=content(p.element, "voice", "1"),
+                    offset=str(p.offset),
+                    eventIndex=p.note_index,
+                ),
+                p.divisions,
+                p.duration,
+                p.measure_ordinal,
+                p.context,
+            )
+            for p in self.timeline()
+            if name(p.element) == "note"
+        ]
 
     def locate(self, target: dict) -> Event:
         required = {
@@ -339,29 +387,8 @@ class ScoreDocument:
 
 def placed_offsets(document: ScoreDocument) -> dict:
     """Track unchanged direction/harmony placement across a transaction."""
-    result = {}
-    divisions = {}
-    for part, _, _, measure, _ in document.measures():
-        cursor = Fraction(0)
-        for element in measure:
-            tag = name(element)
-            if tag == "attributes" and child(element, "divisions") is not None:
-                divisions[part] = Fraction(content(element, "divisions"))
-            unit = divisions.get(part, Fraction(1))
-            if tag in {"direction", "harmony", "figured-bass"}:
-                result[element] = (
-                    cursor + Fraction(content(element, "offset", "0")) / unit
-                )
-            elif (
-                tag == "note"
-                and child(element, "chord") is None
-                and child(element, "grace") is None
-            ):
-                cursor += Fraction(content(element, "duration", "0")) / unit
-            elif tag in {"backup", "forward"}:
-                cursor += (
-                    Fraction(content(element, "duration", "0"))
-                    / unit
-                    * (-1 if tag == "backup" else 1)
-                )
-    return result
+    return {
+        p.element: p.offset
+        for p in document.timeline()
+        if name(p.element) in {"direction", "harmony", "figured-bass"}
+    }

@@ -481,3 +481,159 @@ def test_display_accidental_cannot_contradict_pitch(tmp_path):
             changeset=changes(source, [op]),
             output_path=tmp_path / "wrong.xml",
         )
+
+
+def test_pitch_serializes_fraction_input_as_valid_musicxml_decimal(tmp_path):
+    source = score(tmp_path)
+    op = pitch_operation()
+    op["value"]["alter"] = "2/2"
+    output = tmp_path / "decimal.xml"
+    edit_score(input_path=source, changeset=changes(source, [op]), output_path=output)
+    assert "<alter>1</alter>" in output.read_text()
+    assert "<alter>2/2</alter>" not in output.read_text()
+
+
+def test_pair_can_repair_a_missing_stop_with_explicit_endpoint_old_values(tmp_path):
+    source = score(
+        tmp_path,
+        """<note><pitch><step>C</step><octave>4</octave></pitch><duration>2</duration><voice>1</voice><type>quarter</type><notations><slur type="start" number="1"/></notations></note><note><pitch><step>D</step><octave>4</octave></pitch><duration>2</duration><voice>1</voice><type>quarter</type></note>""",
+    )
+    operation = dict(
+        id="repair",
+        type="slur",
+        start=target(),
+        end=target(2, "1"),
+        number="1",
+        expected={"start": True, "end": False},
+        value=True,
+    )
+    report = edit_score(
+        input_path=source,
+        changeset=changes(source, [operation]),
+        output_path=tmp_path / "closed.xml",
+    )
+    assert any(d["code"] == "unclosed-slur" for d in report["diagnosticsBefore"])
+    assert not any(d["code"] == "unclosed-slur" for d in report["diagnosticsAfter"])
+
+
+def test_direction_locator_uses_divisions_at_its_position(tmp_path):
+    source = score(tmp_path)
+    source.write_text(
+        source.read_text().replace(
+            "</part>",
+            '<measure number="0" implicit="yes"><direction><direction-type><dynamics><p/></dynamics></direction-type><offset>2</offset><voice>1</voice><staff>1</staff></direction><attributes><divisions>4</divisions></attributes><note><rest/><duration>8</duration><type>half</type></note></measure></part>',
+        )
+    )
+    locator = dict(
+        partId="P1",
+        printedMeasure="0",
+        staff="1",
+        voice="1",
+        offset="1",
+        directionIndex=1,
+    )
+    op = dict(id="dynamics", type="dynamics", target=locator, expected="p", value="f")
+    output = tmp_path / "direction.xml"
+    edit_score(input_path=source, changeset=changes(source, [op]), output_path=output)
+    assert "<f/>" in output.read_text()
+
+
+def test_deleting_dynamics_cannot_delete_unrelated_playback(tmp_path):
+    source = score(tmp_path)
+    source.write_text(
+        source.read_text()
+        .replace("<words>keep me</words>", "<dynamics><p/></dynamics>")
+        .replace("</direction>", '<sound tempo="100"/></direction>')
+    )
+    op = dict(
+        id="delete",
+        type="dynamics",
+        target=dict(
+            partId="P1",
+            printedMeasure="X1",
+            staff="1",
+            voice="",
+            offset="1",
+            directionIndex=1,
+        ),
+        expected="p",
+        value=None,
+    )
+    with pytest.raises(EditError, match="unrelated"):
+        edit_score(
+            input_path=source,
+            changeset=changes(source, [op]),
+            output_path=tmp_path / "sound.xml",
+        )
+    assert not (tmp_path / "sound.xml").exists()
+
+
+def test_new_direction_staff_must_exist(tmp_path):
+    source = score(tmp_path)
+    op = dict(
+        id="dynamic",
+        type="dynamics",
+        target=dict(
+            partId="P1",
+            printedMeasure="X1",
+            staff="999",
+            voice="1",
+            offset="0",
+            directionIndex=0,
+        ),
+        expected=None,
+        value="p",
+    )
+    with pytest.raises(EditError):
+        edit_score(
+            input_path=source,
+            changeset=changes(source, [op]),
+            output_path=tmp_path / "staff.xml",
+        )
+
+
+def test_malformed_tie_can_be_removed_before_pitch_repair(tmp_path):
+    source = score(
+        tmp_path,
+        """<note><pitch><step>C</step><octave>4</octave></pitch><duration>2</duration><tie type="start"/><voice>1</voice><type>quarter</type><notations><tied type="start" number="1"/></notations></note><note><pitch><step>D</step><octave>4</octave></pitch><duration>2</duration><tie type="stop"/><voice>1</voice><type>quarter</type><notations><tied type="stop" number="1"/></notations></note>""",
+    )
+    op = dict(
+        id="untie",
+        type="tie",
+        start=target(),
+        end=target(2, "1"),
+        number="1",
+        expected=True,
+        value=False,
+    )
+    result = edit_score(
+        input_path=source,
+        changeset=changes(source, [op]),
+        output_path=tmp_path / "untied.xml",
+    )
+    assert not [d for d in result["diagnosticsAfter"] if d["severity"] == "error"]
+
+
+def test_publication_failure_rolls_back_report_and_score(tmp_path, monkeypatch):
+    import os
+
+    source = score(tmp_path)
+    original = source.read_bytes()
+    output = tmp_path / "failed.xml"
+    real_link = os.link
+
+    def fail_score_link(src, dst, *args, **kwargs):
+        if Path(dst) == output:
+            raise OSError("simulated disk publication failure")
+        return real_link(src, dst, *args, **kwargs)
+
+    monkeypatch.setattr(os, "link", fail_score_link)
+    with pytest.raises(OSError, match="publication failure"):
+        edit_score(
+            input_path=source,
+            changeset=changes(source, [pitch_operation()]),
+            output_path=output,
+        )
+    assert source.read_bytes() == original
+    assert not output.exists()
+    assert not Path(str(output) + ".edit.json").exists()

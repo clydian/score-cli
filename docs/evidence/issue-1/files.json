@@ -11,15 +11,15 @@
     },
     {
       "path": "calibration.json",
-      "sha256": "055664f2c0b1540f1e313969163584c61bfdfecf4fe1d41cfaf5d206f8d8badf"
+      "sha256": "79aa7d2aef39929c207ece5e70eb944f309c392c8b037976a92254ccb26c346f"
     },
     {
       "path": "edit-report.json",
-      "sha256": "ac708fa99fc6ac4305de9a2f3584fc54338bf4185715e289fa28f2c02d9a59f7"
+      "sha256": "0433fb40c50986f09ba673a8505ed0e1c3d705d86e8d3270a039434dddae1205"
     },
     {
       "path": "render-manifest.json",
-      "sha256": "e1b7b53736818b8992af759afea6e8bd3750ee42b5d0d1574b62a5a2000caabb"
+      "sha256": "d25508e3270ca33af72896d92cd07125bd26fac895b45dfbb1052d295037fdc5"
     },
     {
       "path": "source-page-1.png",
@@ -27,7 +27,7 @@
     },
     {
       "path": "status.json",
-      "sha256": "335353e3b4c14bcd9fe67750c4a53274e0414c1af7c196f06c60b23ffbc5b338"
+      "sha256": "1a3b6b7f70a40bd05062aad8d68fbf3ad6e6283be18d8a43a37796365c80c510"
     }
   ]
 }

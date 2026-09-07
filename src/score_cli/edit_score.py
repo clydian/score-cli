@@ -236,7 +236,7 @@ def edit_score(
                 )
             for tag in ("step", "alter", "octave"):
                 existing = child(pitch, tag)
-                text = str(value[tag])
+                text = str(alter) if tag == "alter" else str(value[tag])
                 if existing is not None:
                     existing.text = text
                 else:
@@ -395,7 +395,11 @@ def _edit_lyric(note, operation):
         elif item is not None:
             item.text = text
         else:
-            lyric.insert(0, make(lyric, tag, text))
+            anchor = child(lyric, "text") if tag == "syllabic" else None
+            lyric.insert(
+                lyric.index(anchor) if anchor is not None else len(lyric),
+                make(lyric, tag, text),
+            )
 
 
 def _duration_value(event):
@@ -571,6 +575,7 @@ def _edit_note_identity(event, operation):
         replace_note_children(note, "rest", [])
         element = make(note, "pitch")
         element.extend(
-            make(element, k, str(pitch[k])) for k in ("step", "alter", "octave")
+            make(element, k, str(Fraction(pitch[k])) if k == "alter" else str(pitch[k]))
+            for k in ("step", "alter", "octave")
         )
         replace_note_children(note, "pitch", [element])

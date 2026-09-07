@@ -14,11 +14,21 @@ from .score_document import (
 def edit_note_pair(start, end, operation):
     family = operation["type"]
     number = operation.get("number")
+    expected = operation.get("expected")
+    if type(expected) is bool:
+        expected = {"start": expected, "end": expected}
+    if (
+        not isinstance(expected, dict)
+        or set(expected) != {"start", "end"}
+        or any(type(v) is not bool for v in expected.values())
+    ):
+        raise ScoreError(
+            "invalid-pair", "Expected boolean or explicit start/end booleans."
+        )
     if (
         not isinstance(number, str)
         or not number.isdigit()
         or not 1 <= int(number) <= 16
-        or type(operation.get("expected")) is not bool
         or type(operation.get("value")) is not bool
     ):
         raise ScoreError(
@@ -36,7 +46,7 @@ def edit_note_pair(start, end, operation):
             "invalid-pair",
             "Endpoints must be ordered distinct notes in the same part and voice.",
         )
-    if family == "tie":
+    if family == "tie" and operation["value"]:
         a, b = pitch_value(start.element), pitch_value(end.element)
         if (
             a is None
@@ -48,7 +58,7 @@ def edit_note_pair(start, end, operation):
             )
     tag = "tied" if family == "tie" else "slur"
     endpoints = []
-    for event, kind in [(start, "start"), (end, "stop")]:
+    for event, kind, role in [(start, "start", "start"), (end, "stop", "end")]:
         note = event.element
         found = [
             e
@@ -66,15 +76,13 @@ def edit_note_pair(start, end, operation):
                 "ambiguous-pair", "Duplicate endpoints cannot be edited unambiguously."
             )
         present = bool(found)
-        if present != operation["expected"] or (
-            family == "tie" and bool(playback) != present
-        ):
+        if present != expected[role] or (family == "tie" and bool(playback) != present):
             raise ScoreError(
                 "old-value-mismatch",
                 "Both notation and playback endpoints must match expected state.",
             )
         endpoints.append((note, kind, found, playback))
-    if operation["expected"] == operation["value"]:
+    if all(v == operation["value"] for v in expected.values()):
         raise ScoreError("no-op-pair", "Pair operation must change its state.")
     for note, kind, found, playback in endpoints:
         if not operation["value"]:
@@ -87,6 +95,7 @@ def edit_note_pair(start, end, operation):
             if notations is None:
                 notations = make(note, "notations")
                 insert_note(note, notations)
-            notations.append(make(notations, tag, type=kind, number=number))
-            if family == "tie":
+            if not found:
+                notations.append(make(notations, tag, type=kind, number=number))
+            if family == "tie" and not playback:
                 insert_note(note, make(note, "tie", type=kind))

@@ -1,6 +1,9 @@
 {
   "schemaVersion": "1",
-  "toolVersion": "0.1.0",
+  "toolVersion": "0.2.0",
+  "inputPath": "/Users/siahuat0727/Documents/optical-music-recognition/output/calibrated/2026-09-05/Os Justi - Bruckner.calibrated.musicxml",
+  "outputPath": "/Users/siahuat0727/Documents/score-cli/tmp/issue-1/final-full-score/os-justi-lyrics.fixed.musicxml",
+  "reportPath": "/Users/siahuat0727/Documents/score-cli/tmp/issue-1/final-full-score/os-justi-lyrics.fixed.musicxml.edit.json",
   "status": "applied",
   "inputSha256": "c0453fb99b0501dd8c09db809c7f08505003269a9e2a4319bfb76f7a2900cad1",
   "outputSha256": "d989cd4153ff8b272d079a992520a300c013b4370c767c3ee1f01e77c300d1b9",
@@ -211,21 +214,6 @@
       "operationId": null
     },
     {
-      "code": "orphan-slur",
-      "severity": "error",
-      "location": {
-        "partId": "P1",
-        "printedMeasure": "12",
-        "staff": "1",
-        "voice": "1",
-        "offset": "0",
-        "eventIndex": 1,
-        "measureOrdinal": 12
-      },
-      "reason": "slur stop/continue has no matching start.",
-      "operationId": null
-    },
-    {
       "code": "voice-gap",
       "severity": "warning",
       "location": {
@@ -256,36 +244,6 @@
       "operationId": null
     },
     {
-      "code": "duplicate-slur-start",
-      "severity": "error",
-      "location": {
-        "partId": "P1",
-        "printedMeasure": "53",
-        "staff": "1",
-        "voice": "2",
-        "offset": "0",
-        "eventIndex": 3,
-        "measureOrdinal": 53
-      },
-      "reason": "slur number is already open.",
-      "operationId": null
-    },
-    {
-      "code": "orphan-slur",
-      "severity": "error",
-      "location": {
-        "partId": "P1",
-        "printedMeasure": "54",
-        "staff": "1",
-        "voice": "1",
-        "offset": "2",
-        "eventIndex": 2,
-        "measureOrdinal": 54
-      },
-      "reason": "slur stop/continue has no matching start.",
-      "operationId": null
-    },
-    {
       "code": "voice-gap",
       "severity": "warning",
       "location": {
@@ -313,21 +271,6 @@
         "measureOrdinal": 52
       },
       "reason": "Uncovered voice interval 0..2.",
-      "operationId": null
-    },
-    {
-      "code": "orphan-slur",
-      "severity": "error",
-      "location": {
-        "partId": "P2",
-        "printedMeasure": "54",
-        "staff": "1",
-        "voice": "1",
-        "offset": "2",
-        "eventIndex": 2,
-        "measureOrdinal": 54
-      },
-      "reason": "slur stop/continue has no matching start.",
       "operationId": null
     },
     {
@@ -397,21 +340,6 @@
         "voice": "2"
       },
       "reason": "Voice ends at 1, before meter 4; may be intentional incomplete notation.",
-      "operationId": null
-    },
-    {
-      "code": "orphan-slur",
-      "severity": "error",
-      "location": {
-        "partId": "P3",
-        "printedMeasure": "14",
-        "staff": "1",
-        "voice": "1",
-        "offset": "1",
-        "eventIndex": 2,
-        "measureOrdinal": 14
-      },
-      "reason": "slur stop/continue has no matching start.",
       "operationId": null
     },
     {
@@ -493,51 +421,6 @@
         "voice": "2"
       },
       "reason": "Voice ends at 2, before meter 4; may be intentional incomplete notation.",
-      "operationId": null
-    },
-    {
-      "code": "unclosed-slur",
-      "severity": "error",
-      "location": {
-        "partId": "P1",
-        "printedMeasure": "53",
-        "staff": "1",
-        "voice": "2",
-        "offset": "0",
-        "eventIndex": 3,
-        "measureOrdinal": 53
-      },
-      "reason": "slur start has no matching stop.",
-      "operationId": null
-    },
-    {
-      "code": "unclosed-slur",
-      "severity": "error",
-      "location": {
-        "partId": "P2",
-        "printedMeasure": "53",
-        "staff": "1",
-        "voice": "2",
-        "offset": "0",
-        "eventIndex": 3,
-        "measureOrdinal": 53
-      },
-      "reason": "slur start has no matching stop.",
-      "operationId": null
-    },
-    {
-      "code": "unclosed-slur",
-      "severity": "error",
-      "location": {
-        "partId": "P3",
-        "printedMeasure": "11",
-        "staff": "1",
-        "voice": "2",
-        "offset": "0",
-        "eventIndex": 4,
-        "measureOrdinal": 11
-      },
-      "reason": "slur start has no matching stop.",
       "operationId": null
     }
   ],
@@ -559,22 +442,6 @@
       "origin": "existing"
     },
     {
-      "code": "orphan-slur",
-      "severity": "error",
-      "location": {
-        "partId": "P1",
-        "printedMeasure": "12",
-        "staff": "1",
-        "voice": "1",
-        "offset": "0",
-        "eventIndex": 1,
-        "measureOrdinal": 12
-      },
-      "reason": "slur stop/continue has no matching start.",
-      "operationId": null,
-      "origin": "existing"
-    },
-    {
       "code": "voice-gap",
       "severity": "warning",
       "location": {
@@ -607,38 +474,6 @@
       "origin": "existing"
     },
     {
-      "code": "duplicate-slur-start",
-      "severity": "error",
-      "location": {
-        "partId": "P1",
-        "printedMeasure": "53",
-        "staff": "1",
-        "voice": "2",
-        "offset": "0",
-        "eventIndex": 3,
-        "measureOrdinal": 53
-      },
-      "reason": "slur number is already open.",
-      "operationId": null,
-      "origin": "existing"
-    },
-    {
-      "code": "orphan-slur",
-      "severity": "error",
-      "location": {
-        "partId": "P1",
-        "printedMeasure": "54",
-        "staff": "1",
-        "voice": "1",
-        "offset": "2",
-        "eventIndex": 2,
-        "measureOrdinal": 54
-      },
-      "reason": "slur stop/continue has no matching start.",
-      "operationId": null,
-      "origin": "existing"
-    },
-    {
       "code": "voice-gap",
       "severity": "warning",
       "location": {
@@ -667,22 +502,6 @@
         "measureOrdinal": 52
       },
       "reason": "Uncovered voice interval 0..2.",
-      "operationId": null,
-      "origin": "existing"
-    },
-    {
-      "code": "orphan-slur",
-      "severity": "error",
-      "location": {
-        "partId": "P2",
-        "printedMeasure": "54",
-        "staff": "1",
-        "voice": "1",
-        "offset": "2",
-        "eventIndex": 2,
-        "measureOrdinal": 54
-      },
-      "reason": "slur stop/continue has no matching start.",
       "operationId": null,
       "origin": "existing"
     },
@@ -757,22 +576,6 @@
         "voice": "2"
       },
       "reason": "Voice ends at 1, before meter 4; may be intentional incomplete notation.",
-      "operationId": null,
-      "origin": "existing"
-    },
-    {
-      "code": "orphan-slur",
-      "severity": "error",
-      "location": {
-        "partId": "P3",
-        "printedMeasure": "14",
-        "staff": "1",
-        "voice": "1",
-        "offset": "1",
-        "eventIndex": 2,
-        "measureOrdinal": 14
-      },
-      "reason": "slur stop/continue has no matching start.",
       "operationId": null,
       "origin": "existing"
     },
@@ -862,60 +665,12 @@
       "reason": "Voice ends at 2, before meter 4; may be intentional incomplete notation.",
       "operationId": null,
       "origin": "existing"
-    },
-    {
-      "code": "unclosed-slur",
-      "severity": "error",
-      "location": {
-        "partId": "P1",
-        "printedMeasure": "53",
-        "staff": "1",
-        "voice": "2",
-        "offset": "0",
-        "eventIndex": 3,
-        "measureOrdinal": 53
-      },
-      "reason": "slur start has no matching stop.",
-      "operationId": null,
-      "origin": "existing"
-    },
-    {
-      "code": "unclosed-slur",
-      "severity": "error",
-      "location": {
-        "partId": "P2",
-        "printedMeasure": "53",
-        "staff": "1",
-        "voice": "2",
-        "offset": "0",
-        "eventIndex": 3,
-        "measureOrdinal": 53
-      },
-      "reason": "slur start has no matching stop.",
-      "operationId": null,
-      "origin": "existing"
-    },
-    {
-      "code": "unclosed-slur",
-      "severity": "error",
-      "location": {
-        "partId": "P3",
-        "printedMeasure": "11",
-        "staff": "1",
-        "voice": "2",
-        "offset": "0",
-        "eventIndex": 4,
-        "measureOrdinal": 11
-      },
-      "reason": "slur start has no matching stop.",
-      "operationId": null,
-      "origin": "existing"
     }
   ],
   "diagnosticMatching": "exact-code-severity-location-reason-multiset",
   "comparison": {
     "schemaVersion": "1",
-    "status": "inconclusive",
+    "status": "different",
     "alignment": "exact part / printed measure / all-note ordinal; voice identity must agree",
     "notationDifferences": [
       {
@@ -1590,7 +1345,7 @@
     },
     "validationBefore": {
       "schemaVersion": "1",
-      "status": "invalid",
+      "status": "valid-within-coverage",
       "coverage": {
         "checked": [
           "part-and-measure-structure",
@@ -1607,7 +1362,8 @@
           "instrument-playback",
           "microtonal-tuning",
           "repeat-playback",
-          "engraving-correctness"
+          "engraving-correctness",
+          "unknown-extension-semantics"
         ]
       },
       "diagnostics": [
@@ -1624,21 +1380,6 @@
             "measureOrdinal": 10
           },
           "reason": "Uncovered voice interval 0..2.",
-          "operationId": null
-        },
-        {
-          "code": "orphan-slur",
-          "severity": "error",
-          "location": {
-            "partId": "P1",
-            "printedMeasure": "12",
-            "staff": "1",
-            "voice": "1",
-            "offset": "0",
-            "eventIndex": 1,
-            "measureOrdinal": 12
-          },
-          "reason": "slur stop/continue has no matching start.",
           "operationId": null
         },
         {
@@ -1672,36 +1413,6 @@
           "operationId": null
         },
         {
-          "code": "duplicate-slur-start",
-          "severity": "error",
-          "location": {
-            "partId": "P1",
-            "printedMeasure": "53",
-            "staff": "1",
-            "voice": "2",
-            "offset": "0",
-            "eventIndex": 3,
-            "measureOrdinal": 53
-          },
-          "reason": "slur number is already open.",
-          "operationId": null
-        },
-        {
-          "code": "orphan-slur",
-          "severity": "error",
-          "location": {
-            "partId": "P1",
-            "printedMeasure": "54",
-            "staff": "1",
-            "voice": "1",
-            "offset": "2",
-            "eventIndex": 2,
-            "measureOrdinal": 54
-          },
-          "reason": "slur stop/continue has no matching start.",
-          "operationId": null
-        },
-        {
           "code": "voice-gap",
           "severity": "warning",
           "location": {
@@ -1729,21 +1440,6 @@
             "measureOrdinal": 52
           },
           "reason": "Uncovered voice interval 0..2.",
-          "operationId": null
-        },
-        {
-          "code": "orphan-slur",
-          "severity": "error",
-          "location": {
-            "partId": "P2",
-            "printedMeasure": "54",
-            "staff": "1",
-            "voice": "1",
-            "offset": "2",
-            "eventIndex": 2,
-            "measureOrdinal": 54
-          },
-          "reason": "slur stop/continue has no matching start.",
           "operationId": null
         },
         {
@@ -1813,21 +1509,6 @@
             "voice": "2"
           },
           "reason": "Voice ends at 1, before meter 4; may be intentional incomplete notation.",
-          "operationId": null
-        },
-        {
-          "code": "orphan-slur",
-          "severity": "error",
-          "location": {
-            "partId": "P3",
-            "printedMeasure": "14",
-            "staff": "1",
-            "voice": "1",
-            "offset": "1",
-            "eventIndex": 2,
-            "measureOrdinal": 14
-          },
-          "reason": "slur stop/continue has no matching start.",
           "operationId": null
         },
         {
@@ -1909,58 +1590,13 @@
             "voice": "2"
           },
           "reason": "Voice ends at 2, before meter 4; may be intentional incomplete notation.",
-          "operationId": null
-        },
-        {
-          "code": "unclosed-slur",
-          "severity": "error",
-          "location": {
-            "partId": "P1",
-            "printedMeasure": "53",
-            "staff": "1",
-            "voice": "2",
-            "offset": "0",
-            "eventIndex": 3,
-            "measureOrdinal": 53
-          },
-          "reason": "slur start has no matching stop.",
-          "operationId": null
-        },
-        {
-          "code": "unclosed-slur",
-          "severity": "error",
-          "location": {
-            "partId": "P2",
-            "printedMeasure": "53",
-            "staff": "1",
-            "voice": "2",
-            "offset": "0",
-            "eventIndex": 3,
-            "measureOrdinal": 53
-          },
-          "reason": "slur start has no matching stop.",
-          "operationId": null
-        },
-        {
-          "code": "unclosed-slur",
-          "severity": "error",
-          "location": {
-            "partId": "P3",
-            "printedMeasure": "11",
-            "staff": "1",
-            "voice": "2",
-            "offset": "0",
-            "eventIndex": 4,
-            "measureOrdinal": 11
-          },
-          "reason": "slur start has no matching stop.",
           "operationId": null
         }
       ]
     },
     "validationAfter": {
       "schemaVersion": "1",
-      "status": "invalid",
+      "status": "valid-within-coverage",
       "coverage": {
         "checked": [
           "part-and-measure-structure",
@@ -1977,7 +1613,8 @@
           "instrument-playback",
           "microtonal-tuning",
           "repeat-playback",
-          "engraving-correctness"
+          "engraving-correctness",
+          "unknown-extension-semantics"
         ]
       },
       "diagnostics": [
@@ -1994,21 +1631,6 @@
             "measureOrdinal": 10
           },
           "reason": "Uncovered voice interval 0..2.",
-          "operationId": null
-        },
-        {
-          "code": "orphan-slur",
-          "severity": "error",
-          "location": {
-            "partId": "P1",
-            "printedMeasure": "12",
-            "staff": "1",
-            "voice": "1",
-            "offset": "0",
-            "eventIndex": 1,
-            "measureOrdinal": 12
-          },
-          "reason": "slur stop/continue has no matching start.",
           "operationId": null
         },
         {
@@ -2042,36 +1664,6 @@
           "operationId": null
         },
         {
-          "code": "duplicate-slur-start",
-          "severity": "error",
-          "location": {
-            "partId": "P1",
-            "printedMeasure": "53",
-            "staff": "1",
-            "voice": "2",
-            "offset": "0",
-            "eventIndex": 3,
-            "measureOrdinal": 53
-          },
-          "reason": "slur number is already open.",
-          "operationId": null
-        },
-        {
-          "code": "orphan-slur",
-          "severity": "error",
-          "location": {
-            "partId": "P1",
-            "printedMeasure": "54",
-            "staff": "1",
-            "voice": "1",
-            "offset": "2",
-            "eventIndex": 2,
-            "measureOrdinal": 54
-          },
-          "reason": "slur stop/continue has no matching start.",
-          "operationId": null
-        },
-        {
           "code": "voice-gap",
           "severity": "warning",
           "location": {
@@ -2099,21 +1691,6 @@
             "measureOrdinal": 52
           },
           "reason": "Uncovered voice interval 0..2.",
-          "operationId": null
-        },
-        {
-          "code": "orphan-slur",
-          "severity": "error",
-          "location": {
-            "partId": "P2",
-            "printedMeasure": "54",
-            "staff": "1",
-            "voice": "1",
-            "offset": "2",
-            "eventIndex": 2,
-            "measureOrdinal": 54
-          },
-          "reason": "slur stop/continue has no matching start.",
           "operationId": null
         },
         {
@@ -2183,21 +1760,6 @@
             "voice": "2"
           },
           "reason": "Voice ends at 1, before meter 4; may be intentional incomplete notation.",
-          "operationId": null
-        },
-        {
-          "code": "orphan-slur",
-          "severity": "error",
-          "location": {
-            "partId": "P3",
-            "printedMeasure": "14",
-            "staff": "1",
-            "voice": "1",
-            "offset": "1",
-            "eventIndex": 2,
-            "measureOrdinal": 14
-          },
-          "reason": "slur stop/continue has no matching start.",
           "operationId": null
         },
         {
@@ -2279,51 +1841,6 @@
             "voice": "2"
           },
           "reason": "Voice ends at 2, before meter 4; may be intentional incomplete notation.",
-          "operationId": null
-        },
-        {
-          "code": "unclosed-slur",
-          "severity": "error",
-          "location": {
-            "partId": "P1",
-            "printedMeasure": "53",
-            "staff": "1",
-            "voice": "2",
-            "offset": "0",
-            "eventIndex": 3,
-            "measureOrdinal": 53
-          },
-          "reason": "slur start has no matching stop.",
-          "operationId": null
-        },
-        {
-          "code": "unclosed-slur",
-          "severity": "error",
-          "location": {
-            "partId": "P2",
-            "printedMeasure": "53",
-            "staff": "1",
-            "voice": "2",
-            "offset": "0",
-            "eventIndex": 3,
-            "measureOrdinal": 53
-          },
-          "reason": "slur start has no matching stop.",
-          "operationId": null
-        },
-        {
-          "code": "unclosed-slur",
-          "severity": "error",
-          "location": {
-            "partId": "P3",
-            "printedMeasure": "11",
-            "staff": "1",
-            "voice": "2",
-            "offset": "0",
-            "eventIndex": 4,
-            "measureOrdinal": 11
-          },
-          "reason": "slur start has no matching stop.",
           "operationId": null
         }
       ]
