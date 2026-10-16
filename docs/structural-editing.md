@@ -26,7 +26,7 @@ Issue #2。继续使用 `edit_score` / `score-cli edit` 的读取、快照定位
 | `insert-measure` | 逻辑小节 / partwise 按 part 文档顺序列出所有锚点 measure；timewise 只有外层 measure | partwise 为 `{P1: "<measure…>…", P2: "…"}`；timewise 为含全部 part 的完整 measure XML。`position: before/after`、`inherit: effective-context`；所有 part 必须显式提供同一新编号 |
 | `delete-measure` | 同上 | `null`；discard 包含所有被删除原生 wrapper |
 | `renumber-measures` | `{"printedMeasures":["0","X1"]}`；expected 先按给定标签顺序，再按 part 顺序列出 wrapper | `{"0":"X1","X1":"0"}`。必须完整覆盖所选旧编号，原子交换允许，与未选编号冲突则拒绝 |
-| `rename-part` | part；expected 为 `[score-part定义, part内容…]`，timewise 内容按小节顺序 | `{"id":"S1","name":"Soprano","instruments":{"I1":"IS1"}}`；不改乐器 ID 时显式 `{}`。同步所有原生 part 与该 part 内 instrument/MIDI IDREF |
+| `rename-part` | part；expected 为 `[score-part定义, part内容…]`，timewise 内容按小节顺序 | `{"id":"S1","name":"Soprano","instruments":{"I1":"IS1"},"abbreviation":"S"}`；不改乐器 ID 时显式 `{}`。同步所有原生 part 与该 part 内 instrument/MIDI IDREF。可选 `abbreviation` 更新纯文本短名，null 删除，省略保留；不会悄悄覆盖富文本或 display override |
 | `reorder-parts` | `{}` / `[完整part-list XML]` | 完整新 part-list XML。score-part 定义必须原样保留；可以显式编排 part-group。同步所有原生 part 顺序；删除旧分组元素需 discard |
 | `add-part` | 锚点 part；expected 同 rename-part | `{"definition":"<score-part…>","content":["<part…>"]}`，partwise 一个完整 part，timewise 每个小节一个 part。`position: before/after` 决定定义、内容及分组位置；必须提供与现有序列一致的全部音乐 |
 | `delete-part` | part；expected 同 rename-part | `null`；discard 列出完整定义和所有原生内容。分组不自动猜改，空分组/悬空引用须在同批显式修复 |

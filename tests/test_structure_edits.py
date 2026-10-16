@@ -12,6 +12,60 @@ NOTE = "<note><pitch><step>C</step><octave>4</octave></pitch><duration>1</durati
 ATTR = "<attributes><divisions>1</divisions></attributes>"
 
 
+@pytest.mark.parametrize("old,new,expected", [
+    ('<part-abbreviation font-style="italic">Voice</part-abbreviation>', "S", "S"),
+    ("", "S", "S"),
+    ('<part-abbreviation>Voice</part-abbreviation>', None, None),
+    ('<part-abbreviation>Voice</part-abbreviation>', "omitted", "Voice"),
+])
+def test_rename_part_abbreviation_replays_without_changing_music(tmp_path, old, new, expected):
+    path = source(tmp_path)
+    path.write_text(path.read_text().replace('</part-name>', '</part-name>'+old))
+    before = ET.parse(str(path))
+    serialize = lambda e: ET.tostring(e, encoding="unicode", with_tail=False)
+    value = dict(id="P1", name="Soprano", instruments={})
+    if new != "omitted":
+        value["abbreviation"] = new
+    operation = dict(id="name", type="rename-part", target={"partId":"P1"},
+                     expected=[serialize(before.find("part-list/score-part")), serialize(before.find("part"))], value=value)
+    preview = run(path, [operation], dry_run=True)
+    report = run(path, [operation])
+    after = ET.parse(str(tmp_path/"out.xml"))
+    assert preview["outputSha256"] == report["outputSha256"]
+    assert after.findtext("part-list/score-part/part-name") == "Soprano"
+    assert after.findtext("part-list/score-part/part-abbreviation") == expected
+    assert serialize(before.find("part")) == serialize(after.find("part"))
+    if "font-style" in old:
+        assert after.find("part-list/score-part/part-abbreviation").get("font-style") == "italic"
+
+
+@pytest.mark.parametrize("abbreviation", ["", 1, {}, []])
+def test_invalid_abbreviation_does_not_publish_partial_transaction(tmp_path, abbreviation):
+    path = source(tmp_path)
+    tree = ET.parse(str(path))
+    serialize = lambda e: ET.tostring(e, encoding="unicode", with_tail=False)
+    operation = dict(id="name", type="rename-part", target={"partId":"P1"},
+                     expected=[serialize(tree.find("part-list/score-part")),serialize(tree.find("part"))],
+                     value=dict(id="P1", name="Soprano", instruments={}, abbreviation=abbreviation))
+    with pytest.raises(EditError):
+        run(path, [operation])
+    assert not (tmp_path/"out.xml").exists()
+    assert not (tmp_path/"out.xml.edit.json").exists()
+
+
+def test_abbreviation_display_override_is_not_silently_left_stale(tmp_path):
+    path = source(tmp_path)
+    path.write_text(path.read_text().replace('</part-name>', '</part-name><part-abbreviation-display><display-text>Voice</display-text></part-abbreviation-display>'))
+    tree = ET.parse(str(path))
+    serialize = lambda e: ET.tostring(e, encoding="unicode", with_tail=False)
+    operation = dict(id="name", type="rename-part", target={"partId":"P1"},
+                     expected=[serialize(tree.find("part-list/score-part")),serialize(tree.find("part"))],
+                     value=dict(id="P1",name="Soprano",instruments={},abbreviation="S"))
+    with pytest.raises(EditError,match="display override"):
+        run(path,[operation])
+    assert not (tmp_path/"out.xml").exists()
+
+
 def source(tmp_path):
     path = tmp_path / "source.musicxml"
     path.write_text(

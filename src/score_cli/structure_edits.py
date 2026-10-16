@@ -566,9 +566,15 @@ class StructureTransaction:
         if kind == "rename-part":
             if (
                 not isinstance(value, dict)
-                or set(value) != {"id", "name", "instruments"}
+                or not {"id", "name", "instruments"} <= set(value)
+                or not set(value) <= {"id", "name", "instruments", "abbreviation"}
                 or not all(
                     isinstance(value[k], str) and value[k] for k in ("id", "name")
+                )
+                or (
+                    "abbreviation" in value
+                    and value["abbreviation"] is not None
+                    and (not isinstance(value["abbreviation"], str) or not value["abbreviation"])
                 )
             ):
                 raise ScoreError(
@@ -622,6 +628,25 @@ class StructureTransaction:
                     "unsupported-part-name", "Expected a plain existing part-name."
                 )
             part_name.text = value["name"]
+            if "abbreviation" in value:
+                abbreviation = child(definition, "part-abbreviation")
+                if (
+                    abbreviation is not None and len(abbreviation)
+                    or child(definition, "part-abbreviation-display") is not None
+                ):
+                    raise ScoreError(
+                        "unsupported-part-abbreviation",
+                        "Abbreviation editing requires plain text without a display override.",
+                    )
+                if value["abbreviation"] is None:
+                    if abbreviation is not None:
+                        definition.remove(abbreviation)
+                elif abbreviation is not None:
+                    abbreviation.text = value["abbreviation"]
+                else:
+                    abbreviation = make(definition, "part-abbreviation", value["abbreviation"])
+                    anchor = child(definition, "part-name-display")
+                    definition.insert(definition.index(anchor if anchor is not None else part_name) + 1, abbreviation)
             self.ledger.append(
                 dict(
                     operationId=operation["id"],
