@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import base64
+import io
 import os
 import re
 import tempfile
@@ -12,6 +14,7 @@ from xml.etree import ElementTree
 
 import resvg_py
 import verovio
+from fontTools.ttLib import TTFont
 
 from .musicxml_input import read_musicxml
 
@@ -28,6 +31,35 @@ ElementTree.register_namespace("xlink", XLINK_NAMESPACE)
 
 class RenderMeasureError(ValueError):
     """Raised when a printed measure cannot be rendered unambiguously."""
+
+
+def _rasterize_svg(svg: bytes) -> bytes:
+    """Load Verovio's embedded music-text fonts explicitly for resvg.
+
+    resvg does not load CSS @font-face data URLs. Without the font, SMuFL
+    private-use characters (for example metronome notes) can silently become
+    unrelated glyphs from a system fallback font.
+    """
+    text = svg.decode("utf-8")
+    embedded = dict.fromkeys(re.findall(
+        r"url\(data:application/font-woff2[^,]*;base64,([A-Za-z0-9+/=\s]+)\)",
+        text,
+    ))
+    with tempfile.TemporaryDirectory(prefix="score-cli-fonts-") as directory:
+        font_files = []
+        for index, payload in enumerate(embedded):
+            path = Path(directory) / f"music-text-{index}.ttf"
+            data = base64.b64decode("".join(payload.split()), validate=True)
+            with TTFont(io.BytesIO(data)) as font:
+                font.flavor = None
+                font.save(path)
+            font_files.append(str(path))
+        return bytes(resvg_py.svg_to_bytes(
+            svg_string=text,
+            background="#ffffff",
+            zoom=OUTPUT_SCALE,
+            font_files=font_files,
+        ))
 
 
 @dataclass(frozen=True, slots=True)
@@ -136,13 +168,7 @@ def render_printed_measure(
         padding_x=padding_x,
         padding_y=padding_y,
     )
-    png = bytes(
-        resvg_py.svg_to_bytes(
-            svg_string=cropped_svg.decode("utf-8"),
-            background="#ffffff",
-            zoom=OUTPUT_SCALE,
-        )
-    )
+    png = _rasterize_svg(cropped_svg)
     _write_atomically(destination, png)
 
     return RenderResult(
@@ -403,11 +429,7 @@ def render_range(
         )
         crop = _parse_view_box(inner.get("viewBox"))
         outer = _parse_view_box(root.get("viewBox"))
-        png = bytes(
-            resvg_py.svg_to_bytes(
-                svg_string=cropped.decode(), background="#ffffff", zoom=OUTPUT_SCALE
-            )
-        )
+        png = _rasterize_svg(cropped)
         filename = f"{index:03d}-page-{page}.png"
         files[directory / filename] = png
         images.append(

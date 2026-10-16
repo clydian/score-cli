@@ -7,6 +7,10 @@ rendered layout and crops its graphical bounds, so spacing and staff positions r
 same as they were in the surrounding system. Printed measure numbers are included in both
 measure and system crops.
 
+Music text (including metronome notes and metric proportions) uses Verovio's
+embedded SMuFL font during PNG rasterization. No music-font installation is
+required, and unrelated system fallback glyphs are not used for those symbols.
+
 ## Requirements
 
 - [uv](https://docs.astral.sh/uv/). The project pins the latest stable Python 3.14
