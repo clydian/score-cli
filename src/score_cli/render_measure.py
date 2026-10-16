@@ -194,6 +194,7 @@ def _find_rendered_measures(svg: str) -> list[_RenderedMeasure]:
         system_box = _find_content_box(system, "system")
         if system_box is None:
             continue
+        system_box = _include_lyric_extent(system, system_box)
 
         for measure in system.findall(f"{{{SVG_NAMESPACE}}}g"):
             measure_classes = set(measure.get("class", "").split())
@@ -203,6 +204,7 @@ def _find_rendered_measures(svg: str) -> list[_RenderedMeasure]:
             measure_box = _find_content_box(measure, "measure")
             if label is None or measure_box is None:
                 continue
+            measure_box = _include_lyric_extent(measure, measure_box)
             measures.append(
                 _RenderedMeasure(
                     label=label,
@@ -212,6 +214,32 @@ def _find_rendered_measures(svg: str) -> list[_RenderedMeasure]:
             )
 
     return measures
+
+
+def _include_lyric_extent(owner: ElementTree.Element, box: _Box) -> _Box:
+    """Verovio 6.3's content boxes omit SVG lyric text.
+
+    Its syllable text uses absolute definition-unit baselines, with the font
+    size on nested tspans. Reserve an em above and below each baseline so
+    verses and descenders survive both system and measure crops.
+    """
+    top, bottom = box.y, box.y + box.height
+    for group in owner.iter(f"{{{SVG_NAMESPACE}}}g"):
+        if "syl" not in group.get("class", "").split():
+            continue
+        for text in group.iter(f"{{{SVG_NAMESPACE}}}text"):
+            try:
+                baseline = float(text.attrib["y"])
+                sizes = [
+                    float(element.get("font-size", "0").removesuffix("px"))
+                    for element in text.iter()
+                ]
+            except (KeyError, ValueError):
+                continue
+            size = max(sizes, default=0)
+            top = min(top, baseline - size)
+            bottom = max(bottom, baseline + size)
+    return _Box(box.x, top, box.width, bottom - top)
 
 
 def _find_content_box(owner: ElementTree.Element, role: str) -> _Box | None:
@@ -420,7 +448,7 @@ def render_range(
         bottom = max(c.measure_box.y + c.measure_box.height for c in candidates)
         box = _Box(left, top, right - left, bottom - top)
         clean = toolkit.renderToSVG(page)
-        cropped = _crop_rendered_page(clean, box)
+        cropped = _crop_rendered_page(clean, box, padding_y=SYSTEM_PADDING)
         root = ElementTree.fromstring(cropped)
         inner = next(
             e

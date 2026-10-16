@@ -7,6 +7,9 @@ rendered layout and crops its graphical bounds, so spacing and staff positions r
 same as they were in the surrounding system. Printed measure numbers are included in both
 measure and system crops.
 
+Crop bounds include every verse below the bottom staff, even when Verovio's
+graphical content bounds omit lyric text.
+
 Music text (including metronome notes and metric proportions) uses Verovio's
 embedded SMuFL font during PNG rasterization. No music-font installation is
 required, and unrelated system fallback glyphs are not used for those symbols.
