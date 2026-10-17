@@ -1,0 +1,87 @@
+{
+  "toolVersion": "0.2.6",
+  "testType": "Frozen real 80-measure piano transaction mechanics; NOT musical approval or publication. m80 remains unaccepted.",
+  "inputSha256": "4f75e6922677e1689041ef312976641dcb258678373fd124905f220aa538bd62",
+  "originalChangesetSha256": "134230884dad06d04b8e3442bfd74a6c6f4342371a87a3a354a40ac64c63542b",
+  "acknowledgedChangesetSha256": "aff72def630b072bbb878c68f02de695b133cca1ae6126cf09e408068314a4e1",
+  "candidateSha256": "e6a19e800f846fad8e2499535a106117a13fa1b1ee6cd4538d74ea020f849dde",
+  "all80ReplacementWrappersCanonicallyEqual": true,
+  "defaultDryRunRejectedWithoutArtifacts": true,
+  "acknowledgedDryRunAndApplyHashesEqual": true,
+  "incorrectOutputHashRejectedWithoutArtifacts": true,
+  "warningsRetained": 6,
+  "newErrors": 0,
+  "warnings": [
+    {
+      "code": "incomplete-voice",
+      "location": {
+        "partId": "P5",
+        "printedMeasure": "25",
+        "measureOrdinal": 25,
+        "voice": "1"
+      },
+      "reason": "Voice ends at 3, before meter 4; may be intentional incomplete notation.",
+      "severity": "warning"
+    },
+    {
+      "code": "voice-gap",
+      "location": {
+        "partId": "P5",
+        "printedMeasure": "55",
+        "staff": "1",
+        "voice": "2",
+        "offset": "2",
+        "eventIndex": 6,
+        "measureOrdinal": 55
+      },
+      "reason": "Uncovered voice interval 0..2.",
+      "severity": "warning"
+    },
+    {
+      "code": "incomplete-voice",
+      "location": {
+        "partId": "P5",
+        "printedMeasure": "57",
+        "measureOrdinal": 57,
+        "voice": "1"
+      },
+      "reason": "Voice ends at 2, before meter 4; may be intentional incomplete notation.",
+      "severity": "warning"
+    },
+    {
+      "code": "incomplete-voice",
+      "location": {
+        "partId": "P5",
+        "printedMeasure": "57",
+        "measureOrdinal": 57,
+        "voice": "4"
+      },
+      "reason": "Voice ends at 3, before meter 4; may be intentional incomplete notation.",
+      "severity": "warning"
+    },
+    {
+      "code": "incomplete-voice",
+      "location": {
+        "partId": "P5",
+        "printedMeasure": "80",
+        "measureOrdinal": 80,
+        "voice": "1"
+      },
+      "reason": "Voice ends at 2, before meter 4; may be intentional incomplete notation.",
+      "severity": "warning"
+    },
+    {
+      "code": "incomplete-voice",
+      "location": {
+        "partId": "P5",
+        "printedMeasure": "80",
+        "measureOrdinal": 80,
+        "voice": "3"
+      },
+      "reason": "Voice ends at 2, before meter 4; may be intentional incomplete notation.",
+      "severity": "warning"
+    }
+  ],
+  "artifactDirectory": "/Users/siahuat0727/Documents/same-page/artifacts/transcription/2026-10-17/if-music/round2-piano/warning-ack-026-test",
+  "updatedAt": "2026-10-17T02:28:29.737543+00:00"
+}

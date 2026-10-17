@@ -18,7 +18,7 @@ uv run score-cli render fixed.musicxml --from-measure X1 --to-measure 0 --contex
 
 ## 快照、顺序和文件事务
 
-changeset 的顶层只允许 `schemaVersion`、`inputSha256`、`operations`。输入哈希是原始文件字节 SHA-256（MXL 为容器字节）。operations 是非空有序数组，操作 ID 非空且唯一。每个操作必须显式给出 `expected` 和 `value`；不存在用 null 表示，不省略。
+changeset 必需顶层字段为 `schemaVersion`、`inputSha256`、`operations`；v2 另可提供下文的 `acknowledgedWarnings`。输入哈希是原始文件字节 SHA-256（MXL 为容器字节）。operations 是非空有序数组，操作 ID 非空且唯一。每个操作必须显式给出 `expected` 和 `value`；不存在用 null 表示，不省略。
 
 note target 精确包含：
 
@@ -59,11 +59,59 @@ Diagnostic 字段：`code`（稳定 kebab-case）、`severity`（error/warning/i
 
 检查完整乐谱的 part/小节序列、定位、divisions、正 duration、backup/forward 负游标和 divisions 边界、和弦锚点、倚音、显示时值一致性、按 voice 的区间覆盖、跨小节 tie/tied/slur/wedge。和弦不重复计时，staff 不拆分同一个 voice。弱起、implicit、non-controlling、无拍号不要求每个 voice 填满；普通不完整 voice 仅报告警告，无法确认语义的情形明确 inconclusive。
 
-edit report 包含工具版本、inputSha256/outputSha256、完整有序 changeset、diagnosticsBefore/After、comparison、diagnosticMatching。诊断匹配使用 code+severity+完整 location+reason 的多重集合精确匹配，新增项标记 new-or-unmatched。新错误/警告均阻止发布；无法匹配不是“已证明新增”，会保守阻止。既有问题允许定点修复。此策略可能拒绝本来安全但使旧诊断位置变化的编辑，应缩小事务或先修复已有问题。
+edit report 包含工具版本、inputSha256/outputSha256、完整有序 changeset、diagnosticsBefore/After、comparison、diagnosticMatching。诊断匹配使用 code+severity+完整 location+reason 的多重集合精确匹配，新增项标记 new-or-unmatched。新错误/警告默认均阻止发布；无法匹配不是“已证明新增”，会保守阻止。既有问题允许定点修复。对已经逐项核原谱的合法部分 voice，可以使用下面的 v2 精确 warning 确认；它不删除诊断、不降低 severity，也不豁免任何新 error。
 
 compare 在已对齐的 part/小节内部按全部 note ordinal 对齐；显式结构映射、新增/删除见 v2 文档。voice ID 改变或 note 数量变化不猜映射，报告 unaligned 与 added/removed **候选**。无唯一身份时不能把候选当成已证明新增/删除。报告 notationDifferences（字段、前后值）、soundingDifferences、两侧 validation、覆盖范围与两个输入哈希。相同数量下 ordinal 是显式比较策略，不是跨编辑稳定身份的承诺。
 
 发声音高是以 C4=60 为基准的半音数：pitch + transpose.chromatic + 12×transpose.octave-change。clef-octave-change 和 octave-shift 不再重复加八度。unpitched、instrument/play、transpose.double 等无法确定的表示返回 inconclusive。不是完整演奏引擎，repeat、sound 跳转、微分音调律等不推断。
+
+## 合法部分声部的精确 warning 确认
+
+从 0.2.6 起，changeset v2 可选顶层字段 `acknowledgedWarnings`。v1 及没有此字段的 v2 保持原先的保守阻断行为。普通小节中的共享音符、后半拍进入的 divisi、只写一段的独立 voice 可能产生 `incomplete-voice` / `voice-gap` warning。工具没有原谱依据，不能自动认定合法，也不能为消除 warning 补休止或重复共享音符。
+
+先运行原事务，包含 `--dry-run` 也一样：
+
+```sh
+uv run score-cli edit source.musicxml --changes changes.json --output reviewed.musicxml --dry-run 2> failure.json
+```
+
+若唯一阻断是新的或无法匹配的 warning，仍退出 1、`status: failed`，不会落地候选谱或成功 edit report。失败 diagnostic 的 `warningReview` 给出完整候选序列化后的 `outputSha256`，以及所有新 warning 的 `{code,severity,location,reason}`；它只是复核材料，不代表应用或批准。若有新 error，先报告 error，不提供可用于确认它的 warning 列表。
+
+逐项对照原谱、目标 XML 与具体 voice / 时刻，再手工在原 changeset 增加确认：
+
+```json
+{
+  "schemaVersion": "2",
+  "inputSha256": "<原输入的64位小写SHA-256>",
+  "operations": ["<保持已审查的原操作对象>"],
+  "acknowledgedWarnings": {
+    "outputSha256": "<warningReview给出的64位小写SHA-256>",
+    "entries": [
+      {
+        "diagnostic": {
+          "code": "incomplete-voice",
+          "severity": "warning",
+          "location": {"partId":"P5","printedMeasure":"25","measureOrdinal":25,"voice":"1"},
+          "reason": "Voice ends at 3, before meter 4; may be intentional incomplete notation."
+        },
+        "rationale": "原谱第4页第1系统：上声部只写前三拍，末拍共享下声部同音的一次attack；已核实无需补休止。"
+      }
+    ]
+  }
+}
+```
+
+示例中的尖括号内容须替换，`operations` 必须仍为完整原操作对象。不要自动把 `warningReview` 全部复制为确认；尚有未核准的 warning 时继续处理音乐内容，不能将工具回归测试当成音乐验收。最后一小节跨声部延长或自由延音也需要单独判断。
+
+契约要求：
+
+- 输入 `inputSha256` 与完整输出 `outputSha256` 同时匹配。即使 warning 相同，改音高、布局或任一目标 XML 字节造成输出变化，都使旧确认失效。
+- 每条 entry 必须有非空 `rationale`；diagnostic 恰好四个字段，完整 location（含 ordinal、voice、offset 等实际字段）与 reason 逐项精确匹配，不支持通配、仅 code 放行、整类 warning 放行。
+- 按多重集合逐次消耗。少确认一项、增加一个相同 warning、改位置/理由都仍阻断；多余、重复或仅对应 existing warning 的确认以 `unused-warning-acknowledgment` 拒绝。
+- severity 只能为 `warning`。error、未知 entry 字段、空确认、无效 hash 都拒绝；方向移动、旧值、discard、其他事务保护仍照常生效。
+- 正式运行或 dry-run 成功时，report `schemaVersion: "2"` 保留 `warningAcknowledgments`、全部 `diagnosticsAfter`（warning 及其 `new-or-unmatched` origin 仍在），不伪称已经修复或完成原谱验收。独立 `validate` 仍会报告这些 warning。
+
+重新运行同一 `edit` 命令可 dry-run / 正式发布到新文件；确认后也要核渲染和实际播放。原稿、原始诊断、确认理由和成功 edit report 一起保留作为可重放证据。
 
 ## XML 保留与支持矩阵
 

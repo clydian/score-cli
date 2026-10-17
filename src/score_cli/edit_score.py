@@ -25,6 +25,11 @@ from .score_document import (
 )
 
 from .validation import validate_document, notation_duration
+from .warning_acknowledgments import (
+    WarningAcknowledgments,
+    diagnostic_signature,
+    warning_identity,
+)
 from .compare import compare_documents
 from .structure_edits import StructureTransaction, OPERATIONS
 from .symbol_edits import edit_note_pair
@@ -85,14 +90,15 @@ def edit_score(
         )
     input_data = source.read_bytes()
     input_hash = sha256(input_data)
-    if not isinstance(changeset, dict) or set(changeset) != {
-        "schemaVersion",
-        "inputSha256",
-        "operations",
-    }:
+    required = {"schemaVersion", "inputSha256", "operations"}
+    if (
+        not isinstance(changeset, dict)
+        or not required <= set(changeset)
+        or not set(changeset) <= required | {"acknowledgedWarnings"}
+    ):
         raise EditError(
             "invalid-changeset",
-            "Expected schemaVersion, inputSha256 and operations only.",
+            "Expected schemaVersion, inputSha256, operations, and optional acknowledgedWarnings.",
         )
     if changeset.get("schemaVersion") not in {"1", "2"}:
         raise EditError(
@@ -102,6 +108,14 @@ def edit_score(
         raise EditError(
             "stale-input", "Changeset SHA-256 does not match the input snapshot."
         )
+    acknowledgment = None
+    if "acknowledgedWarnings" in changeset:
+        if changeset["schemaVersion"] != "2":
+            raise EditError(
+                "unsupported-contract",
+                "Warning acknowledgments require schemaVersion 2.",
+            )
+        acknowledgment = WarningAcknowledgments(changeset["acknowledgedWarnings"])
     operations = changeset.get("operations")
     if not isinstance(operations, list) or not operations:
         raise EditError(
@@ -306,34 +320,55 @@ def edit_score(
                 "invalid-operation", str(exc), operation_id=operation["id"]
             ) from exc
     diagnostics_after = validate_document(document)["diagnostics"]
-    signature = lambda d: json.dumps(
-        {k: d[k] for k in ("code", "severity", "location", "reason")}, sort_keys=True
-    )
     remaining = Counter(
-        signature(d) for d in structure.diagnostic_baseline(diagnostics_before)
+        diagnostic_signature(d)
+        for d in structure.diagnostic_baseline(diagnostics_before)
     )
+    introduced = []
     for diagnostic in diagnostics_after:
-        key = signature(diagnostic)
+        key = diagnostic_signature(diagnostic)
         diagnostic["origin"] = "existing" if remaining[key] else "new-or-unmatched"
         if remaining[key]:
             remaining[key] -= 1
         elif diagnostic["severity"] in {"error", "warning"}:
-            raise EditError(
-                "introduced-diagnostic",
-                "Edit introduces or cannot safely match a diagnostic: "
-                + diagnostic["code"]
-                + " "
-                + diagnostic["reason"],
-                diagnostic["location"],
-                ",".join(op["id"] for op in operations),
+            introduced.append(diagnostic)
+    data = document.serialize()
+    output_hash = sha256(data)
+
+    def introduced_error(diagnostic, *, review=False):
+        error = EditError(
+            "introduced-diagnostic",
+            "Edit introduces or cannot safely match a diagnostic: "
+            + diagnostic["code"]
+            + " "
+            + diagnostic["reason"],
+            diagnostic["location"],
+            ",".join(op["id"] for op in operations),
+        )
+        if review:
+            error.diagnostic["warningReview"] = dict(
+                outputSha256=output_hash,
+                diagnostics=[warning_identity(d) for d in introduced],
             )
+        return error
+
+    # Errors cannot be acknowledged, even if a warning review was supplied.
+    for diagnostic in introduced:
+        if diagnostic["severity"] == "error":
+            raise introduced_error(diagnostic)
     for element, offset in placed_offsets(document).items():
         if element in placement_before and placement_before[element] != offset:
             raise EditError(
                 "unrelated-direction-moved",
                 "Duration edit would move an existing direction/harmony; use a timeline-preserving operation sequence.",
             )
-    data = document.serialize()
+    if acknowledgment is not None:
+        acknowledgment.check_output(output_hash)
+    for diagnostic in introduced:
+        if acknowledgment is None or not acknowledgment.consume(diagnostic):
+            raise introduced_error(diagnostic, review=True)
+    if acknowledgment is not None:
+        acknowledgment.finish()
     report: dict = dict(
         schemaVersion="1",
         toolVersion=version("score-cli"),
@@ -342,7 +377,7 @@ def edit_score(
         reportPath=str(report_path.resolve()),
         status="dry-run" if dry_run else "applied",
         inputSha256=input_hash,
-        outputSha256=sha256(data),
+        outputSha256=output_hash,
         changeset=changeset,
         diagnosticsBefore=diagnostics_before,
         diagnosticsAfter=diagnostics_after,
@@ -353,6 +388,9 @@ def edit_score(
             mapping=structure.report()["mapping"] if structure.ledger else None,
         ),
     )
+    if acknowledgment is not None:
+        report["schemaVersion"] = "2"
+        report["warningAcknowledgments"] = acknowledgment.value
     if structure.ledger:
         report["schemaVersion"] = "2"
         report["structure"] = structure.report()

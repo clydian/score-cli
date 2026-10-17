@@ -1,6 +1,6 @@
 # 结构编辑契约 v2
 
-Issue #2。继续使用 `edit_score` / `score-cli edit` 的读取、快照定位、全谱校验和双文件发布事务。changeset 的顶层仍只有 `schemaVersion`、`inputSha256`、`operations`；结构操作必须使用 `schemaVersion: "2"`。v1 的字段编辑继续支持。输出仍为新建的未压缩 XML，保留原 partwise/timewise 根结构。
+Issue #2。继续使用 `edit_score` / `score-cli edit` 的读取、快照定位、全谱校验和双文件发布事务。changeset 的必需顶层字段是 `schemaVersion`、`inputSha256`、`operations`，0.2.6 起可选 `acknowledgedWarnings`（[精确 warning 确认契约](editing.md#合法部分声部的精确-warning-确认)）；结构操作必须使用 `schemaVersion: "2"`。v1 的字段编辑继续支持。输出仍为新建的未压缩 XML，保留原 partwise/timewise 根结构。
 
 ## 定位、旧值与失败
 

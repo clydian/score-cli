@@ -139,3 +139,7 @@ Whole-measure rests use their encoded duration rather than the whole-note glyph.
 ### 0.2.5 cross-staff validation
 
 Slur endpoints are paired in score time, rather than XML voice order. This permits real cross-hand piano slurs whose stop is serialized before their start by a `backup`; unmatched endpoints remain errors.
+
+Legal partial voices can retain coverage warnings after source review. Version 0.2.6
+adds an explicit input/output hash-bound, exact-warning acknowledgment contract;
+errors remain blocking and warnings remain visible. See [the review workflow](docs/editing.md#合法部分声部的精确-warning-确认).
