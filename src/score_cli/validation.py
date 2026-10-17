@@ -17,6 +17,8 @@ from .score_document import (
     sha256,
 )
 
+ACCIDENTAL_ALTERS = {"natural": 0, "sharp": 1, "flat": -1, "double-sharp": 2, "flat-flat": -2}
+
 TYPE_QUARTERS = {
     key: Fraction(str(value))
     for key, value in {
@@ -45,6 +47,7 @@ COVERAGE = dict(
         "duration-notation",
         "voice-coverage",
         "pitch-rest-invariants",
+        "standard-accidental-pitch-agreement",
         "tie-tied-slur-wedge-pairs",
     ],
     unchecked=[
@@ -294,6 +297,20 @@ def validate_document(document: ScoreDocument) -> dict:
                         or not 0 <= pitch["octave"] <= 9
                     ):
                         add("invalid-pitch", event_loc, "Invalid written pitch.")
+                    # Display accidentals are independent of sounding pitch in XML.
+                    # Imported/structurally replaced notes may leave a stale glyph.
+                    if (
+                        pitch is not None
+                        and pitch["accidental"] in ACCIDENTAL_ALTERS
+                        and Fraction(pitch["alter"])
+                        != ACCIDENTAL_ALTERS[pitch["accidental"]]
+                    ):
+                        add(
+                            "accidental-pitch-mismatch",
+                            event_loc,
+                            f"Display accidental {pitch['accidental']} disagrees with pitch alter {pitch['alter']}; verify against the source.",
+                            "warning",
+                        )
                     grace = child(element, "grace") is not None
                     chord = child(element, "chord") is not None
                     if grace and child(element, "duration") is not None:
