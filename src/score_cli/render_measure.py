@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import base64
 import io
+import math
 import os
 import re
 import tempfile
@@ -72,6 +73,7 @@ class RenderResult:
     source_page_count: int
     rendered_measures_on_source_page: tuple[str, ...]
     bytes: int
+    render_parameters: dict
 
 
 @dataclass(frozen=True, slots=True)
@@ -96,6 +98,9 @@ def render_printed_measure(
     output_path: str | Path,
     scope: Literal["measure", "system"] = "measure",
     measure_number_interval: int = 1,
+    breaks: Literal["encoded", "auto"] = "encoded",
+    page_width: int = 2100,
+    lyric_word_space: float = 1.2,
 ) -> RenderResult:
     """Render an exact MusicXML measure number or its system to a cropped PNG."""
 
@@ -111,14 +116,13 @@ def render_printed_measure(
         raise RenderMeasureError("The output path must end in .png.")
 
     _validate_measure_number_interval(measure_number_interval)
+    options = _layout_options(breaks, page_width, lyric_word_space)
     xml = read_musicxml(source)
     verovio.enableLog(verovio.LOG_OFF)
     toolkit = verovio.toolkit()
-    toolkit.setOptions(
+    options.update(
         {
             "inputFrom": "xml",
-            "breaks": "encoded",
-            "pageWidth": 2100,
             "footer": "none",
             "pageHeight": 2970,
             "scale": 40,
@@ -129,6 +133,7 @@ def render_printed_measure(
             "mnumInterval": measure_number_interval,
         }
     )
+    toolkit.setOptions(options)
 
     if not toolkit.loadData(xml):
         raise RenderMeasureError(f'Verovio could not load "{source}".')
@@ -183,7 +188,28 @@ def render_printed_measure(
         source_page_count=page_count,
         rendered_measures_on_source_page=rendered_pages[source_page],
         bytes=len(png),
+        render_parameters=options,
     )
+
+
+def _layout_options(
+    breaks: str, page_width: int, lyric_word_space: float
+) -> dict:
+    if breaks not in {"encoded", "auto"}:
+        raise RenderMeasureError("Breaks must be encoded or auto.")
+    if type(page_width) is not int or not 100 <= page_width <= 100000:
+        raise RenderMeasureError("Page width must be an integer from 100 to 100000.")
+    if (
+        type(lyric_word_space) not in {int, float}
+        or not 0 <= lyric_word_space <= 10
+        or not math.isfinite(lyric_word_space)
+    ):
+        raise RenderMeasureError("Lyric word space must be finite and from 0 to 10.")
+    return {
+        "breaks": breaks,
+        "pageWidth": page_width,
+        "lyricWordSpace": lyric_word_space,
+    }
 
 
 def _find_rendered_measures(svg: str) -> list[_RenderedMeasure]:
@@ -404,6 +430,9 @@ def render_range(
     context: int = 0,
     output_directory: str | Path,
     measure_number_interval: int = 1,
+    breaks: Literal["encoded", "auto"] = "encoded",
+    page_width: int = 2100,
+    lyric_word_space: float = 1.2,
 ) -> dict:
     """Crop consecutive selected measures per system; manifest is the commit marker."""
     from dataclasses import asdict
@@ -413,6 +442,7 @@ def render_range(
     from .score_document import sha256
 
     _validate_measure_number_interval(measure_number_interval)
+    layout = _layout_options(breaks, page_width, lyric_word_space)
     if type(context) is not int or context < 0:
         raise RenderMeasureError("Context must be a nonnegative integer.")
     source = Path(input_path)
@@ -446,8 +476,6 @@ def render_range(
     toolkit = verovio.toolkit()
     options = dict(
         inputFrom="xml",
-        breaks="encoded",
-        pageWidth=2100,
         footer="none",
         pageHeight=2970,
         scale=40,
@@ -456,6 +484,7 @@ def render_range(
         svgBoundingBoxes=True,
         svgContentBoundingBoxes=True,
         mnumInterval=measure_number_interval,
+        **layout,
     )
     toolkit.setOptions(options)
     if not toolkit.loadData(xml):

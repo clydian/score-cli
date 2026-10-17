@@ -62,6 +62,22 @@ uv run score-cli render score.mxl --from-measure 1 --to-measure 80 \
   --measure-number-interval 0 --output tmp/score-systems
 ```
 
+Dense lyrics can need a second view with automatic reflow, without changing the XML:
+
+```sh
+uv run score-cli render score.mxl --from-measure 1 --to-measure 98 \
+  --breaks auto --lyric-word-space 2.5 --output tmp/reflow-review
+```
+
+The default remains `--breaks encoded --page-width 2100 --lyric-word-space 1.2`.
+`--page-width` accepts 100–100000 Verovio units; lyric word spacing accepts finite
+values from 0 to 10. These options apply to single-measure, system and range
+renders. Range manifests record the exact layout parameters and input hash.
+Reflow changes system grouping and crop coordinates, so keep its manifest with
+review evidence. It is an additional readability view, not evidence that source
+engraving, product display or playback has been accepted. Do not shrink or delete
+source lyrics to make an overfull encoded system fit.
+
 `--measure` matches the exact MusicXML `<measure number="...">` value. It is a
 string selector, so printed numbers such as `0` and `X1` are supported. Inputs may be
 uncompressed `.musicxml` / `.xml` files or compressed `.mxl` files.

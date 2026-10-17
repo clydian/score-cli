@@ -47,6 +47,18 @@ def build_parser() -> argparse.ArgumentParser:
     render.add_argument("--to-measure", dest="end")
     render.add_argument("--context", type=int, default=0)
     render.add_argument(
+        "--breaks", choices=("encoded", "auto"), default="encoded",
+        help="keep encoded system breaks or reflow for inspection (default: encoded)",
+    )
+    render.add_argument(
+        "--page-width", type=int, default=2100,
+        help="Verovio page width, 100–100000 (default: 2100)",
+    )
+    render.add_argument(
+        "--lyric-word-space", type=float, default=1.2,
+        help="lyric word spacing, 0–10 (default: 1.2)",
+    )
+    render.add_argument(
         "--measure-number-interval", type=int, default=1,
         help="measure number density: 0 at system starts, 1 every measure (default), 2–64 every N measures",
     )
@@ -171,6 +183,9 @@ def main(argv: Sequence[str] | None = None) -> int:
                 context=arguments.context,
                 output_directory=arguments.output,
                 measure_number_interval=arguments.measure_number_interval,
+                breaks=arguments.breaks,
+                page_width=arguments.page_width,
+                lyric_word_space=arguments.lyric_word_space,
             )
             print(json_bytes(report).decode(), end="")
         elif arguments.command == "render":
@@ -184,6 +199,9 @@ def main(argv: Sequence[str] | None = None) -> int:
                 output_path=arguments.output,
                 scope=arguments.scope,
                 measure_number_interval=arguments.measure_number_interval,
+                breaks=arguments.breaks,
+                page_width=arguments.page_width,
+                lyric_word_space=arguments.lyric_word_space,
             )
             print(
                 f"Rendered {result.scope} for printed measure "

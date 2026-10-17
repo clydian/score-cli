@@ -57,3 +57,11 @@
 用户反馈先定位产品当前实际文件，再与原谱、复核候选对照。修复应回到成员端验证同一症状；可靠的局部修订可以先更新产品，继续清楚标注剩余范围。将失败原因转成流程判断标准，并检查其他作品是否受到同类问题影响。
 
 本流程的一次具体教训：2026-10-17，《If Music》第一轮发布文件含 39 个假跳音、7 个第一结尾（ending）元素；7 个元素不等于 7 段结尾。结构及播放加载检查允许这些合法 XML 元素，按段落看音区与旋律也未覆盖它们。第二轮校订候选已修正相关记号，但等待钢琴整合、尚未更新产品，使错误继续暴露。由此加入“记号分类复核、从 XML 反查原谱、发布后复现修正项”的要求；第一轮快速覆盖同样执行这一最低检查。
+
+
+When dense source systems make lyric review unreadable, first inspect the actual
+lyric bindings to rule out duplicate text on chord tones. Keep source lyrics and
+musical events intact. Use a separate reflow render (`--breaks auto`, optionally
+`--lyric-word-space 2.5`) and retain its input hash and render parameters; the
+original encoded layout remains another reference. New wrapping and readable
+CLI crops do not prove that the product renderer or free-time playback is correct.
