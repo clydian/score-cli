@@ -20,11 +20,18 @@ def _signature(element: etree._Element) -> bytes:
     return etree.tostring(element, method="c14n", with_comments=False)
 
 
+def _element_children(element: etree._Element) -> list[etree._Element]:
+    # Comments and processing instructions have callable tags, not QNames.
+    # Keep them in the render document; only element children define meter.
+    return [child for child in element if isinstance(child.tag, str)]
+
+
 def _simple_meter(time: etree._Element) -> bool:
+    children = _element_children(time)
     return (
         not time.attrib
-        and [_tag(child) for child in time] == ["beats", "beat-type"]
-        and all((child.text or "").isdigit() and int(child.text or "0") > 0 for child in time)
+        and [_tag(child) for child in children] == ["beats", "beat-type"]
+        and all((child.text or "").isdigit() and int(child.text or "0") > 0 for child in children)
     )
 
 
@@ -60,7 +67,7 @@ def prepare_render_input(xml: str) -> RenderInput:
                 signature = _signature(time)
                 if part_index == 0:
                     first_contexts[ordinal] = (signature, previous_meter)
-                elif (not time.attrib and len(time) == 1 and previous_meter is not None
+                elif (not time.attrib and len(_element_children(time)) == 1 and previous_meter is not None
                       and shared == (signature, previous_meter)):
                     time.getparent().remove(time)
                     applied.append(dict(partId=part.get("id"), measureOrdinal=ordinal,

@@ -139,3 +139,30 @@ def test_three_parts_keep_first_visible_free_label_and_all_source_notes():
     assert [ET.canonicalize(ET.tostring(n), strip_text=True) for n in after.findall('.//note')] == [ET.canonicalize(ET.tostring(n), strip_text=True) for n in root.findall('.//note')]
     toolkit, _ = _toolkit(xml)
     assert _times(toolkit) == [('1', '3', '0m+5'), ('2', '3', '0m+5'), ('3', '3', '0m+5')]
+
+
+@pytest.mark.parametrize('free', [False, True])
+def test_public_render_preserves_comments_and_processing_instructions(tmp_path, free):
+    from lxml import etree
+    from score_cli.render_input import prepare_render_input
+    parser = etree.XMLParser(remove_blank_text=True)
+    root = etree.parse(str(FIXTURE), parser)
+    for time in root.findall('.//time'):
+        time.insert(1, etree.Comment('source meter annotation'))
+        time.insert(1, etree.ProcessingInstruction('source-editor', 'keep="yes"'))
+        if not free and time.find('senza-misura') is not None:
+            time.remove(time.find('senza-misura'))
+            etree.SubElement(time, 'beats').text = '4'
+            etree.SubElement(time, 'beat-type').text = '4'
+    source = tmp_path/'commented.musicxml'
+    source.write_bytes(etree.tostring(root))
+    original = source.read_bytes()
+    result = render_measure.render_printed_measure(input_path=source, measure='86', output_path=tmp_path/'comments.png')
+    assert result.bytes > 0
+    prepared = prepare_render_input(original.decode())
+    after = etree.fromstring(prepared.xml.encode(), parser)
+    if free:
+        redundant = root.findall('part')[1].find('measure[@number="86"]/attributes/time')
+        redundant.getparent().remove(redundant)
+    assert etree.tostring(root, method='c14n', with_comments=True) == etree.tostring(after, method='c14n', with_comments=True)
+    assert source.read_bytes() == original
