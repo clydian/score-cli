@@ -243,3 +243,20 @@ def test_duplicate_same_voice_unisons_remain_errors(tmp_path):
         "ambiguous-tie",
         "ambiguous-tied",
     } <= codes
+
+
+def test_unpitched_display_position_is_not_a_known_crossvoice_tie_pitch(tmp_path):
+    start, stop = note("1", "start"), note("2", "stop")
+    pitched = "<pitch><step>A</step><octave>3</octave></pitch>"
+    unpitched = "<unpitched><display-step>A</display-step><display-octave>3</display-octave></unpitched>"
+    path = write_score(
+        tmp_path, [start.replace(pitched, unpitched), stop.replace(pitched, unpitched)]
+    )
+    codes = {d["code"] for d in validate_score(input_path=path)["diagnostics"]}
+    assert {
+        "unsupported-unpitched-sound",
+        "orphan-tie",
+        "orphan-tied",
+        "unclosed-tie",
+        "unclosed-tied",
+    } <= codes

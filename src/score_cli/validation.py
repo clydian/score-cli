@@ -648,6 +648,15 @@ def _pair_tie_points(points, add):
                 *key[3:],
             )  # Keep part, pitch and tied number; drop voice.
 
+        def has_known_pitch(key):
+            # Pitched keys contain step/alter/octave; unpitched display positions
+            # and rest/absent pitch keys cannot identify a cross-voice sound.
+            return (
+                len(key) == (7 if key[1] == "tied" else 6)
+                and key[3] in set("ABCDEFG")
+                and 0 <= key[5] <= 9
+            )
+
         by_identity = defaultdict(list)
         for i, stop in enumerate(stops):
             if i not in resolved:
@@ -657,7 +666,10 @@ def _pair_tie_points(points, add):
             candidates = [
                 i
                 for i, start in enumerate(active)
-                if i not in used and identity(start[1]) == key and start[4] == at
+                if i not in used
+                and has_known_pitch(start[1])
+                and identity(start[1]) == key
+                and start[4] == at
             ]
             if len(candidates) == len(indices) == 1:
                 link(candidates[0], indices[0])
