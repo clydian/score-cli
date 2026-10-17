@@ -174,3 +174,5 @@ Slur endpoints are paired in score time, rather than XML voice order. This permi
 Legal partial voices can retain coverage warnings after source review. Version 0.2.6
 adds an explicit input/output hash-bound, exact-warning acknowledgment contract;
 errors remain blocking and warnings remain visible. See [the review workflow](docs/editing.md#合法部分声部的精确-warning-确认).
+
+Validation also catches the narrow MusicXML note-order error `notations-after-lyric`: a same-namespace `notations` element must precede all `lyric` elements. Foreign extension elements are ignored by this rule. This does not replace full XSD validation or automatically reorder the score; see [the validation contract](docs/editing.md).

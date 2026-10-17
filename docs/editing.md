@@ -69,6 +69,8 @@ Diagnostic 字段：`code`（稳定 kebab-case）、`severity`（error/warning/i
 
 自 0.2.9，`validate` 对显式 `natural`、`sharp`、`flat`、`double-sharp`、`flat-flat` 与 `pitch/alter` 不一致的音符报告 `accidental-pitch-mismatch` warning，定位到具体事件。省略 alter 按 0 处理；提醒性或括号升降号也应与所写音高一致。未知／微分音升降号不由此规则解释。校验不会自动改谱：回看原 PDF，确认应改显示记号还是音高；仅有听音一致不能证明显示正确。结构编辑引入的新 warning 仍受既有逐项确认机制约束。
 
+`validate` 另对 note 中位于首个 `lyric` 之后的同 MusicXML 命名空间 `notations` 报 `notations-after-lyric` error，定位到具体事件。`coverage.checked` 的 `notations-before-lyric-note-order` 仅表示这一条元素顺序约束；外来扩展命名空间的同名元素不参与判断。校验不会自动重排元素，新引入的此类 error 也不能用 warning acknowledgment 豁免。回看源谱确认符号内容后，以 hash-bound 编辑将 `notations` 放在全部 `lyric` 之前。其他 note 子元素顺序、choice / multiplicity 等仍需完整 XSD 校验，`full-musicxml-schema` 继续列为 unchecked。
+
 edit report 包含工具版本、inputSha256/outputSha256、完整有序 changeset、diagnosticsBefore/After、comparison、diagnosticMatching。诊断匹配使用 code+severity+完整 location+reason 的多重集合精确匹配，新增项标记 new-or-unmatched。新错误/警告默认均阻止发布；无法匹配不是“已证明新增”，会保守阻止。既有问题允许定点修复。对已经逐项核原谱的合法部分 voice，可以使用下面的 v2 精确 warning 确认；它不删除诊断、不降低 severity，也不豁免任何新 error。
 
 compare 在已对齐的 part/小节内部按全部 note ordinal 对齐；显式结构映射、新增/删除见 v2 文档。voice ID 改变或 note 数量变化不猜映射，报告 unaligned 与 added/removed **候选**。无唯一身份时不能把候选当成已证明新增/删除。报告 notationDifferences（字段、前后值）、soundingDifferences、两侧 validation、覆盖范围与两个输入哈希。相同数量下 ordinal 是显式比较策略，不是跨编辑稳定身份的承诺。

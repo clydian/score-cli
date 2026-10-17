@@ -48,6 +48,7 @@ COVERAGE = dict(
         "voice-coverage",
         "pitch-rest-invariants",
         "standard-accidental-pitch-agreement",
+        "notations-before-lyric-note-order",
         "tie-tied-slur-wedge-pairs",
     ],
     unchecked=[
@@ -290,6 +291,16 @@ def validate_document(document: ScoreDocument) -> dict:
                             "invalid-note-kind",
                             event_loc,
                             "A note needs exactly one pitch, rest or unpitched child.",
+                        )
+                    lyric = child(element, "lyric")
+                    if lyric is not None and any(
+                        element.index(notations) > element.index(lyric)
+                        for notations in children(element, "notations")
+                    ):
+                        add(
+                            "notations-after-lyric",
+                            event_loc,
+                            "MusicXML note notations must precede lyric children; full schema validation remains separate.",
                         )
                     pitch = pitch_value(element)
                     if pitch is not None and (

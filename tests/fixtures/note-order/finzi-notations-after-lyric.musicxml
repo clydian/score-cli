@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<!-- Minimal reproduction of Finzi P1 m28: a tenuto was appended after its lyric. -->
+<score-partwise version="4.0">
+  <part-list><score-part id="P1"><part-name>Soprano</part-name></score-part></part-list>
+  <part id="P1"><measure number="28">
+    <attributes><divisions>2</divisions><time><beats>4</beats><beat-type>4</beat-type></time></attributes>
+    <note><pitch><step>C</step><alter>1</alter><octave>5</octave></pitch><duration>8</duration><voice>1</voice><type>whole</type><accidental>sharp</accidental><lyric number="1"><syllabic>single</syllabic><text>joy?</text></lyric><notations><articulations><tenuto/></articulations></notations></note>
+  </measure></part>
+</score-partwise>
