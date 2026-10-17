@@ -184,3 +184,10 @@ adds an explicit input/output hash-bound, exact-warning acknowledgment contract;
 errors remain blocking and warnings remain visible. See [the review workflow](docs/editing.md#合法部分声部的精确-warning-确认).
 
 Validation also catches the narrow MusicXML note-order error `notations-after-lyric`: a same-namespace `notations` element must precede all `lyric` elements. Foreign extension elements are ignored by this rule. This does not replace full XSD validation or automatically reorder the score; see [the validation contract](docs/editing.md).
+
+Free-meter rendering uses a narrowly scoped Verovio 6.3 compatibility adapter:
+only redundant later-part `senza-misura` declarations with identical shared scope
+and preceding simple meter are omitted from the render copy. Source XML, note
+values and direction offsets remain intact. Range manifests record adaptations
+and unchecked independent/mixed meter scopes in `renderInputCompatibility`;
+see [the rendering contract](docs/editing.md#自由拍方向的渲染兼容).

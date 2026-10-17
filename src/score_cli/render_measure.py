@@ -20,6 +20,7 @@ from fontTools.pens.boundsPen import BoundsPen
 from fontTools.svgLib.path import parse_path as parse_svg_path
 
 from .musicxml_input import read_musicxml
+from .render_input import prepare_render_input
 
 HORIZONTAL_PADDING = 100.0
 VERTICAL_PADDING = 500.0
@@ -100,6 +101,7 @@ class RenderResult:
     rendered_measures_on_source_page: tuple[str, ...]
     bytes: int
     render_parameters: dict
+    render_input_compatibility: dict
 
 
 @dataclass(frozen=True, slots=True)
@@ -144,7 +146,8 @@ def render_printed_measure(
 
     _validate_measure_number_interval(measure_number_interval)
     options = _layout_options(breaks, page_width, lyric_word_space, lyric_top_min_margin)
-    xml = read_musicxml(source)
+    render_input = prepare_render_input(read_musicxml(source))
+    xml = render_input.xml
     verovio.enableLog(verovio.LOG_OFF)
     toolkit = verovio.toolkit()
     options.update(
@@ -216,6 +219,7 @@ def render_printed_measure(
         rendered_measures_on_source_page=rendered_pages[source_page],
         bytes=len(png),
         render_parameters=options,
+        render_input_compatibility=render_input.compatibility,
     )
 
 
@@ -553,7 +557,8 @@ def render_range(
     selected = sequence[
         max(0, first - context) : min(len(sequence), last + context + 1)
     ]
-    xml = read_musicxml(source)
+    render_input = prepare_render_input(read_musicxml(source))
+    xml = render_input.xml
     verovio.enableLog(verovio.LOG_OFF)
     toolkit = verovio.toolkit()
     options = dict(
@@ -630,6 +635,7 @@ def render_range(
         toolVersion=version("score-cli"),
         rendererVersion=toolkit.getVersion(),
         renderParameters=options,
+        renderInputCompatibility=render_input.compatibility,
         requested=dict(start=start, end=end, context=context),
         selectedMeasures=selected,
         contextClipped=dict(

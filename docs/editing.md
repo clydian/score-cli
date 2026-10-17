@@ -169,3 +169,9 @@ Targets 是 `[{"id":"P1-m2-lyrics","partId":"P1","printedMeasure":"2","checks":[
 
 
 结构操作请参见 [changeset v2 结构编辑契约](structural-editing.md)；本文的 v1 字段编辑契约继续支持。
+
+### 自由拍方向的渲染兼容
+
+Verovio 6.3 在非首 part 再次读取 `senza-misura` 时，会把不存在的 `beat-type` 当成零，导致渐强渐弱、文字等方向的时点塌为小节起点。单小节和范围渲染现在只在**渲染副本**中省略可证明冗余的声明：相同 ordinal 的首 part 有内容完全相同的无编号自由拍，且两 part 的前置简单计量声明完全一致。首 part 的原自由拍／文字保留，不补拍号，不改变任何音符、方向 offset、歌词、源文件或 `edit` 输出。
+
+范围 manifest 的 `renderInputCompatibility.omittedRedundantTimeDeclarations` 列出适配的位置，`unchecked` 列出不满足条件的范围；单小节 Python API 的 `RenderResult.render_input_compatibility` 提供同样信息。独立／编号谱表拍号、混合拍号、不同前置分母或无法证明共享作用域的声明保持原样，**不代表显示已校验**。该兼容只恢复方向时间，不保证自由图形、重复次数、精确演奏长度或文字避让；仍应对照原谱查看最终图。
