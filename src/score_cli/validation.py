@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from collections import defaultdict
 from fractions import Fraction
+from itertools import groupby
 from pathlib import Path
 
 from .score_document import (
@@ -17,7 +18,13 @@ from .score_document import (
     sha256,
 )
 
-ACCIDENTAL_ALTERS = {"natural": 0, "sharp": 1, "flat": -1, "double-sharp": 2, "flat-flat": -2}
+ACCIDENTAL_ALTERS = {
+    "natural": 0,
+    "sharp": 1,
+    "flat": -1,
+    "double-sharp": 2,
+    "flat-flat": -2,
+}
 
 TYPE_QUARTERS = {
     key: Fraction(str(value))
@@ -189,6 +196,7 @@ def validate_document(document: ScoreDocument) -> dict:
     staves: dict[str, int] = {}
     open_pairs: dict[tuple, tuple[dict, Fraction | None]] = {}
     slur_points: list[tuple] = []
+    tie_points: list[tuple] = []
     absolute_times: dict[str, Fraction] = defaultdict(Fraction)
     for part, printed, ordinal, measure, attributes in measures:
         loc = dict(partId=part, printedMeasure=printed, measureOrdinal=ordinal)
@@ -439,14 +447,8 @@ def validate_document(document: ScoreDocument) -> dict:
                                     (symbol.get("type", ""), key, event_loc, at, end)
                                 )
                                 continue
-                            _pair(
-                                symbol.get("type", ""),
-                                key,
-                                event_loc,
-                                at,
-                                end,
-                                open_pairs,
-                                add,
+                            tie_points.append(
+                                (symbol.get("type", ""), key, event_loc, at, end)
                             )
                     tie_types = sorted(
                         e.get("type", "") for e in children(element, "tie")
@@ -566,6 +568,7 @@ def validate_document(document: ScoreDocument) -> dict:
         slur_points, key=lambda p: (p[1][0], p[3], 0 if p[0] == "stop" else 1)
     ):
         _pair(kind, key, location, at, end, open_pairs, add)
+    _pair_tie_points(tie_points, add)
     for key, (location, _) in open_pairs.items():
         add("unclosed-" + key[1], location, f"{key[1]} start has no matching stop.")
     status = (
@@ -578,6 +581,117 @@ def validate_document(document: ScoreDocument) -> dict:
     return dict(
         schemaVersion="1", status=status, coverage=COVERAGE, diagnostics=diagnostics
     )
+
+
+def _pair_tie_points(points, add):
+    """Prefer voice identity; infer only a unique contiguous cross-voice link.
+
+    Batch simultaneous stops before consuming starts so XML voice order cannot
+    decide between multiple unisons. Notated tie numbers still pair separately.
+    Zero-duration endpoints retain the previous part-local pairing behavior:
+    grace order needs a richer timeline before cross-voice inference is safe.
+    """
+    legacy_parts = {p[1][0] for p in points if p[3] == p[4]}
+    legacy_pairs: dict[tuple, tuple] = {}
+    for kind, key, location, at, end in points:
+        if key[0] in legacy_parts:
+            _pair(kind, key, location, at, end, legacy_pairs, add)
+    for key, (location, _) in legacy_pairs.items():
+        add("unclosed-" + key[1], location, f"{key[1]} start has no matching stop.")
+
+    active: list[tuple] = []
+    ordered = sorted(
+        (p for p in points if p[1][0] not in legacy_parts),
+        key=lambda p: (p[1][0], p[3]),
+    )
+    for _, batch_iterator in groupby(ordered, key=lambda p: (p[1][0], p[3])):
+        batch = list(batch_iterator)
+        stops = [p for p in batch if p[0] in {"stop", "continue"}]
+        used = set()
+        resolved = set()
+
+        def link(start_index, stop_index):
+            start, stop = active[start_index], stops[stop_index]
+            used.add(start_index)
+            resolved.add(stop_index)
+            if stop[1][1] == "tie" and start[4] != stop[3]:
+                add(
+                    "nonadjacent-tie",
+                    stop[2],
+                    "Tie endpoints are not contiguous in score time.",
+                )
+
+        def ambiguous(indices):
+            for i in indices:
+                add(
+                    "ambiguous-" + stops[i][1][1],
+                    stops[i][2],
+                    "Multiple same-pitch tie endpoints could pair; voice/time do not uniquely identify the link.",
+                )
+                resolved.add(i)
+
+        # Existing voice identity is stronger than a fallback from another voice.
+        by_key = defaultdict(list)
+        for i, stop in enumerate(stops):
+            by_key[stop[1]].append(i)
+        for key, indices in by_key.items():
+            candidates = [i for i, start in enumerate(active) if start[1] == key]
+            if len(candidates) == len(indices) == 1:
+                link(candidates[0], indices[0])
+            elif candidates:
+                ambiguous(indices)
+
+        def identity(key):
+            return (
+                key[0],
+                key[1],
+                *key[3:],
+            )  # Keep part, pitch and tied number; drop voice.
+
+        by_identity = defaultdict(list)
+        for i, stop in enumerate(stops):
+            if i not in resolved:
+                by_identity[identity(stop[1])].append(i)
+        for key, indices in by_identity.items():
+            at = stops[indices[0]][3]
+            candidates = [
+                i
+                for i, start in enumerate(active)
+                if i not in used and identity(start[1]) == key and start[4] == at
+            ]
+            if len(candidates) == len(indices) == 1:
+                link(candidates[0], indices[0])
+            elif candidates:
+                ambiguous(indices)
+            else:
+                for i in indices:
+                    family = stops[i][1][1]
+                    add(
+                        "orphan-" + family,
+                        stops[i][2],
+                        f"{family} stop/continue has no matching start.",
+                    )
+        active = [p for i, p in enumerate(active) if i not in used]
+        for point in batch:
+            kind, key, location, _, _ = point
+            family = key[1]
+            if kind in {"start", "continue"}:
+                if any(p[1] == key for p in active):
+                    add(
+                        "duplicate-" + family + "-start",
+                        location,
+                        f"{family} number is already open.",
+                    )
+                active.append(point)
+            elif kind != "stop":
+                add(
+                    "unsupported-" + family,
+                    location,
+                    f"Unsupported endpoint type {kind}.",
+                    "inconclusive",
+                )
+    for _, key, location, _, _ in active:
+        add("unclosed-" + key[1], location, f"{key[1]} start has no matching stop.")
 
 
 def _pair(kind, key, location, at, end, pairs, add):

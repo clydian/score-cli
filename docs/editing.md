@@ -77,6 +77,14 @@ compare 在已对齐的 part/小节内部按全部 note ordinal 对齐；显式�
 
 发声音高是以 C4=60 为基准的半音数：pitch + transpose.chromatic + 12×transpose.octave-change。clef-octave-change 和 octave-shift 不再重复加八度。unpitched、instrument/play、transpose.double 等无法确定的表示返回 inconclusive。不是完整演奏引擎，repeat、sound 跳转、微分音调律等不推断。
 
+### 跨声部延音线校验
+
+`tie` / `tied` 先按实际乐谱时间处理，并优先保留同 part、同 voice、同所写音高的配对。没有同 voice 配对时，仅当同 part 中剩余的起点和终点各自唯一、所写音高相同、起点时值恰好到达终点时，才允许跨 voice（或 staff）相连。`tied` 的 number 仍分别匹配；播放 `tie` 没有 number，多个同音候选仍可能无法消歧。同一时点的全部终点先集中检查，不能因 XML 中哪个 voice 先出现就先消耗某条延音线。歧义报告 `ambiguous-tie` / `ambiguous-tied` error；错误不能用 warning acknowledgment 豁免。
+
+本规则不改动源 XML、不新增播放解释，也不扩大 v1 `tie` 编辑的同 voice locator 限制。结构 changeset v2 可在保留真实音高、时值和端点后恢复共符干和弦。所写音高拼写仍须一致；等音异名、反复边界的单音符视觉 tie 等既有未解释范围没有在本次扩展。含零时值 tie 端点（例如倚音）的 part 保留原先按 voice、文档顺序配对的路径，暂不推断该 part 的跨 voice tie。
+
+依据：[W3C tie](https://www.w3.org/2021/06/musicxml40/musicxml-reference/elements/tie/) 区分演奏与记谱；[tied](https://www.w3.org/2021/06/musicxml40/musicxml-reference/elements/tied/) 说明同音端点和复杂情形的 number，没有规定两端 voice 必须相等；[voice](https://www.w3.org/2021/06/musicxml40/musicxml-reference/elements/voice/) 用于区分 part 内线性事件流。因此“voice 改变必定断线”不是这些元素定义的必要约束，这是对规范的解释。[MuseScore 原生导入实现](https://github.com/musescore/MuseScore/blob/4509c9072c583f7ab0c805ded2ab88f29e0ec0e5/src/importexport/musicxml/internal/import/importmusicxmlpass2.cpp#L2349-L2371) 也有跨 voice 的同音、相邻时间端点补接。这里引用其源码行为，未声称实际运行 MuseScore 验收；Score CLI 对多候选采用更保守的歧义错误。
+
 ## 合法部分声部的精确 warning 确认
 
 从 0.2.6 起，changeset v2 可选顶层字段 `acknowledgedWarnings`。v1 及没有此字段的 v2 保持原先的保守阻断行为。普通小节中的共享音符、后半拍进入的 divisi、只写一段的独立 voice 可能产生 `incomplete-voice` / `voice-gap` warning。工具没有原谱依据，不能自动认定合法，也不能为消除 warning 补休止或重复共享音符。

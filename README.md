@@ -171,6 +171,14 @@ Whole-measure rests use their encoded duration rather than the whole-note glyph.
 
 Slur endpoints are paired in score time, rather than XML voice order. This permits real cross-hand piano slurs whose stop is serialized before their start by a `backup`; unmatched endpoints remain errors.
 
+Tie validation prefers the existing voice identity. If a tie changes voice (for
+example, a divisi line rejoins a common-stem chord), it can also match the unique
+same-part, same-written-pitch endpoint at the exact end time. Simultaneous unison
+candidates remain `ambiguous-tie` / `ambiguous-tied` errors; XML traversal order
+never selects a fallback. Parts containing zero-duration tie endpoints retain
+legacy voice-bound pairing. This does not expand the v1 tie-edit locator contract
+or certify the source score. See [the pairing limits](docs/editing.md#跨声部延音线校验).
+
 Legal partial voices can retain coverage warnings after source review. Version 0.2.6
 adds an explicit input/output hash-bound, exact-warning acknowledgment contract;
 errors remain blocking and warnings remain visible. See [the review workflow](docs/editing.md#合法部分声部的精确-warning-确认).
