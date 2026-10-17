@@ -30,6 +30,8 @@
 
 二轮音高复核先暂时脱离底稿：在能清楚辨认五条线的原谱裁图上，逐谱表确定谱号与线位，独立记录音名、时值和声部，再与 XML 比较。尤其检查空心符头、相邻分部和钢琴缩谱；按底稿音名回看低清整页，容易把整段偏一个线位的错误继续当作正确。发现这类系统性误读时，应撤回受影响范围的旧验收，扩大源谱重读范围；XML 到 MIDI 一致不能替代这一步。
 
+扫描五线倾斜或弯曲时，在音符实际横向位置定标，并用附近加线交叉检查。不能拿左端或上一组音符的纵坐标贯穿整行；密集华彩的末尾尤其容易整体偏一个音级。意见一致也不代替坐标证据，整合后仍按最终文件核对已裁决的音名。
+
 每个反复或跳转标记都需要原谱位置与明确路线。OMR 新增的奏法和表情逐类复核；数量异常、全曲贯穿或彼此矛盾时优先排查。原谱确实存在的记号应保留，不能用“全部删除某类元素”替代复核。合法记号即使音乐含义错误，也可能通过 XML 校验。
 
 ## 验证分层，结论限定范围
@@ -59,9 +61,4 @@
 本流程的一次具体教训：2026-10-17，《If Music》第一轮发布文件含 39 个假跳音、7 个第一结尾（ending）元素；7 个元素不等于 7 段结尾。结构及播放加载检查允许这些合法 XML 元素，按段落看音区与旋律也未覆盖它们。第二轮校订候选已修正相关记号，但等待钢琴整合、尚未更新产品，使错误继续暴露。由此加入“记号分类复核、从 XML 反查原谱、发布后复现修正项”的要求；第一轮快速覆盖同样执行这一最低检查。
 
 
-When dense source systems make lyric review unreadable, first inspect the actual
-lyric bindings to rule out duplicate text on chord tones. Keep source lyrics and
-musical events intact. Use a separate reflow render (`--breaks auto`, optionally
-`--lyric-word-space 2.5`) and retain its input hash and render parameters; the
-original encoded layout remains another reference. New wrapping and readable
-CLI crops do not prove that the product renderer or free-time playback is correct.
+密集歌词在原有系统中被挤压时，先检查和弦是否重复挂了歌词。保留源文字和音乐事件，另出自动重排图（`--breaks auto`，必要时 `--lyric-word-space 2.5`），并保留原件哈希与渲染参数；原有换行仍作另一份参考。重排后应看完整曲目，因为新的换行也可能造成原来没有的文字或符号遮挡。CLI 裁图可读不等于产品显示或自由段播放已通过。
