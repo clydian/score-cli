@@ -16,6 +16,8 @@ from xml.etree import ElementTree
 import resvg_py
 import verovio
 from fontTools.ttLib import TTFont
+from fontTools.pens.boundsPen import BoundsPen
+from fontTools.svgLib.path import parse_path as parse_svg_path
 
 from .musicxml_input import read_musicxml
 
@@ -254,7 +256,7 @@ def _validate_measure_number_interval(value: int) -> None:
 def _include_spanning_extent(system: ElementTree.Element, box: _Box) -> _Box:
     """Spanning ink can lie outside a measure's reported content bounds.
 
-    Voltas are system milestones; slur/tie boxes can also sit above the beam
+    Voltas are system milestones; curve/hairpin boxes can also sit above the beam
     or below the staff without expanding the measure box in Verovio 6.3.
     Include their vertical extent only where they overlap the selected bar.
     Keep horizontal bounds local so a long span does not pull unrelated bars
@@ -263,10 +265,10 @@ def _include_spanning_extent(system: ElementTree.Element, box: _Box) -> _Box:
     top, bottom = box.y, box.y + box.height
     for group in system.iter(f"{{{SVG_NAMESPACE}}}g"):
         classes = set(group.get("class", "").split())
-        roles = classes & {"ending", "slur", "tie"}
+        roles = classes & {"ending", "slur", "tie", "hairpin"}
         if not roles or "bounding-box" in classes:
             continue
-        span = _find_content_box(group, next(iter(roles)), box_class="bounding-box")
+        span = _find_spanning_ink_box(group, next(iter(roles)))
         if (
             span is None
             or span.x >= box.x + box.width
@@ -276,6 +278,49 @@ def _include_spanning_extent(system: ElementTree.Element, box: _Box) -> _Box:
         top = min(top, span.y)
         bottom = max(bottom, span.y + span.height)
     return _Box(box.x, top, box.width, bottom - top)
+
+
+def _find_spanning_ink_box(group: ElementTree.Element, role: str) -> _Box | None:
+    """Use visible curve fragments, not Verovio's reused cross-system box.
+
+    Verovio 6.3 can put the final fragment's debug rectangle on every segment
+    of a cross-system hairpin. Direct paths/polylines use absolute definition
+    coordinates, so derive their bounds independently with fontTools.
+    """
+    boxes = []
+    if role in {"slur", "tie", "hairpin"} and not group.get("transform"):
+        for element in group:
+            if element.get("transform"):
+                continue
+            pen = BoundsPen(None)
+            try:
+                if element.tag == f"{{{SVG_NAMESPACE}}}path":
+                    parse_svg_path(element.get("d", ""), pen)
+                elif element.tag == f"{{{SVG_NAMESPACE}}}polyline":
+                    values = [float(v) for v in re.split(r"[,\s]+", element.get("points", "").strip()) if v]
+                    if len(values) < 4 or len(values) % 2:
+                        continue
+                    points = list(zip(values[::2], values[1::2]))
+                    pen.moveTo(points[0])
+                    for point in points[1:]:
+                        pen.lineTo(point)
+                    pen.endPath()
+                else:
+                    continue
+                stroke = float(element.get("stroke-width", group.get("stroke-width", "0"))) / 2
+            except (ValueError, TypeError, IndexError):
+                continue
+            if pen.bounds is None or not all(math.isfinite(v) for v in (*pen.bounds, stroke)) or stroke < 0:
+                continue
+            left, top, right, bottom = pen.bounds
+            boxes.append(_Box(left - stroke, top - stroke, right - left + 2 * stroke, bottom - top + 2 * stroke))
+    if not boxes:
+        return _find_content_box(group, role, box_class="bounding-box")
+    left = min(b.x for b in boxes)
+    top = min(b.y for b in boxes)
+    right = max(b.x + b.width for b in boxes)
+    bottom = max(b.y + b.height for b in boxes)
+    return _Box(left, top, right - left, bottom - top)
 
 
 def _include_lyric_extent(owner: ElementTree.Element, box: _Box) -> _Box:

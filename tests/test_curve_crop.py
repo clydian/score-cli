@@ -31,7 +31,7 @@ def test_measure_crop_contains_curve_above_its_beamed_notes(family):
     assert measure.measure_box.y + measure.measure_box.height >= curve.y + curve.height
 
 
-@pytest.mark.parametrize('role', ['slur', 'tie', 'ending'])
+@pytest.mark.parametrize('role', ['slur', 'tie', 'ending', 'hairpin'])
 @pytest.mark.parametrize('y,top,bottom', [(100, 100, 700), (800, 500, 1050)])
 def test_cross_bar_control_extends_only_vertical_bounds_of_selected_bar(role, y, top, bottom):
     svg = f'''<svg xmlns="http://www.w3.org/2000/svg"><g class="system">
@@ -44,3 +44,39 @@ def test_cross_bar_control_extends_only_vertical_bounds_of_selected_bar(role, y,
     assert (measure.measure_box.x, measure.measure_box.width) == (100, 100)
     assert measure.measure_box.y == top  # Includes overlapping curve, not distant ink.
     assert measure.measure_box.y + measure.measure_box.height == bottom
+
+
+def test_measure_crop_contains_above_staff_hairpin():
+    xml = '''<score-partwise version="4.0"><part-list><score-part id="P1"><part-name>Voice</part-name></score-part></part-list><part id="P1"><measure number="1"><attributes><divisions>1</divisions><time><beats>4</beats><beat-type>4</beat-type></time><clef><sign>G</sign><line>2</line></clef></attributes><direction placement="above"><direction-type><wedge type="crescendo" number="1"/></direction-type></direction><note><pitch><step>C</step><octave>4</octave></pitch><duration>2</duration><type>half</type></note><direction placement="above"><direction-type><wedge type="stop" number="1"/></direction-type></direction><note><pitch><step>D</step><octave>4</octave></pitch><duration>2</duration><type>half</type></note></measure></part></score-partwise>'''
+    toolkit = verovio.toolkit()
+    toolkit.setOptions({'inputFrom': 'xml', 'svgBoundingBoxes': True,
+                        'svgContentBoundingBoxes': True,
+                        'svgAdditionalAttribute': ['measure@n']})
+    assert toolkit.loadData(xml)
+    svg = toolkit.renderToSVG(1)
+    ns = '{http://www.w3.org/2000/svg}'
+    groups = [g for g in ET.fromstring(svg).iter(ns + 'g')
+              if 'hairpin' in g.get('class', '').split()
+              and 'bounding-box' not in g.get('class', '').split()]
+    assert len(groups) == 1
+    hairpin = _find_content_box(groups[0], 'hairpin', box_class='bounding-box')
+    assert hairpin is not None
+    measure = _find_rendered_measures(svg)[0]
+    assert measure.measure_box.y <= hairpin.y
+    assert measure.measure_box.y + measure.measure_box.height >= hairpin.y + hairpin.height
+
+
+@pytest.mark.parametrize('role', ['slur', 'tie', 'hairpin'])
+def test_reused_next_system_debug_box_does_not_pull_in_another_row(role):
+    ink = ('<polyline points="125,450 175,475 125,500" stroke-width="18" fill="none"/>'
+           if role == 'hairpin' else
+           '<path d="M125,450 C135,400 165,400 175,450" stroke-width="9"/>')
+    svg = f'''<svg xmlns="http://www.w3.org/2000/svg"><g class="system">
+      <g class="system content-bounding-box"><rect x="0" y="400" width="300" height="500"/></g>
+      <g class="measure" data-n="1"><g class="measure content-bounding-box"><rect x="100" y="500" width="100" height="200"/></g></g>
+      <g class="{role}">{ink}<g class="{role} bounding-box"><rect x="120" y="2000" width="60" height="250"/></g></g>
+    </g></svg>'''
+    measure = _find_rendered_measures(svg)[0]
+    assert 350 <= measure.measure_box.y < 450  # Actual visible ink lies above this staff.
+    assert measure.measure_box.y + measure.measure_box.height == 700
+    assert (measure.measure_box.x, measure.measure_box.width) == (100, 100)
