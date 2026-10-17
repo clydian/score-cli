@@ -234,7 +234,7 @@ def _find_rendered_measures(svg: str) -> list[_RenderedMeasure]:
             if label is None or measure_box is None:
                 continue
             measure_box = _include_lyric_extent(measure, measure_box)
-            measure_box = _include_ending_extent(system, measure_box)
+            measure_box = _include_spanning_extent(system, measure_box)
             measures.append(
                 _RenderedMeasure(
                     label=label,
@@ -251,27 +251,30 @@ def _validate_measure_number_interval(value: int) -> None:
         raise RenderMeasureError("Measure number interval must be an integer from 0 to 64.")
 
 
-def _include_ending_extent(system: ElementTree.Element, box: _Box) -> _Box:
-    """Volta brackets are system milestones, outside their measure groups.
+def _include_spanning_extent(system: ElementTree.Element, box: _Box) -> _Box:
+    """Spanning ink can lie outside a measure's reported content bounds.
 
-    Include the vertical bounds of endings that overlap this measure's crop.
-    Keep horizontal bounds local: a long bracket must not pull unrelated bars
+    Voltas are system milestones; slur/tie boxes can also sit above the beam
+    or below the staff without expanding the measure box in Verovio 6.3.
+    Include their vertical extent only where they overlap the selected bar.
+    Keep horizontal bounds local so a long span does not pull unrelated bars
     into a single-measure or selected-range image.
     """
     top, bottom = box.y, box.y + box.height
     for group in system.iter(f"{{{SVG_NAMESPACE}}}g"):
         classes = set(group.get("class", "").split())
-        if "ending" not in classes or "bounding-box" in classes:
+        roles = classes & {"ending", "slur", "tie"}
+        if not roles or "bounding-box" in classes:
             continue
-        ending = _find_content_box(group, "ending", box_class="bounding-box")
+        span = _find_content_box(group, next(iter(roles)), box_class="bounding-box")
         if (
-            ending is None
-            or ending.x >= box.x + box.width
-            or ending.x + ending.width <= box.x
+            span is None
+            or span.x >= box.x + box.width
+            or span.x + span.width <= box.x
         ):
             continue
-        top = min(top, ending.y)
-        bottom = max(bottom, ending.y + ending.height)
+        top = min(top, span.y)
+        bottom = max(bottom, span.y + span.height)
     return _Box(box.x, top, box.width, bottom - top)
 
 
