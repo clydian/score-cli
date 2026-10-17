@@ -43,7 +43,7 @@ def _rasterize_svg(svg: bytes) -> bytes:
     private-use characters (for example metronome notes) can silently become
     unrelated glyphs from a system fallback font.
     """
-    text = svg.decode("utf-8")
+    text = _without_text_indentation(svg).decode("utf-8")
     embedded = dict.fromkeys(re.findall(
         r"url\(data:application/font-woff2[^,]*;base64,([A-Za-z0-9+/=\s]+)\)",
         text,
@@ -63,6 +63,30 @@ def _rasterize_svg(svg: bytes) -> bytes:
             zoom=OUTPUT_SCALE,
             font_files=font_files,
         ))
+
+
+def _without_text_indentation(svg: bytes) -> bytes:
+    """Remove Verovio's pretty-print whitespace from SVG text containers.
+
+    resvg drops nested, explicitly sized words when xml:space=preserve makes
+    an indented zero-font-size ancestor its first text run. Keep actual leaf
+    text, inline spaces, coordinates, styles and font sizes intact; only strip
+    newline indentation around child elements in generated text containers.
+    """
+    root = ElementTree.fromstring(svg)
+    changed = False
+    for text in root.iter(f"{{{SVG_NAMESPACE}}}text"):
+        for container in text.iter():
+            if len(container) == 0:
+                continue
+            if container.text and container.text.isspace() and "\n" in container.text:
+                container.text = None
+                changed = True
+            for child in container:
+                if child.tail and child.tail.isspace() and "\n" in child.tail:
+                    child.tail = None
+                    changed = True
+    return ElementTree.tostring(root, encoding="utf-8") if changed else svg
 
 
 @dataclass(frozen=True, slots=True)

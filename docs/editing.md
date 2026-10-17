@@ -14,7 +14,7 @@ uv run score-cli compare score.musicxml fixed.musicxml
 uv run score-cli render fixed.musicxml --from-measure X1 --to-measure 0 --context 1 --output proof/new-range
 ```
 
-范围输出是新目录，内含 `manifest.json` 与有序 PNG。 自 0.2.11，裁图纳入与所选小节横向相交的圆滑线、延音线、渐强渐弱楔形和结尾括号的纵向边界；跨格连线不会把未选小节横向拉进图中。仍需目视最终图，裁图完整不等于源记号或排版已经验收。普通 `render --measure X1 --output X1.png` 仍输出单张 PNG。`--measure X1 --context 2` 可选邻近小节。端点按文档顺序，绝不把 printed number 转成整数。
+范围输出是新目录，内含 `manifest.json` 与有序 PNG。 自 0.2.11，裁图纳入与所选小节横向相交的圆滑线、延音线、渐强渐弱楔形和结尾括号的纵向边界；跨格连线不会把未选小节横向拉进图中。自 0.2.12，栅格化前移除 Verovio 生成的 SVG 文字容器换行缩进，避免保留空白的多行 words 在 resvg 中整段消失；实际文字、行内空格、坐标和源 MusicXML 保持不变。仍需目视最终图，裁图完整不等于源记号或排版已经验收。普通 `render --measure X1 --output X1.png` 仍输出单张 PNG。`--measure X1 --context 2` 可选邻近小节。端点按文档顺序，绝不把 printed number 转成整数。
 
 ## 快照、顺序和文件事务
 
