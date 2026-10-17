@@ -16,6 +16,14 @@ uv run score-cli render fixed.musicxml --from-measure X1 --to-measure 0 --contex
 
 范围输出是新目录，内含 `manifest.json` 与有序 PNG。 自 0.2.11，裁图纳入与所选小节横向相交的圆滑线、延音线、渐强渐弱楔形和结尾括号的纵向边界；跨格连线不会把未选小节横向拉进图中。自 0.2.12，栅格化前移除 Verovio 生成的 SVG 文字容器换行缩进，避免保留空白的多行 words 在 resvg 中整段消失；实际文字、行内空格、坐标和源 MusicXML 保持不变。仍需目视最终图，裁图完整不等于源记号或排版已经验收。普通 `render --measure X1 --output X1.png` 仍输出单张 PNG。`--measure X1 --context 2` 可选邻近小节。端点按文档顺序，绝不把 printed number 转成整数。
 
+低音歌词与符头／加线相碰时，可增加仅渲染的上方留白：
+
+```sh
+uv run score-cli render score.musicxml --from-measure 0 --to-measure 74 --breaks auto --lyric-word-space 2.5 --lyric-top-min-margin 4 --output proof/clear-lyrics
+```
+
+`--lyric-top-min-margin`（API `lyric_top_min_margin`）接受 0–8 的有限数值，单位为 Verovio 的 MEI units，默认 2 保持既有布局。单小节和范围渲染均支持，范围 manifest 的 `renderParameters.lyricTopMinMargin` 记录实际值。它调整整个渲染的歌词最小上方间距，不修改源 XML，也不改变产品里的 alphaTab 排版；更大间距可能增加系统高度和页数，应复看整曲。MusicXML 歌词定位属性不一定被各排版器执行，勿为局部显示问题改音高、歌词或删除连线。
+
 ## 快照、顺序和文件事务
 
 changeset 必需顶层字段为 `schemaVersion`、`inputSha256`、`operations`；v2 另可提供下文的 `acknowledgedWarnings`。输入哈希是原始文件字节 SHA-256（MXL 为容器字节）。operations 是非空有序数组，操作 ID 非空且唯一。每个操作必须显式给出 `expected` 和 `value`；不存在用 null 表示，不省略。

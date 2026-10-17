@@ -59,6 +59,10 @@ def build_parser() -> argparse.ArgumentParser:
         help="lyric word spacing, 0–10 (default: 1.2)",
     )
     render.add_argument(
+        "--lyric-top-min-margin", type=float, default=2.0,
+        help="minimum space above lyrics in MEI units, 0–8 (default: 2)",
+    )
+    render.add_argument(
         "--measure-number-interval", type=int, default=1,
         help="measure number density: 0 at system starts, 1 every measure (default), 2–64 every N measures",
     )
@@ -186,6 +190,7 @@ def main(argv: Sequence[str] | None = None) -> int:
                 breaks=arguments.breaks,
                 page_width=arguments.page_width,
                 lyric_word_space=arguments.lyric_word_space,
+                lyric_top_min_margin=arguments.lyric_top_min_margin,
             )
             print(json_bytes(report).decode(), end="")
         elif arguments.command == "render":
@@ -202,6 +207,7 @@ def main(argv: Sequence[str] | None = None) -> int:
                 breaks=arguments.breaks,
                 page_width=arguments.page_width,
                 lyric_word_space=arguments.lyric_word_space,
+                lyric_top_min_margin=arguments.lyric_top_min_margin,
             )
             print(
                 f"Rendered {result.scope} for printed measure "

@@ -127,6 +127,7 @@ def render_printed_measure(
     breaks: Literal["encoded", "auto"] = "encoded",
     page_width: int = 2100,
     lyric_word_space: float = 1.2,
+    lyric_top_min_margin: float = 2.0,
 ) -> RenderResult:
     """Render an exact MusicXML measure number or its system to a cropped PNG."""
 
@@ -142,7 +143,7 @@ def render_printed_measure(
         raise RenderMeasureError("The output path must end in .png.")
 
     _validate_measure_number_interval(measure_number_interval)
-    options = _layout_options(breaks, page_width, lyric_word_space)
+    options = _layout_options(breaks, page_width, lyric_word_space, lyric_top_min_margin)
     xml = read_musicxml(source)
     verovio.enableLog(verovio.LOG_OFF)
     toolkit = verovio.toolkit()
@@ -219,7 +220,8 @@ def render_printed_measure(
 
 
 def _layout_options(
-    breaks: str, page_width: int, lyric_word_space: float
+    breaks: str, page_width: int, lyric_word_space: float,
+    lyric_top_min_margin: float = 2.0,
 ) -> dict:
     if breaks not in {"encoded", "auto"}:
         raise RenderMeasureError("Breaks must be encoded or auto.")
@@ -231,10 +233,17 @@ def _layout_options(
         or not math.isfinite(lyric_word_space)
     ):
         raise RenderMeasureError("Lyric word space must be finite and from 0 to 10.")
+    if (
+        type(lyric_top_min_margin) not in {int, float}
+        or not 0 <= lyric_top_min_margin <= 8
+        or not math.isfinite(lyric_top_min_margin)
+    ):
+        raise RenderMeasureError("Lyric top minimum margin must be finite and from 0 to 8.")
     return {
         "breaks": breaks,
         "pageWidth": page_width,
         "lyricWordSpace": lyric_word_space,
+        "lyricTopMinMargin": lyric_top_min_margin,
     }
 
 
@@ -505,6 +514,7 @@ def render_range(
     breaks: Literal["encoded", "auto"] = "encoded",
     page_width: int = 2100,
     lyric_word_space: float = 1.2,
+    lyric_top_min_margin: float = 2.0,
 ) -> dict:
     """Crop consecutive selected measures per system; manifest is the commit marker."""
     from dataclasses import asdict
@@ -514,7 +524,7 @@ def render_range(
     from .score_document import sha256
 
     _validate_measure_number_interval(measure_number_interval)
-    layout = _layout_options(breaks, page_width, lyric_word_space)
+    layout = _layout_options(breaks, page_width, lyric_word_space, lyric_top_min_margin)
     if type(context) is not int or context < 0:
         raise RenderMeasureError("Context must be a nonnegative integer.")
     source = Path(input_path)
