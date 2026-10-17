@@ -47,7 +47,20 @@ uv run score-cli render score.mxl \
 ```
 
 `--scope` accepts `measure` (the default) or `system`. System scope includes every
-staff in the target measure's rendered system.
+staff in the target measure's rendered system. Range and measure crops include
+real ending brackets that overlap the selected bars, even when Verovio stores
+them outside the measure groups (for example, above a final fermata).
+
+The default numbers every measure for debugging. To reduce collisions with long
+expression text, all render modes accept `--measure-number-interval 0` (system
+starts), or `2`–`64` (every N measures). The default is `1`; the option changes
+only the preview, never the source XML, selectors or playback. Range manifests
+record the chosen value as `renderParameters.mnumInterval`.
+
+```bash
+uv run score-cli render score.mxl --from-measure 1 --to-measure 80 \
+  --measure-number-interval 0 --output tmp/score-systems
+```
 
 `--measure` matches the exact MusicXML `<measure number="...">` value. It is a
 string selector, so printed numbers such as `0` and `X1` are supported. Inputs may be

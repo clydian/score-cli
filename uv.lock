@@ -466,7 +466,7 @@ wheels = [
 
 [[package]]
 name = "score-cli"
-version = "0.2.6"
+version = "0.2.7"
 source = { editable = "." }
 dependencies = [
     { name = "fonttools", extra = ["woff"] },

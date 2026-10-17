@@ -46,6 +46,10 @@ def build_parser() -> argparse.ArgumentParser:
     render.add_argument("--from-measure", dest="start")
     render.add_argument("--to-measure", dest="end")
     render.add_argument("--context", type=int, default=0)
+    render.add_argument(
+        "--measure-number-interval", type=int, default=1,
+        help="measure number density: 0 at system starts, 1 every measure (default), 2–64 every N measures",
+    )
     edit = commands.add_parser(
         "edit", help="apply an input-hash-bound changeset to a new XML file"
     )
@@ -166,6 +170,7 @@ def main(argv: Sequence[str] | None = None) -> int:
                 end=arguments.end,
                 context=arguments.context,
                 output_directory=arguments.output,
+                measure_number_interval=arguments.measure_number_interval,
             )
             print(json_bytes(report).decode(), end="")
         elif arguments.command == "render":
@@ -178,6 +183,7 @@ def main(argv: Sequence[str] | None = None) -> int:
                 measure=arguments.measure,
                 output_path=arguments.output,
                 scope=arguments.scope,
+                measure_number_interval=arguments.measure_number_interval,
             )
             print(
                 f"Rendered {result.scope} for printed measure "

@@ -95,6 +95,7 @@ def render_printed_measure(
     measure: str | int,
     output_path: str | Path,
     scope: Literal["measure", "system"] = "measure",
+    measure_number_interval: int = 1,
 ) -> RenderResult:
     """Render an exact MusicXML measure number or its system to a cropped PNG."""
 
@@ -109,6 +110,7 @@ def render_printed_measure(
     if destination.suffix.lower() != ".png":
         raise RenderMeasureError("The output path must end in .png.")
 
+    _validate_measure_number_interval(measure_number_interval)
     xml = read_musicxml(source)
     verovio.enableLog(verovio.LOG_OFF)
     toolkit = verovio.toolkit()
@@ -124,7 +126,7 @@ def render_printed_measure(
             "svgAdditionalAttribute": ["measure@n"],
             "svgBoundingBoxes": True,
             "svgContentBoundingBoxes": True,
-            "mnumInterval": 1,
+            "mnumInterval": measure_number_interval,
         }
     )
 
@@ -206,6 +208,7 @@ def _find_rendered_measures(svg: str) -> list[_RenderedMeasure]:
             if label is None or measure_box is None:
                 continue
             measure_box = _include_lyric_extent(measure, measure_box)
+            measure_box = _include_ending_extent(system, measure_box)
             measures.append(
                 _RenderedMeasure(
                     label=label,
@@ -215,6 +218,35 @@ def _find_rendered_measures(svg: str) -> list[_RenderedMeasure]:
             )
 
     return measures
+
+
+def _validate_measure_number_interval(value: int) -> None:
+    if type(value) is not int or not 0 <= value <= 64:
+        raise RenderMeasureError("Measure number interval must be an integer from 0 to 64.")
+
+
+def _include_ending_extent(system: ElementTree.Element, box: _Box) -> _Box:
+    """Volta brackets are system milestones, outside their measure groups.
+
+    Include the vertical bounds of endings that overlap this measure's crop.
+    Keep horizontal bounds local: a long bracket must not pull unrelated bars
+    into a single-measure or selected-range image.
+    """
+    top, bottom = box.y, box.y + box.height
+    for group in system.iter(f"{{{SVG_NAMESPACE}}}g"):
+        classes = set(group.get("class", "").split())
+        if "ending" not in classes or "bounding-box" in classes:
+            continue
+        ending = _find_content_box(group, "ending", box_class="bounding-box")
+        if (
+            ending is None
+            or ending.x >= box.x + box.width
+            or ending.x + ending.width <= box.x
+        ):
+            continue
+        top = min(top, ending.y)
+        bottom = max(bottom, ending.y + ending.height)
+    return _Box(box.x, top, box.width, bottom - top)
 
 
 def _include_lyric_extent(owner: ElementTree.Element, box: _Box) -> _Box:
@@ -243,10 +275,12 @@ def _include_lyric_extent(owner: ElementTree.Element, box: _Box) -> _Box:
     return _Box(box.x, top, box.width, bottom - top)
 
 
-def _find_content_box(owner: ElementTree.Element, role: str) -> _Box | None:
+def _find_content_box(
+    owner: ElementTree.Element, role: str, *, box_class: str = "content-bounding-box"
+) -> _Box | None:
     for group in owner.findall(f"{{{SVG_NAMESPACE}}}g"):
         classes = set(group.get("class", "").split())
-        if not {role, "content-bounding-box"}.issubset(classes):
+        if not {role, box_class}.issubset(classes):
             continue
         rectangle = group.find(f"{{{SVG_NAMESPACE}}}rect")
         if rectangle is None:
@@ -369,6 +403,7 @@ def render_range(
     end: str | None = None,
     context: int = 0,
     output_directory: str | Path,
+    measure_number_interval: int = 1,
 ) -> dict:
     """Crop consecutive selected measures per system; manifest is the commit marker."""
     from dataclasses import asdict
@@ -377,6 +412,7 @@ def render_range(
     from .edit_score import publish_files, json_bytes
     from .score_document import sha256
 
+    _validate_measure_number_interval(measure_number_interval)
     if type(context) is not int or context < 0:
         raise RenderMeasureError("Context must be a nonnegative integer.")
     source = Path(input_path)
@@ -419,7 +455,7 @@ def render_range(
         svgAdditionalAttribute=["measure@n"],
         svgBoundingBoxes=True,
         svgContentBoundingBoxes=True,
-        mnumInterval=1,
+        mnumInterval=measure_number_interval,
     )
     toolkit.setOptions(options)
     if not toolkit.loadData(xml):
