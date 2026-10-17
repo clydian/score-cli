@@ -2,6 +2,8 @@
 
 Inspect, safely edit, compare, and render MusicXML for source-score calibration.
 
+For PDF-to-MusicXML work, start with the [transcription workflow](docs/transcription-workflow.md): source review, notation checks, actual playback, and product publication form one verification loop.
+
 The full score is laid out first. `score-cli` then locates the requested measure in that
 rendered layout and crops its graphical bounds, so spacing and staff positions remain the
 same as they were in the surrounding system. Printed measure numbers are included in both
