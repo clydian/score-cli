@@ -135,3 +135,7 @@ changeset v2 支持事件、小节和 part 的结构编辑，显式 Audiveris �
 ### 0.2.4 calibration fixes
 
 Whole-measure rests use their encoded duration rather than the whole-note glyph. Slur `continue` marks are checked as formatting points, including duplicated points on start/stop notes. Measure and range crops suppress Verovio-generated footers to keep the source music unobscured. These checks do not certify correctness against the source PDF.
+
+### 0.2.5 cross-staff validation
+
+Slur endpoints are paired in score time, rather than XML voice order. This permits real cross-hand piano slurs whose stop is serialized before their start by a `backup`; unmatched endpoints remain errors.

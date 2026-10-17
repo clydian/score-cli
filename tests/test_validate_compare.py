@@ -135,3 +135,23 @@ def test_slur_formatting_continue_at_endpoints_does_not_reopen_slur(tmp_path):
     assert "orphan-slur" in {
         d["code"] for d in validate_score(input_path=path)["diagnostics"]
     }
+
+
+def test_cross_staff_slur_pairs_in_score_time_not_xml_voice_order(tmp_path):
+    path = score(
+        tmp_path,
+        """
+<note><pitch><step>C</step><octave>5</octave></pitch><duration>2</duration><voice>1</voice><type>quarter</type><staff>1</staff></note>
+<note><pitch><step>D</step><octave>5</octave></pitch><duration>2</duration><voice>1</voice><type>quarter</type><staff>1</staff><notations><slur type="stop" number="2"/></notations></note>
+<backup><duration>4</duration></backup>
+<note><pitch><step>C</step><octave>3</octave></pitch><duration>4</duration><voice>2</voice><type>half</type><staff>2</staff><notations><slur type="start" number="2"/></notations></note>""",
+    )
+    path.write_text(path.read_text().replace("</time>", "</time><staves>2</staves>"))
+    assert not [
+        d for d in validate_score(input_path=path)["diagnostics"] if "slur" in d["code"]
+    ]
+    # An actually unmatched chronological stop must still fail.
+    path.write_text(path.read_text().replace('<slur type="start" number="2"/>', ""))
+    assert "orphan-slur" in {
+        d["code"] for d in validate_score(input_path=path)["diagnostics"]
+    }

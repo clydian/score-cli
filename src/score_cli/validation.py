@@ -184,6 +184,7 @@ def validate_document(document: ScoreDocument) -> dict:
     meters: dict[str, Fraction | None] = {}
     staves: dict[str, int] = {}
     open_pairs: dict[tuple, tuple[dict, Fraction | None]] = {}
+    slur_points: list[tuple] = []
     absolute_times: dict[str, Fraction] = defaultdict(Fraction)
     for part, printed, ordinal, measure, attributes in measures:
         loc = dict(partId=part, printedMeasure=printed, measureOrdinal=ordinal)
@@ -405,6 +406,11 @@ def validate_document(document: ScoreDocument) -> dict:
                                 key = (*key, symbol.get("number", "1"))
                             at = absolute_times[part] + event.offset
                             end = at + event.duration
+                            if family == "slur":
+                                slur_points.append(
+                                    (symbol.get("type", ""), key, event_loc, at, end)
+                                )
+                                continue
                             _pair(
                                 symbol.get("type", ""),
                                 key,
@@ -526,6 +532,12 @@ def validate_document(document: ScoreDocument) -> dict:
         absolute_times[part] += (
             max(extent, meter or Fraction(0)) if not flexible else extent
         )
+    # MusicXML serializes complete voices with backup, so XML order need not
+    # follow musical time for slurs crossing hands or voices.
+    for kind, key, location, at, end in sorted(
+        slur_points, key=lambda p: (p[1][0], p[3], 0 if p[0] == "stop" else 1)
+    ):
+        _pair(kind, key, location, at, end, open_pairs, add)
     for key, (location, _) in open_pairs.items():
         add("unclosed-" + key[1], location, f"{key[1]} start has no matching stop.")
     status = (
