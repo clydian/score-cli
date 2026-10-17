@@ -131,3 +131,7 @@ OMR 常把多个合唱声部都命名为 `Voice`。用 `rename-part` 校正名�
 省略该字段保留已有短名，显式 null 删除；更新保留原短名的样式属性，拒绝隐式覆盖显示替代内容。
 
 changeset v2 支持事件、小节和 part 的结构编辑，显式 Audiveris 碎片合并，以及 compare/校准清单的结构映射。所有删除逐项声明，失败不发布部分文件。参见 [结构编辑契约与示例](docs/structural-editing.md) 和 [真实碎片合并验收](docs/issue-2-acceptance.md)。
+
+### 0.2.4 calibration fixes
+
+Whole-measure rests use their encoded duration rather than the whole-note glyph. Slur `continue` marks are checked as formatting points, including duplicated points on start/stop notes. Measure and range crops suppress Verovio-generated footers to keep the source music unobscured. These checks do not certify correctness against the source PDF.

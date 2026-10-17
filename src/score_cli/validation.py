@@ -60,6 +60,10 @@ COVERAGE = dict(
 
 
 def notation_duration(note) -> Fraction | None:
+    rest = child(note, "rest")
+    # A full-measure rest uses the measure duration, regardless of its glyph.
+    if rest is not None and rest.get("measure") == "yes":
+        return None
     kind = content(note, "type")
     if not kind:
         return None
@@ -361,9 +365,22 @@ def validate_document(document: ScoreDocument) -> dict:
                                 for e in children(n, family)
                             ]
                         )
+                        # Continue is a cross-system formatting point. Some
+                        # exporters duplicate it on the musical endpoint note.
+                        endpoints = {
+                            e.get("number", "1")
+                            for e in symbols
+                            if e.get("type") in {"start", "stop"}
+                        }
                         for symbol in sorted(
                             symbols, key=lambda e: 0 if e.get("type") == "stop" else 1
                         ):
+                            if (
+                                family == "slur"
+                                and symbol.get("type") == "continue"
+                                and symbol.get("number", "1") in endpoints
+                            ):
+                                continue
                             key: tuple = (
                                 part,
                                 family,
@@ -525,6 +542,10 @@ def validate_document(document: ScoreDocument) -> dict:
 
 def _pair(kind, key, location, at, end, pairs, add):
     family = key[1]
+    if family == "slur" and kind == "continue":
+        if key not in pairs:
+            add("orphan-slur", location, "slur continue has no matching start.")
+        return
     if kind in {"stop", "continue"}:
         if key not in pairs:
             add(

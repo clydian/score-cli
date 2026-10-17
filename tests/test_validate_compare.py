@@ -93,3 +93,45 @@ def test_numbered_slur_can_cross_voice_without_false_dangling_error(tmp_path):
     )
     diagnostics = validate_score(input_path=path)["diagnostics"]
     assert not [d for d in diagnostics if d["code"] in {"unclosed-slur", "orphan-slur"}]
+
+
+def test_complete_measure_rest_uses_meter_not_whole_symbol(tmp_path):
+    path = score(
+        tmp_path,
+        '<note><rest measure="yes"/><duration>6</duration><voice>1</voice><type>whole</type></note>',
+    )
+    path.write_text(path.read_text().replace("<beats>4</beats>", "<beats>3</beats>"))
+    assert "duration-notation-mismatch" not in {
+        d["code"] for d in validate_score(input_path=path)["diagnostics"]
+    }
+    path.write_text(path.read_text().replace(' measure="yes"', ""))
+    assert "duration-notation-mismatch" in {
+        d["code"] for d in validate_score(input_path=path)["diagnostics"]
+    }
+
+
+def test_slur_formatting_continue_at_endpoints_does_not_reopen_slur(tmp_path):
+    def note(symbols):
+        return (
+            "<note><pitch><step>C</step><octave>4</octave></pitch><duration>2</duration><voice>1</voice><type>quarter</type><notations>"
+            + symbols
+            + "</notations></note>"
+        )
+
+    path = score(
+        tmp_path,
+        note('<slur type="start" number="1"/><slur type="continue" number="1"/>')
+        + note('<slur type="continue" number="1"/>')
+        + note('<slur type="continue" number="1"/><slur type="stop" number="1"/>'),
+    )
+    assert not [
+        d for d in validate_score(input_path=path)["diagnostics"] if "slur" in d["code"]
+    ]
+    path.write_text(
+        path.read_text()
+        .replace('<slur type="start" number="1"/>', "")
+        .replace('<slur type="stop" number="1"/>', "")
+    )
+    assert "orphan-slur" in {
+        d["code"] for d in validate_score(input_path=path)["diagnostics"]
+    }

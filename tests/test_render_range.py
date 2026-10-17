@@ -62,3 +62,24 @@ def test_cross_page_range_is_ordered_and_contains_visible_ink(tmp_path):
         image = Image.open(tmp_path / "pages" / entry["path"]).convert("RGB")
         dark = sum(1 for r, g, b in image.get_flattened_data() if max(r, g, b) < 100)
         assert dark > 500
+
+
+def test_generated_footer_does_not_enter_score_crops(tmp_path, monkeypatch):
+    import score_cli.render_measure as renderer
+
+    seen = []
+    rasterize = renderer._rasterize_svg
+
+    def capture(svg):
+        seen.append(svg)
+        return rasterize(svg)
+
+    monkeypatch.setattr(renderer, "_rasterize_svg", capture)
+    renderer.render_range(
+        input_path=FIXTURE, start="1", end="3", output_directory=tmp_path / "range"
+    )
+    renderer.render_printed_measure(
+        input_path=FIXTURE, measure="1", output_path=tmp_path / "single.png"
+    )
+    assert len(seen) >= 2
+    assert all(b"engraved with Verovio" not in svg for svg in seen)
