@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="Reference"><part-name>Reference</part-name></score-part>
+    <score-part id="Alto"><part-name>Alto</part-name></score-part>
+  </part-list>
+  <part id="Reference"><measure number="1"><attributes><divisions>1</divisions><time><beats>4</beats><beat-type>4</beat-type></time><clef><sign>G</sign><line>2</line></clef></attributes><note id="reference"><pitch><step>C</step><octave>4</octave></pitch><duration>1</duration><voice>1</voice><type>quarter</type></note><note><rest/><duration>3</duration><voice>1</voice><type>half</type><dot/></note></measure></part>
+  <part id="Alto"><measure number="1"><attributes><divisions>1</divisions><time><beats>4</beats><beat-type>4</beat-type></time><clef><sign>G</sign><line>2</line></clef></attributes><direction placement="below"><direction-type><dynamics><p/></dynamics></direction-type><voice>2</voice></direction><note id="upper-rest"><rest measure="yes"><display-step>B</display-step><display-octave>5</display-octave></rest><duration>4</duration><voice>1</voice><type>whole</type></note><backup><duration>4</duration></backup><note id="lower-note"><pitch><step>E</step><octave>4</octave></pitch><duration>1</duration><voice>2</voice><type>quarter</type></note><note><rest/><duration>3</duration><voice>2</voice><type>half</type><dot/></note></measure></part>
+</score-partwise>

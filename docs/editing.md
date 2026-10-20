@@ -192,4 +192,11 @@ MEI `verse place="above"` 可正确布局。CLI 在临时渲染副本给无 ID �
 
 Verovio 6.3 在某些多声部导入顺序下，将明确 `staff=2` 的全小节休止放入第一谱表。渲染现在先按源音符唯一身份检查归属：若该 MEI layer 的全部源事件都属于同一谱表，才在渲染副本中将完整 layer 归回该谱表。保持音符身份、时间、声部和歌词；源 MusicXML 与 edit 输出不变。单小节和范围图均适用，manifest 的 `renderInputCompatibility.explicitRestStaff` 记录 `relocatedLayers`。
 
-混合跨谱表声部、未映射事件、目标已占用 layer 和变动的谱表数量不猜测重组，保留原导入并在 `unchecked` 列明范围；这不是这些情形的排版验收。隐藏休止仍是隐藏的 space，不当成丢失的可见休止。身份冲突或导入丢失身份直接报错，避免将修复应用到另一个音。此修复不处理同一谱表内部上下声部的休止纵向安排；例如 Sun 第23小节仍需独立复核。
+混合跨谱表声部、未映射事件、目标已占用 layer 和变动的谱表数量不猜测重组，保留原导入并在 `unchecked` 列明范围；这不是这些情形的排版验收。隐藏休止仍是隐藏的 space，不当成丢失的可见休止。身份冲突或导入丢失身份直接报错，避免将修复应用到另一个音。此修复不处理同一谱表内部上下声部的休止纵向安排；例如 Sun 第23小节仍需独立复核。整小节休止被错误导入另一 voice 的另一种情况见下节。
+
+
+### 整小节休止的独立 voice 恢复（0.2.19，Issue #7）
+
+当力度等 `direction` 先指定另一 voice 时，Verovio 6.3 可能忽略后面整小节休止的显式 `voice`，将它插在另一 layer 的首音前，导致下声部显示中的拍点位置错移。render-copy 现在从源 MusicXML 证明休止为简单拍号下 q0 的完整小节、该 voice 只有这一休止，并在导入 MEI 中检查其余所有事件均属于另一明确声部后，才将 `mRest` 单独归回原 voice layer。manifest 的 `explicitRestStaff.separatedMeasureRestVoices` 记录恢复数量；源文件、edit 输出及音乐事件不改写。
+
+仅支持正整数 voice、明确或继承的简单 `beats/beat-type`、可解析 divisions 的完整非 pickup 小节。带 chord/grace 的该小节、未定/复合拍号、partial rest、目标 layer 已占用或无法完全映射的层不猜测重组；后两项在 `unchecked` 记录，其余保持原导入。该修复针对错误 layer 归属和横向位置，不保证同一谱表内全部休止纵向排版正确，也不等于全 MusicXML schema 或原谱验收。

@@ -204,3 +204,6 @@ rather than guess a voice. This does not reproduce arbitrary `default-y` /
 `relative-y` positioning or certify source engraving or native-player display.
 
 0.2.18 adds render-only recovery of explicit rest staves for complete single-staff voices affected by Verovio 6.3 import order. Mixed cross-staff layers and variable staff counts are reported as unchecked; source XML is unchanged. See [rendering compatibility](docs/editing.md).
+
+
+0.2.19 render-copy also separates a source-proven whole-measure rest from an incorrectly imported voice layer after a scoped direction (Issue #7). `separatedMeasureRestVoices` records these repairs; unknown/partial timelines remain on the native path. This does not change source MusicXML or certify source-score accuracy. See [rendering compatibility](docs/editing.md).
