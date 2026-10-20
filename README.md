@@ -198,6 +198,11 @@ Verovio 6.3 drops that attribute when importing MusicXML, while its native MEI
 positive numeric verse number, then reloads the imported MEI with the placement
 restored before cropping. Source files, lyrics and music are not rewritten;
 `renderInputCompatibility.explicitAboveLyrics` reports the mapped verse count.
+Version 0.2.20 also accepts native omission of empty `extend type="continue"`
+verses only within a proven closed above-lyric span in the same part, voice,
+staff and numeric verse. Both imported endpoint verses and the start underline
+must survive; no intermediate verse is synthesized. The report records
+`omittedContinuationElements` separately from actual mapped verses.
 Default/below-only scores retain the original path. Ambiguous note IDs,
 non-numeric/duplicate verse numbers or missing imported targets fail rendering
 rather than guess a voice. This does not reproduce arbitrary `default-y` /

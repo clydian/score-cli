@@ -184,6 +184,8 @@ MEI `verse place="above"` 可正确布局。CLI 在临时渲染副本给无 ID �
 补 `place="above"` 后重新布局。`renderInputCompatibility.explicitAboveLyrics`
 记录 adapter、映射 verse 元素数及 render-copy-only 状态（延长线终点也计入）。
 
+0.2.20 允许排版器省略纯 `extend type="continue"` 的空白 verse，但须证明它位于同一 part、voice、staff 和数字行号的显式 above 起止链内，且导入后起点保留下划线（`syl con="u"`）、终点 verse 与目标音符仍在。只跳过这些无文字的中间节点，不补造 verse；`omittedContinuationElements` 单独记录数量。缺失起止、跨声部闭合或孤立 continue 仍报错。
+
 此过程不改源文件、歌词文本、音符或播放数据；没有显式 above 的输入仍走原路径。
 冲突 id/xml:id、重复 ID、非数字或重复行号、丢失的导入目标会报错，不按歌词文字猜声部。
 这不是任意 `default-y` / `relative-y` 定位支持，也不替代原谱视觉复核或产品播放器验收。

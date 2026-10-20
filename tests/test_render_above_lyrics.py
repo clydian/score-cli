@@ -127,3 +127,65 @@ def test_conflicting_id_and_xml_id_do_not_drop_alias_references():
     xml = fixture().replace('id="preserve"', 'id="preserve" xml:id="different"')
     with pytest.raises(ValueError, match='conflicting id and xml:id'):
         load_render_score(verovio.toolkit(), xml, {})
+
+
+def extender_fixture(types=('start', 'continue', 'continue', 'continue', 'stop')):
+    measures = []
+    for i, kind in enumerate(types):
+        attrs = '<attributes><divisions>1</divisions><time><beats>4</beats><beat-type>4</beat-type></time><clef><sign>G</sign><line>2</line></clef></attributes>' if i == 0 else ''
+        text = '<text>ABOVE</text>' if kind == 'start' else ''
+        measures.append(f'<measure number="{i+1}">{attrs}<note id="n{i}"><pitch><step>C</step><octave>5</octave></pitch><duration>4</duration><voice>1</voice><type>whole</type><lyric number="2" placement="above">{text}<extend type="{kind}"/></lyric><lyric number="1"><text>BELOW</text></lyric></note></measure>')
+    return '<score-partwise version="4.0"><part-list><score-part id="P1"><part-name>Voice</part-name></score-part></part-list><part id="P1">' + ''.join(measures) + '</part></score-partwise>'
+
+
+def test_balanced_above_extender_allows_native_omitted_empty_continues():
+    xml = extender_fixture()
+    raw = verovio.toolkit()
+    assert raw.loadData(xml)
+    before = ET.fromstring(raw.getMEI())
+    tk, report = verovio.toolkit(), {}
+    assert load_render_score(tk, xml, report)
+    after = ET.fromstring(tk.getMEI())
+    assert_geometry(tk.renderToSVG(1))
+    music = lambda r: [(e.tag, {k: v for k, v in e.attrib.items() if k not in ('{http://www.w3.org/XML/1998/namespace}id', 'place')}, e.text) for e in r.iter() if e.tag.split('}')[-1] in ('note', 'rest', 'verse', 'syl')]
+    assert music(before) == music(after)
+    assert report['explicitAboveLyrics']['mappedVerseElements'] == 2
+    assert report['explicitAboveLyrics']['omittedContinuationElements'] == 3
+
+
+@pytest.mark.parametrize('types', [('continue', 'stop'), ('start', 'continue'), ('start', 'continue', 'start', 'stop')])
+def test_unproven_above_continuation_still_fails_closed(types):
+    with pytest.raises(ValueError, match='unambiguous above-lyric'):
+        load_render_score(verovio.toolkit(), extender_fixture(types), {})
+
+
+def test_other_voice_cannot_close_above_extender():
+    xml = extender_fixture(('start', 'continue', 'stop')).replace('<voice>1</voice><type>whole</type><lyric number="2" placement="above"><extend type="stop"', '<voice>2</voice><type>whole</type><lyric number="2" placement="above"><extend type="stop"')
+    with pytest.raises(ValueError, match='unambiguous above-lyric'):
+        load_render_score(verovio.toolkit(), xml, {})
+
+
+@pytest.mark.parametrize('damage', ['start', 'stop', 'underline'])
+def test_source_span_requires_actual_native_endpoints_and_underline(damage):
+    class DamagedNative:
+        def __init__(self):
+            self.tk = verovio.toolkit()
+        def loadData(self, xml):
+            return self.tk.loadData(xml)
+        def getMEI(self):
+            root = ET.fromstring(self.tk.getMEI())
+            ns = {'m': 'http://www.music-encoding.org/ns/mei'}
+            for note in root.findall('.//m:note', ns):
+                identity = note.get('{http://www.w3.org/XML/1998/namespace}id')
+                if identity == ('n0' if damage == 'start' else 'n4') and damage != 'underline':
+                    for verse in note.findall('m:verse', ns):
+                        if verse.get('n') == '2':
+                            note.remove(verse)
+                if identity == 'n0' and damage == 'underline':
+                    for syl in note.findall('m:verse/m:syl', ns):
+                        syl.attrib.pop('con', None)
+            return ET.tostring(root, encoding='unicode')
+        def setOptions(self, options):
+            self.tk.setOptions(options)
+    with pytest.raises(ValueError, match='unambiguous above-lyric'):
+        load_render_score(DamagedNative(), extender_fixture(), {})
