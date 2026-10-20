@@ -21,6 +21,7 @@ from fontTools.svgLib.path import parse_path as parse_svg_path
 
 from .musicxml_input import read_musicxml
 from .render_input import prepare_render_input
+from .render_lyrics import load_render_score
 
 HORIZONTAL_PADDING = 100.0
 VERTICAL_PADDING = 500.0
@@ -165,7 +166,7 @@ def render_printed_measure(
     )
     toolkit.setOptions(options)
 
-    if not toolkit.loadData(xml):
+    if not load_render_score(toolkit, xml, render_input.compatibility):
         raise RenderMeasureError(f'Verovio could not load "{source}".')
 
     page_count = toolkit.getPageCount()
@@ -574,7 +575,7 @@ def render_range(
         **layout,
     )
     toolkit.setOptions(options)
-    if not toolkit.loadData(xml):
+    if not load_render_score(toolkit, xml, render_input.compatibility):
         raise RenderMeasureError("Verovio could not load the score.")
     matches: dict[str, list] = {m: [] for m in selected}
     for page in range(1, toolkit.getPageCount() + 1):

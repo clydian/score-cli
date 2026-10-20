@@ -191,3 +191,14 @@ and preceding simple meter are omitted from the render copy. Source XML, note
 values and direction offsets remain intact. Range manifests record adaptations
 and unchecked independent/mixed meter scopes in `renderInputCompatibility`;
 see [the rendering contract](docs/editing.md#自由拍方向的渲染兼容).
+
+Explicit MusicXML `lyric placement="above"` is restored in the render copy:
+Verovio 6.3 drops that attribute when importing MusicXML, while its native MEI
+`verse place="above"` layout supports it. The adapter maps a unique note ID and
+positive numeric verse number, then reloads the imported MEI with the placement
+restored before cropping. Source files, lyrics and music are not rewritten;
+`renderInputCompatibility.explicitAboveLyrics` reports the mapped verse count.
+Default/below-only scores retain the original path. Ambiguous note IDs,
+non-numeric/duplicate verse numbers or missing imported targets fail rendering
+rather than guess a voice. This does not reproduce arbitrary `default-y` /
+`relative-y` positioning or certify source engraving or native-player display.

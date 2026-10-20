@@ -175,3 +175,15 @@ Targets 是 `[{"id":"P1-m2-lyrics","partId":"P1","printedMeasure":"2","checks":[
 Verovio 6.3 在非首 part 再次读取 `senza-misura` 时，会把不存在的 `beat-type` 当成零，导致渐强渐弱、文字等方向的时点塌为小节起点。单小节和范围渲染现在只在**渲染副本**中省略可证明冗余的声明：相同 ordinal 的首 part 有内容完全相同的无编号自由拍，且两 part 的前置简单计量声明完全一致。首 part 的原自由拍／文字保留，不补拍号，不改变任何音符、方向 offset、歌词、源文件或 `edit` 输出。
 
 范围 manifest 的 `renderInputCompatibility.omittedRedundantTimeDeclarations` 列出适配的位置，`unchecked` 列出不满足条件的范围；单小节 Python API 的 `RenderResult.render_input_compatibility` 提供同样信息。独立／编号谱表拍号、混合拍号、不同前置分母或无法证明共享作用域的声明保持原样，**不代表显示已校验**。该兼容只恢复方向时间，不保证自由图形、重复次数、精确演奏长度或文字避让；仍应对照原谱查看最终图。
+
+### 上方歌词的渲染兼容
+
+Verovio 6.3 的 MusicXML 导入不保留 `lyric placement="above"`；其原生
+MEI `verse place="above"` 可正确布局。CLI 在临时渲染副本给无 ID 的目标音符分配
+唯一 ID，已有唯一 ID 保留；按音符 ID 与唯一正整数歌词行号定位导入后的 verse，
+补 `place="above"` 后重新布局。`renderInputCompatibility.explicitAboveLyrics`
+记录 adapter、映射 verse 元素数及 render-copy-only 状态（延长线终点也计入）。
+
+此过程不改源文件、歌词文本、音符或播放数据；没有显式 above 的输入仍走原路径。
+冲突 id/xml:id、重复 ID、非数字或重复行号、丢失的导入目标会报错，不按歌词文字猜声部。
+这不是任意 `default-y` / `relative-y` 定位支持，也不替代原谱视觉复核或产品播放器验收。
