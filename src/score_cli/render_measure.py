@@ -21,7 +21,7 @@ from fontTools.svgLib.path import parse_path as parse_svg_path
 
 from .musicxml_input import read_musicxml
 from .render_input import prepare_render_input
-from .render_lyrics import load_render_score
+from .render_rests import load_render_score
 
 HORIZONTAL_PADDING = 100.0
 VERTICAL_PADDING = 500.0

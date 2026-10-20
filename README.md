@@ -202,3 +202,5 @@ Default/below-only scores retain the original path. Ambiguous note IDs,
 non-numeric/duplicate verse numbers or missing imported targets fail rendering
 rather than guess a voice. This does not reproduce arbitrary `default-y` /
 `relative-y` positioning or certify source engraving or native-player display.
+
+0.2.18 adds render-only recovery of explicit rest staves for complete single-staff voices affected by Verovio 6.3 import order. Mixed cross-staff layers and variable staff counts are reported as unchecked; source XML is unchanged. See [rendering compatibility](docs/editing.md).
