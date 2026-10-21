@@ -264,6 +264,7 @@ def _find_rendered_measures(svg: str) -> list[_RenderedMeasure]:
         if system_box is None:
             continue
         system_box = _include_lyric_extent(system, system_box)
+        system_box = _include_spanning_extent(system, system_box)
 
         for measure in system.findall(f"{{{SVG_NAMESPACE}}}g"):
             measure_classes = set(measure.get("class", "").split())
@@ -296,6 +297,7 @@ def _include_spanning_extent(system: ElementTree.Element, box: _Box) -> _Box:
 
     Voltas are system milestones; curve/hairpin boxes can also sit above the beam
     or below the staff without expanding the measure box in Verovio 6.3.
+    Octave lines and their labels likewise live outside the note content box.
     Include their vertical extent only where they overlap the selected bar.
     Keep horizontal bounds local so a long span does not pull unrelated bars
     into a single-measure or selected-range image.
@@ -303,7 +305,7 @@ def _include_spanning_extent(system: ElementTree.Element, box: _Box) -> _Box:
     top, bottom = box.y, box.y + box.height
     for group in system.iter(f"{{{SVG_NAMESPACE}}}g"):
         classes = set(group.get("class", "").split())
-        roles = classes & {"ending", "slur", "tie", "hairpin"}
+        roles = classes & {"ending", "slur", "tie", "hairpin", "octave"}
         if not roles or "bounding-box" in classes:
             continue
         span = _find_spanning_ink_box(group, next(iter(roles)))

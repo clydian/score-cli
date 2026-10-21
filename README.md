@@ -212,3 +212,5 @@ rather than guess a voice. This does not reproduce arbitrary `default-y` /
 
 
 0.2.19 render-copy also separates a source-proven whole-measure rest from an incorrectly imported voice layer after a scoped direction (Issue #7). `separatedMeasureRestVoices` records these repairs; unknown/partial timelines remain on the native path. This does not change source MusicXML or certify source-score accuracy. See [rendering compatibility](docs/editing.md).
+
+0.2.21 keeps visible octave-shift lines and labels inside measure, system and range crops. Crop bounds include overlapping octave spans while horizontal selection remains local; source MusicXML is unchanged. This fixes clipped 8va labels above high piano chords and does not certify native-player display.
