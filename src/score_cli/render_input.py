@@ -5,6 +5,8 @@ from dataclasses import dataclass
 
 from lxml import etree
 
+from .render_keys import key_change_warnings
+
 
 @dataclass(frozen=True, slots=True)
 class RenderInput:
@@ -81,6 +83,7 @@ def prepare_render_input(xml: str) -> RenderInput:
     report = dict(
         adapter="verovio-6.3-shared-senza", renderCopyOnly=True,
         omittedRedundantTimeDeclarations=applied, unchecked=unchecked,
+        warnings=key_change_warnings(root),
     )
     return RenderInput(
         etree.tostring(root, encoding="unicode") if applied else xml,

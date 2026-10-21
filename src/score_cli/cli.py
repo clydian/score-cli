@@ -22,6 +22,13 @@ from .compare import compare_scores
 from .calibration import create_calibration, update_record, calibration_status
 
 
+def _print_render_warnings(compatibility: dict) -> None:
+    for warning in compatibility.get("warnings", []):
+        print(f"Warning [{warning['code']}] part {warning['partId']}, "
+              f"measure {warning['printedMeasure']} (ordinal {warning['measureOrdinal']}): "
+              f"{warning['message']}", file=sys.stderr)
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="score-cli",
@@ -192,6 +199,7 @@ def main(argv: Sequence[str] | None = None) -> int:
                 lyric_word_space=arguments.lyric_word_space,
                 lyric_top_min_margin=arguments.lyric_top_min_margin,
             )
+            _print_render_warnings(report["renderInputCompatibility"])
             print(json_bytes(report).decode(), end="")
         elif arguments.command == "render":
             if arguments.measure is None:
@@ -209,6 +217,7 @@ def main(argv: Sequence[str] | None = None) -> int:
                 lyric_word_space=arguments.lyric_word_space,
                 lyric_top_min_margin=arguments.lyric_top_min_margin,
             )
+            _print_render_warnings(result.render_input_compatibility)
             print(
                 f"Rendered {result.scope} for printed measure "
                 f'"{result.printed_measure}" from page '
