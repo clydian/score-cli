@@ -57,6 +57,7 @@ COVERAGE = dict(
         "standard-accidental-pitch-agreement",
         "notations-before-lyric-note-order",
         "tie-tied-slur-wedge-pairs",
+        "octave-shift-pair-warnings",
     ],
     unchecked=[
         "source-pdf-correctness",
@@ -197,6 +198,7 @@ def validate_document(document: ScoreDocument) -> dict:
     open_pairs: dict[tuple, tuple[dict, Fraction | None]] = {}
     slur_points: list[tuple] = []
     tie_points: list[tuple] = []
+    octave_points: list[tuple] = []
     absolute_times: dict[str, Fraction] = defaultdict(Fraction)
     for part, printed, ordinal, measure, attributes in measures:
         loc = dict(partId=part, printedMeasure=printed, measureOrdinal=ordinal)
@@ -504,6 +506,25 @@ def validate_document(document: ScoreDocument) -> dict:
                                     "Pitch already encodes the octave; octave-shift is not added to sounding pitch.",
                                     "info",
                                 )
+                                octave_kind = symbol.get("type", "")
+                                key = (
+                                    part,
+                                    "octave-shift",
+                                    _positive_integer_key(staff),
+                                    _positive_integer_key(symbol.get("number", "1")),
+                                )
+                                at = absolute_times[part] + cursor + Fraction(
+                                    content(element, "offset", "0")
+                                ) / divisions.get(part, Fraction(1))
+                                octave_points.append(
+                                    (
+                                        "start" if octave_kind in {"up", "down"} else octave_kind,
+                                        key,
+                                        dict(direction_loc, staff=staff),
+                                        at,
+                                        None,
+                                    )
+                                )
                 elif tag in {"sound", "barline"} and (
                     child(element, "repeat") is not None or tag == "sound"
                 ):
@@ -569,6 +590,26 @@ def validate_document(document: ScoreDocument) -> dict:
     ):
         _pair(kind, key, location, at, end, open_pairs, add)
     _pair_tie_points(tie_points, add)
+    # Ottava endpoints can be serialized in separate voices. Staff and number
+    # identify the span; voice can be absent or change at the stop. Fragments
+    # may intentionally omit an endpoint, so these diagnostics are warnings.
+    def octave_warning(code, location, reason, severity="warning"):
+        add(code, location, reason, severity)
+
+    octave_pairs: dict[tuple, tuple[dict, Fraction | None]] = {}
+    octave_endpoints = {
+        (key, at) for kind, key, _, at, _ in octave_points if kind in {"start", "stop"}
+    }
+    for kind, key, location, at, end in sorted(
+        octave_points, key=lambda p: (p[1][0], p[3], 0 if p[0] == "stop" else 1)
+    ):
+        if kind == "continue" and (key, at) in octave_endpoints:
+            continue
+        _pair(kind, key, location, at, end, octave_pairs, octave_warning)
+    for key, (location, _) in octave_pairs.items():
+        octave_warning(
+            "unclosed-octave-shift", location, "octave-shift start has no matching stop."
+        )
     for key, (location, _) in open_pairs.items():
         add("unclosed-" + key[1], location, f"{key[1]} start has no matching stop.")
     status = (
@@ -708,9 +749,9 @@ def _pair_tie_points(points, add):
 
 def _pair(kind, key, location, at, end, pairs, add):
     family = key[1]
-    if family == "slur" and kind == "continue":
+    if family in {"slur", "octave-shift"} and kind == "continue":
         if key not in pairs:
-            add("orphan-slur", location, "slur continue has no matching start.")
+            add("orphan-" + family, location, f"{family} continue has no matching start.")
         return
     if kind in {"stop", "continue"}:
         if key not in pairs:
@@ -742,6 +783,15 @@ def _pair(kind, key, location, at, end, pairs, add):
             f"Unsupported endpoint type {kind}.",
             "inconclusive",
         )
+
+
+def _positive_integer_key(value: str) -> str:
+    """Pair numeric XML identities without changing their source locations."""
+    try:
+        parsed = int(value)
+    except ValueError:
+        return value
+    return str(parsed) if parsed > 0 else value
 
 
 def _structure_references(document, add):

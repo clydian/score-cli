@@ -228,3 +228,11 @@ passages with the original score and an independent renderer before accepting
 the preview. Keep the source key signature intact; changing source XML to match
 this renderer can corrupt other parts. This warning does not repair Verovio's
 MEI conversion or certify all independent/staff-specific key contexts.
+
+0.2.23 checks octave-shift spans in score time by part, staff and number, across
+voices and measures. Missing or duplicate endpoints produce warnings such as
+`unclosed-octave-shift`, located at the source direction. These remain warnings
+because an excerpt may intentionally omit an endpoint. Validation never adds a
+stop or transposes pitches; inspect the original score and the following system
+before deciding where an ottava ends. A paired span still does not prove its
+source location, sounding pitches or rendered scope are correct.
