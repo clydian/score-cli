@@ -32,4 +32,6 @@ uv run pytest tests/test_render_key_warnings.py
 The PNG remains an inaccurate preview; the warning directs the reader to an
 independent renderer and original score. Tests exercise actual Verovio import,
 single/range rendering, CLI stderr and unaffected single-part, redundant and
-shared-first-part declarations. No original user score is changed.
+shared-first-part declarations. Staff-state tests additionally cover unnumbered
+resets after numbered overrides, clearing stale numbered state, namespace-aware
+lookup and isolation between parts. No original user score is changed.

@@ -14,7 +14,7 @@ def key_change_warnings(root: etree._Element) -> list[dict]:
     warnings = []
 
     def signature(key):
-        return tuple((etree.QName(child).localname, child.text or "", tuple(sorted(child.attrib.items())))
+        return tuple((etree.QName(child).localname, (child.text or "").strip(), tuple(sorted(child.attrib.items())))
                      for child in key if isinstance(child.tag, str))
 
     for part in parts[1:]:
@@ -24,8 +24,14 @@ def key_change_warnings(root: etree._Element) -> list[dict]:
                 staff = key.get("number", "all")
                 value = signature(key)
                 prior = previous.get(staff, previous.get("all"))
+                # An unnumbered key resets every staff, including numbered
+                # overrides. Comparing only the previous "all" value misses a
+                # real change when one staff had diverged in the meantime.
+                redundant = (bool(previous) and all(v == value for v in previous.values())) if staff == "all" else prior == value
+                if staff == "all":
+                    previous.clear()
                 previous[staff] = value
-                if ordinal == 1 or prior == value:
+                if ordinal == 1 or redundant:
                     continue
                 first = first_measures[ordinal - 1] if ordinal <= len(first_measures) else None
                 shared = [] if first is None else first.findall("{*}attributes/{*}key")

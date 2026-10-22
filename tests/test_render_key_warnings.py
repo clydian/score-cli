@@ -63,3 +63,43 @@ def test_cli_prints_actionable_warning_to_stderr(tmp_path, capsys):
     assert 'Warning [verovio-nonfirst-part-key-change-risk] part B, measure 2' in captured.err
     assert 'independent renderer' in captured.err
     assert 'Rendered measure' in captured.out
+
+
+def _staff_sequence(keys):
+    root = etree.parse(str(FIXTURE)).getroot()
+    second = root.findall('part')[1]
+    second.clear(keep_tail=True)
+    second.set('id', 'B')
+    for index, declarations in enumerate(keys, 1):
+        measure = etree.SubElement(second, 'measure', number=str(index))
+        attributes = etree.SubElement(measure, 'attributes')
+        for staff, fifths in declarations:
+            key = etree.SubElement(attributes, 'key', **({'number': str(staff)} if staff else {}))
+            etree.SubElement(key, 'fifths').text = str(fifths)
+    return etree.tostring(root).decode()
+
+
+def test_all_staff_reset_after_numbered_override_is_a_real_change():
+    xml = _staff_sequence([[(None, 1)], [(1, -4)], [(None, 1)]])
+    warnings = prepare_render_input(xml).compatibility['warnings']
+    assert [(w['measureOrdinal'], w['staff']) for w in warnings] == [(2, '1'), (3, 'all')]
+
+
+def test_all_staff_reset_clears_stale_numbered_state():
+    xml = _staff_sequence([[(None, 1)], [(1, -4)], [(None, -3)], [(1, -3)]])
+    warnings = prepare_render_input(xml).compatibility['warnings']
+    assert [(w['measureOrdinal'], w['staff']) for w in warnings] == [(2, '1'), (3, 'all')]
+
+
+def test_staff_state_does_not_leak_across_parts_and_namespaced_input():
+    xml = _staff_sequence([[(None, 1)], [(1, -4)]])
+    root = etree.fromstring(xml.encode())
+    import copy
+    third = copy.deepcopy(root.findall('part')[1])
+    third.set('id', 'C')
+    third.findall('measure')[1].find('attributes/key/fifths').text = '1'
+    root.append(third)
+    for node in root.iter():
+        node.tag = '{urn:owned:musicxml}' + node.tag
+    warnings = prepare_render_input(etree.tostring(root).decode()).compatibility['warnings']
+    assert [(w['partId'], w['staff']) for w in warnings] == [('B', '1')]
