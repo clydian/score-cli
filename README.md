@@ -215,6 +215,8 @@ rather than guess a voice. This does not reproduce arbitrary `default-y` /
 
 0.2.21 keeps visible octave-shift lines and labels inside measure, system and range crops. Crop bounds include overlapping octave spans while horizontal selection remains local; source MusicXML is unchanged. This fixes clipped 8va labels above high piano chords and does not certify native-player display.
 
+0.2.22 reports specific later-part key-signature compatibility risks without changing source XML.
+
 Verovio 6.3 can omit a later key-signature declaration outside the first
 MusicXML part. Render commands warn on stderr when a nonredundant later-part
 source declaration is not proven covered by an identical first-part declaration
