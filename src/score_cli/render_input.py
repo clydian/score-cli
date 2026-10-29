@@ -5,6 +5,7 @@ from dataclasses import dataclass
 
 from lxml import etree
 
+from .render_brackets import direction_bracket_warnings
 from .render_keys import key_change_warnings
 
 
@@ -83,7 +84,7 @@ def prepare_render_input(xml: str) -> RenderInput:
     report = dict(
         adapter="verovio-6.3-shared-senza", renderCopyOnly=True,
         omittedRedundantTimeDeclarations=applied, unchecked=unchecked,
-        warnings=key_change_warnings(root),
+        warnings=key_change_warnings(root) + direction_bracket_warnings(root),
     )
     return RenderInput(
         etree.tostring(root, encoding="unicode") if applied else xml,

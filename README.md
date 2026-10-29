@@ -236,3 +236,15 @@ because an excerpt may intentionally omit an endpoint. Validation never adds a
 stop or transposes pitches; inspect the original score and the following system
 before deciding where an ottava ends. A paired span still does not prove its
 source location, sounding pitches or rendered scope are correct.
+
+0.2.24 warns about explicitly sloped MusicXML `direction/bracket` lines whose
+paired endpoints have different `default-y` heights (including `relative-y`).
+Verovio 6.3 loses their staff and endpoint positions: a line can appear horizontal,
+move, or disappear even in the uncropped page SVG. Render commands emit
+`verovio-sloped-direction-bracket-risk` on stderr; range manifests retain the
+part, start/end printed measures and ordinals, staff and bracket number under
+`renderInputCompatibility.warnings`. Compare the original score and an independent
+renderer; keep valid source XML intact. This warning does not repair rendering,
+infer a slide/glissando, or certify unflagged lines. Ordinary horizontal brackets,
+repeat endings, and spans without two explicit endpoint heights are outside this
+bounded warning. See [the diagnosis and contract](docs/verovio-direction-bracket-risk.md).

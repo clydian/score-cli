@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Part</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>1</divisions>
+        <time>
+          <beats>4</beats>
+          <beat-type>4</beat-type>
+        </time>
+        <clef>
+          <sign>G</sign>
+          <line>2</line>
+        </clef>
+      </attributes>
+      <note>
+        <pitch>
+          <step>C</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>1</duration>
+        <voice>1</voice>
+      </note>
+      <direction>
+        <direction-type>
+          <bracket type="stop" number="1" line-end="none" default-y="15"/>
+        </direction-type>
+        <voice>1</voice>
+      </direction>
+      <note>
+        <pitch>
+          <step>C</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>3</duration>
+        <voice>1</voice>
+      </note>
+      <backup>
+        <duration>4</duration>
+      </backup>
+      <direction>
+        <direction-type>
+          <bracket type="start" number="1" line-end="none" default-y="30"/>
+        </direction-type>
+        <voice>2</voice>
+      </direction>
+      <note>
+        <pitch>
+          <step>E</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>4</duration>
+        <voice>2</voice>
+      </note>
+    </measure>
+  </part>
+</score-partwise>

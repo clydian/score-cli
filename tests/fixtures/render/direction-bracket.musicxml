@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="Lead"><part-name>Lead</part-name></score-part>
+    <score-part id="Piano"><part-name>Piano</part-name></score-part>
+  </part-list>
+  <part id="Lead">
+    <measure number="X2">
+      <attributes><divisions>12</divisions><time><beats>4</beats><beat-type>4</beat-type></time><clef><sign>G</sign><line>2</line></clef></attributes>
+      <note><pitch><step>C</step><octave>5</octave></pitch><duration>48</duration><type>whole</type></note>
+    </measure>
+  </part>
+  <part id="Piano">
+    <measure number="X2">
+      <attributes>
+        <divisions>12</divisions><key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time><staves>2</staves>
+        <clef number="1"><sign>G</sign><line>2</line></clef>
+        <clef number="2"><sign>F</sign><line>4</line></clef>
+      </attributes>
+      <direction placement="above">
+        <direction-type><bracket type="start" number="7" line-type="solid" line-end="none" default-y="15" relative-x="15"/></direction-type>
+        <offset>24</offset><staff>2</staff>
+      </direction>
+      <direction placement="above">
+        <direction-type><bracket type="stop" number="7" line-type="solid" line-end="none" default-y="-47.5" relative-x="-4.6875"/></direction-type>
+        <offset>36</offset><staff>2</staff>
+      </direction>
+      <note><pitch><step>G</step><octave>4</octave></pitch><duration>48</duration><voice>1</voice><type>whole</type><staff>1</staff></note>
+      <backup><duration>48</duration></backup>
+      <note><pitch><step>C</step><octave>3</octave></pitch><duration>24</duration><voice>2</voice><type>half</type><staff>2</staff></note>
+      <note><pitch><step>D</step><octave>4</octave></pitch><duration>12</duration><voice>2</voice><type>quarter</type><staff>2</staff></note>
+      <note><pitch><step>E</step><alter>-1</alter><octave>2</octave></pitch><duration>12</duration><voice>2</voice><type>quarter</type><accidental>flat</accidental><staff>2</staff></note>
+    </measure>
+  </part>
+</score-partwise>
