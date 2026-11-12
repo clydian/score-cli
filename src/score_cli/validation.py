@@ -446,7 +446,7 @@ def validate_document(document: ScoreDocument) -> dict:
                             end = at + event.duration
                             if family == "slur":
                                 slur_points.append(
-                                    (symbol.get("type", ""), key, event_loc, at, end)
+                                    (symbol.get("type", ""), key, event_loc, at, end, grace)
                                 )
                                 continue
                             tie_points.append(
@@ -585,10 +585,25 @@ def validate_document(document: ScoreDocument) -> dict:
         )
     # MusicXML serializes complete voices with backup, so XML order need not
     # follow musical time for slurs crossing hands or voices.
-    for kind, key, location, at, end in sorted(
-        slur_points, key=lambda p: (p[1][0], p[3], 0 if p[0] == "stop" else 1)
-    ):
-        _pair(kind, key, location, at, end, open_pairs, add)
+    ordered_slurs = sorted(slur_points, key=lambda p: (p[1], p[3]))
+    for _, batch_iterator in groupby(ordered_slurs, key=lambda p: (p[1], p[3])):
+        batch = list(batch_iterator)
+        lanes = {(p[2]["voice"], p[2]["staff"]) for p in batch}
+        if any(p[5] for p in batch) and len(lanes) == 1:
+            # Before-beat grace notes and their main note share an offset.
+            # Within one voice/staff their source order resolves that tie;
+            # across voices XML order still cannot establish musical order.
+            batch.sort(
+                key=lambda p: (
+                    p[2]["measureOrdinal"],
+                    p[2]["eventIndex"],
+                    0 if p[0] == "stop" else 1,
+                )
+            )
+        else:
+            batch.sort(key=lambda p: 0 if p[0] == "stop" else 1)
+        for kind, key, location, at, end, _ in batch:
+            _pair(kind, key, location, at, end, open_pairs, add)
     _pair_tie_points(tie_points, add)
     # Ottava endpoints can be serialized in separate voices. Staff and number
     # identify the span; voice can be absent or change at the stop. Fragments

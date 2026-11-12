@@ -1,5 +1,7 @@
 """Musical checks report bounded coverage instead of claiming PDF correctness."""
 
+import pytest
+
 from score_cli.validation import validate_score
 from test_edit_score import score
 
@@ -155,3 +157,48 @@ def test_cross_staff_slur_pairs_in_score_time_not_xml_voice_order(tmp_path):
     assert "orphan-slur" in {
         d["code"] for d in validate_score(input_path=path)["diagnostics"]
     }
+
+
+def test_grace_slur_to_main_note_keeps_same_voice_source_order(tmp_path):
+    path = score(
+        tmp_path,
+        '''<note><grace slash="yes"/><pitch><step>A</step><octave>3</octave></pitch><voice>1</voice><type>eighth</type><notations><slur type="start" number="2"/></notations></note>
+<note><pitch><step>C</step><octave>4</octave></pitch><duration>2</duration><voice>1</voice><type>quarter</type><notations><slur type="stop" number="2"/></notations></note>''',
+    )
+    assert not [d for d in validate_score(input_path=path)["diagnostics"] if "slur" in d["code"]]
+    path.write_text(path.read_text().replace('<slur type="start" number="2"/>', ''))
+    assert "orphan-slur" in {d["code"] for d in validate_score(input_path=path)["diagnostics"]}
+
+
+def test_slur_between_grace_notes_at_same_offset_keeps_note_order(tmp_path):
+    path = score(
+        tmp_path,
+        '''<note><grace/><pitch><step>D</step><octave>4</octave></pitch><voice>1</voice><type>eighth</type><notations><slur type="start" number="1"/></notations></note>
+<note><grace/><pitch><step>E</step><octave>4</octave></pitch><voice>1</voice><type>eighth</type><notations><slur type="stop" number="1"/></notations></note>
+<note><pitch><step>F</step><octave>4</octave></pitch><duration>2</duration><voice>1</voice><type>quarter</type></note>''',
+    )
+    assert not [d for d in validate_score(input_path=path)["diagnostics"] if "slur" in d["code"]]
+
+
+@pytest.mark.parametrize("voice,staff", [("2", "1"), ("1", "2")])
+def test_same_time_cross_lane_grace_slur_does_not_guess_xml_order(tmp_path, voice, staff):
+    path = score(
+        tmp_path,
+        '''<note><pitch><step>C</step><octave>4</octave></pitch><duration>2</duration><voice>1</voice><type>quarter</type><notations><slur type="stop" number="1"/></notations></note>
+<backup><duration>2</duration></backup>
+<note><grace/><pitch><step>D</step><octave>4</octave></pitch><voice>LANE_VOICE</voice><type>eighth</type><staff>LANE_STAFF</staff><notations><slur type="start" number="1"/></notations></note>
+<note><pitch><step>E</step><octave>4</octave></pitch><duration>2</duration><voice>LANE_VOICE</voice><type>quarter</type><staff>LANE_STAFF</staff></note>'''.replace('LANE_VOICE', voice).replace('LANE_STAFF', staff),
+    )
+    path.write_text(path.read_text().replace('</time>', '</time><staves>2</staves>'))
+    codes = {d["code"] for d in validate_score(input_path=path)["diagnostics"]}
+    assert {"orphan-slur", "unclosed-slur"} <= codes
+
+
+def test_same_note_slur_stop_and_start_after_grace_still_close_then_open(tmp_path):
+    path = score(
+        tmp_path,
+        '''<note><grace/><pitch><step>D</step><octave>4</octave></pitch><voice>1</voice><type>eighth</type><notations><slur type="start" number="1"/></notations></note>
+<note><pitch><step>E</step><octave>4</octave></pitch><duration>2</duration><voice>1</voice><type>quarter</type><notations><slur type="start" number="1"/><slur type="stop" number="1"/></notations></note>
+<note><pitch><step>F</step><octave>4</octave></pitch><duration>2</duration><voice>1</voice><type>quarter</type><notations><slur type="stop" number="1"/></notations></note>''',
+    )
+    assert not [d for d in validate_score(input_path=path)["diagnostics"] if "slur" in d["code"]]

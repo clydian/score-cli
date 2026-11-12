@@ -67,6 +67,8 @@ Diagnostic 字段：`code`（稳定 kebab-case）、`severity`（error/warning/i
 
 检查完整乐谱的 part/小节序列、定位、divisions、正 duration、backup/forward 负游标和 divisions 边界、和弦锚点、倚音、显示时值一致性、按 voice 的区间覆盖、跨小节 tie/tied/slur/wedge。和弦不重复计时，staff 不拆分同一个 voice。弱起、implicit、non-controlling、无拍号不要求每个 voice 填满；普通不完整 voice 仅报告警告，无法确认语义的情形明确 inconclusive。
 
+倚音与主音可以共享同一乐谱时间。对同一 part、同编号 slur 的同拍点端点，只有含显式 grace、且全部端点属于同一 voice/staff 时，才按源小节及音符顺序配对；同一音符的 stop 仍先于 start。跨 voice/staff 的同拍点端点保留原有保守顺序，不用 XML 的先后猜测音乐顺序。不同拍点仍按乐谱时间配对，不改变 cross-staff 连线、声音时间或源 XML；这项检查不验证倚音演奏或原 PDF 正确性。
+
 自 0.2.9，`validate` 对显式 `natural`、`sharp`、`flat`、`double-sharp`、`flat-flat` 与 `pitch/alter` 不一致的音符报告 `accidental-pitch-mismatch` warning，定位到具体事件。省略 alter 按 0 处理；提醒性或括号升降号也应与所写音高一致。未知／微分音升降号不由此规则解释。校验不会自动改谱：回看原 PDF，确认应改显示记号还是音高；仅有听音一致不能证明显示正确。结构编辑引入的新 warning 仍受既有逐项确认机制约束。
 
 `validate` 另对 note 中位于首个 `lyric` 之后的同 MusicXML 命名空间 `notations` 报 `notations-after-lyric` error，定位到具体事件。`coverage.checked` 的 `notations-before-lyric-note-order` 仅表示这一条元素顺序约束；外来扩展命名空间的同名元素不参与判断。校验不会自动重排元素，新引入的此类 error 也不能用 warning acknowledgment 豁免。回看源谱确认符号内容后，以 hash-bound 编辑将 `notations` 放在全部 `lyric` 之前。其他 note 子元素顺序、choice / multiplicity 等仍需完整 XSD 校验，`full-musicxml-schema` 继续列为 unchecked。
