@@ -204,3 +204,9 @@ Verovio 6.3 在某些多声部导入顺序下，将明确 `staff=2` 的全小节
 当力度等 `direction` 先指定另一 voice 时，Verovio 6.3 可能忽略后面整小节休止的显式 `voice`，将它插在另一 layer 的首音前，导致下声部显示中的拍点位置错移。render-copy 现在从源 MusicXML 证明休止为简单拍号下 q0 的完整小节、该 voice 只有这一休止，并在导入 MEI 中检查其余所有事件均属于另一明确声部后，才将 `mRest` 单独归回原 voice layer。manifest 的 `explicitRestStaff.separatedMeasureRestVoices` 记录恢复数量；源文件、edit 输出及音乐事件不改写。
 
 仅支持正整数 voice、明确或继承的简单 `beats/beat-type`、可解析 divisions 的完整非 pickup 小节。带 chord/grace 的该小节、未定/复合拍号、partial rest、目标 layer 已占用或无法完全映射的层不猜测重组；后两项在 `unchecked` 记录，其余保持原导入。该修复针对错误 layer 归属和横向位置，不保证同一谱表内全部休止纵向排版正确，也不等于全 MusicXML schema 或原谱验收。
+
+### 和弦重复符杠声明的渲染兼容
+
+Verovio 6.3 导入和弦各音的相同 `beam` 声明时，可能将后续休止误收入和弦并丢失身份。render-copy 仅在同一连续和弦组的 voice、staff、时值、类型、附点、符干方向和可见性一致，且每音的普通符杠声明完全相同时，将重复声明保留在首音上。manifest 的 `duplicateChordBeams` 记录处理数量；源 MusicXML、edit 输出和音乐事件保持不变。
+
+跨谱表或声部、grace/cue、冲突声明、带 ID 或扇形等特殊符杠不推断归属，并在 `unchecked` 记录。本兼容不校正识谱结果，也不构成原谱音乐或显示验收。
