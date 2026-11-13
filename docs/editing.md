@@ -210,3 +210,11 @@ Verovio 6.3 在某些多声部导入顺序下，将明确 `staff=2` 的全小节
 Verovio 6.3 导入和弦各音的相同 `beam` 声明时，可能将后续休止误收入和弦并丢失身份。render-copy 仅在同一连续和弦组的 voice、staff、时值、类型、附点、符干方向和可见性一致，且每音的普通符杠声明完全相同时，将重复声明保留在首音上。manifest 的 `duplicateChordBeams` 记录处理数量；源 MusicXML、edit 输出和音乐事件保持不变。
 
 跨谱表或声部、grace/cue、冲突声明、带 ID 或扇形等特殊符杠不推断归属，并在 `unchecked` 记录。本兼容不校正识谱结果，也不构成原谱音乐或显示验收。
+
+### 念白与无固定音高音头的谱线位置
+
+Verovio 6.3 会将 MusicXML `unpitched/display-step` 和 `display-octave` 按普通高音谱号导入，忽略当前低音、中音或移八度谱号。0.2.25 仅在渲染副本中将已证明的五线谱 G/F/C 谱号位置转换为等价导入位置；原始 MusicXML、音符节奏和有音高音符均保持不变。`unpitchedDisplayPositions` 逐音记录原显示值、渲染值和谱线位置。
+
+未知或缺失谱号、非五线谱、存在 octave-shift 的 part、无效显示值都保留原样并列为 unchecked。空 `unpitched` 的中线默认位置及打击乐谱号不改写。此适配不会将念白转换成有固定音高的音符，也不代表播放器支持念白；`unsupported-unpitched-sound` 仍为 inconclusive。
+
+依据：[W3C display-octave 定义](https://www.w3.org/2021/06/musicxml40/musicxml-reference/elements/display-octave/)和 [unpitched 定义](https://www.w3.org/2021/06/musicxml40/musicxml-reference/elements/unpitched/)。

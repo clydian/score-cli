@@ -8,6 +8,7 @@ from lxml import etree
 
 from .render_lyrics import XML_ID, load_render_score as load_lyrics_score
 from .render_chord_beams import normalize_chord_beams
+from .render_unpitched import normalize_unpitched_positions
 
 
 def _complete_rest_voices(part: Any, tag: Any) -> dict[Any, str]:
@@ -78,7 +79,9 @@ def _complete_rest_voices(part: Any, tag: Any) -> dict[Any, str]:
 
 def load_render_score(toolkit: Any, xml: str, compatibility: dict) -> bool:
     root = etree.fromstring(xml.encode())
-    if normalize_chord_beams(root, compatibility):
+    normalized = normalize_chord_beams(root, compatibility)
+    normalized += normalize_unpitched_positions(root, compatibility)
+    if normalized:
         xml = etree.tostring(root, encoding="unicode")
     ns = etree.QName(root).namespace
     tag = lambda name: f"{{{ns}}}{name}" if ns else name
