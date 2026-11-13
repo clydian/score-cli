@@ -1,6 +1,6 @@
 [project]
 name = "score-cli"
-version = "0.2.24"
+version = "0.2.25"
 description = "Safely edit, validate, compare, and render MusicXML for source-score calibration."
 readme = "README.md"
 requires-python = ">=3.14,<3.15"

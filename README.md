@@ -248,3 +248,8 @@ renderer; keep valid source XML intact. This warning does not repair rendering,
 infer a slide/glissando, or certify unflagged lines. Ordinary horizontal brackets,
 repeat endings, and spans without two explicit endpoint heights are outside this
 bounded warning. See [the diagnosis and contract](docs/verovio-direction-bracket-risk.md).
+
+0.2.25 preserves clef-relative unpitched note positions in Verovio 6.3 render
+copies, including speaking voice in bass and octave-transposing clefs. Original
+MusicXML stays unchanged. The report records every normalized note and ambiguous
+context; this is display compatibility and does not establish spoken playback.
